@@ -22,6 +22,8 @@ namespace Aggregator.Data
 		// файл локальной базы
 		public static String configFile = "";
 		public static String oledbFileBase = "";
+		// Тип подключения к базе данных
+		public static String typeBaseConnection = DataConstants.LOCAL_CONNETION;
 		// OleDb подключение:
 		public static String oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
 		public static String oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
