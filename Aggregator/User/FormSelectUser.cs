@@ -105,6 +105,7 @@ namespace Aggregator.User
 						DataForms.FMain.Visible = false;
 						programClose = false;
 						DataForms.FClient = new FormClient();
+						DataForms.FClient.consoleText.Text = "Программа успешно запущена!";
 						DataForms.FClient.Show();
 						Close();
 					}else{

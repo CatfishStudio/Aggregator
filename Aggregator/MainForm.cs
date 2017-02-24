@@ -67,10 +67,11 @@ namespace Aggregator
 		
 		void initLocalBase()
 		{
-			//поиск локальной базы данный
+			// Поиск локальной базы данный
 			DataConfig.configFile = DataConfig.resource + "\\config.mdb";
 			if(!File.Exists(DataConfig.configFile)){ //файл не найден, он будет создан
 				
+				/* Создание файла базы данных */
 				CreateDatabase createDataBase;
 				try{
 					createDataBase = new CreateDatabase(DataConfig.configFile, DataConstants.BASE_TYPE_OLEDB);
@@ -79,6 +80,7 @@ namespace Aggregator
 					Application.Exit();
 				}
 				
+				/* Создание таблицы пользователей */
 				CreateTable createTable;
 				createTable = new CreateTable("Users", DataConfig.configFile, DataConstants.BASE_TYPE_OLEDB);
 				createTable.СolumnAdd("ID", true, "COUNTER");
@@ -89,6 +91,25 @@ namespace Aggregator
 					createTable.Execute();
 					createTable.InsertValue("0, 'Администратор', '', 'admin'");
 					createTable.InsertValue("1, 'Пользователь', '', 'user'");
+				}catch(Exception ex){
+					createTable.Error();
+					MessageBox.Show(ex.ToString(), "Ошибка:");
+					Application.Exit();
+				}
+				
+				DataConfig.oledbFileBase = DataConfig.resource + "\\database.mdb";
+				DataConfig.typeBaseConnection = DataConstants.LOCAL_CONNETION;
+				
+				/* Создание таблицы настроек */
+				createTable = new CreateTable("Settings", DataConfig.configFile, DataConstants.BASE_TYPE_OLEDB);
+				createTable.СolumnAdd("ID", true, "COUNTER");
+				createTable.СolumnAdd("nameBase");
+				createTable.СolumnAdd("pathBase");
+				createTable.СolumnAdd("typeBase");
+				createTable.СolumnAdd("connectionBase");
+				try{
+					createTable.Execute();
+					createTable.InsertValue("0, 'Локальная база данных', '" + DataConfig.oledbFileBase + "', '" + DataConstants.BASE_TYPE_OLEDB + "', '" + DataConfig.typeBaseConnection + "'");
 				}catch(Exception ex){
 					createTable.Error();
 					MessageBox.Show(ex.ToString(), "Ошибка:");

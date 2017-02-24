@@ -48,5 +48,19 @@ namespace Aggregator.Client
 		{
 	
 		}
+		
+		void consoleVisible()
+		{
+			if(consolePanel.Visible) consolePanel.Visible = false;
+			else consolePanel.Visible = true;
+		}
+		void КонсольСообщенийToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			consoleVisible();
+		}
+		void ToolStripButton1Click(object sender, EventArgs e)
+		{
+			consoleVisible();
+		}
 	}
 }
