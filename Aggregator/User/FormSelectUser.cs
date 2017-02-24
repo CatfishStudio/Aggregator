@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Data.OleDb;
 using Aggregator.Data;
+using Aggregator.Database;
 
 namespace Aggregator.User
 {
@@ -34,12 +35,12 @@ namespace Aggregator.User
 		}
 		
 		private Boolean programClose;	//флаг закрытия приложения
-		private DataOleDb dataOleDb;
+		private OleDb oleDb;
 		
 		void FormSelectUserFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(programClose) Application.Exit();
-			dataOleDb.Clear();
+			oleDb.Clear();
 		}
 		void Button2Click(object sender, EventArgs e)
 		{
@@ -55,26 +56,26 @@ namespace Aggregator.User
 		{
 			//Подключение локальной базы данных (список серверов)
 			try{
-				dataOleDb = new DataOleDb();
-				dataOleDb.DataTableClear();
-				dataOleDb.DataTableAdd("Name", Type.GetType("System.String"));
-				dataOleDb.DataTableAdd("Pass", Type.GetType("System.String"));
-				dataOleDb.DataTableAdd("Permissions", Type.GetType("System.String"));
-				dataOleDb.SetSelectCommand("SELECT * FROM Users");
-				dataOleDb.SetInsertCommand("INSERT INTO Users ([Name], [Pass], [Permissions]) VALUES (?, ?, ?)");
-				dataOleDb.SetUpdateCommand("UPDATE Users SET [Name] = ?, [Pass] = ?, [Permissions] = ? WHERE ([ID] = ?) " +
+				oleDb = new OleDb();
+				oleDb.DataTableClear();
+				oleDb.DataTableColumnAdd("Name", Type.GetType("System.String"));
+				oleDb.DataTableColumnAdd("Pass", Type.GetType("System.String"));
+				oleDb.DataTableColumnAdd("Permissions", Type.GetType("System.String"));
+				oleDb.SetSelectCommand("SELECT * FROM Users");
+				oleDb.SetInsertCommand("INSERT INTO Users ([Name], [Pass], [Permissions]) VALUES (?, ?, ?)");
+				oleDb.SetUpdateCommand("UPDATE Users SET [Name] = ?, [Pass] = ?, [Permissions] = ? WHERE ([ID] = ?) " +
 		                                  	"AND (Name = ? OR ? IS NULL AND Name IS NULL) " +
 		                                  	"AND (Pass = ? OR ? IS NULL AND Pass IS NULL) " +
 		                                  	"AND (Permissions = ? OR ? IS NULL AND Permissions IS NULL)");
-				dataOleDb.SetDeleteCommand("DELETE FROM Users WHERE ([ID] = ?) " +
+				oleDb.SetDeleteCommand("DELETE FROM Users WHERE ([ID] = ?) " +
 		                                  	"AND (Name = ? OR ? IS NULL AND Name IS NULL) " +
 		                                  	"AND (Pass = ? OR ? IS NULL AND Pass IS NULL) " +
 		                                  	"AND (Permissions = ? OR ? IS NULL AND Permissions IS NULL)");
-				dataOleDb.Fill("Users");
+				oleDb.Fill("Users");
 				
 			}catch(Exception ex){
+				oleDb.Error();
 				MessageBox.Show(ex.ToString());
-				dataOleDb.Error();
 				Application.Exit();
 			}
 			readData();
@@ -82,7 +83,7 @@ namespace Aggregator.User
 		
 		void readData()
 		{
-			foreach(DataRow row in dataOleDb.GetTable("Users").Rows)
+			foreach(DataRow row in oleDb.GetTable("Users").Rows)
 			{
 				comboBox1.Items.Add(row[1].ToString());
 			}
@@ -95,11 +96,11 @@ namespace Aggregator.User
 				if(comboBox1.Text == ""){
 					MessageBox.Show("Вы не выбрали пользователя!","Сообщение:");
 				}else{
-					String Pass = dataOleDb.GetValue("Users", comboBox1.SelectedIndex, "Pass").ToString(); //oleDbDataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Pass"].ToString();
+					String Pass = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Pass").ToString();
 					if(textBox1.Text == Pass){
-						DataConfig.userName = dataOleDb.GetValue("Users", comboBox1.SelectedIndex, "Name").ToString(); // oleDbDataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Name"].ToString();
-						DataConfig.userPass = dataOleDb.GetValue("Users", comboBox1.SelectedIndex, "Pass").ToString(); //oleDbDataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Pass"].ToString();
-						DataConfig.userPermissions = dataOleDb.GetValue("Users", comboBox1.SelectedIndex, "Permissions").ToString(); //oleDbDataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Permissions"].ToString();
+						DataConfig.userName = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Name").ToString();
+						DataConfig.userPass = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Pass").ToString();
+						DataConfig.userPermissions = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Permissions").ToString();
 						DataForms.FMain.Visible = false;
 						
 						MessageBox.Show("DATA: " + DataConfig.userName + " " + DataConfig.userPass + " " + DataConfig.userPermissions, "Сообщение:");

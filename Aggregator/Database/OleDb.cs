@@ -1,22 +1,41 @@
 ﻿/*
- * Создано в SharpDevelop.
- * Пользователь: Catfish
- * Дата: 23.02.2017
- * Время: 21:08
+ * Created by SharpDevelop.
+ * User: Cartish
+ * Date: 24.02.2017
+ * Time: 7:53
  * 
- * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
 using System.Data;
 using System.Data.OleDb;
 using Aggregator.Data;
 
-namespace Aggregator.Data
+namespace Aggregator.Database
 {
 	/// <summary>
-	/// Description of DataOleDb.
+	/// Description of OleDb.
+	/// 
+	/// OleDb - конструктор класса
+	/// SetSelectCommand - создать команду запрос Select
+	/// GetSelectCommand - получить команду запроса
+	/// SetInsertCommand - создать команду запрос Insert
+	/// GetInsertCommand - получить команду запроса
+	/// SetUpdateCommand - создать команду запрос Update
+	/// GetUpdateCommand - получить команду запроса
+	/// SetDeleteCommand - создать команду запрос Delete
+	/// GetDeleteCommand - получить команду запроса
+	/// DataTableClear - очистить таблицу
+	/// DataTableColumnAdd - добавить в таблицу колонку
+	/// GetTables - получить коллекцию таблиц
+	/// GetTable - получить таблицу
+	/// GetValue - получить данные из таблицы
+	/// Fill - заполнить адаптор данными в соответствии с запросами
+	/// Error - в случае ошибки прервать соединение с базой данных
+	/// Clear - очистить все переменные класса
+	/// 
 	/// </summary>
-	public class DataOleDb
+	public class OleDb
 	{
 		private OleDbConnection oleDbConnection;
 		private OleDbCommand oleDbCommandSelect;
@@ -27,7 +46,7 @@ namespace Aggregator.Data
 		private DataSet oleDbDataSet;
 		private DataTable oleDbDataTable;
 		
-		public DataOleDb()
+		public OleDb()
 		{
 			oleDbConnection = new OleDbConnection();
 			oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + DataConfig.configFile + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
@@ -91,7 +110,7 @@ namespace Aggregator.Data
 		}
 		
 		/* Добавить колонку в таблицу */
-		public void DataTableAdd(String columnName, Type columnType)
+		public void DataTableColumnAdd(String columnName, Type columnType)
 		{
 			oleDbDataTable.Columns.Add(columnName, columnType);
 		}

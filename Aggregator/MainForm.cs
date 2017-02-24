@@ -15,6 +15,7 @@ using System.Data.OleDb;
 using ADOX;
 using Aggregator.Data;
 using Aggregator.User;
+using Aggregator.Database;
 
 namespace Aggregator
 {
@@ -44,7 +45,7 @@ namespace Aggregator
 			
 			initLocalPath();
 			initResource();
-			initLocalBase();			
+			initLocalBase();
 		}
 		
 		void initLocalPath()
@@ -70,44 +71,27 @@ namespace Aggregator
 			DataConfig.configFile = DataConfig.resource + "\\config.mdb";
 			if(!File.Exists(DataConfig.configFile)){ //файл не найден, он будет создан
 				
-				Catalog ADOXCatalog;
-				ADOXCatalog = new Catalog();
-				
-				//Создание базы данных.
+				CreateDatabase createDataBase;
 				try{
-					ADOXCatalog.Create(DataConfig.oledbConnectLineBegin + DataConfig.configFile + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass);
-					
-					OleDbConnection oleDbConnection;
-					OleDbCommand oleDbCommand;
-					String sqlFullCommand;
-					String sqlCommand;
-					
-					oleDbConnection = new OleDbConnection();
-					sqlFullCommand = "";
-					sqlCommand = "";
-					
-					oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + DataConfig.configFile + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
-					oleDbConnection.Open(); //соединение с базой
-					//Создаем таблицу
-					sqlCommand = "CREATE TABLE Users ([ID] COUNTER PRIMARY KEY, ";
-					sqlFullCommand += sqlCommand;
-					sqlCommand = "[Name] VARCHAR DEFAULT " + "\"" + "\"" + ", ";
-					sqlFullCommand += sqlCommand;
-					sqlCommand = "[Pass] VARCHAR DEFAULT " + "\"" + "\"" + ", ";
-					sqlFullCommand += sqlCommand;
-					sqlCommand = "[Permissions] VARCHAR DEFAULT " + "\"" + "\"" + ")";
-					sqlFullCommand += sqlCommand;
-					oleDbCommand = new OleDbCommand(sqlFullCommand, oleDbConnection);
-					oleDbCommand.ExecuteNonQuery();	//выполнение запроса
-					//создание первой записи по умолчению для локального сервера
-					sqlFullCommand = "INSERT INTO Users ([Name], [Pass], [Permissions]) VALUES ('Администратор', '', 'admin')";
-					oleDbCommand = new OleDbCommand(sqlFullCommand, oleDbConnection);
-					oleDbCommand.ExecuteNonQuery();	//выполнение запроса
-					//отключение соединения
-					oleDbConnection.Close();
-					
+					createDataBase = new CreateDatabase(DataConfig.configFile, DataConstants.BASE_TYPE_OLEDB);
 				}catch(Exception ex){
-					MessageBox.Show(ex.ToString(), "Ошибка:");	//Сообщение об ошибке
+					MessageBox.Show(ex.ToString(), "Ошибка:");
+					Application.Exit();
+				}
+				
+				CreateTable createTable;
+				createTable = new CreateTable("Users", DataConfig.configFile, DataConstants.BASE_TYPE_OLEDB);
+				createTable.СolumnAdd("ID", true, "COUNTER");
+				createTable.СolumnAdd("Name");
+				createTable.СolumnAdd("Pass");
+				createTable.СolumnAdd("Permissions");
+				try{
+					createTable.Execute();
+					createTable.InsertValue("0, 'Администратор', '', 'admin'");
+					createTable.InsertValue("1, 'Пользователь', '', 'user'");
+				}catch(Exception ex){
+					createTable.Error();
+					MessageBox.Show(ex.ToString(), "Ошибка:");
 					Application.Exit();
 				}
 			}

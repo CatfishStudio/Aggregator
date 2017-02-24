@@ -49,10 +49,12 @@
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\CreateDatabase.cs" />
+    <Compile Include="Database\CreateTable.cs" />
+    <Compile Include="Database\OleDb.cs" />
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\DataForms.cs" />
-    <Compile Include="Data\DataOleDb.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -78,6 +80,7 @@
   <ItemGroup>
     <Folder Include="Data" />
     <Folder Include="Client" />
+    <Folder Include="Database" />
     <Folder Include="User" />
   </ItemGroup>
   <ItemGroup>
