@@ -14,6 +14,7 @@ using System.Windows.Forms.VisualStyles;
 using System.Data.OleDb;
 using Aggregator.Data;
 using Aggregator.Database;
+using Aggregator.Client;
 
 namespace Aggregator.User
 {
@@ -102,8 +103,10 @@ namespace Aggregator.User
 						DataConfig.userPass = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Pass").ToString();
 						DataConfig.userPermissions = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Permissions").ToString();
 						DataForms.FMain.Visible = false;
-						
-						MessageBox.Show("DATA: " + DataConfig.userName + " " + DataConfig.userPass + " " + DataConfig.userPermissions, "Сообщение:");
+						programClose = false;
+						DataForms.FClient = new FormClient();
+						DataForms.FClient.Show();
+						Close();
 					}else{
 						MessageBox.Show("Вы ввели не верный пароль.","Сообщение:");
 					}

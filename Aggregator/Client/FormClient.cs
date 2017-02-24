@@ -28,5 +28,25 @@ namespace Aggregator.Client
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		void FormClientLoad(object sender, EventArgs e)
+		{
+	
+		}
+		void FormClientFormClosing(object sender, FormClosingEventArgs e)
+		{
+			if(MessageBox.Show("Вы хотите выйти из программы?","Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+				e.Cancel = false;
+			}else{
+				e.Cancel = true;
+			}
+		}
+		void FormClientFormClosed(object sender, FormClosedEventArgs e)
+		{
+			Application.Exit();
+		}
+		void ПанельИнструментовToolStripMenuItemClick(object sender, EventArgs e)
+		{
+	
+		}
 	}
 }

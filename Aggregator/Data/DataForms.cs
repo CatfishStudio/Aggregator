@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using Aggregator.Client;
 using Aggregator.User;
 
 namespace Aggregator.Data
@@ -18,5 +19,6 @@ namespace Aggregator.Data
 	{
 		public static MainForm FMain;
 		public static FormSelectUser FSelectUser;
+		public static FormClient FClient;
 	}
 }
