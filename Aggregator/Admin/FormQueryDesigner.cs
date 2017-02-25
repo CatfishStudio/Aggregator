@@ -54,54 +54,56 @@ namespace Aggregator.Admin
 		}
 		void Button2Click(object sender, EventArgs e)
 		{
+			oleDb.SelectCommand = textBox1.Text;
+			oleDb.ExecuteFill(textBox2.Text);
+			dataGrid1.DataSource = oleDb.dataSet;
+			Utilits.Console.Log("ЗАПРОС: " + textBox1.Text);
 			// Запрос Select
+			/*
 			if(checkBox1.Checked){
 				oleDb.SelectCommand = textBox1.Text;
-				oleDb.ExecuteFill(oleDb.dataSet, textBox2.Text);
+				oleDb.ExecuteFill(textBox2.Text);
 				dataGrid1.DataSource = oleDb.dataSet;
-			}
+				Utilits.Console.Log("SELECT");
+			}			
 			// Запрос Insert
 			if(checkBox2.Checked){
 				oleDb.InsertCommand = textBox1.Text;
-				oleDb.ExecuteUpdate(oleDb.dataSet, textBox2.Text);
+				oleDb.ExecuteUpdate(textBox2.Text);
 				dataGrid1.DataSource = oleDb.dataSet;
+				Utilits.Console.Log("INSERT");
 			}
 			// Запрос Update
 			if(checkBox3.Checked){
 				oleDb.UpdateCommand = textBox1.Text;
-				oleDb.ExecuteUpdate(oleDb.dataSet, textBox2.Text);
+				oleDb.ExecuteUpdate(textBox2.Text);
 				dataGrid1.DataSource = oleDb.dataSet;
+				Utilits.Console.Log("UPDATE");
 			}
 			// Запрос Delete
 			if(checkBox4.Checked){
 				oleDb.DeleteCommand = textBox1.Text;
-				oleDb.ExecuteUpdate(oleDb.dataSet, textBox2.Text);
+				oleDb.ExecuteUpdate(textBox2.Text);
 				dataGrid1.DataSource = oleDb.dataSet;
+				Utilits.Console.Log("DELETE");
 			}
+			*/
 		}
 		void CheckBox1CheckedChanged(object sender, EventArgs e)
 		{
-			checkBox2.Checked = false;
-			checkBox3.Checked = false;
-			checkBox4.Checked = false;
+			textBox1.Text = "SELECT * FROM Table";
 		}
 		void CheckBox2CheckedChanged(object sender, EventArgs e)
 		{
-			checkBox1.Checked = false;
-			checkBox3.Checked = false;
-			checkBox4.Checked = false;
+			textBox1.Text = "INSERT INTO Table ([Name]) VALUES ('name')";
 		}
 		void CheckBox3CheckedChanged(object sender, EventArgs e)
 		{
-			checkBox1.Checked = false;
-			checkBox2.Checked = false;
-			checkBox4.Checked = false;
+			textBox1.Text = "UPDATE Table SET [Name] = 'name' WHERE (ID = 0)";
 		}
 		void CheckBox4CheckedChanged(object sender, EventArgs e)
 		{
-			checkBox1.Checked = false;
-			checkBox2.Checked = false;
-			checkBox3.Checked = false;
+			textBox1.Text = "DELETE FROM Table WHERE (ID = 0)";
 		}
 	}
 }

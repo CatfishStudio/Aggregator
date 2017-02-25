@@ -68,7 +68,7 @@ namespace Aggregator.Database
 		}
 		
 		//методы --------------------------
-		public void ExecuteFill(DataSet _dataSet, String _tableName){
+		public void ExecuteFill(String tableName){
 			try{
 				oleDbConnection.Open();
 
@@ -81,7 +81,7 @@ namespace Aggregator.Database
 				oleDbDataAdapter.InsertCommand = oleDbCommandInsert;
 				oleDbDataAdapter.UpdateCommand = oleDbCommandUpdate;
 				oleDbDataAdapter.DeleteCommand = oleDbCommandDelete;
-				oleDbDataAdapter.Fill(dataSet, _tableName);
+				oleDbDataAdapter.Fill(dataSet, tableName);
 				
 				oleDbConnection.Close();
 
@@ -91,21 +91,22 @@ namespace Aggregator.Database
 			}
 		}
 		
-		public void ExecuteUpdate(DataSet _dataSet, String _tableName){
+		public void ExecuteUpdate(String tableName){
+			dataSet = new DataSet();
+			dataSet.Clear();
 			try{
 				oleDbConnection.Open();
 
 				oleDbCommandSelect.CommandText = sqlCommandSelect;
 				oleDbCommandInsert.CommandText = sqlCommandInsert;
 				oleDbCommandUpdate.CommandText = sqlCommandUpdate;
-				oleDbCommandDelete.CommandText = sqlCommandDelete;
-				
+				oleDbCommandDelete.CommandText = sqlCommandDelete;				
 
 				oleDbDataAdapter.SelectCommand = oleDbCommandSelect;
 				oleDbDataAdapter.InsertCommand = oleDbCommandInsert;
 				oleDbDataAdapter.UpdateCommand = oleDbCommandUpdate;
 				oleDbDataAdapter.DeleteCommand = oleDbCommandDelete;
-				oleDbDataAdapter.Update(_dataSet, _tableName);
+				oleDbDataAdapter.Update(dataSet, tableName);
 				
 				oleDbConnection.Close();
 
