@@ -20,7 +20,10 @@ namespace Aggregator.Data
 	{
 		public static MainForm FMain;
 		public static FormSelectUser FSelectUser;
+		/* Клиент */
 		public static FormClient FClient;
+		/*Администратор*/
 		public static FormSettingsDatabase FSettingsDatabase;
+		public static FormQueryDesigner FQueryDesigner;
 	}
 }

@@ -50,6 +50,7 @@ namespace Aggregator.Client
 		public System.Windows.Forms.Panel consolePanel;
 		private System.Windows.Forms.ToolTip toolTip1;
 		public System.Windows.Forms.TextBox consoleText;
+		private System.Windows.Forms.ToolStripMenuItem консольЗапросовToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -110,6 +111,7 @@ namespace Aggregator.Client
 			this.consolePanel = new System.Windows.Forms.Panel();
 			this.consoleText = new System.Windows.Forms.TextBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.консольЗапросовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.consolePanel.SuspendLayout();
@@ -300,7 +302,8 @@ namespace Aggregator.Client
 			// 
 			this.администраторToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.пользователиToolStripMenuItem,
-			this.базаДанныхToolStripMenuItem});
+			this.базаДанныхToolStripMenuItem,
+			this.консольЗапросовToolStripMenuItem});
 			this.администраторToolStripMenuItem.Name = "администраторToolStripMenuItem";
 			this.администраторToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
 			this.администраторToolStripMenuItem.Text = "Администратор";
@@ -309,14 +312,14 @@ namespace Aggregator.Client
 			// 
 			this.пользователиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("пользователиToolStripMenuItem.Image")));
 			this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-			this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
 			this.пользователиToolStripMenuItem.Text = "Пользователи";
 			// 
 			// базаДанныхToolStripMenuItem
 			// 
 			this.базаДанныхToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("базаДанныхToolStripMenuItem.Image")));
 			this.базаДанныхToolStripMenuItem.Name = "базаДанныхToolStripMenuItem";
-			this.базаДанныхToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.базаДанныхToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
 			this.базаДанныхToolStripMenuItem.Text = "База данных";
 			this.базаДанныхToolStripMenuItem.Click += new System.EventHandler(this.БазаДанныхToolStripMenuItemClick);
 			// 
@@ -396,6 +399,14 @@ namespace Aggregator.Client
 			this.consoleText.Name = "consoleText";
 			this.consoleText.Size = new System.Drawing.Size(780, 130);
 			this.consoleText.TabIndex = 0;
+			// 
+			// консольЗапросовToolStripMenuItem
+			// 
+			this.консольЗапросовToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("консольЗапросовToolStripMenuItem.Image")));
+			this.консольЗапросовToolStripMenuItem.Name = "консольЗапросовToolStripMenuItem";
+			this.консольЗапросовToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+			this.консольЗапросовToolStripMenuItem.Text = "Консоль запросов";
+			this.консольЗапросовToolStripMenuItem.Click += new System.EventHandler(this.КонсольЗапросовToolStripMenuItemClick);
 			// 
 			// FormClient
 			// 

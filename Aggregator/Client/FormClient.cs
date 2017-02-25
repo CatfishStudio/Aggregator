@@ -51,6 +51,15 @@ namespace Aggregator.Client
 			else consolePanel.Visible = true;
 		}
 		
+		void consoleQuery()
+		{
+			if(DataForms.FQueryDesigner == null){
+				DataForms.FQueryDesigner = new FormQueryDesigner();
+				DataForms.FQueryDesigner.MdiParent = DataForms.FClient;
+				DataForms.FQueryDesigner.Show();
+			}
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -83,6 +92,10 @@ namespace Aggregator.Client
 		void БазаДанныхToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			settings();
+		}
+		void КонсольЗапросовToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			consoleQuery();
 		}
 	}
 }
