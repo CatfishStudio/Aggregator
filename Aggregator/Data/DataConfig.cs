@@ -15,22 +15,24 @@ namespace Aggregator.Data
 	/// </summary>
 	public static class DataConfig
 	{
-		// адрес программы
-		public static String programPath = "";
-		// папка ресурсов
-		public static String resource = "";
-		// файл локальной базы
-		public static String configFile = "";
-		public static String oledbFileBase = "";
-		// Тип подключения к базе данных
-		public static String typeBaseConnection = "";
-		// OleDb подключение:
+		/* Программа */	
+		public static String programPath = "";			// адрес программы
+		public static String resource = "";				// адрес папки ресурсов
+		public static String configFile = "";			// адрес и имя файла базы данных config.mdb
+		/* Пользователь */
+		public static String userName = "";				// имя
+		public static String userPass = "";				// пароль
+		public static String userPermissions = "";		// права
+		
+		/* Локальная база данных */		
 		public static String oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
 		public static String oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
 		public static String oledbConnectPass = "12345";
-		// Информация пользователя
-		public static String userName = "";
-		public static String userPass = "";
-		public static String userPermissions = "";
+		
+		/* Настройки подключения к базе данных */		
+		public static String localDatabase = "";			// адрес и имя файла базы данных database.mdb
+		public static String typeConnection = "";		// тип подключения к базе данных (local/servel)
+		public static String typeDatabase = "";			// тип провайдера данных (oledb/mssql)
+		
 	}
 }

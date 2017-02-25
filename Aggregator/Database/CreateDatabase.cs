@@ -30,9 +30,9 @@ namespace Aggregator.Database
 		{
 			path = fileName;
 			type = baseType;
-			if(type == DataConstants.BASE_TYPE_OLEDB){
+			if(type == DataConstants.TYPE_OLEDB){
 				createBaseOleDb();
-			}else if(type == DataConstants.BASE_TYPE_MSSQL){
+			}else if(type == DataConstants.TYPE_MSSQL){
 				createBaseMsSql();
 			}
 		}

@@ -15,10 +15,10 @@ namespace Aggregator.Data
 	/// </summary>
 	public static class DataConstants
 	{
-		public const String LOCAL_CONNETION = "local_connection";
-		public const String SERVER_CONNETION = "server_connection";
-		public const String BASE_TYPE_OLEDB = "base_type_oledb";
-		public const String BASE_TYPE_MSSQL = "base_type_mssql";
+		public const String CONNETION_LOCAL = "connection_local";
+		public const String CONNETION_SERVER = "connection_server";
+		public const String TYPE_OLEDB = "type_oledb";
+		public const String TYPE_MSSQL = "type_mssql";
 		public const String ADMIN = "admin";
 		public const String USER = "user";
 	}

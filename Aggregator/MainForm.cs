@@ -74,7 +74,7 @@ namespace Aggregator
 				/* Создание файла базы данных */
 				CreateDatabase createDataBase;
 				try{
-					createDataBase = new CreateDatabase(DataConfig.configFile, DataConstants.BASE_TYPE_OLEDB);
+					createDataBase = new CreateDatabase(DataConfig.configFile, DataConstants.TYPE_OLEDB);
 				}catch(Exception ex){
 					MessageBox.Show(ex.ToString(), "Ошибка:");
 					Application.Exit();
@@ -82,7 +82,7 @@ namespace Aggregator
 				
 				/* Создание таблицы пользователей */
 				CreateTable createTable;
-				createTable = new CreateTable("Users", DataConfig.configFile, DataConstants.BASE_TYPE_OLEDB);
+				createTable = new CreateTable("Users", DataConfig.configFile, DataConstants.TYPE_OLEDB);
 				createTable.СolumnAdd("ID", true, "COUNTER");
 				createTable.СolumnAdd("Name");
 				createTable.СolumnAdd("Pass");
@@ -97,19 +97,25 @@ namespace Aggregator
 					Application.Exit();
 				}
 				
-				DataConfig.oledbFileBase = DataConfig.resource + "\\database.mdb";
-				DataConfig.typeBaseConnection = DataConstants.LOCAL_CONNETION;
+				DataConfig.localDatabase = DataConfig.resource + "\\database.mdb";
+				DataConfig.typeConnection = DataConstants.CONNETION_LOCAL;
 				
 				/* Создание таблицы настроек */
-				createTable = new CreateTable("Settings", DataConfig.configFile, DataConstants.BASE_TYPE_OLEDB);
+				createTable = new CreateTable("Settings", DataConfig.configFile, DataConstants.TYPE_OLEDB);
 				createTable.СolumnAdd("ID", true, "COUNTER");
-				createTable.СolumnAdd("nameBase");
-				createTable.СolumnAdd("pathBase");
-				createTable.СolumnAdd("typeBase");
-				createTable.СolumnAdd("connectionBase");
+				createTable.СolumnAdd("name");
+				createTable.СolumnAdd("localDatabase");
+				createTable.СolumnAdd("typeDatabase");
+				createTable.СolumnAdd("typeConnection");
+				createTable.СolumnAdd("server");
+				createTable.СolumnAdd("serverUser");
+				createTable.СolumnAdd("serverDatabase");
 				try{
 					createTable.Execute();
-					createTable.InsertValue("0, 'Локальная база данных', '" + DataConfig.oledbFileBase + "', '" + DataConstants.BASE_TYPE_OLEDB + "', '" + DataConfig.typeBaseConnection + "'");
+					createTable.InsertValue("0, 'database', '" + DataConfig.localDatabase 
+					                        + "', '" + DataConstants.TYPE_OLEDB 
+					                        + "', '" + DataConfig.typeConnection 
+					                        + "', 'localhost', 'sa', 'database'");
 				}catch(Exception ex){
 					createTable.Error();
 					MessageBox.Show(ex.ToString(), "Ошибка:");

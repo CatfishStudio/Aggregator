@@ -64,9 +64,9 @@ namespace Aggregator.Database
 		
 		public void Execute()
 		{
-			if(type == DataConstants.BASE_TYPE_OLEDB){
+			if(type == DataConstants.TYPE_OLEDB){
 				createTableOleDb();
-			}else if(type == DataConstants.BASE_TYPE_MSSQL){
+			}else if(type == DataConstants.TYPE_MSSQL){
 				createTableMsSql();
 			}
 		}
