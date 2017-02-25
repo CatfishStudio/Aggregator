@@ -192,7 +192,6 @@ namespace Aggregator.Client
 			this.панельИнструментовToolStripMenuItem.Name = "панельИнструментовToolStripMenuItem";
 			this.панельИнструментовToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
 			this.панельИнструментовToolStripMenuItem.Text = "Панель инструментов";
-			this.панельИнструментовToolStripMenuItem.Click += new System.EventHandler(this.ПанельИнструментовToolStripMenuItemClick);
 			// 
 			// консольСообщенийToolStripMenuItem
 			// 

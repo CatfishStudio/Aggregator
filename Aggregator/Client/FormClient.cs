@@ -30,9 +30,35 @@ namespace Aggregator.Client
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
+		/* =================================================================================================
+		 * РАЗДЕЛ: ПРОЦЕДУР И ФУНКЦИЙ
+		 * =================================================================================================
+		 */	
+		
+		void settings()
+		{
+			if(DataForms.FSettingsDatabase == null){
+				DataForms.FSettingsDatabase = new FormSettingsDatabase();
+				DataForms.FSettingsDatabase.MdiParent = DataForms.FClient;
+				DataForms.FSettingsDatabase.Show();
+			}
+		}
+		
+		void consoleVisible()
+		{
+			if(consolePanel.Visible) consolePanel.Visible = false;
+			else consolePanel.Visible = true;
+		}
+		
+		/* =================================================================================================
+		 * РАЗДЕЛ: СОБЫТИЙ
+		 * =================================================================================================
+		 */		
+		
 		void FormClientLoad(object sender, EventArgs e)
 		{
-	
+			Utilits.Console.Log("Программа успешно загрущена!");
 		}
 		void FormClientFormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -46,16 +72,6 @@ namespace Aggregator.Client
 		{
 			Application.Exit();
 		}
-		void ПанельИнструментовToolStripMenuItemClick(object sender, EventArgs e)
-		{
-	
-		}
-		
-		void consoleVisible()
-		{
-			if(consolePanel.Visible) consolePanel.Visible = false;
-			else consolePanel.Visible = true;
-		}
 		void КонсольСообщенийToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			consoleVisible();
@@ -63,15 +79,6 @@ namespace Aggregator.Client
 		void ToolStripButton1Click(object sender, EventArgs e)
 		{
 			consoleVisible();
-		}
-		
-		void settings()
-		{
-			if(DataForms.FSettingsDatabase == null){
-				DataForms.FSettingsDatabase = new FormSettingsDatabase();
-				DataForms.FSettingsDatabase.MdiParent = DataForms.FClient;
-				DataForms.FSettingsDatabase.Show();
-			}
 		}
 		void БазаДанныхToolStripMenuItemClick(object sender, EventArgs e)
 		{

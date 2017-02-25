@@ -10,11 +10,10 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Data.OleDb;
 using Aggregator.Data;
 using Aggregator.Database;
 using Aggregator.Client;
+using Aggregator.Utilits;
 
 namespace Aggregator.User
 {
@@ -105,8 +104,8 @@ namespace Aggregator.User
 						DataForms.FMain.Visible = false;
 						programClose = false;
 						DataForms.FClient = new FormClient();
-						DataForms.FClient.consoleText.Text = "Программа успешно запущена!";
 						DataForms.FClient.Show();
+						Utilits.Console.Log("Пользователь успешно авторизовался!");
 						Close();
 					}else{
 						MessageBox.Show("Вы ввели не верный пароль.","Сообщение:");
