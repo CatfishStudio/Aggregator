@@ -25,8 +25,8 @@ namespace Aggregator.Database
 			              "typeDatabase='" + DataConfig.typeDatabase + "', " + 
 			              "typeConnection='" + DataConfig.typeConnection + "', " + 
 			              "server='" + DataConfig.server + "', " +
-			              "serverUser='" + DataConfig.server + "', " +
-			              "serverDatabase='" + DataConfig.server + "' WHERE ID = 0");
+			              "serverUser='" + DataConfig.serverUser + "', " +
+			              "serverDatabase='" + DataConfig.serverDatabase + "' WHERE ID = 0");
 			query.Execute();
 			Utilits.Console.Log("Новые настройки базы данных успешно сохранены.");
 			ReadingConfig.ReadSettings();
