@@ -49,6 +49,7 @@
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\CreateConfig.cs" />
     <Compile Include="Database\CreateDatabase.cs" />
     <Compile Include="Database\CreateTable.cs" />
     <Compile Include="Database\OleDb.cs" />
