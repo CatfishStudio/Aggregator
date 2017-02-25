@@ -33,6 +33,7 @@ namespace Aggregator.Admin
 		
 		void FormSettingsLoad(object sender, EventArgs e)
 		{
+			ReadingConfig.ReadSettings();
 			typeConnectionСomboBox.Items.Add(DataConstants.CONNETION_LOCAL);
 			typeConnectionСomboBox.Items.Add(DataConstants.CONNETION_SERVER);
 			typeDatabaseСomboBox.Items.Add(DataConstants.TYPE_OLEDB);

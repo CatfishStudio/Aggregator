@@ -18,16 +18,16 @@ namespace Aggregator.Database
 	/// </summary>
 	public class OleDb2
 	{
-		private OleDbConnection oleDbConnection;
-		private OleDbCommand oleDbCommandSelect;
-		private OleDbCommand oleDbCommandInsert;
-		private OleDbCommand oleDbCommandUpdate;
-		private OleDbCommand oleDbCommandDelete;
-		private OleDbDataAdapter oleDbDataAdapter;
-		private String sqlCommandSelect;
-		private String sqlCommandUpdate;
-		private String sqlCommandInsert;
-		private String sqlCommandDelete;
+		public OleDbConnection oleDbConnection;
+		public OleDbCommand oleDbCommandSelect;
+		public OleDbCommand oleDbCommandInsert;
+		public OleDbCommand oleDbCommandUpdate;
+		public OleDbCommand oleDbCommandDelete;
+		public OleDbDataAdapter oleDbDataAdapter;
+		public String sqlCommandSelect;
+		public String sqlCommandUpdate;
+		public String sqlCommandInsert;
+		public String sqlCommandDelete;
 		public DataSet dataSet;
 		
 		public OleDb2(String fileBase)
@@ -92,8 +92,6 @@ namespace Aggregator.Database
 		}
 		
 		public void ExecuteUpdate(String tableName){
-			dataSet = new DataSet();
-			dataSet.Clear();
 			try{
 				oleDbConnection.Open();
 
@@ -116,6 +114,7 @@ namespace Aggregator.Database
 			}
 		}
 		
+		/*
 		public void SelectParametersAdd(String parameterName, OleDbType dbType, int size, String sourceColumn, UpdateRowSource urs)
 		{
 			oleDbCommandSelect.Parameters.Add(parameterName, dbType, size, sourceColumn);
@@ -140,7 +139,7 @@ namespace Aggregator.Database
 			//oleDbCommandDelete.UpdatedRowSource = urs;
 		}
 		
-		
+		*/
 		
 		
 	}
