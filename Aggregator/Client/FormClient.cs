@@ -9,6 +9,8 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Aggregator.Data;
+using Aggregator.Admin;
 
 namespace Aggregator.Client
 {
@@ -61,6 +63,19 @@ namespace Aggregator.Client
 		void ToolStripButton1Click(object sender, EventArgs e)
 		{
 			consoleVisible();
+		}
+		
+		void settings()
+		{
+			if(DataForms.FSettingsDatabase == null){
+				DataForms.FSettingsDatabase = new FormSettingsDatabase();
+				DataForms.FSettingsDatabase.MdiParent = DataForms.FClient;
+				DataForms.FSettingsDatabase.Show();
+			}
+		}
+		void БазаДанныхToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			settings();
 		}
 	}
 }

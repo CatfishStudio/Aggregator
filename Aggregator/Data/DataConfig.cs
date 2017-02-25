@@ -30,9 +30,11 @@ namespace Aggregator.Data
 		public static String oledbConnectPass = "12345";
 		
 		/* Настройки подключения к базе данных */		
-		public static String localDatabase = "";			// адрес и имя файла базы данных database.mdb
+		public static String localDatabase = "";		// адрес и имя файла базы данных database.mdb
 		public static String typeConnection = "";		// тип подключения к базе данных (local/servel)
 		public static String typeDatabase = "";			// тип провайдера данных (oledb/mssql)
-		
+		public static String server = "";				// адрес сервера MS SQLServer
+		public static String serverUser = "";			// пользователь сервера MS SQLServer
+		public static String serverDatabase = "";		// база данных на сервере MS SQLServer
 	}
 }

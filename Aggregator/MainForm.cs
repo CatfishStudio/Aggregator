@@ -69,6 +69,9 @@ namespace Aggregator
 			DataConfig.configFile = DataConfig.resource + "\\config.mdb";
 			if(!File.Exists(DataConfig.configFile)){ //файл не найден, он будет создан
 				CreateConfig.Create();
+				ReadingConfig.ReadSettings();
+			}else{
+				ReadingConfig.ReadSettings();
 			}
 			createFormSelectUser();
 		}

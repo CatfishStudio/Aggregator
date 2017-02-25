@@ -319,6 +319,7 @@ namespace Aggregator.Client
 			this.базаДанныхToolStripMenuItem.Name = "базаДанныхToolStripMenuItem";
 			this.базаДанныхToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.базаДанныхToolStripMenuItem.Text = "База данных";
+			this.базаДанныхToolStripMenuItem.Click += new System.EventHandler(this.БазаДанныхToolStripMenuItemClick);
 			// 
 			// справкаToolStripMenuItem
 			// 

@@ -45,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\FormSettingsDatabase.cs" />
+    <Compile Include="Admin\FormSettingsDatabase.Designer.cs">
+      <DependentUpon>FormSettingsDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\FormClient.cs" />
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
@@ -53,6 +57,7 @@
     <Compile Include="Database\CreateDatabase.cs" />
     <Compile Include="Database\CreateTable.cs" />
     <Compile Include="Database\OleDb.cs" />
+    <Compile Include="Database\ReadingConfig.cs" />
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\DataForms.cs" />
@@ -66,8 +71,12 @@
     <Compile Include="User\FormSelectUser.Designer.cs">
       <DependentUpon>FormSelectUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilits\Console.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Admin\FormSettingsDatabase.resx">
+      <DependentUpon>FormSettingsDatabase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -82,6 +91,8 @@
     <Folder Include="Data" />
     <Folder Include="Client" />
     <Folder Include="Database" />
+    <Folder Include="Admin" />
+    <Folder Include="Utilits" />
     <Folder Include="User" />
   </ItemGroup>
   <ItemGroup>
