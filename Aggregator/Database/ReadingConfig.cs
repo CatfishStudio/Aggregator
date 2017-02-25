@@ -20,7 +20,7 @@ namespace Aggregator.Database
 		public static void ReadSettings()
 		{
 			OleDb oleDb;
-			oleDb = new OleDb();
+			oleDb = new OleDb(DataConfig.configFile);
 			try{
 				oleDb.DataTableClear();
 				oleDb.DataTableColumnAdd("name", Type.GetType("System.String"));
@@ -39,7 +39,7 @@ namespace Aggregator.Database
 				DataConfig.server = oleDb.GetValue("Settings", 0, "server").ToString();
 				DataConfig.serverUser = oleDb.GetValue("Settings", 0, "serverUser").ToString();
 				DataConfig.serverDatabase = oleDb.GetValue("Settings", 0, "serverDatabase").ToString();
-				
+				Utilits.Console.Log("Настройки соединения с базой данных успешно загружены.");
 			}catch(Exception ex){
 				oleDb.Error();
 				MessageBox.Show(ex.ToString());

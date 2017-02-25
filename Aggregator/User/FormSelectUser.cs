@@ -56,7 +56,7 @@ namespace Aggregator.User
 		{
 			//Подключение локальной базы данных (список серверов)
 			try{
-				oleDb = new OleDb();
+				oleDb = new OleDb(DataConfig.configFile);
 				oleDb.DataTableClear();
 				oleDb.DataTableColumnAdd("Name", Type.GetType("System.String"));
 				oleDb.DataTableColumnAdd("Pass", Type.GetType("System.String"));

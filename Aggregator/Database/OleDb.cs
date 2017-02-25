@@ -46,10 +46,10 @@ namespace Aggregator.Database
 		private DataSet oleDbDataSet;
 		private DataTable oleDbDataTable;
 		
-		public OleDb()
+		public OleDb(String fileBase)
 		{
 			oleDbConnection = new OleDbConnection();
-			oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + DataConfig.configFile + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
+			oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + fileBase + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
 			oleDbDataAdapter = new OleDbDataAdapter();
 			oleDbDataSet = new DataSet();
 			oleDbDataTable = new DataTable();
@@ -133,6 +133,24 @@ namespace Aggregator.Database
 			return oleDbDataSet.Tables[tableName].Rows[index][columnName];
 		}
 		
+		/* Изменить значение таблицы */
+		public void EditValue(String tableName, int index, String columnName, object value)
+		{
+			//oleDbDataSet.Tables[tableName].Rows[index][columnName] = value;
+		}
+		
+		public void NewValues(String tableName, int index, String columnName, DataRow newDataRow)
+		{
+			/*
+			DataRow dataRow;
+			dataRow = GetTable(tableName).NewRow();
+			dataRow["fName"] = "John";
+    		dataRow["lName"] = "Smith";
+    		oleDbDataSet.Tables[tableName].Rows.Add(dataRow);
+    		*/
+		}
+		
+		
 		/* Выполнить запрос */
 		public void Fill(String tableName)
 		{
@@ -142,6 +160,13 @@ namespace Aggregator.Database
 			
 			oleDbConnection.Open(); //соединение с базой
 			oleDbDataAdapter.Fill(oleDbDataSet, tableName);
+			oleDbConnection.Close();//отключение соединения
+		}
+		
+		public void Update()
+		{
+			oleDbConnection.Open(); //соединение с базой
+			oleDbDataAdapter.Update(oleDbDataSet);
 			oleDbConnection.Close();//отключение соединения
 		}
 		

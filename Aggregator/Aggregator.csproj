@@ -57,7 +57,9 @@
     <Compile Include="Database\CreateDatabase.cs" />
     <Compile Include="Database\CreateTable.cs" />
     <Compile Include="Database\OleDb.cs" />
+    <Compile Include="Database\QueryOleDb.cs" />
     <Compile Include="Database\ReadingConfig.cs" />
+    <Compile Include="Database\SavingConfig.cs" />
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\DataForms.cs" />
