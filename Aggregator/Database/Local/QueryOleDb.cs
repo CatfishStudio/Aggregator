@@ -43,5 +43,11 @@ namespace Aggregator.Database.Local
 			}
 		}
 		
+		public void Dispose()
+		{
+			oleDbCommand.Dispose();
+			oleDbConnection.Dispose();
+		}
+		
 	}
 }

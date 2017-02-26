@@ -40,7 +40,6 @@ namespace Aggregator.Database.Local
 		}
 		
 		public bool ExecuteFill(String tableName){
-			dataSet.Clear();
 			oleDbDataAdapter.SelectCommand = oleDbCommandSelect;
 			oleDbDataAdapter.InsertCommand = oleDbCommandInsert;
 			oleDbDataAdapter.UpdateCommand = oleDbCommandUpdate;

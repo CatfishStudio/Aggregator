@@ -53,10 +53,10 @@ namespace Aggregator.Client
 		
 		void consoleQuery()
 		{
-			if(DataForms.FQueryDesigner == null){
-				DataForms.FQueryDesigner = new FormQueryDesigner();
-				DataForms.FQueryDesigner.MdiParent = DataForms.FClient;
-				DataForms.FQueryDesigner.Show();
+			if(DataForms.FConsoleQuery == null){
+				DataForms.FConsoleQuery = new FormConsoleQuery();
+				DataForms.FConsoleQuery.MdiParent = DataForms.FClient;
+				DataForms.FConsoleQuery.Show();
 			}
 		}
 		

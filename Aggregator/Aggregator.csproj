@@ -45,9 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\FormQueryDesigner.cs" />
-    <Compile Include="Admin\FormQueryDesigner.Designer.cs">
-      <DependentUpon>FormQueryDesigner.cs</DependentUpon>
+    <Compile Include="Admin\FormConsoleQuery.cs" />
+    <Compile Include="Admin\FormConsoleQuery.Designer.cs">
+      <DependentUpon>FormConsoleQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\FormSettingsDatabase.cs" />
     <Compile Include="Admin\FormSettingsDatabase.Designer.cs">
@@ -80,8 +80,8 @@
     <Compile Include="Utilits\Console.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Admin\FormQueryDesigner.resx">
-      <DependentUpon>FormQueryDesigner.cs</DependentUpon>
+    <EmbeddedResource Include="Admin\FormConsoleQuery.resx">
+      <DependentUpon>FormConsoleQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\FormSettingsDatabase.resx">
       <DependentUpon>FormSettingsDatabase.cs</DependentUpon>
