@@ -11,6 +11,7 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <NoWin32Manifest>False</NoWin32Manifest>
+    <ApplicationIcon>images\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -74,9 +75,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User\FormSelectUser.cs" />
-    <Compile Include="User\FormSelectUser.Designer.cs">
-      <DependentUpon>FormSelectUser.cs</DependentUpon>
+    <Compile Include="User\FormCheckUser.cs" />
+    <Compile Include="User\FormCheckUser.Designer.cs">
+      <DependentUpon>FormCheckUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\FormUsers.cs" />
+    <Compile Include="User\FormUsers.Designer.cs">
+      <DependentUpon>FormUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilits\Console.cs" />
   </ItemGroup>
@@ -93,8 +98,11 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\FormSelectUser.resx">
-      <DependentUpon>FormSelectUser.cs</DependentUpon>
+    <EmbeddedResource Include="User\FormCheckUser.resx">
+      <DependentUpon>FormCheckUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\FormUsers.resx">
+      <DependentUpon>FormUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

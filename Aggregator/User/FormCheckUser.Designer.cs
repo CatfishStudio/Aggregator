@@ -8,7 +8,7 @@
  */
 namespace Aggregator.User
 {
-	partial class FormSelectUser
+	partial class FormCheckUser
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -42,6 +42,7 @@ namespace Aggregator.User
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCheckUser));
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -102,7 +103,7 @@ namespace Aggregator.User
 			this.label1.TabIndex = 6;
 			this.label1.Text = "Имя пользователя:";
 			// 
-			// FormSelectUser
+			// FormCheckUser
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -114,7 +115,8 @@ namespace Aggregator.User
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Name = "FormSelectUser";
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Name = "FormCheckUser";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Пользователь";
 			this.TopMost = true;

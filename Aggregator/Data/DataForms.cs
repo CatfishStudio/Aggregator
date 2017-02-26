@@ -19,11 +19,12 @@ namespace Aggregator.Data
 	public static class DataForms
 	{
 		public static MainForm FMain;
-		public static FormSelectUser FSelectUser;
+		public static FormCheckUser FCheckUser;
 		/* Клиент */
 		public static FormClient FClient;
 		/*Администратор*/
 		public static FormSettingsDatabase FSettingsDatabase;
 		public static FormConsoleQuery FConsoleQuery;
+		public static FormUsers FUsers;
 	}
 }

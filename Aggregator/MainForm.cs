@@ -79,8 +79,8 @@ namespace Aggregator
 		void createFormSelectUser()
 		{
 			// Открываем окно выбора пользователя
-			DataForms.FSelectUser = new FormSelectUser();
-			DataForms.FSelectUser.Show();
+			DataForms.FCheckUser = new FormCheckUser();
+			DataForms.FCheckUser.Show();
 			DataForms.FMain = this;
 		}
 	}

@@ -20,9 +20,9 @@ namespace Aggregator.User
 	/// <summary>
 	/// Description of FormSelectUser.
 	/// </summary>
-	public partial class FormSelectUser : Form
+	public partial class FormCheckUser : Form
 	{
-		public FormSelectUser()
+		public FormCheckUser()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.

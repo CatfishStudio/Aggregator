@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Admin;
+using Aggregator.User;
 
 namespace Aggregator.Client
 {
@@ -35,6 +36,15 @@ namespace Aggregator.Client
 		 * РАЗДЕЛ: ПРОЦЕДУР И ФУНКЦИЙ
 		 * =================================================================================================
 		 */	
+		
+		void users()
+		{
+			if(DataForms.FUsers == null){
+				DataForms.FUsers = new FormUsers();
+				DataForms.FUsers.MdiParent = DataForms.FClient;
+				DataForms.FUsers.Show();
+			}
+		}
 		
 		void settings()
 		{
@@ -96,6 +106,10 @@ namespace Aggregator.Client
 		void КонсольЗапросовToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			consoleQuery();
+		}
+		void ПользователиToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			users();
 		}
 	}
 }
