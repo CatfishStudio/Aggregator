@@ -18,35 +18,37 @@ namespace Aggregator.Database.Config
 	/// </summary>
 	public static class CreateConfigTables
 	{
-		public static void Create()
+		public static void TableUsers()
 		{
 			String sqlCommand;
 			QueryOleDb query;
 			query = new QueryOleDb(DataConfig.configFile);
 			
-			/* Таблица USERS */			
 			sqlCommand = "CREATE TABLE Users (" +
-				"[ID] COUNTER PRIMARY KEY, " +
-				"[Name] VARCHAR DEFAULT '' UNIQUE, " +
-				"[Pass] VARCHAR DEFAULT '', " +
-				"[Permissions] VARCHAR DEFAULT 'user'" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[name] VARCHAR DEFAULT '' UNIQUE, " +
+				"[pass] VARCHAR DEFAULT '', " +
+				"[permissions] VARCHAR DEFAULT 'user'" +
 				")";
 			query.SetCommand(sqlCommand);
 			query.Execute();
 			
 			sqlCommand = "INSERT INTO Users (" +
-				"[Name], [Pass], [Permissions]) " +
+				"[name], [pass], [permissions]) " +
 				"VALUES ('Администратор', '', 'admin')";
 			query.SetCommand(sqlCommand);
 			query.Execute();
 			
 			sqlCommand = "INSERT INTO Users (" +
-				"[Name], [Pass], [Permissions]) " +
+				"[name], [pass], [permissions]) " +
 				"VALUES ('Пользователь', '', 'user')";
 			query.SetCommand(sqlCommand);
 			query.Execute();
-			
-			/* Таблица SETTINGS */
+			query.Dispose();
+		}
+		
+		public static void TableSettings()
+		{
 			DataConfig.localDatabase = DataConfig.resource + "\\database.mdb";
 			DataConfig.typeConnection = DataConstants.CONNETION_LOCAL;
 			DataConfig.typeDatabase = DataConstants.TYPE_OLEDB;
@@ -54,8 +56,12 @@ namespace Aggregator.Database.Config
 			DataConfig.serverUser = "sa";
 			DataConfig.serverDatabase = "database";
 			
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.configFile);
+			
 			sqlCommand = "CREATE TABLE Settings (" +
-				"[ID] COUNTER PRIMARY KEY, " +
+				"[id] COUNTER PRIMARY KEY, " +
 				"name VARCHAR(50) DEFAULT '' UNIQUE, " +
 				"localDatabase TEXT DEFAULT '', " +
 				"typeDatabase VARCHAR(50) DEFAULT '', " +
@@ -76,7 +82,8 @@ namespace Aggregator.Database.Config
 				+ DataConfig.serverDatabase + "')";
 			query.SetCommand(sqlCommand);
 			query.Execute();
-
+			query.Dispose();
 		}
+		
 	}
 }

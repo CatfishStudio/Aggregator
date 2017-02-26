@@ -23,7 +23,7 @@ namespace Aggregator.Database.Config
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
-				oleDb.oleDbCommandSelect.CommandText = "SELECT ID, name, localDatabase, typeDatabase, typeConnection, server, serverUser, serverDatabase FROM Settings";
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, localDatabase, typeDatabase, typeConnection, server, serverUser, serverDatabase FROM Settings";
 				oleDb.oleDbCommandUpdate.CommandText = "UPDATE Settings SET " +
 					"name = @name, " +
 					"localDatabase = @localDatabase, " +
@@ -32,7 +32,7 @@ namespace Aggregator.Database.Config
 					"server = @server, " +
 					"serverUser = @serverUser, " +
 					"serverDatabase = @serverDatabase " +
-					"WHERE (ID = @ID)";
+					"WHERE (id = @id)";
 				oleDb.oleDbCommandUpdate.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@localDatabase", OleDbType.VarChar, 255, "localDatabase");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@typeDatabase", OleDbType.VarChar, 255, "typeDatabase");
@@ -40,7 +40,7 @@ namespace Aggregator.Database.Config
 				oleDb.oleDbCommandUpdate.Parameters.Add("@server", OleDbType.VarChar, 255, "server");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@serverUser", OleDbType.VarChar, 255, "serverUser");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@serverDatabase", OleDbType.VarChar, 255, "serverDatabase");
-				oleDb.oleDbCommandUpdate.Parameters.Add("@ID", OleDbType.Integer, 1, "ID");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
 				oleDb.ExecuteFill("Settings");
 				
 				oleDb.dataSet.Tables["Settings"].Rows[0]["localDatabase"] = DataConfig.localDatabase;

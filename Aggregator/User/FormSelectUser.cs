@@ -83,11 +83,11 @@ namespace Aggregator.User
 				if(comboBox1.Text == ""){
 					MessageBox.Show("Вы не выбрали пользователя!","Сообщение:");
 				}else{
-					String pass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Pass"].ToString();
+					String pass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
 					if(textBox1.Text == pass){
-						DataConfig.userName = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Name"].ToString();
-						DataConfig.userPass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Pass"].ToString();
-						DataConfig.userPermissions = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Permissions"].ToString(); 
+						DataConfig.userName = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["name"].ToString();
+						DataConfig.userPass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
+						DataConfig.userPermissions = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["permissions"].ToString(); 
 						DataForms.FMain.Visible = false;
 						programClose = false;
 						DataForms.FClient = new FormClient();
