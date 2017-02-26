@@ -58,6 +58,7 @@
       <DependentUpon>FormClient.cs</DependentUpon>
     </Compile>
     <Compile Include="Database\Config\CreateConfig.cs" />
+    <Compile Include="Database\Config\CreateConfigTables.cs" />
     <Compile Include="Database\Config\ReadingConfig.cs" />
     <Compile Include="Database\Config\SavingConfig.cs" />
     <Compile Include="Database\Local\CreateDatabase.cs" />
