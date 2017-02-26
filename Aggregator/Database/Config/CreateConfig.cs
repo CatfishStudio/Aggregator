@@ -10,9 +10,9 @@ using System;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using Aggregator.Data;
-using Aggregator.Database;
+using Aggregator.Database.Local;
 
-namespace Aggregator.Database
+namespace Aggregator.Database.Config
 {
 	/// <summary>
 	/// Description of CreateConfig.

@@ -13,7 +13,7 @@ using System.Data.OleDb;
 using Aggregator.Data;
 
 
-namespace Aggregator.Database
+namespace Aggregator.Database.Local
 {
 	/// <summary>
 	/// Description of CreateTable.

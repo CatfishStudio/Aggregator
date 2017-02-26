@@ -57,14 +57,13 @@
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Database\CreateConfig.cs" />
-    <Compile Include="Database\CreateDatabase.cs" />
-    <Compile Include="Database\CreateTable.cs" />
-    <Compile Include="Database\OleDb.cs" />
-    <Compile Include="Database\OleDb2.cs" />
-    <Compile Include="Database\QueryOleDb.cs" />
-    <Compile Include="Database\ReadingConfig.cs" />
-    <Compile Include="Database\SavingConfig.cs" />
+    <Compile Include="Database\Config\CreateConfig.cs" />
+    <Compile Include="Database\Config\ReadingConfig.cs" />
+    <Compile Include="Database\Config\SavingConfig.cs" />
+    <Compile Include="Database\Local\CreateDatabase.cs" />
+    <Compile Include="Database\Local\CreateTable.cs" />
+    <Compile Include="Database\Local\OleDb.cs" />
+    <Compile Include="Database\Local\QueryOleDb.cs" />
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\DataForms.cs" />
@@ -102,6 +101,8 @@
     <Folder Include="Client" />
     <Folder Include="Database" />
     <Folder Include="Admin" />
+    <Folder Include="Database\Config" />
+    <Folder Include="Database\Local" />
     <Folder Include="Utilits" />
     <Folder Include="User" />
   </ItemGroup>

@@ -11,7 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Data;
-using Aggregator.Database;
+using Aggregator.Database.Local;
 using Aggregator.Client;
 using Aggregator.Utilits;
 
@@ -40,7 +40,7 @@ namespace Aggregator.User
 		void FormSelectUserFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(programClose) Application.Exit();
-			oleDb.Clear();
+			oleDb.Dispose();
 		}
 		void Button2Click(object sender, EventArgs e)
 		{
@@ -57,21 +57,8 @@ namespace Aggregator.User
 			//Подключение локальной базы данных (список серверов)
 			try{
 				oleDb = new OleDb(DataConfig.configFile);
-				oleDb.DataTableClear();
-				oleDb.DataTableColumnAdd("Name", Type.GetType("System.String"));
-				oleDb.DataTableColumnAdd("Pass", Type.GetType("System.String"));
-				oleDb.DataTableColumnAdd("Permissions", Type.GetType("System.String"));
-				oleDb.SetSelectCommand("SELECT * FROM Users");
-				oleDb.SetInsertCommand("INSERT INTO Users ([Name], [Pass], [Permissions]) VALUES (?, ?, ?)");
-				oleDb.SetUpdateCommand("UPDATE Users SET [Name] = ?, [Pass] = ?, [Permissions] = ? WHERE ([ID] = ?) " +
-		                                  	"AND (Name = ? OR ? IS NULL AND Name IS NULL) " +
-		                                  	"AND (Pass = ? OR ? IS NULL AND Pass IS NULL) " +
-		                                  	"AND (Permissions = ? OR ? IS NULL AND Permissions IS NULL)");
-				oleDb.SetDeleteCommand("DELETE FROM Users WHERE ([ID] = ?) " +
-		                                  	"AND (Name = ? OR ? IS NULL AND Name IS NULL) " +
-		                                  	"AND (Pass = ? OR ? IS NULL AND Pass IS NULL) " +
-		                                  	"AND (Permissions = ? OR ? IS NULL AND Permissions IS NULL)");
-				oleDb.Fill("Users");
+				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Users";
+				oleDb.ExecuteFill("Users");
 				
 			}catch(Exception ex){
 				oleDb.Error();
@@ -83,7 +70,7 @@ namespace Aggregator.User
 		
 		void readData()
 		{
-			foreach(DataRow row in oleDb.GetTable("Users").Rows)
+			foreach(DataRow row in oleDb.dataSet.Tables["Users"].Rows)
 			{
 				comboBox1.Items.Add(row[1].ToString());
 			}
@@ -96,11 +83,11 @@ namespace Aggregator.User
 				if(comboBox1.Text == ""){
 					MessageBox.Show("Вы не выбрали пользователя!","Сообщение:");
 				}else{
-					String Pass = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Pass").ToString();
-					if(textBox1.Text == Pass){
-						DataConfig.userName = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Name").ToString();
-						DataConfig.userPass = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Pass").ToString();
-						DataConfig.userPermissions = oleDb.GetValue("Users", comboBox1.SelectedIndex, "Permissions").ToString();
+					String pass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Pass"].ToString();
+					if(textBox1.Text == pass){
+						DataConfig.userName = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Name"].ToString();
+						DataConfig.userPass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Pass"].ToString();
+						DataConfig.userPermissions = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["Permissions"].ToString(); 
 						DataForms.FMain.Visible = false;
 						programClose = false;
 						DataForms.FClient = new FormClient();

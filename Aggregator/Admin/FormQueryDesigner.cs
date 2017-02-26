@@ -10,7 +10,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Data;
-using Aggregator.Database;
+using Aggregator.Database.Local;
 
 namespace Aggregator.Admin
 {
@@ -31,7 +31,7 @@ namespace Aggregator.Admin
 			//
 		}
 		
-		private OleDb2 oleDb;
+		private OleDb oleDb;
 		
 		void FormQueryDesignerLoad(object sender, EventArgs e)
 		{
@@ -50,14 +50,17 @@ namespace Aggregator.Admin
 		}
 		void ComboBox1SelectedIndexChanged(object sender, EventArgs e)
 		{
-			oleDb = new OleDb2(comboBox1.Text);
+			//oleDb = new OleDb2(comboBox1.Text);
 		}
 		void Button2Click(object sender, EventArgs e)
 		{
+			/*
 			oleDb.SelectCommand = textBox1.Text;
 			oleDb.ExecuteFill(textBox2.Text);
 			dataGrid1.DataSource = oleDb.dataSet;
 			Utilits.Console.Log("ЗАПРОС: " + textBox1.Text);
+			*/
+			
 			// Запрос Select
 			/*
 			if(checkBox1.Checked){

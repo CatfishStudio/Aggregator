@@ -1,24 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Cartish
- * Date: 25.02.2017
- * Time: 11:11
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
-using System.Windows.Forms;
-using Aggregator.Data;
 
-namespace Aggregator.Database
-{
-	/// <summary>
-	/// Description of ReadingConfig.
-	/// </summary>
-	public static class ReadingConfig
-	{
-		public static void ReadSettings()
-		{
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
@@ -45,6 +25,3 @@ namespace Aggregator.Database
 				MessageBox.Show(ex.ToString());
 				Application.Exit();
 			}
-		}
-	}
-}

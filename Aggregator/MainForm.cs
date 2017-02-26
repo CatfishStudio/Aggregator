@@ -13,7 +13,7 @@ using System.IO;
 using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.User;
-using Aggregator.Database;
+using Aggregator.Database.Config;
 
 namespace Aggregator
 {
