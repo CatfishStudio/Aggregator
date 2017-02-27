@@ -60,7 +60,7 @@ namespace Aggregator.Database.Config
 			QueryOleDb query;
 			query = new QueryOleDb(DataConfig.configFile);
 			
-			sqlCommand = "CREATE TABLE Settings (" +
+			sqlCommand = "CREATE TABLE DatabaseSettings (" +
 				"[id] COUNTER PRIMARY KEY, " +
 				"name VARCHAR(50) DEFAULT '' UNIQUE, " +
 				"localDatabase TEXT DEFAULT '', " +
@@ -73,7 +73,7 @@ namespace Aggregator.Database.Config
 			query.SetCommand(sqlCommand);
 			query.Execute();
 			
-			sqlCommand = "INSERT INTO Settings (" +
+			sqlCommand = "INSERT INTO DatabaseSettings (" +
 				"[name], [localDatabase], [typeDatabase], [typeConnection], " +
 				"[server], [serverUser], [serverDatabase]) " +
 				"VALUES ('database', '" + DataConfig.localDatabase + "', '" 

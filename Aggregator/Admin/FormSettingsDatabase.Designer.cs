@@ -30,10 +30,10 @@ namespace Aggregator.Admin
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox serverDatabaseTextBox;
 		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.ComboBox typeDatabaseСomboBox;
 		private System.Windows.Forms.Button buttonSave;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
+		private System.Windows.Forms.TextBox typeDatabaseTextBox;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -60,8 +60,8 @@ namespace Aggregator.Admin
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonClose = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.typeDatabaseTextBox = new System.Windows.Forms.TextBox();
 			this.typeConnectionСomboBox = new System.Windows.Forms.ComboBox();
-			this.typeDatabaseСomboBox = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.serverDatabaseTextBox = new System.Windows.Forms.TextBox();
@@ -99,7 +99,7 @@ namespace Aggregator.Admin
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(75, 23);
 			this.buttonSave.TabIndex = 1;
-			this.buttonSave.Text = "Сохранить.";
+			this.buttonSave.Text = "Сохранить";
 			this.buttonSave.UseVisualStyleBackColor = true;
 			this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
 			// 
@@ -110,14 +110,14 @@ namespace Aggregator.Admin
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.Size = new System.Drawing.Size(75, 23);
 			this.buttonClose.TabIndex = 0;
-			this.buttonClose.Text = "Отмена.";
+			this.buttonClose.Text = "Отмена";
 			this.buttonClose.UseVisualStyleBackColor = true;
 			this.buttonClose.Click += new System.EventHandler(this.ButtonCloseClick);
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.typeDatabaseTextBox);
 			this.panel2.Controls.Add(this.typeConnectionСomboBox);
-			this.panel2.Controls.Add(this.typeDatabaseСomboBox);
 			this.panel2.Controls.Add(this.label6);
 			this.panel2.Controls.Add(this.groupBox2);
 			this.panel2.Controls.Add(this.label2);
@@ -128,23 +128,22 @@ namespace Aggregator.Admin
 			this.panel2.Size = new System.Drawing.Size(418, 337);
 			this.panel2.TabIndex = 1;
 			// 
+			// typeDatabaseTextBox
+			// 
+			this.typeDatabaseTextBox.Location = new System.Drawing.Point(12, 68);
+			this.typeDatabaseTextBox.Name = "typeDatabaseTextBox";
+			this.typeDatabaseTextBox.ReadOnly = true;
+			this.typeDatabaseTextBox.Size = new System.Drawing.Size(233, 20);
+			this.typeDatabaseTextBox.TabIndex = 8;
+			// 
 			// typeConnectionСomboBox
 			// 
 			this.typeConnectionСomboBox.FormattingEnabled = true;
-			this.typeConnectionСomboBox.Location = new System.Drawing.Point(12, 25);
+			this.typeConnectionСomboBox.Location = new System.Drawing.Point(12, 24);
 			this.typeConnectionСomboBox.Name = "typeConnectionСomboBox";
 			this.typeConnectionСomboBox.Size = new System.Drawing.Size(233, 21);
 			this.typeConnectionСomboBox.TabIndex = 3;
 			this.typeConnectionСomboBox.SelectedIndexChanged += new System.EventHandler(this.TypeConnectionСomboBoxSelectedIndexChanged);
-			// 
-			// typeDatabaseСomboBox
-			// 
-			this.typeDatabaseСomboBox.Enabled = false;
-			this.typeDatabaseСomboBox.FormattingEnabled = true;
-			this.typeDatabaseСomboBox.Location = new System.Drawing.Point(12, 63);
-			this.typeDatabaseСomboBox.Name = "typeDatabaseСomboBox";
-			this.typeDatabaseСomboBox.Size = new System.Drawing.Size(233, 21);
-			this.typeDatabaseСomboBox.TabIndex = 7;
 			// 
 			// label6
 			// 
@@ -226,7 +225,7 @@ namespace Aggregator.Admin
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(12, 9);
+			this.label2.Location = new System.Drawing.Point(9, 9);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(260, 23);
 			this.label2.TabIndex = 2;
@@ -263,6 +262,7 @@ namespace Aggregator.Admin
 			this.localDatabaseTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.localDatabaseTextBox.Location = new System.Drawing.Point(8, 36);
 			this.localDatabaseTextBox.Name = "localDatabaseTextBox";
+			this.localDatabaseTextBox.ReadOnly = true;
 			this.localDatabaseTextBox.Size = new System.Drawing.Size(347, 20);
 			this.localDatabaseTextBox.TabIndex = 1;
 			// 
@@ -293,6 +293,7 @@ namespace Aggregator.Admin
 			this.Load += new System.EventHandler(this.FormSettingsLoad);
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);

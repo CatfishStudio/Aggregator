@@ -23,8 +23,8 @@ namespace Aggregator.Database.Config
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
-				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, localDatabase, typeDatabase, typeConnection, server, serverUser, serverDatabase FROM Settings";
-				oleDb.oleDbCommandUpdate.CommandText = "UPDATE Settings SET " +
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, localDatabase, typeDatabase, typeConnection, server, serverUser, serverDatabase FROM DatabaseSettings";
+				oleDb.oleDbCommandUpdate.CommandText = "UPDATE DatabaseSettings SET " +
 					"name = @name, " +
 					"localDatabase = @localDatabase, " +
 					"typeDatabase = @typeDatabase, " +
@@ -41,15 +41,15 @@ namespace Aggregator.Database.Config
 				oleDb.oleDbCommandUpdate.Parameters.Add("@serverUser", OleDbType.VarChar, 255, "serverUser");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@serverDatabase", OleDbType.VarChar, 255, "serverDatabase");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
-				oleDb.ExecuteFill("Settings");
+				oleDb.ExecuteFill("DatabaseSettings");
 				
-				oleDb.dataSet.Tables["Settings"].Rows[0]["localDatabase"] = DataConfig.localDatabase;
-				oleDb.dataSet.Tables["Settings"].Rows[0]["typeDatabase"] = DataConfig.typeDatabase;
-				oleDb.dataSet.Tables["Settings"].Rows[0]["typeConnection"] = DataConfig.typeConnection;
-				oleDb.dataSet.Tables["Settings"].Rows[0]["server"] = DataConfig.server;
-				oleDb.dataSet.Tables["Settings"].Rows[0]["serverUser"] = DataConfig.serverUser;
-				oleDb.dataSet.Tables["Settings"].Rows[0]["serverDatabase"] = DataConfig.serverDatabase;
-				oleDb.ExecuteUpdate("Settings");
+				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["localDatabase"] = DataConfig.localDatabase;
+				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["typeDatabase"] = DataConfig.typeDatabase;
+				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["typeConnection"] = DataConfig.typeConnection;
+				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["server"] = DataConfig.server;
+				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverUser"] = DataConfig.serverUser;
+				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverDatabase"] = DataConfig.serverDatabase;
+				oleDb.ExecuteUpdate("DatabaseSettings");
 				
 				Utilits.Console.Log("Сохранение настроек соединения с базой данных прошло успешно.");
 			}catch(Exception ex){

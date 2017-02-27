@@ -23,15 +23,15 @@ namespace Aggregator.Database.Config
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
-				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Settings";
-				oleDb.ExecuteFill("Settings");
+				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM DatabaseSettings";
+				oleDb.ExecuteFill("DatabaseSettings");
 				
-				DataConfig.localDatabase = oleDb.dataSet.Tables["Settings"].Rows[0]["localDatabase"].ToString();
-				DataConfig.typeDatabase = oleDb.dataSet.Tables["Settings"].Rows[0]["typeDatabase"].ToString();
-				DataConfig.typeConnection = oleDb.dataSet.Tables["Settings"].Rows[0]["typeConnection"].ToString();
-				DataConfig.server = oleDb.dataSet.Tables["Settings"].Rows[0]["server"].ToString();
-				DataConfig.serverUser = oleDb.dataSet.Tables["Settings"].Rows[0]["serverUser"].ToString();
-				DataConfig.serverDatabase = oleDb.dataSet.Tables["Settings"].Rows[0]["serverDatabase"].ToString();
+				DataConfig.localDatabase = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["localDatabase"].ToString();
+				DataConfig.typeDatabase = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["typeDatabase"].ToString();
+				DataConfig.typeConnection = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["typeConnection"].ToString();
+				DataConfig.server = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["server"].ToString();
+				DataConfig.serverUser = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverUser"].ToString();
+				DataConfig.serverDatabase = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverDatabase"].ToString();
 				
 				Utilits.Console.Log("Настройки соединения с базой данных успешно загружены.");
 			}catch(Exception ex){

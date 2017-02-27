@@ -12,6 +12,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Aggregator.Data;
+using Aggregator.Database.Base;
 using Aggregator.User;
 using Aggregator.Database.Config;
 
@@ -65,14 +66,20 @@ namespace Aggregator
 		
 		void initLocalBase()
 		{
-			// Поиск локальной базы данный
+			// Поиск локальной базы данный Config
 			DataConfig.configFile = DataConfig.resource + "\\config.mdb";
-			if(!File.Exists(DataConfig.configFile)){ //файл не найден, он будет создан
+			if(!File.Exists(DataConfig.configFile)){ 		//файл не найден, он будет создан
 				CreateConfig.Create();
 				ReadingConfig.ReadSettings();
 			}else{
 				ReadingConfig.ReadSettings();
 			}
+			
+			// Поиск локальной базы данный Database
+			if(!File.Exists(DataConfig.localDatabase)){		//файл не найден, он будет создан
+				CreateBase.CreateBaseOleDb();
+			}
+			
 			createFormSelectUser();
 		}
 		

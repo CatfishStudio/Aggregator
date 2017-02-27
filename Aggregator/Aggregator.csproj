@@ -58,6 +58,8 @@
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\Base\CreateBase.cs" />
+    <Compile Include="Database\Base\CreateBaseTables.cs" />
     <Compile Include="Database\Config\CreateConfig.cs" />
     <Compile Include="Database\Config\CreateConfigTables.cs" />
     <Compile Include="Database\Config\ReadingConfig.cs" />
@@ -112,6 +114,7 @@
     <Folder Include="Admin" />
     <Folder Include="Database\Config" />
     <Folder Include="Database\Local" />
+    <Folder Include="Database\Base" />
     <Folder Include="Utilits" />
     <Folder Include="User" />
   </ItemGroup>

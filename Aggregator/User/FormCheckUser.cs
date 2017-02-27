@@ -56,9 +56,13 @@ namespace Aggregator.User
 		{
 			//Подключение локальной базы данных (список серверов)
 			try{
-				oleDb = new OleDb(DataConfig.configFile);
-				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Users";
-				oleDb.ExecuteFill("Users");
+				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
+					oleDb = new OleDb(DataConfig.localDatabase);
+					oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Users";
+					oleDb.ExecuteFill("Users");
+				} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+					
+				}
 				
 			}catch(Exception ex){
 				oleDb.Error();

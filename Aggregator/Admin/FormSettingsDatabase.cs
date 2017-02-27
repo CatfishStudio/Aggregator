@@ -36,11 +36,9 @@ namespace Aggregator.Admin
 			ReadingConfig.ReadSettings();
 			typeConnectionСomboBox.Items.Add(DataConstants.CONNETION_LOCAL);
 			typeConnectionСomboBox.Items.Add(DataConstants.CONNETION_SERVER);
-			typeDatabaseСomboBox.Items.Add(DataConstants.TYPE_OLEDB);
-			typeDatabaseСomboBox.Items.Add(DataConstants.TYPE_MSSQL);
 			
 			typeConnectionСomboBox.Text = DataConfig.typeConnection;
-			typeDatabaseСomboBox.Text = DataConfig.typeDatabase;
+			typeDatabaseTextBox.Text = DataConfig.typeDatabase;
 			localDatabaseTextBox.Text = DataConfig.localDatabase;
 			serverTextBox.Text = DataConfig.server;
 			serverUserTextBox.Text = DataConfig.serverUser;
@@ -58,9 +56,13 @@ namespace Aggregator.Admin
 		void TypeConnectionСomboBoxSelectedIndexChanged(object sender, EventArgs e)
 		{
 			if(typeConnectionСomboBox.Text == DataConstants.CONNETION_LOCAL){
-				typeDatabaseСomboBox.Text = DataConstants.TYPE_OLEDB;
+				typeDatabaseTextBox.Text = DataConstants.TYPE_OLEDB;
+				groupBox1.Enabled = true;
+				groupBox2.Enabled = false;
 			}else if(typeConnectionСomboBox.Text == DataConstants.CONNETION_SERVER){
-				typeDatabaseСomboBox.Text = DataConstants.TYPE_MSSQL;
+				typeDatabaseTextBox.Text = DataConstants.TYPE_MSSQL;
+				groupBox1.Enabled = false;
+				groupBox2.Enabled = true;
 			}
 		}
 		void Button1Click(object sender, EventArgs e)
@@ -71,9 +73,13 @@ namespace Aggregator.Admin
 		}
 		void ButtonSaveClick(object sender, EventArgs e)
 		{
+			if(typeConnectionСomboBox.Text != DataConstants.CONNETION_LOCAL && typeConnectionСomboBox.Text != DataConstants.CONNETION_SERVER){
+				MessageBox.Show("Указан не верный тип подключения!", "Сообщение:");
+				return;
+			}
 			DataConfig.localDatabase = localDatabaseTextBox.Text;
 			DataConfig.typeConnection = typeConnectionСomboBox.Text;
-			DataConfig.typeDatabase = typeDatabaseСomboBox.Text;
+			DataConfig.typeDatabase = typeDatabaseTextBox.Text;
 			DataConfig.server = serverTextBox.Text;
 			DataConfig.serverUser = serverUserTextBox.Text;
 			DataConfig.serverDatabase = serverDatabaseTextBox.Text;

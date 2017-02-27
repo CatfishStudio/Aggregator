@@ -29,7 +29,7 @@ namespace Aggregator.Database.Config
 				MessageBox.Show(ex.ToString(), "Ошибка:");
 				Application.Exit();
 			}
-			
+			/* Создание таблиц */
 			CreateConfigTables.TableUsers();
 			CreateConfigTables.TableSettings();
 		}
