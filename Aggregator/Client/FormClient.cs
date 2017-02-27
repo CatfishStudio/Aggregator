@@ -83,7 +83,7 @@ namespace Aggregator.Client
 		void FormClientLoad(object sender, EventArgs e)
 		{
 			dataServerUpdate = new DataServerUpdate();
-			statusStrip1.ImageList = imageList1;
+			statusStrip1.ImageList = imageList2;
 			toolStripStatusLabel1.ImageIndex = 1;
 			timer1.Start();
 			Utilits.Console.Log("Программа успешно загрущена!");

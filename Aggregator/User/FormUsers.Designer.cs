@@ -97,14 +97,15 @@ namespace Aggregator.User
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "folder_user.png");
-			this.imageList1.Images.SetKeyName(1, "group.png");
-			this.imageList1.Images.SetKeyName(2, "group_add.png");
-			this.imageList1.Images.SetKeyName(3, "group_delete.png");
-			this.imageList1.Images.SetKeyName(4, "group_edit.png");
-			this.imageList1.Images.SetKeyName(5, "group_error.png");
-			this.imageList1.Images.SetKeyName(6, "group_gear.png");
-			this.imageList1.Images.SetKeyName(7, "group_go.png");
+			this.imageList1.Images.SetKeyName(0, "report_user.png");
+			this.imageList1.Images.SetKeyName(1, "folder_user.png");
+			this.imageList1.Images.SetKeyName(2, "group.png");
+			this.imageList1.Images.SetKeyName(3, "group_add.png");
+			this.imageList1.Images.SetKeyName(4, "group_delete.png");
+			this.imageList1.Images.SetKeyName(5, "group_edit.png");
+			this.imageList1.Images.SetKeyName(6, "group_error.png");
+			this.imageList1.Images.SetKeyName(7, "group_gear.png");
+			this.imageList1.Images.SetKeyName(8, "group_go.png");
 			// 
 			// button2
 			// 
@@ -169,6 +170,7 @@ namespace Aggregator.User
 			this.columnHeader3,
 			this.columnHeader4});
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView1.FullRowSelect = true;
 			this.listView1.LargeImageList = this.imageList1;
 			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.MultiSelect = false;

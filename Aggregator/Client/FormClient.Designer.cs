@@ -53,8 +53,8 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripMenuItem консольЗапросовToolStripMenuItem;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+		private System.Windows.Forms.ImageList imageList2;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -119,7 +119,7 @@ namespace Aggregator.Client
 			this.consoleText = new System.Windows.Forms.TextBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -439,12 +439,13 @@ namespace Aggregator.Client
 			this.timer1.Interval = 2000;
 			this.timer1.Tick += new System.EventHandler(this.Timer1Tick);
 			// 
-			// imageList1
+			// imageList2
 			// 
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "bullet_black.png");
-			this.imageList1.Images.SetKeyName(1, "bullet_blue.png");
+			this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+			this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList2.Images.SetKeyName(0, "database.png");
+			this.imageList2.Images.SetKeyName(1, "database_go.png");
+			this.imageList2.Images.SetKeyName(2, "database_delete.png");
 			// 
 			// FormClient
 			// 
