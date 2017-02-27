@@ -45,5 +45,29 @@ namespace Aggregator.Database.Base
 			query.Execute();
 			query.Dispose();
 		}
+		
+		public static void TableHistory()
+		{
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.localDatabase);
+			
+			sqlCommand = "CREATE TABLE History (" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[name] VARCHAR DEFAULT '' UNIQUE, " +
+				"[represent] VARCHAR DEFAULT '', " +
+				"[datetime] VARCHAR DEFAULT '', " +
+				"[error] VARCHAR DEFAULT '', " +
+				"[user] VARCHAR DEFAULT ''" +
+				")";
+			query.SetCommand(sqlCommand);
+			query.Execute();
+			
+			sqlCommand = "INSERT INTO History (" +
+				"[name], [represent], [datetime], [error], [user]) " +
+				"VALUES ('Users', 'Пользователи', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
+			query.SetCommand(sqlCommand);
+			query.Execute();
+		}
 	}
 }

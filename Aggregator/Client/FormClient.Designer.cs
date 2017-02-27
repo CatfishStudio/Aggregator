@@ -51,6 +51,10 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolTip toolTip1;
 		public System.Windows.Forms.TextBox consoleText;
 		private System.Windows.Forms.ToolStripMenuItem консольЗапросовToolStripMenuItem;
+		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+		private System.Windows.Forms.ImageList imageList1;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -109,11 +113,16 @@ namespace Aggregator.Client
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.consolePanel = new System.Windows.Forms.Panel();
 			this.consoleText = new System.Windows.Forms.TextBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			this.consolePanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -383,11 +392,27 @@ namespace Aggregator.Client
 			// 
 			// statusStrip1
 			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.toolStripStatusLabel1,
+			this.toolStripStatusLabel2});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 540);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(784, 22);
 			this.statusStrip1.TabIndex = 2;
 			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// toolStripStatusLabel1
+			// 
+			this.toolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel1.Image")));
+			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 17);
+			// 
+			// toolStripStatusLabel2
+			// 
+			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+			this.toolStripStatusLabel2.Size = new System.Drawing.Size(16, 17);
+			this.toolStripStatusLabel2.Text = "...";
 			// 
 			// consolePanel
 			// 
@@ -408,6 +433,18 @@ namespace Aggregator.Client
 			this.consoleText.Name = "consoleText";
 			this.consoleText.Size = new System.Drawing.Size(780, 130);
 			this.consoleText.TabIndex = 0;
+			// 
+			// timer1
+			// 
+			this.timer1.Interval = 2000;
+			this.timer1.Tick += new System.EventHandler(this.Timer1Tick);
+			// 
+			// imageList1
+			// 
+			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList1.Images.SetKeyName(0, "bullet_black.png");
+			this.imageList1.Images.SetKeyName(1, "bullet_blue.png");
 			// 
 			// FormClient
 			// 
@@ -431,6 +468,8 @@ namespace Aggregator.Client
 			this.menuStrip1.PerformLayout();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.consolePanel.ResumeLayout(false);
 			this.consolePanel.PerformLayout();
 			this.ResumeLayout(false);

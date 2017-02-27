@@ -68,16 +68,16 @@ namespace Aggregator
 		{
 			// Поиск локальной базы данный Config
 			DataConfig.configFile = DataConfig.resource + "\\config.mdb";
-			if(!File.Exists(DataConfig.configFile)){ 		//файл не найден, он будет создан
-				CreateConfig.Create();
+			if(!File.Exists(DataConfig.configFile)){ 
+				CreateConfig.Create(); //файл не найден, он будет создан
 				ReadingConfig.ReadSettings();
 			}else{
 				ReadingConfig.ReadSettings();
 			}
 			
 			// Поиск локальной базы данный Database
-			if(!File.Exists(DataConfig.localDatabase)){		//файл не найден, он будет создан
-				CreateBase.CreateBaseOleDb();
+			if(!File.Exists(DataConfig.localDatabase) && DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				CreateBase.CreateBaseOleDb(); //файл не найден, он будет создан
 			}
 			
 			createFormSelectUser();

@@ -28,5 +28,19 @@ namespace Aggregator.User
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
+		public void DataTableUpdate()
+		{
+			
+		}
+		
+		/* =================================================================================================
+		 * РАЗДЕЛ: СОБЫТИЙ
+		 * =================================================================================================
+		 */	
+		void FormUsersLoad(object sender, EventArgs e)
+		{
+	
+		}
 	}
 }

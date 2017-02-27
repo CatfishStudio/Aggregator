@@ -71,6 +71,7 @@
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\DataForms.cs" />
+    <Compile Include="Data\DataServerUpdate.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>

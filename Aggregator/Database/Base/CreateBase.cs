@@ -30,6 +30,7 @@ namespace Aggregator.Database.Base
 			}
 			/* Создание таблиц */
 			CreateBaseTables.TableUsers();
+			CreateBaseTables.TableHistory();
 		}
 	}
 }

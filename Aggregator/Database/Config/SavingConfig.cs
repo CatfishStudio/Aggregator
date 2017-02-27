@@ -54,7 +54,7 @@ namespace Aggregator.Database.Config
 				Utilits.Console.Log("Сохранение настроек соединения с базой данных прошло успешно.");
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("ОШИБКА: Сохранение настроек соединения с базой данных. " + ex.ToString());
+				Utilits.Console.Log("ОШИБКА: Сохранение настроек соединения с базой данных. " + ex.ToString(), false, true);
 			}
 		}
 	}

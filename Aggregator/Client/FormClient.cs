@@ -36,6 +36,7 @@ namespace Aggregator.Client
 		 * РАЗДЕЛ: ПРОЦЕДУР И ФУНКЦИЙ
 		 * =================================================================================================
 		 */	
+		private DataServerUpdate dataServerUpdate;
 		
 		void users()
 		{
@@ -70,6 +71,10 @@ namespace Aggregator.Client
 			}
 		}
 		
+		public void messageInStatus(String message) {
+			toolStripStatusLabel2.Text = message;
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -77,6 +82,10 @@ namespace Aggregator.Client
 		
 		void FormClientLoad(object sender, EventArgs e)
 		{
+			dataServerUpdate = new DataServerUpdate();
+			statusStrip1.ImageList = imageList1;
+			toolStripStatusLabel1.ImageIndex = 1;
+			timer1.Start();
 			Utilits.Console.Log("Программа успешно загрущена!");
 		}
 		void FormClientFormClosing(object sender, FormClosingEventArgs e)
@@ -87,8 +96,15 @@ namespace Aggregator.Client
 				e.Cancel = true;
 			}
 		}
+		void Timer1Tick(object sender, EventArgs e)
+		{
+			if(toolStripStatusLabel1.ImageIndex == 1) toolStripStatusLabel1.ImageIndex = 0;
+			else toolStripStatusLabel1.ImageIndex = 1;
+			dataServerUpdate.checkUpdate();
+		}
 		void FormClientFormClosed(object sender, FormClosedEventArgs e)
 		{
+			timer1.Stop();
 			Application.Exit();
 		}
 		void КонсольСообщенийToolStripMenuItemClick(object sender, EventArgs e)
@@ -111,5 +127,6 @@ namespace Aggregator.Client
 		{
 			users();
 		}
+		
 	}
 }

@@ -52,13 +52,13 @@ namespace Aggregator.User
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUsers));
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.button1 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
+			this.panel2 = new System.Windows.Forms.Panel();
 			this.button4 = new System.Windows.Forms.Button();
+			this.panel3 = new System.Windows.Forms.Panel();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
@@ -80,36 +80,18 @@ namespace Aggregator.User
 			this.panel1.Size = new System.Drawing.Size(620, 49);
 			this.panel1.TabIndex = 0;
 			// 
-			// panel2
+			// button3
 			// 
-			this.panel2.Controls.Add(this.button4);
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel2.Location = new System.Drawing.Point(0, 293);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(620, 51);
-			this.panel2.TabIndex = 1;
-			// 
-			// panel3
-			// 
-			this.panel3.Controls.Add(this.listView1);
-			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel3.Location = new System.Drawing.Point(0, 49);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(620, 244);
-			this.panel3.TabIndex = 2;
-			// 
-			// button1
-			// 
-			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button1.ImageKey = "group_add.png";
-			this.button1.ImageList = this.imageList1;
-			this.button1.Location = new System.Drawing.Point(12, 12);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(86, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "Добавить";
-			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button1.UseVisualStyleBackColor = true;
+			this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button3.ImageKey = "group_delete.png";
+			this.button3.ImageList = this.imageList1;
+			this.button3.Location = new System.Drawing.Point(196, 12);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(86, 23);
+			this.button3.TabIndex = 2;
+			this.button3.Text = "Удалить";
+			this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.button3.UseVisualStyleBackColor = true;
 			// 
 			// imageList1
 			// 
@@ -137,18 +119,27 @@ namespace Aggregator.User
 			this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button2.UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// button1
 			// 
-			this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button3.ImageKey = "group_delete.png";
-			this.button3.ImageList = this.imageList1;
-			this.button3.Location = new System.Drawing.Point(196, 12);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(86, 23);
-			this.button3.TabIndex = 2;
-			this.button3.Text = "Удалить";
-			this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button3.UseVisualStyleBackColor = true;
+			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button1.ImageKey = "group_add.png";
+			this.button1.ImageList = this.imageList1;
+			this.button1.Location = new System.Drawing.Point(12, 12);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(86, 23);
+			this.button1.TabIndex = 0;
+			this.button1.Text = "Добавить";
+			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// panel2
+			// 
+			this.panel2.Controls.Add(this.button4);
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panel2.Location = new System.Drawing.Point(0, 293);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(620, 51);
+			this.panel2.TabIndex = 1;
 			// 
 			// button4
 			// 
@@ -159,6 +150,15 @@ namespace Aggregator.User
 			this.button4.TabIndex = 0;
 			this.button4.Text = "Закрыть";
 			this.button4.UseVisualStyleBackColor = true;
+			// 
+			// panel3
+			// 
+			this.panel3.Controls.Add(this.listView1);
+			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel3.Location = new System.Drawing.Point(0, 49);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(620, 244);
+			this.panel3.TabIndex = 2;
 			// 
 			// listView1
 			// 
@@ -209,6 +209,7 @@ namespace Aggregator.User
 			this.Controls.Add(this.panel1);
 			this.Name = "FormUsers";
 			this.Text = "Пользователи";
+			this.Load += new System.EventHandler(this.FormUsersLoad);
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
