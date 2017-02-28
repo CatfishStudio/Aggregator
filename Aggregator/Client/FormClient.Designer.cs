@@ -55,6 +55,7 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
 		private System.Windows.Forms.ImageList imageList2;
+		private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -120,6 +121,7 @@ namespace Aggregator.Client
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+			this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -137,6 +139,7 @@ namespace Aggregator.Client
 			this.отчетыToolStripMenuItem,
 			this.сервисToolStripMenuItem,
 			this.администраторToolStripMenuItem,
+			this.настройкиToolStripMenuItem,
 			this.справкаToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
@@ -354,13 +357,13 @@ namespace Aggregator.Client
 			// 
 			this.помощьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem.Image")));
 			this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.помощьToolStripMenuItem.Text = "Помощь";
 			// 
 			// оПрограммеToolStripMenuItem
 			// 
 			this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.оПрограммеToolStripMenuItem.Text = "О программе";
 			// 
 			// toolStrip1
@@ -446,6 +449,12 @@ namespace Aggregator.Client
 			this.imageList2.Images.SetKeyName(0, "database.png");
 			this.imageList2.Images.SetKeyName(1, "database_go.png");
 			this.imageList2.Images.SetKeyName(2, "database_delete.png");
+			// 
+			// настройкиToolStripMenuItem
+			// 
+			this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+			this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+			this.настройкиToolStripMenuItem.Text = "Настройки";
 			// 
 			// FormClient
 			// 

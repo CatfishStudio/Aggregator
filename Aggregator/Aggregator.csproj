@@ -11,7 +11,7 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <NoWin32Manifest>False</NoWin32Manifest>
-    <ApplicationIcon>images\icon.ico</ApplicationIcon>
+    <ApplicationIcon>images\icon2.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
