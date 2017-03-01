@@ -18,7 +18,7 @@ namespace Aggregator.Database.Config
 	/// </summary>
 	public static class ReadingConfig
 	{
-		public static void ReadSettings()
+		public static void ReadDatabaseSettings()
 		{
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
@@ -32,8 +32,28 @@ namespace Aggregator.Database.Config
 				DataConfig.server = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["server"].ToString();
 				DataConfig.serverUser = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverUser"].ToString();
 				DataConfig.serverDatabase = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverDatabase"].ToString();
-				
+				oleDb.Dispose();
 				Utilits.Console.Log("Настройки соединения с базой данных успешно загружены.");
+			}catch(Exception ex){
+				oleDb.Error();
+				MessageBox.Show(ex.ToString());
+				Application.Exit();
+			}
+		}
+		
+		public static void ReadSettings()
+		{
+			OleDb oleDb;
+			oleDb = new OleDb(DataConfig.configFile);
+			try{
+				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Settings";
+				oleDb.ExecuteFill("Settings");
+				
+				if(oleDb.dataSet.Tables["Settings"].Rows[0]["autoUpdate"].ToString() == "true") DataConfig.autoUpdate = true;
+				else DataConfig.autoUpdate = false;
+				DataConfig.period = oleDb.dataSet.Tables["Settings"].Rows[0]["period"].ToString();
+				oleDb.Dispose();
+				Utilits.Console.Log("Настройки программы успешно загружены.");
 			}catch(Exception ex){
 				oleDb.Error();
 				MessageBox.Show(ex.ToString());

@@ -54,7 +54,7 @@ namespace Aggregator.Client
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-		private System.Windows.Forms.ImageList imageList2;
+		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
 		
 		/// <summary>
@@ -107,6 +107,7 @@ namespace Aggregator.Client
 			this.пользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.базаДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.консольЗапросовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,8 +121,7 @@ namespace Aggregator.Client
 			this.consoleText = new System.Windows.Forms.TextBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-			this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -344,6 +344,12 @@ namespace Aggregator.Client
 			this.консольЗапросовToolStripMenuItem.Text = "Консоль запросов";
 			this.консольЗапросовToolStripMenuItem.Click += new System.EventHandler(this.КонсольЗапросовToolStripMenuItemClick);
 			// 
+			// настройкиToolStripMenuItem
+			// 
+			this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+			this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+			this.настройкиToolStripMenuItem.Text = "Настройки";
+			// 
 			// справкаToolStripMenuItem
 			// 
 			this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -357,13 +363,13 @@ namespace Aggregator.Client
 			// 
 			this.помощьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem.Image")));
 			this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.помощьToolStripMenuItem.Text = "Помощь";
 			// 
 			// оПрограммеToolStripMenuItem
 			// 
 			this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.оПрограммеToolStripMenuItem.Text = "О программе";
 			// 
 			// toolStrip1
@@ -442,19 +448,13 @@ namespace Aggregator.Client
 			this.timer1.Interval = 2000;
 			this.timer1.Tick += new System.EventHandler(this.Timer1Tick);
 			// 
-			// imageList2
+			// imageList1
 			// 
-			this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
-			this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList2.Images.SetKeyName(0, "database.png");
-			this.imageList2.Images.SetKeyName(1, "database_go.png");
-			this.imageList2.Images.SetKeyName(2, "database_delete.png");
-			// 
-			// настройкиToolStripMenuItem
-			// 
-			this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-			this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-			this.настройкиToolStripMenuItem.Text = "Настройки";
+			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList1.Images.SetKeyName(0, "database.png");
+			this.imageList1.Images.SetKeyName(1, "database_go.png");
+			this.imageList1.Images.SetKeyName(2, "database_delete.png");
 			// 
 			// FormClient
 			// 

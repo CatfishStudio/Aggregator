@@ -93,5 +93,12 @@ namespace Aggregator.Data
 				Utilits.Console.Log("ОШИБКА: Обновление таблицы "+ tableRepresent + "! " + ex.ToString(), false, true);
 			}
 		}
+		
+		public void Dispose()
+		{
+			oleDb.Dispose();
+			tables.Clear();
+			tables = null;
+		}
 	}
 }

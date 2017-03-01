@@ -30,7 +30,8 @@ namespace Aggregator.Database.Config
 				Application.Exit();
 			}
 			/* Создание таблиц */
-			CreateConfigTables.TableUsers();
+			//CreateConfigTables.TableUsers();
+			CreateConfigTables.TableDatabaseSettings();
 			CreateConfigTables.TableSettings();
 		}
 	}

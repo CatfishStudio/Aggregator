@@ -70,8 +70,10 @@ namespace Aggregator
 			DataConfig.configFile = DataConfig.resource + "\\config.mdb";
 			if(!File.Exists(DataConfig.configFile)){ 
 				CreateConfig.Create(); //файл не найден, он будет создан
+				ReadingConfig.ReadDatabaseSettings();
 				ReadingConfig.ReadSettings();
 			}else{
+				ReadingConfig.ReadDatabaseSettings();
 				ReadingConfig.ReadSettings();
 			}
 			

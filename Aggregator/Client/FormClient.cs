@@ -36,7 +36,7 @@ namespace Aggregator.Client
 		 * РАЗДЕЛ: ПРОЦЕДУР И ФУНКЦИЙ
 		 * =================================================================================================
 		 */	
-		private DataServerUpdate dataServerUpdate;
+		DataServerUpdate dataServerUpdate;
 		
 		void users()
 		{
@@ -75,6 +75,20 @@ namespace Aggregator.Client
 			toolStripStatusLabel2.Text = message;
 		}
 		
+		public void autoUpdateOn()
+		{
+			dataServerUpdate = new DataServerUpdate();
+			toolStripStatusLabel1.ImageIndex = 1;
+			timer1.Start();
+		}
+		
+		public void autoUpdateOff()
+		{
+			timer1.Stop();
+			toolStripStatusLabel1.ImageIndex = 0;
+			if(dataServerUpdate != null) dataServerUpdate.Dispose();
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -82,10 +96,9 @@ namespace Aggregator.Client
 		
 		void FormClientLoad(object sender, EventArgs e)
 		{
-			dataServerUpdate = new DataServerUpdate();
-			statusStrip1.ImageList = imageList2;
-			toolStripStatusLabel1.ImageIndex = 1;
-			timer1.Start();
+			statusStrip1.ImageList = imageList1;
+			if(DataConfig.autoUpdate == true) autoUpdateOn();
+			else autoUpdateOff();
 			Utilits.Console.Log("Программа успешно загрущена!");
 		}
 		void FormClientFormClosing(object sender, FormClosingEventArgs e)

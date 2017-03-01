@@ -36,5 +36,9 @@ namespace Aggregator.Data
 		public static String server = "";				// адрес сервера MS SQLServer
 		public static String serverUser = "";			// пользователь сервера MS SQLServer
 		public static String serverDatabase = "";		// база данных на сервере MS SQLServer
+		
+		/* Настройки программы*/
+		public static Boolean autoUpdate = true;		// автоматическое обновление данных в журналах
+		public static String period = "";				// фильтр период по умолчанию для журналов				
 	}
 }

@@ -18,7 +18,7 @@ namespace Aggregator.Database.Config
 	/// </summary>
 	public static class SavingConfig
 	{
-		public static void SaveSettings()
+		public static void SaveDatabaseSettings()
 		{
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
@@ -51,10 +51,38 @@ namespace Aggregator.Database.Config
 				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverDatabase"] = DataConfig.serverDatabase;
 				oleDb.ExecuteUpdate("DatabaseSettings");
 				
+				oleDb.Dispose();
 				Utilits.Console.Log("Сохранение настроек соединения с базой данных прошло успешно.");
 			}catch(Exception ex){
 				oleDb.Error();
 				Utilits.Console.Log("ОШИБКА: Сохранение настроек соединения с базой данных. " + ex.ToString(), false, true);
+			}
+		}
+		
+		public static void SaveSettings()
+		{
+			OleDb oleDb;
+			oleDb = new OleDb(DataConfig.configFile);
+			try{
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, autoUpdate, period FROM Settings";
+				oleDb.oleDbCommandUpdate.CommandText = "UPDATE DatabaseSettings SET " +
+					"autoUpdate = @autoUpdate, " +
+					"period = @period " +
+					"WHERE (id = @id)";
+				oleDb.oleDbCommandUpdate.Parameters.Add("@autoUpdate", OleDbType.VarChar, 255, "autoUpdate");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@period", OleDbType.VarChar, 255, "period");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
+				oleDb.ExecuteFill("Settings");
+				
+				oleDb.dataSet.Tables["Settings"].Rows[0]["autoUpdate"] = DataConfig.autoUpdate.ToString();
+				oleDb.dataSet.Tables["Settings"].Rows[0]["period"] = DataConfig.period;
+				oleDb.ExecuteUpdate("Settings");
+				
+				oleDb.Dispose();
+				Utilits.Console.Log("Сохранение настроек программы прошло успешно.");
+			}catch(Exception ex){
+				oleDb.Error();
+				Utilits.Console.Log("ОШИБКА: Сохранения настроек программы. " + ex.ToString(), false, true);
 			}
 		}
 	}

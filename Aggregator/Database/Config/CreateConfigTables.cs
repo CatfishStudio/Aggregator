@@ -47,7 +47,7 @@ namespace Aggregator.Database.Config
 			query.Dispose();
 		}
 		
-		public static void TableSettings()
+		public static void TableDatabaseSettings()
 		{
 			DataConfig.localDatabase = DataConfig.resource + "\\database.mdb";
 			DataConfig.typeConnection = DataConstants.CONNETION_LOCAL;
@@ -85,5 +85,25 @@ namespace Aggregator.Database.Config
 			query.Dispose();
 		}
 		
+		public static void TableSettings()
+		{
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.configFile);
+			
+			sqlCommand = "CREATE TABLE Settings (" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[autoUpdate] VARCHAR(10) DEFAULT '', " +
+				"[period] VARCHAR(25) DEFAULT ''" +
+				")";
+			query.SetCommand(sqlCommand);
+			query.Execute();
+			
+			sqlCommand = "INSERT INTO Settings (" +
+				"[autoUpdate], [period]) " +
+				"VALUES ('true', 'last_day')";
+			query.SetCommand(sqlCommand);
+			query.Execute();
+		}
 	}
 }

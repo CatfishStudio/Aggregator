@@ -33,7 +33,7 @@ namespace Aggregator.Admin
 		
 		void FormSettingsLoad(object sender, EventArgs e)
 		{
-			ReadingConfig.ReadSettings();
+			ReadingConfig.ReadDatabaseSettings();
 			typeConnectionСomboBox.Items.Add(DataConstants.CONNETION_LOCAL);
 			typeConnectionСomboBox.Items.Add(DataConstants.CONNETION_SERVER);
 			
@@ -83,8 +83,9 @@ namespace Aggregator.Admin
 			DataConfig.server = serverTextBox.Text;
 			DataConfig.serverUser = serverUserTextBox.Text;
 			DataConfig.serverDatabase = serverDatabaseTextBox.Text;
-			SavingConfig.SaveSettings();
+			SavingConfig.SaveDatabaseSettings();
 			Close();
+			MessageBox.Show("Чтобы изменения вступили в силу, перезапустите программу.", "Сообщение:");
 		}
 	}
 }
