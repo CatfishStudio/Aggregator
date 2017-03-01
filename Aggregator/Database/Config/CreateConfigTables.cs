@@ -101,7 +101,7 @@ namespace Aggregator.Database.Config
 			
 			sqlCommand = "INSERT INTO Settings (" +
 				"[autoUpdate], [period]) " +
-				"VALUES ('true', 'last_day')";
+				"VALUES ('True', 'today')";
 			query.SetCommand(sqlCommand);
 			query.Execute();
 		}

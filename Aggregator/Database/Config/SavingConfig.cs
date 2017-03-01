@@ -65,7 +65,7 @@ namespace Aggregator.Database.Config
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
 				oleDb.oleDbCommandSelect.CommandText = "SELECT id, autoUpdate, period FROM Settings";
-				oleDb.oleDbCommandUpdate.CommandText = "UPDATE DatabaseSettings SET " +
+				oleDb.oleDbCommandUpdate.CommandText = "UPDATE Settings SET " +
 					"autoUpdate = @autoUpdate, " +
 					"period = @period " +
 					"WHERE (id = @id)";
@@ -76,10 +76,14 @@ namespace Aggregator.Database.Config
 				
 				oleDb.dataSet.Tables["Settings"].Rows[0]["autoUpdate"] = DataConfig.autoUpdate.ToString();
 				oleDb.dataSet.Tables["Settings"].Rows[0]["period"] = DataConfig.period;
-				oleDb.ExecuteUpdate("Settings");
-				
-				oleDb.Dispose();
-				Utilits.Console.Log("Сохранение настроек программы прошло успешно.");
+				if(oleDb.ExecuteUpdate("Settings")){
+					oleDb.Dispose();
+					Utilits.Console.Log("Сохранение настроек программы прошло успешно.");
+				}else{
+					oleDb.Error();
+					oleDb.Dispose();
+					Utilits.Console.Log("ОШИБКА: Сохранения настроек программы.", false, true);
+				}
 			}catch(Exception ex){
 				oleDb.Error();
 				Utilits.Console.Log("ОШИБКА: Сохранения настроек программы. " + ex.ToString(), false, true);

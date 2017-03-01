@@ -49,7 +49,7 @@ namespace Aggregator.Database.Config
 				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Settings";
 				oleDb.ExecuteFill("Settings");
 				
-				if(oleDb.dataSet.Tables["Settings"].Rows[0]["autoUpdate"].ToString() == "true") DataConfig.autoUpdate = true;
+				if(oleDb.dataSet.Tables["Settings"].Rows[0]["autoUpdate"].ToString() == "True") DataConfig.autoUpdate = true;
 				else DataConfig.autoUpdate = false;
 				DataConfig.period = oleDb.dataSet.Tables["Settings"].Rows[0]["period"].ToString();
 				oleDb.Dispose();

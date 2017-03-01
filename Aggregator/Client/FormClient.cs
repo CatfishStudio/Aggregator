@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Admin;
 using Aggregator.User;
+using Aggregator.Client.Settings;
 
 namespace Aggregator.Client
 {
@@ -38,7 +39,7 @@ namespace Aggregator.Client
 		 */	
 		DataServerUpdate dataServerUpdate;
 		
-		void users()
+		void usersShow()
 		{
 			if(DataForms.FUsers == null){
 				DataForms.FUsers = new FormUsers();
@@ -47,12 +48,21 @@ namespace Aggregator.Client
 			}
 		}
 		
-		void settings()
+		void databaseSettingsShow()
 		{
 			if(DataForms.FSettingsDatabase == null){
 				DataForms.FSettingsDatabase = new FormSettingsDatabase();
 				DataForms.FSettingsDatabase.MdiParent = DataForms.FClient;
 				DataForms.FSettingsDatabase.Show();
+			}
+		}
+		
+		void settingsShow()
+		{
+			if(DataForms.FSettings == null) {
+				DataForms.FSettings = new FormSettings();
+				DataForms.FSettings.MdiParent = DataForms.FClient;
+				DataForms.FSettings.Show();
 			}
 		}
 		
@@ -85,8 +95,11 @@ namespace Aggregator.Client
 		public void autoUpdateOff()
 		{
 			timer1.Stop();
-			toolStripStatusLabel1.ImageIndex = 0;
-			if(dataServerUpdate != null) dataServerUpdate.Dispose();
+			toolStripStatusLabel1.ImageIndex = 2;
+			if(dataServerUpdate != null) {
+				dataServerUpdate.Dispose();
+				dataServerUpdate = null;
+			}
 		}
 		
 		/* =================================================================================================
@@ -130,7 +143,7 @@ namespace Aggregator.Client
 		}
 		void БазаДанныхToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			settings();
+			databaseSettingsShow();
 		}
 		void КонсольЗапросовToolStripMenuItemClick(object sender, EventArgs e)
 		{
@@ -138,7 +151,11 @@ namespace Aggregator.Client
 		}
 		void ПользователиToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			users();
+			usersShow();
+		}
+		void НастройкиToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			settingsShow();
 		}
 		
 	}

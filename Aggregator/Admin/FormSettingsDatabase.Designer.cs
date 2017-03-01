@@ -56,6 +56,7 @@ namespace Aggregator.Admin
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettingsDatabase));
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonClose = new System.Windows.Forms.Button();
@@ -287,6 +288,7 @@ namespace Aggregator.Admin
 			this.ClientSize = new System.Drawing.Size(418, 388);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormSettingsDatabase";
 			this.Text = "Настройка базы данных";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSettingsFormClosed);

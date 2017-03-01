@@ -7,11 +7,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Aggregator</RootNamespace>
-    <AssemblyName>Aggregator</AssemblyName>
+    <AssemblyName>Catfish Aggregator 1.0</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <NoWin32Manifest>False</NoWin32Manifest>
-    <ApplicationIcon>images\icon2.ico</ApplicationIcon>
+    <ApplicationIcon>images\logo_icon.ico</ApplicationIcon>
+    <StartupObject>Aggregator.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -58,6 +59,10 @@
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Settings\FormSettings.cs" />
+    <Compile Include="Client\Settings\FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Base\CreateBase.cs" />
     <Compile Include="Database\Base\CreateBaseTables.cs" />
     <Compile Include="Database\Config\CreateConfig.cs" />
@@ -98,6 +103,9 @@
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Client\Settings\FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +117,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Client\Settings" />
     <Folder Include="Data" />
     <Folder Include="Client" />
     <Folder Include="Database" />

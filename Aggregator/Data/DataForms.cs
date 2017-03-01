@@ -9,6 +9,7 @@
 using System;
 using Aggregator.Admin;
 using Aggregator.Client;
+using Aggregator.Client.Settings;
 using Aggregator.User;
 
 namespace Aggregator.Data
@@ -22,6 +23,7 @@ namespace Aggregator.Data
 		public static FormCheckUser FCheckUser;
 		/* Клиент */
 		public static FormClient FClient;
+		public static FormSettings FSettings;
 		/*Администратор*/
 		public static FormSettingsDatabase FSettingsDatabase;
 		public static FormConsoleQuery FConsoleQuery;
