@@ -34,9 +34,10 @@ namespace Aggregator.User
 		
 		private OleDb oleDb;
 		
-		public void DataTableUpdate()
+		public void TableRefresh()
 		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
+				// OLEDB
 				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, pass, permissions FROM Users";
 				oleDb.ExecuteFill("Users");
 				listView1.Items.Clear();
@@ -44,15 +45,44 @@ namespace Aggregator.User
 	        	{
 					ListViewItem listViewItem = new ListViewItem();
 					listViewItem.SubItems.Add(row["name"].ToString());
-					listViewItem.SubItems.Add(row["permissions"].ToString());
+					listViewItem.SubItems.Add(getPermissions(row["permissions"].ToString()));
 					listViewItem.SubItems.Add(row["id"].ToString());
 					listViewItem.StateImageIndex = 0;
 					listView1.Items.Add(listViewItem);
 				}
-				Utilits.Console.Log("OK!");
-			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
-				
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+				// MSSQL SERVER
 			}
+		}
+		
+		String getPermissions(String value)
+		{
+			if(value == "admin") return "администратор";
+			if(value == "operator") return "оператор";
+			if(value == "user") return "пользователь";
+			if(value == "guest") return "гость";
+			return "";
+		}
+		
+		void addUser()
+		{
+			FormUsersEdit FUserEdit = new FormUsersEdit();
+			FUserEdit.MdiParent = DataForms.FClient;
+			FUserEdit.ID = null;
+			FUserEdit.Show();
+		}
+		
+		void editUser()
+		{
+			FormUsersEdit FUserEdit = new FormUsersEdit();
+			FUserEdit.MdiParent = DataForms.FClient;
+			FUserEdit.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
+			FUserEdit.Show();
+		}
+		
+		void deleteUser()
+		{
+			
 		}
 		
 				
@@ -62,12 +92,35 @@ namespace Aggregator.User
 		 */	
 		void FormUsersLoad(object sender, EventArgs e)
 		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
+				// OLEDB
 				oleDb = new OleDb(DataConfig.localDatabase);
-				DataTableUpdate();
-			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
-				
+				TableRefresh();
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+				// MSSQL SERVER
 			}
 		}
+		void ButtonCloseClick(object sender, EventArgs e)
+		{
+			Close();
+		}
+		void ButtonRefreshClick(object sender, EventArgs e)
+		{
+			TableRefresh();
+		}
+		void AddButtonClick(object sender, EventArgs e)
+		{
+			addUser();
+		}
+		void EditButtonClick(object sender, EventArgs e)
+		{
+			editUser();
+		}
+		void DeleteButtonClick(object sender, EventArgs e)
+		{
+			deleteUser();
+		}
+		
+		
 	}
 }

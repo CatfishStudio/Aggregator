@@ -85,7 +85,7 @@ namespace Aggregator.Data
 		private void showUpdate(String tableName, String tableRepresent)
 		{
 			try{
-				if(tableName == "Users" && DataForms.FUsers != null) DataForms.FUsers.DataTableUpdate();
+				if(tableName == "Users" && DataForms.FUsers != null) DataForms.FUsers.TableRefresh();
 			
 				Utilits.Console.Log("ИСТОРИЯ: Таблица " + tableRepresent + " была успешно обновлена.");
 			}catch(Exception ex){

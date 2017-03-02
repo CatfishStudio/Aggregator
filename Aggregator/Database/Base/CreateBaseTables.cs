@@ -27,22 +27,36 @@ namespace Aggregator.Database.Base
 				"[id] COUNTER PRIMARY KEY, " +
 				"[name] VARCHAR DEFAULT '' UNIQUE, " +
 				"[pass] VARCHAR DEFAULT '', " +
-				"[permissions] VARCHAR DEFAULT 'user'" +
+				"[permissions] VARCHAR DEFAULT '', " +
+				"[info] TEXT" +
 				")";
 			query.SetCommand(sqlCommand);
 			query.Execute();
 			
 			sqlCommand = "INSERT INTO Users (" +
-				"[name], [pass], [permissions]) " +
-				"VALUES ('Администратор', '', 'admin')";
+				"[name], [pass], [permissions], [info]) " +
+				"VALUES ('Администратор', '', 'admin', '')";
 			query.SetCommand(sqlCommand);
 			query.Execute();
 			
 			sqlCommand = "INSERT INTO Users (" +
-				"[name], [pass], [permissions]) " +
-				"VALUES ('Пользователь', '', 'user')";
+				"[name], [pass], [permissions], [info]) " +
+				"VALUES ('Оператор', '', 'operator', '')";
 			query.SetCommand(sqlCommand);
 			query.Execute();
+			
+			sqlCommand = "INSERT INTO Users (" +
+				"[name], [pass], [permissions], [info]) " +
+				"VALUES ('Пользователь', '', 'user', '')";
+			query.SetCommand(sqlCommand);
+			query.Execute();
+			
+			sqlCommand = "INSERT INTO Users (" +
+				"[name], [pass], [permissions], [info]) " +
+				"VALUES ('Гость', '', 'guest', '')";
+			query.SetCommand(sqlCommand);
+			query.Execute();
+			
 			query.Dispose();
 		}
 		

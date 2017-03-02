@@ -37,30 +37,18 @@ namespace Aggregator.User
 		private Boolean programClose;	//флаг закрытия приложения
 		private OleDb oleDb;
 		
-		void FormSelectUserFormClosed(object sender, FormClosedEventArgs e)
-		{
-			if(programClose) Application.Exit();
-			oleDb.Dispose();
-		}
-		void Button2Click(object sender, EventArgs e)
-		{
-			Close();
-		}
-		void FormSelectUserLoad(object sender, EventArgs e)
-		{
-			programClose = true;
-			loadData();
-		}
-		
 		void loadData()
 		{
 			//Подключение локальной базы данных (список серверов)
 			try{
 				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
+					// OLEDB
 					oleDb = new OleDb(DataConfig.localDatabase);
 					oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Users";
 					oleDb.ExecuteFill("Users");
 				} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+					// MSSQL SERVER
+					
 					
 				}
 				
@@ -107,6 +95,24 @@ namespace Aggregator.User
 			}
 		}
 		
+		/* =================================================================================================
+		 * РАЗДЕЛ: СОБЫТИЙ
+		 * =================================================================================================
+		 */
+		void FormSelectUserFormClosed(object sender, FormClosedEventArgs e)
+		{
+			if(programClose) Application.Exit();
+			oleDb.Dispose();
+		}
+		void Button2Click(object sender, EventArgs e)
+		{
+			Close();
+		}
+		void FormSelectUserLoad(object sender, EventArgs e)
+		{
+			programClose = true;
+			loadData();
+		}
 		void Button1Click(object sender, EventArgs e)
 		{
 			checkUser();

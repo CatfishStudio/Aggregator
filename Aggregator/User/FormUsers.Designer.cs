@@ -17,16 +17,18 @@ namespace Aggregator.User
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button addButton;
 		private System.Windows.Forms.ImageList imageList1;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button deleteButton;
+		private System.Windows.Forms.Button editButton;
+		private System.Windows.Forms.Button buttonClose;
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.Panel panel4;
+		private System.Windows.Forms.Button buttonRefresh;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -52,12 +54,14 @@ namespace Aggregator.User
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUsers));
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.button3 = new System.Windows.Forms.Button();
+			this.buttonRefresh = new System.Windows.Forms.Button();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.button2 = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
+			this.panel4 = new System.Windows.Forms.Panel();
+			this.deleteButton = new System.Windows.Forms.Button();
+			this.editButton = new System.Windows.Forms.Button();
+			this.addButton = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.button4 = new System.Windows.Forms.Button();
+			this.buttonClose = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
@@ -71,86 +75,116 @@ namespace Aggregator.User
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.button3);
-			this.panel1.Controls.Add(this.button2);
-			this.panel1.Controls.Add(this.button1);
+			this.panel1.Controls.Add(this.buttonRefresh);
+			this.panel1.Controls.Add(this.panel4);
+			this.panel1.Controls.Add(this.deleteButton);
+			this.panel1.Controls.Add(this.editButton);
+			this.panel1.Controls.Add(this.addButton);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(620, 49);
 			this.panel1.TabIndex = 0;
 			// 
-			// button3
+			// buttonRefresh
 			// 
-			this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button3.ImageKey = "group_delete.png";
-			this.button3.ImageList = this.imageList1;
-			this.button3.Location = new System.Drawing.Point(196, 12);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(86, 23);
-			this.button3.TabIndex = 2;
-			this.button3.Text = "Удалить";
-			this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button3.UseVisualStyleBackColor = true;
+			this.buttonRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.buttonRefresh.ImageKey = "arrow_refresh_small.png";
+			this.buttonRefresh.ImageList = this.imageList1;
+			this.buttonRefresh.Location = new System.Drawing.Point(298, 12);
+			this.buttonRefresh.Name = "buttonRefresh";
+			this.buttonRefresh.Size = new System.Drawing.Size(86, 23);
+			this.buttonRefresh.TabIndex = 4;
+			this.buttonRefresh.Text = "Обновить";
+			this.buttonRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.buttonRefresh.UseVisualStyleBackColor = true;
+			this.buttonRefresh.Click += new System.EventHandler(this.ButtonRefreshClick);
 			// 
 			// imageList1
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "report_user.png");
-			this.imageList1.Images.SetKeyName(1, "folder_user.png");
-			this.imageList1.Images.SetKeyName(2, "group.png");
-			this.imageList1.Images.SetKeyName(3, "group_add.png");
-			this.imageList1.Images.SetKeyName(4, "group_delete.png");
-			this.imageList1.Images.SetKeyName(5, "group_edit.png");
-			this.imageList1.Images.SetKeyName(6, "group_error.png");
-			this.imageList1.Images.SetKeyName(7, "group_gear.png");
-			this.imageList1.Images.SetKeyName(8, "group_go.png");
+			this.imageList1.Images.SetKeyName(0, "drive_user.png");
+			this.imageList1.Images.SetKeyName(1, "report_user.png");
+			this.imageList1.Images.SetKeyName(2, "folder_user.png");
+			this.imageList1.Images.SetKeyName(3, "group.png");
+			this.imageList1.Images.SetKeyName(4, "group_add.png");
+			this.imageList1.Images.SetKeyName(5, "group_delete.png");
+			this.imageList1.Images.SetKeyName(6, "group_edit.png");
+			this.imageList1.Images.SetKeyName(7, "group_error.png");
+			this.imageList1.Images.SetKeyName(8, "group_gear.png");
+			this.imageList1.Images.SetKeyName(9, "group_go.png");
+			this.imageList1.Images.SetKeyName(10, "arrow_refresh_small.png");
 			// 
-			// button2
+			// panel4
 			// 
-			this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button2.ImageKey = "group_edit.png";
-			this.button2.ImageList = this.imageList1;
-			this.button2.Location = new System.Drawing.Point(104, 12);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(86, 23);
-			this.button2.TabIndex = 1;
-			this.button2.Text = "Изменить";
-			this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button2.UseVisualStyleBackColor = true;
+			this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panel4.Location = new System.Drawing.Point(288, 12);
+			this.panel4.Name = "panel4";
+			this.panel4.Size = new System.Drawing.Size(4, 23);
+			this.panel4.TabIndex = 3;
 			// 
-			// button1
+			// deleteButton
 			// 
-			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button1.ImageKey = "group_add.png";
-			this.button1.ImageList = this.imageList1;
-			this.button1.Location = new System.Drawing.Point(12, 12);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(86, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "Добавить";
-			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button1.UseVisualStyleBackColor = true;
+			this.deleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.deleteButton.ImageKey = "group_delete.png";
+			this.deleteButton.ImageList = this.imageList1;
+			this.deleteButton.Location = new System.Drawing.Point(196, 12);
+			this.deleteButton.Name = "deleteButton";
+			this.deleteButton.Size = new System.Drawing.Size(86, 23);
+			this.deleteButton.TabIndex = 2;
+			this.deleteButton.Text = "Удалить";
+			this.deleteButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.deleteButton.UseVisualStyleBackColor = true;
+			this.deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
+			// 
+			// editButton
+			// 
+			this.editButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.editButton.ImageKey = "group_edit.png";
+			this.editButton.ImageList = this.imageList1;
+			this.editButton.Location = new System.Drawing.Point(104, 12);
+			this.editButton.Name = "editButton";
+			this.editButton.Size = new System.Drawing.Size(86, 23);
+			this.editButton.TabIndex = 1;
+			this.editButton.Text = "Изменить";
+			this.editButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.editButton.UseVisualStyleBackColor = true;
+			this.editButton.Click += new System.EventHandler(this.EditButtonClick);
+			// 
+			// addButton
+			// 
+			this.addButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.addButton.ImageKey = "group_add.png";
+			this.addButton.ImageList = this.imageList1;
+			this.addButton.Location = new System.Drawing.Point(12, 12);
+			this.addButton.Name = "addButton";
+			this.addButton.Size = new System.Drawing.Size(86, 23);
+			this.addButton.TabIndex = 0;
+			this.addButton.Text = "Добавить";
+			this.addButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.addButton.UseVisualStyleBackColor = true;
+			this.addButton.Click += new System.EventHandler(this.AddButtonClick);
 			// 
 			// panel2
 			// 
-			this.panel2.Controls.Add(this.button4);
+			this.panel2.Controls.Add(this.buttonClose);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel2.Location = new System.Drawing.Point(0, 293);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(620, 51);
 			this.panel2.TabIndex = 1;
 			// 
-			// button4
+			// buttonClose
 			// 
-			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(533, 16);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(75, 23);
-			this.button4.TabIndex = 0;
-			this.button4.Text = "Закрыть";
-			this.button4.UseVisualStyleBackColor = true;
+			this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonClose.Location = new System.Drawing.Point(533, 16);
+			this.buttonClose.Name = "buttonClose";
+			this.buttonClose.Size = new System.Drawing.Size(75, 23);
+			this.buttonClose.TabIndex = 0;
+			this.buttonClose.Text = "Закрыть";
+			this.buttonClose.UseVisualStyleBackColor = true;
+			this.buttonClose.Click += new System.EventHandler(this.ButtonCloseClick);
 			// 
 			// panel3
 			// 

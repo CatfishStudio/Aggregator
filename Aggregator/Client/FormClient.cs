@@ -39,6 +39,19 @@ namespace Aggregator.Client
 		 */	
 		DataServerUpdate dataServerUpdate;
 		
+		void applyPermissions()
+		{
+			if(DataConfig.userPermissions == "admin"){
+				администраторToolStripMenuItem.Visible = true;
+			}else if(DataConfig.userPermissions == "operator"){
+				администраторToolStripMenuItem.Visible = false;
+			}else if(DataConfig.userPermissions == "user"){
+				администраторToolStripMenuItem.Visible = false;
+			}else if(DataConfig.userPermissions == "guest"){
+				администраторToolStripMenuItem.Visible = false;
+			}
+		}
+		
 		void usersShow()
 		{
 			if(DataForms.FUsers == null){
@@ -112,6 +125,7 @@ namespace Aggregator.Client
 			statusStrip1.ImageList = imageList1;
 			if(DataConfig.autoUpdate == true) autoUpdateOn();
 			else autoUpdateOff();
+			applyPermissions();
 			Utilits.Console.Log("Программа успешно загрущена!");
 		}
 		void FormClientFormClosing(object sender, FormClosingEventArgs e)

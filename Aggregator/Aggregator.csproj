@@ -91,6 +91,10 @@
     <Compile Include="User\FormUsers.Designer.cs">
       <DependentUpon>FormUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="User\FormUsersEdit.cs" />
+    <Compile Include="User\FormUsersEdit.Designer.cs">
+      <DependentUpon>FormUsersEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilits\Console.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User\FormUsers.resx">
       <DependentUpon>FormUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\FormUsersEdit.resx">
+      <DependentUpon>FormUsersEdit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
