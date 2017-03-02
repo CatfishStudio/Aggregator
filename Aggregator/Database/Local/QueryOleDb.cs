@@ -17,8 +17,8 @@ namespace Aggregator.Database.Local
 	/// </summary>
 	public class QueryOleDb
 	{
-		private OleDbConnection oleDbConnection;
-		private OleDbCommand oleDbCommand;
+		OleDbConnection oleDbConnection;
+		OleDbCommand oleDbCommand;
 		
 		public QueryOleDb(String fileBase)
 		{

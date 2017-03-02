@@ -24,8 +24,8 @@ namespace Aggregator.Database.Local
 		public OleDbCommand oleDbCommandDelete;
 		public DataSet dataSet;
 		
-		private OleDbConnection oleDbConnection;
-		private OleDbDataAdapter oleDbDataAdapter;
+		OleDbConnection oleDbConnection;
+		OleDbDataAdapter oleDbDataAdapter;
 				
 		public OleDb(String databaseFile)
 		{
@@ -75,7 +75,6 @@ namespace Aggregator.Database.Local
 		
 		public void Error()
 		{
-			oleDbConnection.Close();
 			Dispose();
 		}
 		

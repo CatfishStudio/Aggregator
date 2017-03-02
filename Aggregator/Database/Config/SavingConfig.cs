@@ -81,7 +81,6 @@ namespace Aggregator.Database.Config
 					Utilits.Console.Log("Сохранение настроек программы прошло успешно.");
 				}else{
 					oleDb.Error();
-					oleDb.Dispose();
 					Utilits.Console.Log("ОШИБКА: Сохранения настроек программы.", false, true);
 				}
 			}catch(Exception ex){

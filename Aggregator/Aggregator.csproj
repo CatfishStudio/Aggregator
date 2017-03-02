@@ -73,6 +73,8 @@
     <Compile Include="Database\Local\CreateTable.cs" />
     <Compile Include="Database\Local\OleDb.cs" />
     <Compile Include="Database\Local\QueryOleDb.cs" />
+    <Compile Include="Database\Server\QuerySqlServer.cs" />
+    <Compile Include="Database\Server\SqlServer.cs" />
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\DataForms.cs" />
@@ -132,6 +134,7 @@
     <Folder Include="Database\Config" />
     <Folder Include="Database\Local" />
     <Folder Include="Database\Base" />
+    <Folder Include="Database\Server" />
     <Folder Include="Utilits" />
     <Folder Include="User" />
   </ItemGroup>
