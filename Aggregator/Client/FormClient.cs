@@ -9,6 +9,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Aggregator.Client.OpenFiles;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Admin;
@@ -101,6 +102,17 @@ namespace Aggregator.Client
 			}
 		}
 		
+		/* Открыть XLS файл */
+		void openXLS()
+		{
+			if(openFileDialog1.ShowDialog() == DialogResult.OK){
+				FormOpenXLS FOpenXLS = new FormOpenXLS();
+				FOpenXLS.FileName = openFileDialog1.FileName;
+				FOpenXLS.MdiParent = DataForms.FClient;
+				FOpenXLS.Show();
+			}
+		}
+		
 		/* Сообщение в статусе */
 		public void messageInStatus(String message) {
 			toolStripStatusLabel2.Text = message;
@@ -185,6 +197,10 @@ namespace Aggregator.Client
 		void НастройкиToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			settingsShow();
+		}
+		void ОткрытьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			openXLS();
 		}
 		
 	}

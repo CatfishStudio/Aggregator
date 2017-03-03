@@ -34,11 +34,14 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net20\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.ADOX">
       <HintPath>lib\Interop.ADOX.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel">
-      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -58,6 +61,10 @@
     <Compile Include="Client\FormClient.cs" />
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\OpenFiles\FormOpenXLS.cs" />
+    <Compile Include="Client\OpenFiles\FormOpenXLS.Designer.cs">
+      <DependentUpon>FormOpenXLS.cs</DependentUpon>
     </Compile>
     <Compile Include="Client\Settings\FormSettings.cs" />
     <Compile Include="Client\Settings\FormSettings.Designer.cs">
@@ -108,6 +115,9 @@
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Client\OpenFiles\FormOpenXLS.resx">
+      <DependentUpon>FormOpenXLS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Client\Settings\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +135,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Client\OpenFiles" />
     <Folder Include="Client\Settings" />
     <Folder Include="Data" />
     <Folder Include="Client" />

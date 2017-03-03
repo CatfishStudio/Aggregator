@@ -56,6 +56,7 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -122,6 +123,7 @@ namespace Aggregator.Client
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -163,7 +165,7 @@ namespace Aggregator.Client
 			this.создатьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.текстовыйФайлToolStripMenuItem});
 			this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-			this.создатьToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+			this.создатьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.создатьToolStripMenuItem.Text = "Создать";
 			// 
 			// текстовыйФайлToolStripMenuItem
@@ -175,19 +177,20 @@ namespace Aggregator.Client
 			// открытьToolStripMenuItem
 			// 
 			this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-			this.открытьToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+			this.открытьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.открытьToolStripMenuItem.Text = "Открыть";
+			this.открытьToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьToolStripMenuItemClick);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(118, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
 			// 
 			// выходToolStripMenuItem
 			// 
 			this.выходToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выходToolStripMenuItem.Image")));
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-			this.выходToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+			this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.выходToolStripMenuItem.Text = "Выход";
 			// 
 			// видToolStripMenuItem
@@ -457,6 +460,10 @@ namespace Aggregator.Client
 			this.imageList1.Images.SetKeyName(0, "database.png");
 			this.imageList1.Images.SetKeyName(1, "database_go.png");
 			this.imageList1.Images.SetKeyName(2, "database_delete.png");
+			// 
+			// openFileDialog1
+			// 
+			this.openFileDialog1.Filter = "*.xls|*.xls";
 			// 
 			// FormClient
 			// 
