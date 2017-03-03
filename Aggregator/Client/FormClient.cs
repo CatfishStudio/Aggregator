@@ -10,6 +10,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Data;
+using Aggregator.Database.Local;
 using Aggregator.Admin;
 using Aggregator.User;
 using Aggregator.Client.Settings;
@@ -37,7 +38,7 @@ namespace Aggregator.Client
 		 * РАЗДЕЛ: ПРОЦЕДУР И ФУНКЦИЙ
 		 * =================================================================================================
 		 */	
-		DataServerUpdate dataServerUpdate;
+		AutoUpdateLocalDatabase autoUpdateLocalDatabase;
 		
 		void applyPermissions()
 		{
@@ -100,7 +101,7 @@ namespace Aggregator.Client
 		
 		public void autoUpdateOn()
 		{
-			dataServerUpdate = new DataServerUpdate();
+			autoUpdateLocalDatabase = new AutoUpdateLocalDatabase();
 			toolStripStatusLabel1.ImageIndex = 1;
 			timer1.Start();
 		}
@@ -109,10 +110,15 @@ namespace Aggregator.Client
 		{
 			timer1.Stop();
 			toolStripStatusLabel1.ImageIndex = 2;
-			if(dataServerUpdate != null) {
-				dataServerUpdate.Dispose();
-				dataServerUpdate = null;
+			if(autoUpdateLocalDatabase != null) {
+				autoUpdateLocalDatabase.Dispose();
+				autoUpdateLocalDatabase = null;
 			}
+		}
+		
+		public void updateData(int indexRow)
+		{
+			autoUpdateLocalDatabase.update(indexRow);
 		}
 		
 		/* =================================================================================================
@@ -126,7 +132,7 @@ namespace Aggregator.Client
 			if(DataConfig.autoUpdate == true) autoUpdateOn();
 			else autoUpdateOff();
 			applyPermissions();
-			Utilits.Console.Log("Программа успешно загрущена!");
+			Utilits.Console.Log("Программа успешно запущена!");
 		}
 		void FormClientFormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -140,7 +146,7 @@ namespace Aggregator.Client
 		{
 			if(toolStripStatusLabel1.ImageIndex == 1) toolStripStatusLabel1.ImageIndex = 0;
 			else toolStripStatusLabel1.ImageIndex = 1;
-			dataServerUpdate.checkUpdate();
+			autoUpdateLocalDatabase.check();
 		}
 		void FormClientFormClosed(object sender, FormClosedEventArgs e)
 		{

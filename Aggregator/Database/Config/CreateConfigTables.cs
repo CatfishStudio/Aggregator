@@ -31,19 +31,19 @@ namespace Aggregator.Database.Config
 				"[permissions] VARCHAR DEFAULT 'user'" +
 				")";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableUsers] ошибка создания таблицы Users.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions]) " +
 				"VALUES ('Администратор', '', 'admin')";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableUsers] ошибка добавления данных в таблицу Users.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions]) " +
 				"VALUES ('Пользователь', '', 'user')";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableUsers] ошибка добавления данных в таблицу Users.", false, true);
 			query.Dispose();
 		}
 		
@@ -62,16 +62,16 @@ namespace Aggregator.Database.Config
 			
 			sqlCommand = "CREATE TABLE DatabaseSettings (" +
 				"[id] COUNTER PRIMARY KEY, " +
-				"name VARCHAR(50) DEFAULT '' UNIQUE, " +
-				"localDatabase TEXT DEFAULT '', " +
-				"typeDatabase VARCHAR(50) DEFAULT '', " +
-				"typeConnection VARCHAR(50) DEFAULT '', " +
-				"server VARCHAR(255) DEFAULT '', " +
-				"serverUser VARCHAR(255) DEFAULT '', " +
-				"serverDatabase VARCHAR(255) DEFAULT ''" +
+				"[name] VARCHAR(50) DEFAULT '' UNIQUE, " +
+				"[localDatabase] TEXT DEFAULT '', " +
+				"[typeDatabase] VARCHAR(50) DEFAULT '', " +
+				"[typeConnection] VARCHAR(50) DEFAULT '', " +
+				"[server] VARCHAR(255) DEFAULT '', " +
+				"[serverUser] VARCHAR(255) DEFAULT '', " +
+				"[serverDatabase] VARCHAR(255) DEFAULT ''" +
 				")";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableDatabaseSettings] ошибка создания таблицы DatabaseSettings.", false, true);
 			
 			sqlCommand = "INSERT INTO DatabaseSettings (" +
 				"[name], [localDatabase], [typeDatabase], [typeConnection], " +
@@ -81,7 +81,7 @@ namespace Aggregator.Database.Config
 				+ DataConfig.server + "', '" + DataConfig.serverUser + "', '" 
 				+ DataConfig.serverDatabase + "')";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableDatabaseSettings] ошибка добавления данных в таблицу DatabaseSettings.", false, true);
 			query.Dispose();
 		}
 		
@@ -97,13 +97,13 @@ namespace Aggregator.Database.Config
 				"[period] VARCHAR(25) DEFAULT ''" +
 				")";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableSettings] ошибка создания таблицы Settings.", false, true);
 			
 			sqlCommand = "INSERT INTO Settings (" +
 				"[autoUpdate], [period]) " +
 				"VALUES ('True', 'today')";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableSettings] ошибка добавления данных в таблицу Settings.", false, true);
 		}
 	}
 }

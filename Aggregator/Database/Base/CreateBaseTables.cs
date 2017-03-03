@@ -31,31 +31,31 @@ namespace Aggregator.Database.Base
 				"[info] TEXT" +
 				")";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateBaseTables:TableUsers] ошибка создания таблицы Users.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions], [info]) " +
 				"VALUES ('Администратор', '', 'admin', '')";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateBaseTables:TableUsers] ошибка добавления данных в таблицу Users.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions], [info]) " +
 				"VALUES ('Оператор', '', 'operator', '')";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateBaseTables:TableUsers] ошибка добавления данных в таблицу Users.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions], [info]) " +
 				"VALUES ('Пользователь', '', 'user', '')";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateBaseTables:TableUsers] ошибка добавления данных в таблицу Users.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions], [info]) " +
 				"VALUES ('Гость', '', 'guest', '')";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateBaseTables:TableUsers] ошибка добавления данных в таблицу Users.", false, true);
 			
 			query.Dispose();
 		}
@@ -75,13 +75,13 @@ namespace Aggregator.Database.Base
 				"[user] VARCHAR DEFAULT ''" +
 				")";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateBaseTables:TableHistory] ошибка создания таблицы History.", false, true);
 			
 			sqlCommand = "INSERT INTO History (" +
 				"[name], [represent], [datetime], [error], [user]) " +
 				"VALUES ('Users', 'Пользователи', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
 			query.SetCommand(sqlCommand);
-			query.Execute();
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateBaseTables:TableHistory] ошибка добавления данных в таблицу History.", false, true);
 		}
 	}
 }

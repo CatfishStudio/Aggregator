@@ -441,6 +441,7 @@ namespace Aggregator.Client
 			this.consoleText.Location = new System.Drawing.Point(0, 0);
 			this.consoleText.Multiline = true;
 			this.consoleText.Name = "consoleText";
+			this.consoleText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.consoleText.Size = new System.Drawing.Size(780, 130);
 			this.consoleText.TabIndex = 0;
 			// 

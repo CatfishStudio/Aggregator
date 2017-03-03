@@ -33,15 +33,17 @@ namespace Aggregator.Database.Server
 			sqlCommand = new SqlCommand(sqlTextCommand, sqlConnection);
 		}
 		
-		public void Execute()
+		public bool Execute()
 		{
 			try{
 				sqlConnection.Open();
 				sqlCommand.ExecuteNonQuery();	//выполнение запроса				
 				sqlConnection.Close();
+				return true;
 			}catch(Exception ex){
 				sqlConnection.Close();
-				Utilits.Console.Log("ОШИБКА ВЫПОЛНЕНИЯ ЗАПРОСА: " + ex.ToString());
+				Utilits.Console.Log("[ОШИБКА:QuerySqlServer:Execute] ошибка выполнения запроса: " + ex.ToString(), false, true);
+				return false;
 			}
 		}
 		

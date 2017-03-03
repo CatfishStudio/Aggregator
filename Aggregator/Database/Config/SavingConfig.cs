@@ -18,21 +18,21 @@ namespace Aggregator.Database.Config
 	/// </summary>
 	public static class SavingConfig
 	{
-		public static void SaveDatabaseSettings()
+		public static bool SaveDatabaseSettings()
 		{
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
-				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, localDatabase, typeDatabase, typeConnection, server, serverUser, serverDatabase FROM DatabaseSettings";
+				oleDb.oleDbCommandSelect.CommandText = "SELECT [id], [name], [localDatabase], [typeDatabase], [typeConnection], [server], [serverUser], [serverDatabase] FROM DatabaseSettings";
 				oleDb.oleDbCommandUpdate.CommandText = "UPDATE DatabaseSettings SET " +
-					"name = @name, " +
-					"localDatabase = @localDatabase, " +
-					"typeDatabase = @typeDatabase, " +
-					"typeConnection = @typeConnection, " +
-					"server = @server, " +
-					"serverUser = @serverUser, " +
-					"serverDatabase = @serverDatabase " +
-					"WHERE (id = @id)";
+					"[name] = @name, " +
+					"[localDatabase] = @localDatabase, " +
+					"[typeDatabase] = @typeDatabase, " +
+					"[typeConnection] = @typeConnection, " +
+					"[server] = @server, " +
+					"[serverUser] = @serverUser, " +
+					"[serverDatabase] = @serverDatabase " +
+					"WHERE ([id] = @id)";
 				oleDb.oleDbCommandUpdate.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@localDatabase", OleDbType.VarChar, 255, "localDatabase");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@typeDatabase", OleDbType.VarChar, 255, "typeDatabase");
@@ -52,23 +52,25 @@ namespace Aggregator.Database.Config
 				oleDb.ExecuteUpdate("DatabaseSettings");
 				
 				oleDb.Dispose();
-				Utilits.Console.Log("Сохранение настроек соединения с базой данных прошло успешно.");
+				Utilits.Console.Log("[SaveDatabaseSettings]: Сохранение настроек соединения с базой данных прошло успешно.");
+				return true;
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("ОШИБКА: Сохранение настроек соединения с базой данных. " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА:SaveDatabaseSettings]: Сохранение настроек соединения с базой данных. " + ex.ToString(), false, true);
+				return false;
 			}
 		}
 		
-		public static void SaveSettings()
+		public static bool SaveSettings()
 		{
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
-				oleDb.oleDbCommandSelect.CommandText = "SELECT id, autoUpdate, period FROM Settings";
+				oleDb.oleDbCommandSelect.CommandText = "SELECT [id], [autoUpdate], [period] FROM Settings";
 				oleDb.oleDbCommandUpdate.CommandText = "UPDATE Settings SET " +
-					"autoUpdate = @autoUpdate, " +
-					"period = @period " +
-					"WHERE (id = @id)";
+					"[autoUpdate] = @autoUpdate, " +
+					"[period] = @period " +
+					"WHERE ([id] = @id)";
 				oleDb.oleDbCommandUpdate.Parameters.Add("@autoUpdate", OleDbType.VarChar, 255, "autoUpdate");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@period", OleDbType.VarChar, 255, "period");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
@@ -78,14 +80,17 @@ namespace Aggregator.Database.Config
 				oleDb.dataSet.Tables["Settings"].Rows[0]["period"] = DataConfig.period;
 				if(oleDb.ExecuteUpdate("Settings")){
 					oleDb.Dispose();
-					Utilits.Console.Log("Сохранение настроек программы прошло успешно.");
+					Utilits.Console.Log("[SaveSettings]: Сохранение настроек программы прошло успешно.");
+					return true;
 				}else{
 					oleDb.Error();
-					Utilits.Console.Log("ОШИБКА: Сохранения настроек программы.", false, true);
+					Utilits.Console.Log("[ОШИБКА:SaveSettings]: Настройки программы не сохранены.", false, true);
+					return false;
 				}
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("ОШИБКА: Сохранения настроек программы. " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА:SaveSettings]: Произошла ошибка: " + ex.ToString(), false, true);
+				return false;
 			}
 		}
 	}

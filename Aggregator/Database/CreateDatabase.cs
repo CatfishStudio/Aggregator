@@ -10,7 +10,7 @@ using System;
 using ADOX;
 using Aggregator.Data;
 
-namespace Aggregator.Database.Local
+namespace Aggregator.Database
 {
 	/// <summary>
 	/// Description of CreateDatabase.

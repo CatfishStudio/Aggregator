@@ -64,14 +64,15 @@ namespace Aggregator.Data
 			}
 		}
 		
-		public void checkUpdate()
+		/* Проверка обновленных таблиц в базе данных */
+		public void check()
 		{
 			oleDb.dataSet.Clear();
 			if(oleDb.ExecuteFill("History") == true){
 				Table table;
 				for(int i = 0; i < tables.Count; i++){
 					if(tables[i].datetime != oleDb.dataSet.Tables["History"].Rows[i]["datetime"].ToString()){
-						showUpdate(tables[i].name, tables[i].represent);
+						refresh(tables[i].name, tables[i].represent);
 						table = tables[i];
 						table.datetime = oleDb.dataSet.Tables["History"].Rows[i]["datetime"].ToString();
 						tables[i] = table;
@@ -82,7 +83,15 @@ namespace Aggregator.Data
 			}
 		}
 		
-		private void showUpdate(String tableName, String tableRepresent)
+		/* Отметить обновление данных в базе данных */
+		public void update(int index)
+		{
+			oleDb.dataSet.Tables["History"].Rows[index]["datetime"] = DateTime.Now.ToString();
+			oleDb.ExecuteUpdate("History");
+		}
+		
+		/* Обновить таблицы новыми данными */
+		private void refresh(String tableName, String tableRepresent)
 		{
 			try{
 				if(tableName == "Users" && DataForms.FUsers != null) DataForms.FUsers.TableRefresh();

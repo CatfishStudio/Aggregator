@@ -53,7 +53,7 @@ namespace Aggregator.Database.Server
 				return true;
 			}catch(Exception ex){
 				sqlConnection.Close();
-				Utilits.Console.Log("ОШИБКА ЗАГРУЗКИ ДАННЫХ " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА:SqlServer:ExecuteFill] " + ex.ToString(), false, true);
 				return false;
 			}
 		}
@@ -70,7 +70,7 @@ namespace Aggregator.Database.Server
 				return true;
 			}catch(Exception ex){
 				sqlConnection.Close();
-				Utilits.Console.Log("ОШИБКА ОБНОВЛЕНИЯ ДАННЫХ " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА:SqlServer:ExecuteUpdate] " + ex.ToString(), false, true);
 				return false;
 			}
 		}

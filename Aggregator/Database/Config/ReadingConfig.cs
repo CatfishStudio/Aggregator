@@ -33,10 +33,10 @@ namespace Aggregator.Database.Config
 				DataConfig.serverUser = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverUser"].ToString();
 				DataConfig.serverDatabase = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverDatabase"].ToString();
 				oleDb.Dispose();
-				Utilits.Console.Log("Настройки соединения с базой данных успешно загружены.");
+				Utilits.Console.Log("[ReadDatabaseSettings]: Настройки соединения с базой данных успешно загружены.");
 			}catch(Exception ex){
 				oleDb.Error();
-				MessageBox.Show(ex.ToString());
+				MessageBox.Show("[ReadDatabaseSettings]: " + ex.ToString(), "Ошибка");
 				Application.Exit();
 			}
 		}
@@ -53,10 +53,10 @@ namespace Aggregator.Database.Config
 				else DataConfig.autoUpdate = false;
 				DataConfig.period = oleDb.dataSet.Tables["Settings"].Rows[0]["period"].ToString();
 				oleDb.Dispose();
-				Utilits.Console.Log("Настройки программы успешно загружены.");
+				Utilits.Console.Log("[ReadSettings]: Настройки программы успешно загружены.");
 			}catch(Exception ex){
 				oleDb.Error();
-				MessageBox.Show(ex.ToString());
+				MessageBox.Show("[ReadSettings]: " + ex.ToString(), "Ошибка");
 				Application.Exit();
 			}
 		}

@@ -69,8 +69,8 @@
     <Compile Include="Database\Config\CreateConfigTables.cs" />
     <Compile Include="Database\Config\ReadingConfig.cs" />
     <Compile Include="Database\Config\SavingConfig.cs" />
-    <Compile Include="Database\Local\CreateDatabase.cs" />
-    <Compile Include="Database\Local\CreateTable.cs" />
+    <Compile Include="Database\CreateDatabase.cs" />
+    <Compile Include="Database\Local\AutoUpdateLocalDatabase.cs" />
     <Compile Include="Database\Local\OleDb.cs" />
     <Compile Include="Database\Local\QueryOleDb.cs" />
     <Compile Include="Database\Server\QuerySqlServer.cs" />
@@ -78,7 +78,6 @@
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\DataForms.cs" />
-    <Compile Include="Data\DataServerUpdate.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>

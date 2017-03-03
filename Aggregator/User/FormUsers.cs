@@ -38,6 +38,7 @@ namespace Aggregator.User
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
 				// OLEDB
+				oleDb.dataSet.Clear();
 				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, pass, permissions FROM Users";
 				oleDb.ExecuteFill("Users");
 				listView1.Items.Clear();
@@ -98,7 +99,15 @@ namespace Aggregator.User
 				TableRefresh();
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
+				
+				
 			}
+		}
+		void FormUsersFormClosed(object sender, FormClosedEventArgs e)
+		{
+			oleDb.Dispose();
+			Dispose();
+			DataForms.FUsers = null;
 		}
 		void ButtonCloseClick(object sender, EventArgs e)
 		{
@@ -120,6 +129,7 @@ namespace Aggregator.User
 		{
 			deleteUser();
 		}
+		
 		
 		
 	}

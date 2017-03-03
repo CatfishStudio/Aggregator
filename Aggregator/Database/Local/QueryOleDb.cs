@@ -31,15 +31,17 @@ namespace Aggregator.Database.Local
 			oleDbCommand = new OleDbCommand(sqlCommand, oleDbConnection);
 		}
 		
-		public void Execute()
+		public bool Execute()
 		{
 			try{
 				oleDbConnection.Open();
 				oleDbCommand.ExecuteNonQuery();	//выполнение запроса				
 				oleDbConnection.Close();
+				return true;
 			}catch(Exception ex){
 				oleDbConnection.Close();
-				Utilits.Console.Log("ОШИБКА ВЫПОЛНЕНИЯ ЗАПРОСА: " + ex.ToString());
+				Utilits.Console.Log("[ОШИБКА:QueryOleDb:Execute] ошибка выполнения запроса: " + ex.ToString(), false, true);
+				return false;
 			}
 		}
 		
