@@ -74,7 +74,7 @@ namespace Aggregator.User
 				oleDb.oleDbCommandInsert.Parameters.Add("@permissions", OleDbType.VarChar, 255, "permissions");
 				oleDb.oleDbCommandInsert.Parameters.Add("@info", OleDbType.LongVarChar, 0, "info");
 				if(oleDb.ExecuteUpdate("Users")){
-					DataForms.FClient.updateData(0);
+					DataForms.FClient.updateHistory("Users");
 					Close();
 				}
 				
@@ -89,7 +89,26 @@ namespace Aggregator.User
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
 				// OLEDB
-
+				oleDb.dataSet.Tables["Users"].Rows[0]["name"] = nameTextBox.Text;
+				oleDb.dataSet.Tables["Users"].Rows[0]["pass"] = passTextBox1.Text;
+				oleDb.dataSet.Tables["Users"].Rows[0]["permissions"] = setPermissions(permissionsComboBox.Text);
+				oleDb.dataSet.Tables["Users"].Rows[0]["info"] = infoTextBox.Text;
+				oleDb.oleDbCommandUpdate.CommandText = "UPDATE Users SET " +
+					"[name] = @name, " +
+					"[pass] = @pass, " +
+					"[permissions] = @permissions, " +
+					"[info] = @info " +
+					"WHERE ([id] = @id)";
+				oleDb.oleDbCommandUpdate.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@pass", OleDbType.VarChar, 255, "pass");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@permissions", OleDbType.VarChar, 255, "permissions");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@info", OleDbType.LongVarChar, 0, "info");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
+				if(oleDb.ExecuteUpdate("Users")){
+					DataForms.FClient.updateHistory("Users");
+					Close();
+				}
+				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
 				
@@ -179,6 +198,7 @@ namespace Aggregator.User
 					checkBox3.Checked = true;
 					checkBox4.Checked = true;
 					checkBox5.Checked = true;
+					checkBox6.Checked = true;
 					break;
 				case "оператор": 
 					checkBox1.Checked = false;
@@ -186,6 +206,7 @@ namespace Aggregator.User
 					checkBox3.Checked = true;
 					checkBox4.Checked = true;
 					checkBox5.Checked = true;
+					checkBox6.Checked = true;
 					break;
 				case "пользователь": 
 					checkBox1.Checked = false;
@@ -193,6 +214,7 @@ namespace Aggregator.User
 					checkBox3.Checked = true;
 					checkBox4.Checked = false;
 					checkBox5.Checked = false;
+					checkBox6.Checked = false;
 					break;
 				case "гость": 
 					checkBox1.Checked = false;
@@ -200,6 +222,7 @@ namespace Aggregator.User
 					checkBox3.Checked = true;
 					checkBox4.Checked = false;
 					checkBox5.Checked = false;
+					checkBox6.Checked = false;
 					break;
 				default:
 					checkBox1.Checked = false;
@@ -207,6 +230,7 @@ namespace Aggregator.User
 					checkBox3.Checked = false;
 					checkBox4.Checked = false;
 					checkBox5.Checked = false;
+					checkBox6.Checked = false;
 					break;
 			}
 			

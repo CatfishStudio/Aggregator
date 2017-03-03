@@ -40,6 +40,7 @@ namespace Aggregator.Client
 		 */	
 		AutoUpdateLocalDatabase autoUpdateLocalDatabase;
 		
+		/* Применить права пользователя */
 		void applyPermissions()
 		{
 			if(DataConfig.userPermissions == "admin"){
@@ -53,6 +54,7 @@ namespace Aggregator.Client
 			}
 		}
 		
+		/* Открыть окно пользователей */
 		void usersShow()
 		{
 			if(DataForms.FUsers == null){
@@ -62,6 +64,7 @@ namespace Aggregator.Client
 			}
 		}
 		
+		/* Открыть окно настройки подключения к базе данных */
 		void databaseSettingsShow()
 		{
 			if(DataForms.FSettingsDatabase == null){
@@ -71,6 +74,7 @@ namespace Aggregator.Client
 			}
 		}
 		
+		/* Открыть окно настроек */
 		void settingsShow()
 		{
 			if(DataForms.FSettings == null) {
@@ -80,12 +84,14 @@ namespace Aggregator.Client
 			}
 		}
 		
+		/* Отобразить консоль */
 		void consoleVisible()
 		{
 			if(consolePanel.Visible) consolePanel.Visible = false;
 			else consolePanel.Visible = true;
 		}
 		
+		/* Открыть консоль запросов */
 		void consoleQuery()
 		{
 			if(DataForms.FConsoleQuery == null){
@@ -95,10 +101,12 @@ namespace Aggregator.Client
 			}
 		}
 		
+		/* Сообщение в статусе */
 		public void messageInStatus(String message) {
 			toolStripStatusLabel2.Text = message;
 		}
 		
+		/* Включить/отключить работу авто обновления таблиц */
 		public void autoUpdateOn()
 		{
 			autoUpdateLocalDatabase = new AutoUpdateLocalDatabase();
@@ -116,9 +124,10 @@ namespace Aggregator.Client
 			}
 		}
 		
-		public void updateData(int indexRow)
+		/* Обновть данные в Истории */
+		public void updateHistory(String tableName)
 		{
-			autoUpdateLocalDatabase.update(indexRow);
+			autoUpdateLocalDatabase.update(tableName);
 		}
 		
 		/* =================================================================================================

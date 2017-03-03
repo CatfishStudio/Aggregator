@@ -10,6 +10,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Data.OleDb;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 
@@ -75,15 +76,29 @@ namespace Aggregator.User
 		
 		void editUser()
 		{
-			FormUsersEdit FUserEdit = new FormUsersEdit();
-			FUserEdit.MdiParent = DataForms.FClient;
-			FUserEdit.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
-			FUserEdit.Show();
+			if(listView1.SelectedIndices.Count > 0){
+				FormUsersEdit FUserEdit = new FormUsersEdit();
+				FUserEdit.MdiParent = DataForms.FClient;
+				FUserEdit.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
+				FUserEdit.Show();
+			}
 		}
 		
 		void deleteUser()
 		{
-			
+			if(listView1.SelectedIndices.Count > 0){
+				if(MessageBox.Show("Удалить пользователя " + listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() + " безвозвратно?" , "Вопрос", MessageBoxButtons.YesNo) == DialogResult.Yes){
+					oleDb.dataSet.Tables["Users"].Rows[listView1.SelectedIndices[0]].Delete();
+					oleDb.oleDbCommandDelete.CommandText = "DELETE FROM Users WHERE (id = @id)";
+					oleDb.oleDbCommandDelete.Parameters.Add("@id", OleDbType.Integer, 10, "id");
+					if(oleDb.ExecuteUpdate("Users")){
+						Utilits.Console.Log("[Пользователи] Пользователь был успешно удалён.");
+						DataForms.FClient.updateHistory("Users");
+					}else{
+						Utilits.Console.Log("[ОШИБКА] Произошла ошибка при удалении пользователя.");
+					}
+				}
+			}
 		}
 		
 				

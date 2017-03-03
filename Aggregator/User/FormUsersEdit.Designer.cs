@@ -37,6 +37,7 @@ namespace Aggregator.User
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.CheckBox checkBox5;
 		private System.Windows.Forms.CheckBox checkBox4;
+		private System.Windows.Forms.CheckBox checkBox6;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -81,8 +82,9 @@ namespace Aggregator.User
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.checkBox4 = new System.Windows.Forms.CheckBox();
+			this.checkBox6 = new System.Windows.Forms.CheckBox();
 			this.checkBox5 = new System.Windows.Forms.CheckBox();
+			this.checkBox4 = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -258,8 +260,7 @@ namespace Aggregator.User
 			// 
 			// checkBox1
 			// 
-			this.checkBox1.Enabled = false;
-			this.checkBox1.Location = new System.Drawing.Point(189, 76);
+			this.checkBox1.Location = new System.Drawing.Point(182, 46);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(135, 24);
 			this.checkBox1.TabIndex = 9;
@@ -268,7 +269,6 @@ namespace Aggregator.User
 			// 
 			// checkBox2
 			// 
-			this.checkBox2.Enabled = false;
 			this.checkBox2.Location = new System.Drawing.Point(53, 46);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(104, 24);
@@ -278,8 +278,7 @@ namespace Aggregator.User
 			// 
 			// checkBox3
 			// 
-			this.checkBox3.Enabled = false;
-			this.checkBox3.Location = new System.Drawing.Point(53, 76);
+			this.checkBox3.Location = new System.Drawing.Point(53, 65);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(104, 24);
 			this.checkBox3.TabIndex = 11;
@@ -288,6 +287,7 @@ namespace Aggregator.User
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.checkBox6);
 			this.groupBox3.Controls.Add(this.checkBox5);
 			this.groupBox3.Controls.Add(this.checkBox1);
 			this.groupBox3.Controls.Add(this.checkBox4);
@@ -302,25 +302,32 @@ namespace Aggregator.User
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Права доступа:";
 			// 
-			// checkBox4
+			// checkBox6
 			// 
-			this.checkBox4.Enabled = false;
-			this.checkBox4.Location = new System.Drawing.Point(53, 106);
-			this.checkBox4.Name = "checkBox4";
-			this.checkBox4.Size = new System.Drawing.Size(117, 24);
-			this.checkBox4.TabIndex = 12;
-			this.checkBox4.Text = "Редактирвоание";
-			this.checkBox4.UseVisualStyleBackColor = true;
+			this.checkBox6.Location = new System.Drawing.Point(182, 65);
+			this.checkBox6.Name = "checkBox6";
+			this.checkBox6.Size = new System.Drawing.Size(104, 24);
+			this.checkBox6.TabIndex = 14;
+			this.checkBox6.Text = "Настройки";
+			this.checkBox6.UseVisualStyleBackColor = true;
 			// 
 			// checkBox5
 			// 
-			this.checkBox5.Enabled = false;
-			this.checkBox5.Location = new System.Drawing.Point(189, 46);
+			this.checkBox5.Location = new System.Drawing.Point(53, 106);
 			this.checkBox5.Name = "checkBox5";
 			this.checkBox5.Size = new System.Drawing.Size(104, 24);
 			this.checkBox5.TabIndex = 13;
 			this.checkBox5.Text = "Удаление";
 			this.checkBox5.UseVisualStyleBackColor = true;
+			// 
+			// checkBox4
+			// 
+			this.checkBox4.Location = new System.Drawing.Point(53, 85);
+			this.checkBox4.Name = "checkBox4";
+			this.checkBox4.Size = new System.Drawing.Size(117, 24);
+			this.checkBox4.TabIndex = 12;
+			this.checkBox4.Text = "Редактирвоание";
+			this.checkBox4.UseVisualStyleBackColor = true;
 			// 
 			// FormUsersEdit
 			// 

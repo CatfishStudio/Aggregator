@@ -56,7 +56,7 @@ namespace Aggregator.Database.Config
 				return true;
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("[ОШИБКА:SaveDatabaseSettings]: Сохранение настроек соединения с базой данных. " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА][SaveDatabaseSettings]: Сохранение настроек соединения с базой данных. " + ex.ToString(), false, true);
 				return false;
 			}
 		}
@@ -84,12 +84,12 @@ namespace Aggregator.Database.Config
 					return true;
 				}else{
 					oleDb.Error();
-					Utilits.Console.Log("[ОШИБКА:SaveSettings]: Настройки программы не сохранены.", false, true);
+					Utilits.Console.Log("[ОШИБКА][SaveSettings]: Настройки программы не сохранены.", false, true);
 					return false;
 				}
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("[ОШИБКА:SaveSettings]: Произошла ошибка: " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА][SaveSettings]: Произошла ошибка: " + ex.ToString(), false, true);
 				return false;
 			}
 		}
