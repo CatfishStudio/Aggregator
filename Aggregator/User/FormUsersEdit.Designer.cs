@@ -19,7 +19,6 @@ namespace Aggregator.User
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox permissionsComboBox;
-		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
@@ -32,6 +31,12 @@ namespace Aggregator.User
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.TextBox infoTextBox;
+		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.CheckBox checkBox3;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.CheckBox checkBox5;
+		private System.Windows.Forms.CheckBox checkBox4;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -60,7 +65,6 @@ namespace Aggregator.User
 			this.button1 = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.permissionsComboBox = new System.Windows.Forms.ComboBox();
-			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
@@ -73,9 +77,16 @@ namespace Aggregator.User
 			this.button4 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.infoTextBox = new System.Windows.Forms.TextBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.checkBox3 = new System.Windows.Forms.CheckBox();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.checkBox4 = new System.Windows.Forms.CheckBox();
+			this.checkBox5 = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -106,7 +117,7 @@ namespace Aggregator.User
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(3, 32);
+			this.label2.Location = new System.Drawing.Point(11, 22);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(100, 23);
 			this.label2.TabIndex = 3;
@@ -120,18 +131,11 @@ namespace Aggregator.User
 			"оператор",
 			"пользователь",
 			"гость"});
-			this.permissionsComboBox.Location = new System.Drawing.Point(45, 29);
+			this.permissionsComboBox.Location = new System.Drawing.Point(53, 19);
 			this.permissionsComboBox.Name = "permissionsComboBox";
 			this.permissionsComboBox.Size = new System.Drawing.Size(330, 21);
 			this.permissionsComboBox.TabIndex = 4;
-			// 
-			// label3
-			// 
-			this.label3.Location = new System.Drawing.Point(45, 55);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(330, 27);
-			this.label3.TabIndex = 5;
-			this.label3.Text = "...";
+			this.permissionsComboBox.SelectedIndexChanged += new System.EventHandler(this.PermissionsComboBoxSelectedIndexChanged);
 			// 
 			// groupBox1
 			// 
@@ -141,7 +145,7 @@ namespace Aggregator.User
 			this.groupBox1.Controls.Add(this.passTextBox1);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.label5);
-			this.groupBox1.Location = new System.Drawing.Point(3, 85);
+			this.groupBox1.Location = new System.Drawing.Point(3, 172);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(409, 66);
 			this.groupBox1.TabIndex = 6;
@@ -207,7 +211,7 @@ namespace Aggregator.User
 			this.panel1.Controls.Add(this.button5);
 			this.panel1.Controls.Add(this.button4);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 283);
+			this.panel1.Location = new System.Drawing.Point(0, 387);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(416, 51);
 			this.panel1.TabIndex = 7;
@@ -237,9 +241,9 @@ namespace Aggregator.User
 			// groupBox2
 			// 
 			this.groupBox2.Controls.Add(this.infoTextBox);
-			this.groupBox2.Location = new System.Drawing.Point(3, 157);
+			this.groupBox2.Location = new System.Drawing.Point(3, 244);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(409, 120);
+			this.groupBox2.Size = new System.Drawing.Size(409, 137);
 			this.groupBox2.TabIndex = 8;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Дополнительно:";
@@ -249,19 +253,83 @@ namespace Aggregator.User
 			this.infoTextBox.Location = new System.Drawing.Point(6, 19);
 			this.infoTextBox.Multiline = true;
 			this.infoTextBox.Name = "infoTextBox";
-			this.infoTextBox.Size = new System.Drawing.Size(397, 95);
+			this.infoTextBox.Size = new System.Drawing.Size(397, 112);
 			this.infoTextBox.TabIndex = 0;
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.Enabled = false;
+			this.checkBox1.Location = new System.Drawing.Point(189, 76);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(135, 24);
+			this.checkBox1.TabIndex = 9;
+			this.checkBox1.Text = "Aдминистрирование";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.Enabled = false;
+			this.checkBox2.Location = new System.Drawing.Point(53, 46);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(104, 24);
+			this.checkBox2.TabIndex = 10;
+			this.checkBox2.Text = "Создание";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			// 
+			// checkBox3
+			// 
+			this.checkBox3.Enabled = false;
+			this.checkBox3.Location = new System.Drawing.Point(53, 76);
+			this.checkBox3.Name = "checkBox3";
+			this.checkBox3.Size = new System.Drawing.Size(104, 24);
+			this.checkBox3.TabIndex = 11;
+			this.checkBox3.Text = "Чтение";
+			this.checkBox3.UseVisualStyleBackColor = true;
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.checkBox5);
+			this.groupBox3.Controls.Add(this.checkBox1);
+			this.groupBox3.Controls.Add(this.checkBox4);
+			this.groupBox3.Controls.Add(this.permissionsComboBox);
+			this.groupBox3.Controls.Add(this.checkBox3);
+			this.groupBox3.Controls.Add(this.label2);
+			this.groupBox3.Controls.Add(this.checkBox2);
+			this.groupBox3.Location = new System.Drawing.Point(3, 30);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(409, 136);
+			this.groupBox3.TabIndex = 12;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Права доступа:";
+			// 
+			// checkBox4
+			// 
+			this.checkBox4.Enabled = false;
+			this.checkBox4.Location = new System.Drawing.Point(53, 106);
+			this.checkBox4.Name = "checkBox4";
+			this.checkBox4.Size = new System.Drawing.Size(117, 24);
+			this.checkBox4.TabIndex = 12;
+			this.checkBox4.Text = "Редактирвоание";
+			this.checkBox4.UseVisualStyleBackColor = true;
+			// 
+			// checkBox5
+			// 
+			this.checkBox5.Enabled = false;
+			this.checkBox5.Location = new System.Drawing.Point(189, 46);
+			this.checkBox5.Name = "checkBox5";
+			this.checkBox5.Size = new System.Drawing.Size(104, 24);
+			this.checkBox5.TabIndex = 13;
+			this.checkBox5.Text = "Удаление";
+			this.checkBox5.UseVisualStyleBackColor = true;
 			// 
 			// FormUsersEdit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(416, 334);
+			this.ClientSize = new System.Drawing.Size(416, 438);
+			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.label3);
-			this.Controls.Add(this.permissionsComboBox);
-			this.Controls.Add(this.label2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.nameTextBox);
 			this.Controls.Add(this.label1);
@@ -276,6 +344,7 @@ namespace Aggregator.User
 			this.panel1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
+			this.groupBox3.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

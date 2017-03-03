@@ -170,6 +170,47 @@ namespace Aggregator.User
 				MessageBox.Show("Не корректно заполнена форма.", "Сообщение:");
 			}
 		}
+		void PermissionsComboBoxSelectedIndexChanged(object sender, EventArgs e)
+		{
+			switch(permissionsComboBox.Text){
+				case "администратор": 
+					checkBox1.Checked = true;
+					checkBox2.Checked = true;
+					checkBox3.Checked = true;
+					checkBox4.Checked = true;
+					checkBox5.Checked = true;
+					break;
+				case "оператор": 
+					checkBox1.Checked = false;
+					checkBox2.Checked = true;
+					checkBox3.Checked = true;
+					checkBox4.Checked = true;
+					checkBox5.Checked = true;
+					break;
+				case "пользователь": 
+					checkBox1.Checked = false;
+					checkBox2.Checked = true;
+					checkBox3.Checked = true;
+					checkBox4.Checked = false;
+					checkBox5.Checked = false;
+					break;
+				case "гость": 
+					checkBox1.Checked = false;
+					checkBox2.Checked = false;
+					checkBox3.Checked = true;
+					checkBox4.Checked = false;
+					checkBox5.Checked = false;
+					break;
+				default:
+					checkBox1.Checked = false;
+					checkBox2.Checked = false;
+					checkBox3.Checked = false;
+					checkBox4.Checked = false;
+					checkBox5.Checked = false;
+					break;
+			}
+			
+		}
 		
 	}
 }
