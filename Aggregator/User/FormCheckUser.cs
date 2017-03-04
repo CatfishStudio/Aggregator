@@ -77,6 +77,7 @@ namespace Aggregator.User
 				}else{
 					String pass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
 					if(textBox1.Text == pass){
+						Visible = false;
 						DataConfig.userName = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["name"].ToString();
 						DataConfig.userPass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
 						DataConfig.userPermissions = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["permissions"].ToString(); 

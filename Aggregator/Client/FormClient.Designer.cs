@@ -39,8 +39,6 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem контрагентыToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem номенклатураToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem прайсToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem журналПрайсовToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem калькуляторToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem календарьToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem пользователиToolStripMenuItem;
@@ -56,7 +54,18 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
-		private System.Windows.Forms.OpenFileDialog openFileDialog1;
+		private System.Windows.Forms.OpenFileDialog openFileDialogXLS;
+		private System.Windows.Forms.ToolStripMenuItem excelФайлФормат972003ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem excelФайлФормат2007ToolStripMenuItem;
+		private System.Windows.Forms.OpenFileDialog openFileDialogXLSX;
+		private System.Windows.Forms.ToolStripMenuItem текстовыйФайлToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem документWordpadToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem заказToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem планЗакупокToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem полныйЖурналToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+		private System.Windows.Forms.ToolStripMenuItem журналЗаказовToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem журналЗакупокToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -86,6 +95,10 @@ namespace Aggregator.Client
 			this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.текстовыйФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.текстовыйФайлToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.документWordpadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.excelФайлФормат972003ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.excelФайлФормат2007ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,9 +110,7 @@ namespace Aggregator.Client
 			this.контрагентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.номенклатураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.документыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.прайсToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.журналыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.журналПрайсовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.калькуляторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,7 +134,14 @@ namespace Aggregator.Client
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+			this.openFileDialogXLS = new System.Windows.Forms.OpenFileDialog();
+			this.openFileDialogXLSX = new System.Windows.Forms.OpenFileDialog();
+			this.заказToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.планЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.полныйЖурналToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+			this.журналЗаказовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.журналЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -170,16 +188,51 @@ namespace Aggregator.Client
 			// 
 			// текстовыйФайлToolStripMenuItem
 			// 
+			this.текстовыйФайлToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("текстовыйФайлToolStripMenuItem.Image")));
 			this.текстовыйФайлToolStripMenuItem.Name = "текстовыйФайлToolStripMenuItem";
-			this.текстовыйФайлToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-			this.текстовыйФайлToolStripMenuItem.Text = "Текстовый файл";
+			this.текстовыйФайлToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+			this.текстовыйФайлToolStripMenuItem.Text = "Текстовый файл (*.txt, *rtf)";
 			// 
 			// открытьToolStripMenuItem
 			// 
+			this.открытьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.текстовыйФайлToolStripMenuItem1,
+			this.документWordpadToolStripMenuItem,
+			this.excelФайлФормат972003ToolStripMenuItem,
+			this.excelФайлФормат2007ToolStripMenuItem});
 			this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
 			this.открытьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.открытьToolStripMenuItem.Text = "Открыть";
-			this.открытьToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьToolStripMenuItemClick);
+			// 
+			// текстовыйФайлToolStripMenuItem1
+			// 
+			this.текстовыйФайлToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("текстовыйФайлToolStripMenuItem1.Image")));
+			this.текстовыйФайлToolStripMenuItem1.Name = "текстовыйФайлToolStripMenuItem1";
+			this.текстовыйФайлToolStripMenuItem1.Size = new System.Drawing.Size(254, 22);
+			this.текстовыйФайлToolStripMenuItem1.Text = "Текстовый файл (*.txt)";
+			// 
+			// документWordpadToolStripMenuItem
+			// 
+			this.документWordpadToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("документWordpadToolStripMenuItem.Image")));
+			this.документWordpadToolStripMenuItem.Name = "документWordpadToolStripMenuItem";
+			this.документWordpadToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+			this.документWordpadToolStripMenuItem.Text = "Документ WordPad (*.rtf)";
+			// 
+			// excelФайлФормат972003ToolStripMenuItem
+			// 
+			this.excelФайлФормат972003ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("excelФайлФормат972003ToolStripMenuItem.Image")));
+			this.excelФайлФормат972003ToolStripMenuItem.Name = "excelФайлФормат972003ToolStripMenuItem";
+			this.excelФайлФормат972003ToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+			this.excelФайлФормат972003ToolStripMenuItem.Text = "Excel файл формат 97-2003 (*.xls)";
+			this.excelФайлФормат972003ToolStripMenuItem.Click += new System.EventHandler(this.ExcelФайлФормат972003ToolStripMenuItemClick);
+			// 
+			// excelФайлФормат2007ToolStripMenuItem
+			// 
+			this.excelФайлФормат2007ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("excelФайлФормат2007ToolStripMenuItem.Image")));
+			this.excelФайлФормат2007ToolStripMenuItem.Name = "excelФайлФормат2007ToolStripMenuItem";
+			this.excelФайлФормат2007ToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+			this.excelФайлФормат2007ToolStripMenuItem.Text = "Excel файл формат 2007 (*.xlsx)";
+			this.excelФайлФормат2007ToolStripMenuItem.Click += new System.EventHandler(this.ExcelФайлФормат2007ToolStripMenuItemClick);
 			// 
 			// toolStripSeparator1
 			// 
@@ -192,6 +245,7 @@ namespace Aggregator.Client
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
 			this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.выходToolStripMenuItem.Text = "Выход";
+			this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItemClick);
 			// 
 			// видToolStripMenuItem
 			// 
@@ -257,32 +311,22 @@ namespace Aggregator.Client
 			// документыToolStripMenuItem
 			// 
 			this.документыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.прайсToolStripMenuItem});
+			this.заказToolStripMenuItem,
+			this.планЗакупокToolStripMenuItem});
 			this.документыToolStripMenuItem.Name = "документыToolStripMenuItem";
 			this.документыToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
 			this.документыToolStripMenuItem.Text = "Документы";
 			// 
-			// прайсToolStripMenuItem
-			// 
-			this.прайсToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("прайсToolStripMenuItem.Image")));
-			this.прайсToolStripMenuItem.Name = "прайсToolStripMenuItem";
-			this.прайсToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-			this.прайсToolStripMenuItem.Text = "Прайс";
-			// 
 			// журналыToolStripMenuItem
 			// 
 			this.журналыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.журналПрайсовToolStripMenuItem});
+			this.полныйЖурналToolStripMenuItem,
+			this.toolStripSeparator4,
+			this.журналЗаказовToolStripMenuItem,
+			this.журналЗакупокToolStripMenuItem});
 			this.журналыToolStripMenuItem.Name = "журналыToolStripMenuItem";
 			this.журналыToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
 			this.журналыToolStripMenuItem.Text = "Журналы";
-			// 
-			// журналПрайсовToolStripMenuItem
-			// 
-			this.журналПрайсовToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("журналПрайсовToolStripMenuItem.Image")));
-			this.журналПрайсовToolStripMenuItem.Name = "журналПрайсовToolStripMenuItem";
-			this.журналПрайсовToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-			this.журналПрайсовToolStripMenuItem.Text = "Журнал прайсов";
 			// 
 			// отчетыToolStripMenuItem
 			// 
@@ -461,9 +505,48 @@ namespace Aggregator.Client
 			this.imageList1.Images.SetKeyName(1, "database_go.png");
 			this.imageList1.Images.SetKeyName(2, "database_delete.png");
 			// 
-			// openFileDialog1
+			// openFileDialogXLS
 			// 
-			this.openFileDialog1.Filter = "*.xls|*.xls";
+			this.openFileDialogXLS.Filter = "*.xls|*.xls";
+			// 
+			// openFileDialogXLSX
+			// 
+			this.openFileDialogXLSX.Filter = "*.xlsx|*.xlsx";
+			// 
+			// заказToolStripMenuItem
+			// 
+			this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
+			this.заказToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.заказToolStripMenuItem.Text = "Заказ";
+			// 
+			// планЗакупокToolStripMenuItem
+			// 
+			this.планЗакупокToolStripMenuItem.Name = "планЗакупокToolStripMenuItem";
+			this.планЗакупокToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.планЗакупокToolStripMenuItem.Text = "План закупок";
+			// 
+			// полныйЖурналToolStripMenuItem
+			// 
+			this.полныйЖурналToolStripMenuItem.Name = "полныйЖурналToolStripMenuItem";
+			this.полныйЖурналToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+			this.полныйЖурналToolStripMenuItem.Text = "Полный журнал";
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			this.toolStripSeparator4.Size = new System.Drawing.Size(162, 6);
+			// 
+			// журналЗаказовToolStripMenuItem
+			// 
+			this.журналЗаказовToolStripMenuItem.Name = "журналЗаказовToolStripMenuItem";
+			this.журналЗаказовToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+			this.журналЗаказовToolStripMenuItem.Text = "Журнал заказов";
+			// 
+			// журналЗакупокToolStripMenuItem
+			// 
+			this.журналЗакупокToolStripMenuItem.Name = "журналЗакупокToolStripMenuItem";
+			this.журналЗакупокToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+			this.журналЗакупокToolStripMenuItem.Text = "Журнал закупок";
 			// 
 			// FormClient
 			// 

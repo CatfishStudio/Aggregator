@@ -103,14 +103,27 @@ namespace Aggregator.Client
 		}
 		
 		/* Открыть XLS файл */
-		void openXLS()
+		void openFileExcel(String fileFormat)
 		{
-			if(openFileDialog1.ShowDialog() == DialogResult.OK){
-				FormOpenXLS FOpenXLS = new FormOpenXLS();
-				FOpenXLS.FileName = openFileDialog1.FileName;
-				FOpenXLS.MdiParent = DataForms.FClient;
-				FOpenXLS.Show();
+			FormOpenExcel FOpenExcel;
+			if(fileFormat == "xls"){
+				if(openFileDialogXLS.ShowDialog() == DialogResult.OK){
+					FOpenExcel = new FormOpenExcel();
+					FOpenExcel.FileName = openFileDialogXLS.FileName;
+					FOpenExcel.FileFormat = fileFormat;
+					FOpenExcel.MdiParent = DataForms.FClient;
+					FOpenExcel.Show();
+				}
+			}else if(fileFormat == "xlsx"){
+				if(openFileDialogXLSX.ShowDialog() == DialogResult.OK){
+					FOpenExcel = new FormOpenExcel();
+					FOpenExcel.FileName = openFileDialogXLSX.FileName;
+					FOpenExcel.FileFormat = fileFormat;
+					FOpenExcel.MdiParent = DataForms.FClient;
+					FOpenExcel.Show();
+				}
 			}
+			
 		}
 		
 		/* Сообщение в статусе */
@@ -198,9 +211,17 @@ namespace Aggregator.Client
 		{
 			settingsShow();
 		}
-		void ОткрытьToolStripMenuItemClick(object sender, EventArgs e)
+		void ExcelФайлФормат972003ToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			openXLS();
+			openFileExcel("xls");
+		}
+		void ExcelФайлФормат2007ToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			openFileExcel("xlsx");
+		}
+		void ВыходToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			Close();
 		}
 		
 	}

@@ -62,9 +62,9 @@
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Client\OpenFiles\FormOpenXLS.cs" />
-    <Compile Include="Client\OpenFiles\FormOpenXLS.Designer.cs">
-      <DependentUpon>FormOpenXLS.cs</DependentUpon>
+    <Compile Include="Client\OpenFiles\FormOpenExcel.cs" />
+    <Compile Include="Client\OpenFiles\FormOpenExcel.Designer.cs">
+      <DependentUpon>FormOpenExcel.cs</DependentUpon>
     </Compile>
     <Compile Include="Client\Settings\FormSettings.cs" />
     <Compile Include="Client\Settings\FormSettings.Designer.cs">
@@ -115,8 +115,8 @@
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Client\OpenFiles\FormOpenXLS.resx">
-      <DependentUpon>FormOpenXLS.cs</DependentUpon>
+    <EmbeddedResource Include="Client\OpenFiles\FormOpenExcel.resx">
+      <DependentUpon>FormOpenExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Settings\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
