@@ -52,6 +52,11 @@ namespace Aggregator.Client.Settings
 		}
 		void ButtonSaveClick(object sender, EventArgs e)
 		{
+			if(DataConfig.userPermissions == "user" || DataConfig.userPermissions == "guest") {
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить эту операцию.", "Сообщение");
+				return;
+			}
+			
 			DataForms.FClient.autoUpdateOff();
 			DataConfig.autoUpdate = autoUpdateCheckBox.Checked;
 			if(DataConfig.autoUpdate) DataForms.FClient.autoUpdateOn();

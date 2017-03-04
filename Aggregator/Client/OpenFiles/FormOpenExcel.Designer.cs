@@ -54,14 +54,14 @@ namespace Aggregator.Client.OpenFiles
 			this.dataGrid1.Location = new System.Drawing.Point(0, 0);
 			this.dataGrid1.Name = "dataGrid1";
 			this.dataGrid1.ReadOnly = true;
-			this.dataGrid1.Size = new System.Drawing.Size(284, 262);
+			this.dataGrid1.Size = new System.Drawing.Size(694, 419);
 			this.dataGrid1.TabIndex = 2;
 			// 
 			// FormOpenExcel
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.ClientSize = new System.Drawing.Size(694, 419);
 			this.Controls.Add(this.dataGrid1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormOpenExcel";

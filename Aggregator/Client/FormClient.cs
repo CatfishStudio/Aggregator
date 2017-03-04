@@ -15,6 +15,7 @@ using Aggregator.Database.Local;
 using Aggregator.Admin;
 using Aggregator.User;
 using Aggregator.Client.Settings;
+using Aggregator.Client.Directories;
 
 namespace Aggregator.Client
 {
@@ -52,6 +53,10 @@ namespace Aggregator.Client
 				администраторToolStripMenuItem.Visible = false;
 			}else if(DataConfig.userPermissions == "guest"){
 				администраторToolStripMenuItem.Visible = false;
+				константыToolStripMenuItem.Visible = false;
+				toolStripSeparator3.Visible = false;
+				документыToolStripMenuItem.Visible = false;
+				настройкиToolStripMenuItem.Visible = false;
 			}
 		}
 		
@@ -123,7 +128,26 @@ namespace Aggregator.Client
 					FOpenExcel.Show();
 				}
 			}
-			
+		}
+		
+		/* О программе */
+		void about()
+		{
+			MessageBox.Show("Наименование: Агрегатор" + System.Environment.NewLine +
+			                "Автор: Сомов Евгений Павлович (Catfish Studio)" + System.Environment.NewLine +
+			                "Лиценция: Freeware" + System.Environment.NewLine +
+			                "Версия: 1.0" + System.Environment.NewLine +
+			                "Дата: 01.03.2017", "О программе");
+		}
+		
+		/* Открыть окно констант */
+		void constantsShow()
+		{
+			if(DataForms.FConstants == null) {
+				DataForms.FConstants = new FormConstants();
+				DataForms.FConstants.MdiParent = DataForms.FClient;
+				DataForms.FConstants.Show();
+			}
 		}
 		
 		/* Сообщение в статусе */
@@ -222,6 +246,14 @@ namespace Aggregator.Client
 		void ВыходToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			Close();
+		}
+		void ОПрограммеToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			about();
+		}
+		void КонстантыToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			constantsShow();
 		}
 		
 	}

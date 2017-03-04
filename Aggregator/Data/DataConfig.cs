@@ -22,7 +22,7 @@ namespace Aggregator.Data
 		/* Пользователь */
 		public static String userName = "";				// имя
 		public static String userPass = "";				// пароль
-		public static String userPermissions = "";		// права
+		public static String userPermissions = "";		// права (admin, operator, user, guest)
 		
 		/* Локальная база данных */		
 		public static String oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
