@@ -213,30 +213,36 @@ namespace Aggregator.User
 			this.panel1.Controls.Add(this.button5);
 			this.panel1.Controls.Add(this.button4);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 387);
+			this.panel1.Location = new System.Drawing.Point(0, 393);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(416, 51);
+			this.panel1.Size = new System.Drawing.Size(416, 45);
 			this.panel1.TabIndex = 7;
 			// 
 			// button5
 			// 
 			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button5.Location = new System.Drawing.Point(326, 16);
+			this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+			this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button5.Location = new System.Drawing.Point(321, 10);
 			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(75, 23);
+			this.button5.Size = new System.Drawing.Size(83, 23);
 			this.button5.TabIndex = 1;
-			this.button5.Text = "Отмена";
+			this.button5.Text = "Отменить";
+			this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button5.UseVisualStyleBackColor = true;
 			this.button5.Click += new System.EventHandler(this.Button5Click);
 			// 
 			// button4
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(245, 16);
+			this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+			this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button4.Location = new System.Drawing.Point(232, 10);
 			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(75, 23);
+			this.button4.Size = new System.Drawing.Size(83, 23);
 			this.button4.TabIndex = 0;
 			this.button4.Text = "Сохранить";
+			this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button4.UseVisualStyleBackColor = true;
 			this.button4.Click += new System.EventHandler(this.Button4Click);
 			// 

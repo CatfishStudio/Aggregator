@@ -62,6 +62,14 @@
     <Compile Include="Client\Directories\FormConstants.Designer.cs">
       <DependentUpon>FormConstants.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Directories\FormCounteragents.cs" />
+    <Compile Include="Client\Directories\FormCounteragents.Designer.cs">
+      <DependentUpon>FormCounteragents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Directories\FormCounteragentsEdit.cs" />
+    <Compile Include="Client\Directories\FormCounteragentsEdit.Designer.cs">
+      <DependentUpon>FormCounteragentsEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\FormClient.cs" />
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
@@ -118,6 +126,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Directories\FormConstants.resx">
       <DependentUpon>FormConstants.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Directories\FormCounteragents.resx">
+      <DependentUpon>FormCounteragents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Directories\FormCounteragentsEdit.resx">
+      <DependentUpon>FormCounteragentsEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>

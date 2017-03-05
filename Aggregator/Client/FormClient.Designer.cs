@@ -301,6 +301,7 @@ namespace Aggregator.Client
 			this.контрагентыToolStripMenuItem.Name = "контрагентыToolStripMenuItem";
 			this.контрагентыToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
 			this.контрагентыToolStripMenuItem.Text = "Контрагенты";
+			this.контрагентыToolStripMenuItem.Click += new System.EventHandler(this.КонтрагентыToolStripMenuItemClick);
 			// 
 			// номенклатураToolStripMenuItem
 			// 
@@ -321,13 +322,13 @@ namespace Aggregator.Client
 			// заказToolStripMenuItem
 			// 
 			this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
-			this.заказToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.заказToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.заказToolStripMenuItem.Text = "Заказ";
 			// 
 			// планЗакупокToolStripMenuItem
 			// 
 			this.планЗакупокToolStripMenuItem.Name = "планЗакупокToolStripMenuItem";
-			this.планЗакупокToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.планЗакупокToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.планЗакупокToolStripMenuItem.Text = "План закупок";
 			// 
 			// журналыToolStripMenuItem

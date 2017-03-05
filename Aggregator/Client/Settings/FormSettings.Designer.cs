@@ -68,22 +68,28 @@ namespace Aggregator.Client.Settings
 			// buttonSave
 			// 
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonSave.Location = new System.Drawing.Point(258, 16);
+			this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
+			this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.buttonSave.Location = new System.Drawing.Point(238, 16);
 			this.buttonSave.Name = "buttonSave";
-			this.buttonSave.Size = new System.Drawing.Size(75, 23);
+			this.buttonSave.Size = new System.Drawing.Size(85, 23);
 			this.buttonSave.TabIndex = 1;
 			this.buttonSave.Text = "Сохранить";
+			this.buttonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonSave.UseVisualStyleBackColor = true;
 			this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
 			// 
 			// buttonCancel
 			// 
 			this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonCancel.Location = new System.Drawing.Point(339, 16);
+			this.buttonCancel.Image = ((System.Drawing.Image)(resources.GetObject("buttonCancel.Image")));
+			this.buttonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.buttonCancel.Location = new System.Drawing.Point(329, 16);
 			this.buttonCancel.Name = "buttonCancel";
-			this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+			this.buttonCancel.Size = new System.Drawing.Size(85, 23);
 			this.buttonCancel.TabIndex = 0;
-			this.buttonCancel.Text = "Отмена";
+			this.buttonCancel.Text = "Отменить";
+			this.buttonCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonCancel.UseVisualStyleBackColor = true;
 			this.buttonCancel.Click += new System.EventHandler(this.ButtonCancelClick);
 			// 

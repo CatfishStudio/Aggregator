@@ -26,6 +26,7 @@ namespace Aggregator.Data
 		public static FormClient FClient;
 		public static FormSettings FSettings;
 		public static FormConstants FConstants;
+		public static FormCounteragents FCounteragents;
 		/*Администратор*/
 		public static FormSettingsDatabase FSettingsDatabase;
 		public static FormConsoleQuery FConsoleQuery;

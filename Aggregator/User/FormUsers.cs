@@ -33,7 +33,7 @@ namespace Aggregator.User
 			//
 		}
 		
-		private OleDb oleDb;
+		OleDb oleDb;
 		
 		public void TableRefresh()
 		{

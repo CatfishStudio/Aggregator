@@ -133,11 +133,12 @@ namespace Aggregator.Client
 		/* О программе */
 		void about()
 		{
-			MessageBox.Show("Наименование: Агрегатор" + System.Environment.NewLine +
-			                "Автор: Сомов Евгений Павлович (Catfish Studio)" + System.Environment.NewLine +
+			MessageBox.Show("Программа: Catfish Aggregator" + System.Environment.NewLine +
 			                "Лиценция: Freeware" + System.Environment.NewLine +
 			                "Версия: 1.0" + System.Environment.NewLine +
-			                "Дата: 01.03.2017", "О программе");
+			                "Дата: 01.03.2017" + System.Environment.NewLine +
+			                "Автор: Сомов Евгений Павлович (Catfish Studio)" + System.Environment.NewLine +
+			                "Сайт: http://somov.hol.es/", "О программе");
 		}
 		
 		/* Открыть окно констант */
@@ -150,6 +151,16 @@ namespace Aggregator.Client
 			}
 		}
 		
+		/* Открыть окно контрагентов */
+		void counteragentsShow()
+		{
+			if(DataForms.FCounteragents == null) {
+				DataForms.FCounteragents = new FormCounteragents();
+				DataForms.FCounteragents.MdiParent = DataForms.FClient;
+				DataForms.FCounteragents.Show();
+			}
+		}
+		
 		/* Сообщение в статусе */
 		public void messageInStatus(String message) {
 			toolStripStatusLabel2.Text = message;
@@ -158,7 +169,6 @@ namespace Aggregator.Client
 		/* Включить/отключить работу авто обновления таблиц */
 		public void autoUpdateOn()
 		{
-			autoUpdateLocalDatabase = new AutoUpdateLocalDatabase();
 			toolStripStatusLabel1.ImageIndex = 1;
 			timer1.Start();
 		}
@@ -167,10 +177,6 @@ namespace Aggregator.Client
 		{
 			timer1.Stop();
 			toolStripStatusLabel1.ImageIndex = 2;
-			if(autoUpdateLocalDatabase != null) {
-				autoUpdateLocalDatabase.Dispose();
-				autoUpdateLocalDatabase = null;
-			}
 		}
 		
 		/* Обновть данные в Истории */
@@ -187,7 +193,8 @@ namespace Aggregator.Client
 		void FormClientLoad(object sender, EventArgs e)
 		{
 			statusStrip1.ImageList = imageList1;
-			if(DataConfig.autoUpdate == true) autoUpdateOn();
+			autoUpdateLocalDatabase = new AutoUpdateLocalDatabase();
+			if(DataConfig.autoUpdate) autoUpdateOn();
 			else autoUpdateOff();
 			applyPermissions();
 			Utilits.Console.Log("Программа успешно запущена!");
@@ -209,6 +216,8 @@ namespace Aggregator.Client
 		void FormClientFormClosed(object sender, FormClosedEventArgs e)
 		{
 			timer1.Stop();
+			autoUpdateLocalDatabase.Dispose();
+			Dispose();
 			Application.Exit();
 		}
 		void КонсольСообщенийToolStripMenuItemClick(object sender, EventArgs e)
@@ -254,6 +263,10 @@ namespace Aggregator.Client
 		void КонстантыToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			constantsShow();
+		}
+		void КонтрагентыToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			counteragentsShow();
 		}
 		
 	}

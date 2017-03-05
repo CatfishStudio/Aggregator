@@ -83,7 +83,7 @@ namespace Aggregator.User
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(620, 49);
+			this.panel1.Size = new System.Drawing.Size(620, 45);
 			this.panel1.TabIndex = 0;
 			// 
 			// buttonRefresh
@@ -170,15 +170,15 @@ namespace Aggregator.User
 			// 
 			this.panel2.Controls.Add(this.buttonClose);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel2.Location = new System.Drawing.Point(0, 293);
+			this.panel2.Location = new System.Drawing.Point(0, 299);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(620, 51);
+			this.panel2.Size = new System.Drawing.Size(620, 45);
 			this.panel2.TabIndex = 1;
 			// 
 			// buttonClose
 			// 
 			this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonClose.Location = new System.Drawing.Point(533, 16);
+			this.buttonClose.Location = new System.Drawing.Point(533, 10);
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.Size = new System.Drawing.Size(75, 23);
 			this.buttonClose.TabIndex = 0;
@@ -190,9 +190,9 @@ namespace Aggregator.User
 			// 
 			this.panel3.Controls.Add(this.listView1);
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel3.Location = new System.Drawing.Point(0, 49);
+			this.panel3.Location = new System.Drawing.Point(0, 45);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(620, 244);
+			this.panel3.Size = new System.Drawing.Size(620, 254);
 			this.panel3.TabIndex = 2;
 			// 
 			// listView1
@@ -209,7 +209,7 @@ namespace Aggregator.User
 			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(620, 244);
+			this.listView1.Size = new System.Drawing.Size(620, 254);
 			this.listView1.SmallImageList = this.imageList1;
 			this.listView1.StateImageList = this.imageList1;
 			this.listView1.TabIndex = 0;

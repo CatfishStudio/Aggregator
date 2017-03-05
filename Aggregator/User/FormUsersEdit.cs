@@ -75,6 +75,7 @@ namespace Aggregator.User
 				oleDb.oleDbCommandInsert.Parameters.Add("@info", OleDbType.LongVarChar, 0, "info");
 				if(oleDb.ExecuteUpdate("Users")){
 					DataForms.FClient.updateHistory("Users");
+					if(!DataConfig.autoUpdate) DataForms.FUsers.TableRefresh();
 					Close();
 				}
 				
