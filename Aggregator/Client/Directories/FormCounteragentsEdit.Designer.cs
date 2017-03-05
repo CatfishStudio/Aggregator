@@ -57,11 +57,14 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.TextBox textBox12;
+		private System.Windows.Forms.TextBox fileTextBox;
 		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.Button button11;
 		private System.Windows.Forms.TabPage tabPage3;
-		
+		private System.Windows.Forms.OpenFileDialog openFileDialog1;
+		private System.Windows.Forms.DataGrid dataGrid1;
+		private System.Windows.Forms.Label stringNumberLabel;
+		private System.Windows.Forms.Button openExcelButton;
+				
 		/// <summary>
 		/// Disposes resources used by the form.
 		/// </summary>
@@ -124,13 +127,16 @@ namespace Aggregator.Client.Directories
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.stringNumberLabel = new System.Windows.Forms.Label();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.dataGrid1 = new System.Windows.Forms.DataGrid();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.button11 = new System.Windows.Forms.Button();
-			this.textBox12 = new System.Windows.Forms.TextBox();
+			this.openExcelButton = new System.Windows.Forms.Button();
+			this.fileTextBox = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.panel1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -138,6 +144,8 @@ namespace Aggregator.Client.Directories
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
+			this.groupBox6.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
 			this.groupBox4.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -531,6 +539,7 @@ namespace Aggregator.Client.Directories
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.stringNumberLabel);
 			this.tabPage2.Controls.Add(this.groupBox6);
 			this.tabPage2.Controls.Add(this.groupBox5);
 			this.tabPage2.Controls.Add(this.groupBox4);
@@ -542,17 +551,43 @@ namespace Aggregator.Client.Directories
 			this.tabPage2.Text = "Прайс лист";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// stringNumberLabel
+			// 
+			this.stringNumberLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.stringNumberLabel.Location = new System.Drawing.Point(8, 374);
+			this.stringNumberLabel.Name = "stringNumberLabel";
+			this.stringNumberLabel.Size = new System.Drawing.Size(513, 18);
+			this.stringNumberLabel.TabIndex = 3;
+			this.stringNumberLabel.Text = "Строка №:";
+			// 
 			// groupBox6
 			// 
 			this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 			| System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox6.Controls.Add(this.dataGrid1);
 			this.groupBox6.Location = new System.Drawing.Point(8, 173);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(513, 216);
+			this.groupBox6.Size = new System.Drawing.Size(513, 198);
 			this.groupBox6.TabIndex = 2;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Проспотр прайса:";
+			// 
+			// dataGrid1
+			// 
+			this.dataGrid1.BackgroundColor = System.Drawing.Color.White;
+			this.dataGrid1.CaptionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.dataGrid1.CaptionFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.dataGrid1.CaptionText = "Файл Excel";
+			this.dataGrid1.DataMember = "";
+			this.dataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGrid1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+			this.dataGrid1.Location = new System.Drawing.Point(3, 16);
+			this.dataGrid1.Name = "dataGrid1";
+			this.dataGrid1.ReadOnly = true;
+			this.dataGrid1.Size = new System.Drawing.Size(507, 179);
+			this.dataGrid1.TabIndex = 2;
+			this.dataGrid1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGrid1MouseClick);
 			// 
 			// groupBox5
 			// 
@@ -567,8 +602,8 @@ namespace Aggregator.Client.Directories
 			// 
 			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox4.Controls.Add(this.button11);
-			this.groupBox4.Controls.Add(this.textBox12);
+			this.groupBox4.Controls.Add(this.openExcelButton);
+			this.groupBox4.Controls.Add(this.fileTextBox);
 			this.groupBox4.Controls.Add(this.label11);
 			this.groupBox4.Location = new System.Drawing.Point(8, 6);
 			this.groupBox4.Name = "groupBox4";
@@ -577,22 +612,23 @@ namespace Aggregator.Client.Directories
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Загрузка прайса:";
 			// 
-			// button11
+			// openExcelButton
 			// 
-			this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button11.Location = new System.Drawing.Point(483, 23);
-			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(24, 20);
-			this.button11.TabIndex = 16;
-			this.button11.Text = "...";
-			this.button11.UseVisualStyleBackColor = true;
+			this.openExcelButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.openExcelButton.Location = new System.Drawing.Point(483, 23);
+			this.openExcelButton.Name = "openExcelButton";
+			this.openExcelButton.Size = new System.Drawing.Size(25, 20);
+			this.openExcelButton.TabIndex = 11;
+			this.openExcelButton.Text = "...";
+			this.openExcelButton.UseVisualStyleBackColor = true;
+			this.openExcelButton.Click += new System.EventHandler(this.OpenExcelButtonClick);
 			// 
-			// textBox12
+			// fileTextBox
 			// 
-			this.textBox12.Location = new System.Drawing.Point(44, 23);
-			this.textBox12.Name = "textBox12";
-			this.textBox12.Size = new System.Drawing.Size(433, 20);
-			this.textBox12.TabIndex = 1;
+			this.fileTextBox.Location = new System.Drawing.Point(44, 23);
+			this.fileTextBox.Name = "fileTextBox";
+			this.fileTextBox.Size = new System.Drawing.Size(433, 20);
+			this.fileTextBox.TabIndex = 1;
 			// 
 			// label11
 			// 
@@ -611,6 +647,10 @@ namespace Aggregator.Client.Directories
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Разное";
 			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// openFileDialog1
+			// 
+			this.openFileDialog1.Filter = "*.xls|*.xls|*.xlsx|*.xlsx";
 			// 
 			// FormCounteragentsEdit
 			// 
@@ -633,6 +673,8 @@ namespace Aggregator.Client.Directories
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
+			this.groupBox6.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).EndInit();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.ResumeLayout(false);
