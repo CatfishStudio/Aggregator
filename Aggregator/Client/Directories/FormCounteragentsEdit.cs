@@ -35,6 +35,7 @@ namespace Aggregator.Client.Directories
 		
 		public String ID;
 		OleDb oleDb;
+		DataSet dataSet;
 		
 		void openFileExcel()
 		{
@@ -46,6 +47,18 @@ namespace Aggregator.Client.Directories
 					readExcelFormat2007();
 				}
 			}
+			numericUpDown1.Minimum = 1;
+			numericUpDown1.Maximum = dataSet.Tables[0].Rows.Count;
+			numericUpDown1.Value = 1;
+			numericUpDown2.Minimum = 1;
+			numericUpDown2.Maximum = dataSet.Tables[0].Rows.Count;
+			numericUpDown2.Value = dataSet.Tables[0].Rows.Count;
+			numericUpDown3.Minimum = 1;
+			numericUpDown3.Maximum = dataSet.Tables[0].Columns.Count;
+			numericUpDown3.Value = 1;
+			numericUpDown4.Minimum = 1;
+			numericUpDown4.Maximum = dataSet.Tables[0].Columns.Count;
+			numericUpDown4.Value = dataSet.Tables[0].Columns.Count;
 		}
 		
 		void readExcelFormat972003()
@@ -53,7 +66,7 @@ namespace Aggregator.Client.Directories
 			try{
 				FileStream stream = File.Open(fileTextBox.Text, FileMode.Open, FileAccess.Read);
 				IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
-				DataSet dataSet = excelReader.AsDataSet();
+				dataSet = excelReader.AsDataSet();
 				dataGrid1.DataSource = dataSet;
 				dataGrid1.DataMember = dataSet.Tables[0].TableName;
 				excelReader.Close();
@@ -67,7 +80,7 @@ namespace Aggregator.Client.Directories
 			try{
 				FileStream stream = File.Open(fileTextBox.Text, FileMode.Open, FileAccess.Read);
 				IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-				DataSet dataSet = excelReader.AsDataSet();
+				dataSet = excelReader.AsDataSet();
 				dataGrid1.DataSource = dataSet;
 				dataGrid1.DataMember = dataSet.Tables[0].TableName;
 				excelReader.Close();
@@ -90,7 +103,7 @@ namespace Aggregator.Client.Directories
 		}
 		void DataGrid1MouseClick(object sender, MouseEventArgs e)
 		{
-			stringNumberLabel.Text = "Строка №: " + dataGrid1.CurrentRowIndex.ToString();
+			stringNumberLabel.Text = "Строка №: " + (dataGrid1.CurrentRowIndex + 1).ToString();
 		}
 		void OpenExcelButtonClick(object sender, EventArgs e)
 		{
