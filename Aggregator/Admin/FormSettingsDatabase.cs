@@ -9,6 +9,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 using Aggregator.Data;
 using Aggregator.Database.Config;
 
@@ -82,6 +83,20 @@ namespace Aggregator.Admin
 			SavingConfig.SaveDatabaseSettings();
 			Close();
 			MessageBox.Show("Чтобы изменения вступили в силу, перезапустите программу.", "Сообщение:");
+		}
+		void TestConnectButtonClick(object sender, EventArgs e)
+		{
+			SqlConnection conn = null;
+			try{
+				conn = new SqlConnection(serverTextBox.Text);
+				conn.Open();
+				if(conn.State.ToString() == "open") MessageBox.Show("Проверка прошла успешно!");
+				else MessageBox.Show("Не удалось подключиться к базе данных.");
+				conn.Close();
+			}catch(Exception ex){
+				conn.Close();
+				MessageBox.Show(ex.ToString());
+			}
 		}
 	}
 }

@@ -30,6 +30,7 @@ namespace Aggregator.Admin
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.TextBox typeDatabaseTextBox;
+		private System.Windows.Forms.Button testConnectButton;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -61,6 +62,7 @@ namespace Aggregator.Admin
 			this.typeConnectionСomboBox = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.testConnectButton = new System.Windows.Forms.Button();
 			this.serverTextBox = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -80,7 +82,7 @@ namespace Aggregator.Admin
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonClose);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 337);
+			this.panel1.Location = new System.Drawing.Point(0, 266);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(418, 51);
 			this.panel1.TabIndex = 0;
@@ -124,7 +126,7 @@ namespace Aggregator.Admin
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(418, 337);
+			this.panel2.Size = new System.Drawing.Size(418, 266);
 			this.panel2.TabIndex = 1;
 			// 
 			// typeDatabaseTextBox
@@ -157,23 +159,34 @@ namespace Aggregator.Admin
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 			| System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.testConnectButton);
 			this.groupBox2.Controls.Add(this.serverTextBox);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.groupBox2.Location = new System.Drawing.Point(9, 164);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(397, 167);
+			this.groupBox2.Size = new System.Drawing.Size(397, 96);
 			this.groupBox2.TabIndex = 5;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "MS SQL Server";
+			// 
+			// testConnectButton
+			// 
+			this.testConnectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.testConnectButton.Location = new System.Drawing.Point(221, 65);
+			this.testConnectButton.Name = "testConnectButton";
+			this.testConnectButton.Size = new System.Drawing.Size(165, 23);
+			this.testConnectButton.TabIndex = 2;
+			this.testConnectButton.Text = "Проверить соединение";
+			this.testConnectButton.UseVisualStyleBackColor = true;
+			this.testConnectButton.Click += new System.EventHandler(this.TestConnectButtonClick);
 			// 
 			// serverTextBox
 			// 
 			this.serverTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.serverTextBox.Location = new System.Drawing.Point(8, 39);
-			this.serverTextBox.Multiline = true;
 			this.serverTextBox.Name = "serverTextBox";
-			this.serverTextBox.Size = new System.Drawing.Size(378, 122);
+			this.serverTextBox.Size = new System.Drawing.Size(378, 20);
 			this.serverTextBox.TabIndex = 1;
 			// 
 			// label3
@@ -211,9 +224,9 @@ namespace Aggregator.Admin
 			// button1
 			// 
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button1.Location = new System.Drawing.Point(356, 35);
+			this.button1.Location = new System.Drawing.Point(361, 36);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(30, 21);
+			this.button1.Size = new System.Drawing.Size(28, 20);
 			this.button1.TabIndex = 2;
 			this.button1.Text = "...";
 			this.button1.UseVisualStyleBackColor = true;
@@ -246,7 +259,7 @@ namespace Aggregator.Admin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(418, 388);
+			this.ClientSize = new System.Drawing.Size(418, 317);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

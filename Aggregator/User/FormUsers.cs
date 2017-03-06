@@ -87,6 +87,10 @@ namespace Aggregator.User
 		void deleteUser()
 		{
 			if(listView1.SelectedIndices.Count > 0){
+				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() == "Администратор") {
+					MessageBox.Show("Администратора нельзя удалить из системы.");
+					return;
+				}
 				if(MessageBox.Show("Удалить пользователя " + listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() + " безвозвратно?" , "Вопрос", MessageBoxButtons.YesNo) == DialogResult.Yes){
 					oleDb.dataSet.Tables["Users"].Rows[listView1.SelectedIndices[0]].Delete();
 					oleDb.oleDbCommandDelete.CommandText = "DELETE FROM Users WHERE (id = @id)";

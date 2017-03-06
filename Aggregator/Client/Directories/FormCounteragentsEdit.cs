@@ -41,11 +41,22 @@ namespace Aggregator.Client.Directories
 		{
 			if(openFileDialog1.ShowDialog() == DialogResult.OK){
 				fileTextBox.Text = openFileDialog1.FileName;
+				dateLabel.Text = DateTime.Now.ToString();
 				if(fileTextBox.Text.Substring(fileTextBox.Text.Length - 3) == "xls"){
 					readExcelFormat972003();
 				}else{
 					readExcelFormat2007();
 				}
+				initEditor();
+			}
+		}
+		
+		void reopenExcel()
+		{
+			if(fileTextBox.Text.Substring(fileTextBox.Text.Length - 3) == "xls"){
+				readExcelFormat972003();
+			}else{
+				readExcelFormat2007();
 			}
 		}
 		
@@ -55,10 +66,10 @@ namespace Aggregator.Client.Directories
 				FileStream stream = File.Open(fileTextBox.Text, FileMode.Open, FileAccess.Read);
 				IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
 				dataSet = excelReader.AsDataSet();
+				for(int i = 0; i < dataSet.Tables[0].Columns.Count; i++) dataSet.Tables[0].Columns[i].ColumnName = (i+1).ToString();
 				dataGrid1.DataSource = dataSet;
 				dataGrid1.DataMember = dataSet.Tables[0].TableName;
 				excelReader.Close();
-				initEditor();
 			}catch(Exception ex){
 				MessageBox.Show(ex.ToString(), "ERROR");
 			}
@@ -70,10 +81,10 @@ namespace Aggregator.Client.Directories
 				FileStream stream = File.Open(fileTextBox.Text, FileMode.Open, FileAccess.Read);
 				IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
 				dataSet = excelReader.AsDataSet();
+				for(int i = 0; i < dataSet.Tables[0].Columns.Count; i++) dataSet.Tables[0].Columns[i].ColumnName = (i+1).ToString();
 				dataGrid1.DataSource = dataSet;
 				dataGrid1.DataMember = dataSet.Tables[0].TableName;
 				excelReader.Close();				
-				initEditor();
 			}catch(Exception ex){
 				MessageBox.Show(ex.ToString(), "ERROR");
 			}
@@ -297,6 +308,27 @@ namespace Aggregator.Client.Directories
 				numericUpDown13.Minimum = 0;
 				numericUpDown13.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown13.Value = 0;
+			}
+		}
+		void ApplySettingsButtonClick(object sender, EventArgs e)
+		{
+			reopenExcel();
+			
+			int i;
+			int count;
+			count = dataSet.Tables[0].Rows.Count;
+			for(i = System.Convert.ToInt32(numericUpDown2.Value); i < count; i++){
+				dataSet.Tables[0].Rows[i].Delete();
+			}
+			for(i = 0; i < numericUpDown1.Value - 1; i++){
+				dataSet.Tables[0].Rows[i].Delete();
+			}
+			count = dataSet.Tables[0].Columns.Count;
+			for(i = System.Convert.ToInt32(numericUpDown4.Value); i < count; i++){
+				dataSet.Tables[0].Columns.RemoveAt(dataSet.Tables[0].Columns.Count-1);
+			}
+			for(i = 0; i < numericUpDown3.Value - 1; i++){
+				dataSet.Tables[0].Columns.RemoveAt(i);
 			}
 		}
 		

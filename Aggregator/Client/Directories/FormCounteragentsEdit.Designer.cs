@@ -93,6 +93,7 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.NumericUpDown numericUpDown11;
 		private System.Windows.Forms.NumericUpDown numericUpDown12;
 		private System.Windows.Forms.NumericUpDown numericUpDown13;
+		private System.Windows.Forms.Label dateLabel;
 				
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -189,6 +190,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
 			this.dataGrid1 = new System.Windows.Forms.DataGrid();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.dateLabel = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.openExcelButton = new System.Windows.Forms.Button();
 			this.fileTextBox = new System.Windows.Forms.TextBox();
@@ -845,6 +847,7 @@ namespace Aggregator.Client.Directories
 			this.applySettingsButton.TabIndex = 8;
 			this.applySettingsButton.Text = "Применить настройки";
 			this.applySettingsButton.UseVisualStyleBackColor = true;
+			this.applySettingsButton.Click += new System.EventHandler(this.ApplySettingsButtonClick);
 			// 
 			// numericUpDown4
 			// 
@@ -953,6 +956,7 @@ namespace Aggregator.Client.Directories
 			// 
 			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox4.Controls.Add(this.dateLabel);
 			this.groupBox4.Controls.Add(this.label16);
 			this.groupBox4.Controls.Add(this.openExcelButton);
 			this.groupBox4.Controls.Add(this.fileTextBox);
@@ -964,13 +968,21 @@ namespace Aggregator.Client.Directories
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Загрузка прайса:";
 			// 
+			// dateLabel
+			// 
+			this.dateLabel.Location = new System.Drawing.Point(212, 46);
+			this.dateLabel.Name = "dateLabel";
+			this.dateLabel.Size = new System.Drawing.Size(265, 15);
+			this.dateLabel.TabIndex = 13;
+			this.dateLabel.Text = "00.00.0000";
+			// 
 			// label16
 			// 
 			this.label16.Location = new System.Drawing.Point(44, 45);
 			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(433, 16);
+			this.label16.Size = new System.Drawing.Size(172, 16);
 			this.label16.TabIndex = 12;
-			this.label16.Text = "Последнее обновление прайса: 00.00.0000";
+			this.label16.Text = "Последнее обновление прайса: ";
 			// 
 			// openExcelButton
 			// 
