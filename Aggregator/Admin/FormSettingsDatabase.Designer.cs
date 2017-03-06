@@ -25,10 +25,6 @@ namespace Aggregator.Admin
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.TextBox serverTextBox;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox serverUserTextBox;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox serverDatabaseTextBox;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button buttonSave;
 		private System.Windows.Forms.Button button1;
@@ -65,10 +61,6 @@ namespace Aggregator.Admin
 			this.typeConnectionСomboBox = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.serverDatabaseTextBox = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.serverUserTextBox = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
 			this.serverTextBox = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -165,10 +157,6 @@ namespace Aggregator.Admin
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 			| System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.serverDatabaseTextBox);
-			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Controls.Add(this.serverUserTextBox);
-			this.groupBox2.Controls.Add(this.label4);
 			this.groupBox2.Controls.Add(this.serverTextBox);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -179,46 +167,13 @@ namespace Aggregator.Admin
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "MS SQL Server";
 			// 
-			// serverDatabaseTextBox
-			// 
-			this.serverDatabaseTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.serverDatabaseTextBox.Location = new System.Drawing.Point(8, 117);
-			this.serverDatabaseTextBox.Name = "serverDatabaseTextBox";
-			this.serverDatabaseTextBox.Size = new System.Drawing.Size(378, 20);
-			this.serverDatabaseTextBox.TabIndex = 5;
-			// 
-			// label5
-			// 
-			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label5.Location = new System.Drawing.Point(6, 100);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(191, 23);
-			this.label5.TabIndex = 4;
-			this.label5.Text = "Имя базы данных (database):";
-			// 
-			// serverUserTextBox
-			// 
-			this.serverUserTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.serverUserTextBox.Location = new System.Drawing.Point(8, 77);
-			this.serverUserTextBox.Name = "serverUserTextBox";
-			this.serverUserTextBox.Size = new System.Drawing.Size(378, 20);
-			this.serverUserTextBox.TabIndex = 3;
-			// 
-			// label4
-			// 
-			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label4.Location = new System.Drawing.Point(8, 60);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(100, 23);
-			this.label4.TabIndex = 2;
-			this.label4.Text = "Пользователь (uid):";
-			// 
 			// serverTextBox
 			// 
 			this.serverTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.serverTextBox.Location = new System.Drawing.Point(8, 39);
+			this.serverTextBox.Multiline = true;
 			this.serverTextBox.Name = "serverTextBox";
-			this.serverTextBox.Size = new System.Drawing.Size(378, 20);
+			this.serverTextBox.Size = new System.Drawing.Size(378, 122);
 			this.serverTextBox.TabIndex = 1;
 			// 
 			// label3
@@ -226,9 +181,9 @@ namespace Aggregator.Admin
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.label3.Location = new System.Drawing.Point(8, 22);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(100, 23);
+			this.label3.Size = new System.Drawing.Size(172, 23);
 			this.label3.TabIndex = 0;
-			this.label3.Text = "Сервер (server):";
+			this.label3.Text = "Сервер (строка подключения):";
 			// 
 			// label2
 			// 

@@ -52,9 +52,7 @@ namespace Aggregator.Database.Config
 			DataConfig.localDatabase = DataConfig.resource + "\\database.mdb";
 			DataConfig.typeConnection = DataConstants.CONNETION_LOCAL;
 			DataConfig.typeDatabase = DataConstants.TYPE_OLEDB;
-			DataConfig.server = "localhost";
-			DataConfig.serverUser = "sa";
-			DataConfig.serverDatabase = "database";
+			DataConfig.serverConnection = "Server=***\\SQLEXPRESS;Database=***;User Id=sa;Password=***";
 			
 			String sqlCommand;
 			QueryOleDb query;
@@ -62,26 +60,23 @@ namespace Aggregator.Database.Config
 			
 			sqlCommand = "CREATE TABLE DatabaseSettings (" +
 				"[id] COUNTER PRIMARY KEY, " +
-				"[name] VARCHAR(50) DEFAULT '' UNIQUE, " +
+				"[name] VARCHAR DEFAULT '' UNIQUE, " +
 				"[localDatabase] TEXT DEFAULT '', " +
-				"[typeDatabase] VARCHAR(50) DEFAULT '', " +
-				"[typeConnection] VARCHAR(50) DEFAULT '', " +
-				"[server] VARCHAR(255) DEFAULT '', " +
-				"[serverUser] VARCHAR(255) DEFAULT '', " +
-				"[serverDatabase] VARCHAR(255) DEFAULT ''" +
+				"[typeDatabase] VARCHAR DEFAULT '', " +
+				"[typeConnection] VARCHAR DEFAULT '', " +
+				"[serverConnection] VARCHAR DEFAULT ''" +
 				")";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableDatabaseSettings] ошибка создания таблицы DatabaseSettings.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА][CreateConfigTables:TableDatabaseSettings] ошибка создания таблицы DatabaseSettings.", false, true);
 			
 			sqlCommand = "INSERT INTO DatabaseSettings (" +
 				"[name], [localDatabase], [typeDatabase], [typeConnection], " +
-				"[server], [serverUser], [serverDatabase]) " +
+				"[serverConnection]) " +
 				"VALUES ('database', '" + DataConfig.localDatabase + "', '" 
 				+ DataConfig.typeDatabase +"', '" + DataConfig.typeConnection + "', '"
-				+ DataConfig.server + "', '" + DataConfig.serverUser + "', '" 
-				+ DataConfig.serverDatabase + "')";
+				+ DataConfig.serverConnection + "')";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableDatabaseSettings] ошибка добавления данных в таблицу DatabaseSettings.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА][CreateConfigTables:TableDatabaseSettings] ошибка добавления данных в таблицу DatabaseSettings.", false, true);
 			query.Dispose();
 		}
 		

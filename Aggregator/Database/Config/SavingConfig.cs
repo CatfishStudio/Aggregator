@@ -23,32 +23,26 @@ namespace Aggregator.Database.Config
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
-				oleDb.oleDbCommandSelect.CommandText = "SELECT [id], [name], [localDatabase], [typeDatabase], [typeConnection], [server], [serverUser], [serverDatabase] FROM DatabaseSettings";
+				oleDb.oleDbCommandSelect.CommandText = "SELECT [id], [name], [localDatabase], [typeDatabase], [typeConnection], [serverConnection] FROM DatabaseSettings";
 				oleDb.oleDbCommandUpdate.CommandText = "UPDATE DatabaseSettings SET " +
 					"[name] = @name, " +
 					"[localDatabase] = @localDatabase, " +
 					"[typeDatabase] = @typeDatabase, " +
 					"[typeConnection] = @typeConnection, " +
-					"[server] = @server, " +
-					"[serverUser] = @serverUser, " +
-					"[serverDatabase] = @serverDatabase " +
+					"[serverConnection] = @serverConnection " +
 					"WHERE ([id] = @id)";
 				oleDb.oleDbCommandUpdate.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@localDatabase", OleDbType.VarChar, 255, "localDatabase");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@typeDatabase", OleDbType.VarChar, 255, "typeDatabase");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@typeConnection", OleDbType.VarChar, 255, "typeConnection");
-				oleDb.oleDbCommandUpdate.Parameters.Add("@server", OleDbType.VarChar, 255, "server");
-				oleDb.oleDbCommandUpdate.Parameters.Add("@serverUser", OleDbType.VarChar, 255, "serverUser");
-				oleDb.oleDbCommandUpdate.Parameters.Add("@serverDatabase", OleDbType.VarChar, 255, "serverDatabase");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@serverConnection", OleDbType.VarChar, 255, "serverConnection");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
 				oleDb.ExecuteFill("DatabaseSettings");
 				
 				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["localDatabase"] = DataConfig.localDatabase;
 				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["typeDatabase"] = DataConfig.typeDatabase;
 				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["typeConnection"] = DataConfig.typeConnection;
-				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["server"] = DataConfig.server;
-				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverUser"] = DataConfig.serverUser;
-				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverDatabase"] = DataConfig.serverDatabase;
+				oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverConnection"] = DataConfig.serverConnection;
 				oleDb.ExecuteUpdate("DatabaseSettings");
 				
 				oleDb.Dispose();

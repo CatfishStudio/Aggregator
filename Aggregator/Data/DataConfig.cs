@@ -33,9 +33,7 @@ namespace Aggregator.Data
 		public static String localDatabase = "";		// адрес и имя файла базы данных database.mdb
 		public static String typeConnection = "";		// тип подключения к базе данных (local/servel)
 		public static String typeDatabase = "";			// тип провайдера данных (oledb/mssql)
-		public static String server = "";				// адрес сервера MS SQLServer
-		public static String serverUser = "";			// пользователь сервера MS SQLServer
-		public static String serverDatabase = "";		// база данных на сервере MS SQLServer
+		public static String serverConnection = "";		// строка подключения к серверу MSSQL Server
 		
 		/* Настройки программы*/
 		public static Boolean autoUpdate = true;		// автоматическое обновление данных в журналах

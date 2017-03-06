@@ -25,7 +25,7 @@ namespace Aggregator.Database.Server
 		public QuerySqlServer()
 		{
 			sqlConnection = new SqlConnection();
-			sqlConnection.ConnectionString = "server=" + DataConfig.server + ";uid=" + DataConfig.serverUser + ";database=" + DataConfig.serverDatabase;
+			sqlConnection.ConnectionString = DataConfig.serverConnection;
 		}
 		
 		public void SetCommand(String sqlTextCommand)

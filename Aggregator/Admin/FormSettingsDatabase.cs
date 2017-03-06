@@ -40,9 +40,7 @@ namespace Aggregator.Admin
 			typeConnectionСomboBox.Text = DataConfig.typeConnection;
 			typeDatabaseTextBox.Text = DataConfig.typeDatabase;
 			localDatabaseTextBox.Text = DataConfig.localDatabase;
-			serverTextBox.Text = DataConfig.server;
-			serverUserTextBox.Text = DataConfig.serverUser;
-			serverDatabaseTextBox.Text = DataConfig.serverDatabase;
+			serverTextBox.Text = DataConfig.serverConnection;
 		}
 		void ButtonCloseClick(object sender, EventArgs e)
 		{
@@ -80,9 +78,7 @@ namespace Aggregator.Admin
 			DataConfig.localDatabase = localDatabaseTextBox.Text;
 			DataConfig.typeConnection = typeConnectionСomboBox.Text;
 			DataConfig.typeDatabase = typeDatabaseTextBox.Text;
-			DataConfig.server = serverTextBox.Text;
-			DataConfig.serverUser = serverUserTextBox.Text;
-			DataConfig.serverDatabase = serverDatabaseTextBox.Text;
+			DataConfig.serverConnection = serverTextBox.Text;
 			SavingConfig.SaveDatabaseSettings();
 			Close();
 			MessageBox.Show("Чтобы изменения вступили в силу, перезапустите программу.", "Сообщение:");

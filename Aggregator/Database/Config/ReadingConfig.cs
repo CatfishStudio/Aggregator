@@ -29,9 +29,7 @@ namespace Aggregator.Database.Config
 				DataConfig.localDatabase = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["localDatabase"].ToString();
 				DataConfig.typeDatabase = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["typeDatabase"].ToString();
 				DataConfig.typeConnection = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["typeConnection"].ToString();
-				DataConfig.server = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["server"].ToString();
-				DataConfig.serverUser = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverUser"].ToString();
-				DataConfig.serverDatabase = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverDatabase"].ToString();
+				DataConfig.serverConnection = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverConnection"].ToString();
 				oleDb.Dispose();
 				Utilits.Console.Log("[ReadDatabaseSettings]: Настройки соединения с базой данных успешно загружены.");
 			}catch(Exception ex){

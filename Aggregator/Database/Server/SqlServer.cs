@@ -30,9 +30,7 @@ namespace Aggregator.Database.Server
 		
 		public SqlServer()
 		{
-			sqlConnection = new SqlConnection("server=" + DataConfig.server + 
-			                                ";uid=" + DataConfig.serverUser + 
-			                                ";database=" + DataConfig.serverDatabase);
+			sqlConnection = new SqlConnection(DataConfig.serverConnection);
 			sqlCommandSelect = new SqlCommand("", sqlConnection);
 			sqlCommandInsert = new SqlCommand("", sqlConnection);
 			sqlCommandUpdate = new SqlCommand("", sqlConnection);
