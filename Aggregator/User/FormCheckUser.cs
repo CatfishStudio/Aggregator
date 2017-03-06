@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Client;
+using Aggregator.Database.Server;
 using Aggregator.Utilits;
 
 namespace Aggregator.User
@@ -34,65 +35,105 @@ namespace Aggregator.User
 			//
 		}
 		
-		private Boolean programClose;	//флаг закрытия приложения
-		private OleDb oleDb;
+		Boolean programClose;	//флаг закрытия приложения
+		OleDb oleDb;			// OleDb
+		SqlServer sqlServer;	// MSSQL
 		
 		void loadData()
 		{
-			//Подключение локальной базы данных (список серверов)
-			try{
-				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
-					// OLEDB
+			//Подключение базы данных
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
+				// OLEDB
+				try{
 					oleDb = new OleDb(DataConfig.localDatabase);
 					oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Users";
 					oleDb.ExecuteFill("Users");
-				} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
-					// MSSQL SERVER
-					
-					
+				}catch(Exception ex){
+					oleDb.Error();
+					MessageBox.Show(ex.ToString());
+					Application.Exit();
 				}
-				
-			}catch(Exception ex){
-				oleDb.Error();
-				MessageBox.Show(ex.ToString());
-				Application.Exit();
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+				// MSSQL SERVER
+				try{
+					sqlServer = new SqlServer();
+					sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Users";
+					sqlServer.ExecuteFill("Users");
+				}catch(Exception ex){
+					sqlServer.Error();
+					MessageBox.Show(ex.ToString());
+					Application.Exit();
+				}
 			}
 			readData();
 		}
 		
 		void readData()
 		{
-			foreach(DataRow row in oleDb.dataSet.Tables["Users"].Rows)
-			{
-				comboBox1.Items.Add(row[1].ToString());
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
+				foreach(DataRow row in oleDb.dataSet.Tables["Users"].Rows)
+				{
+					comboBox1.Items.Add(row[1].ToString());
+				}
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+				foreach(DataRow row in sqlServer.dataSet.Tables["Users"].Rows)
+				{
+					comboBox1.Items.Add(row[1].ToString());
+				}
 			}
 		}
 		
 		void checkUser()
 		{
 			//Проверка логина и пароля
-			try{
-				if(comboBox1.Text == ""){
-					MessageBox.Show("Вы не выбрали пользователя!","Сообщение:");
-				}else{
-					String pass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
-					if(textBox1.Text == pass){
-						Visible = false;
-						DataConfig.userName = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["name"].ToString();
-						DataConfig.userPass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
-						DataConfig.userPermissions = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["permissions"].ToString(); 
-						DataForms.FMain.Visible = false;
-						programClose = false;
-						DataForms.FClient = new FormClient();
-						DataForms.FClient.Show();
-						Utilits.Console.Log("Пользователь успешно авторизовался!");
-						Close();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
+				try{
+					if(comboBox1.Text == ""){
+						MessageBox.Show("Вы не выбрали пользователя!","Сообщение:");
 					}else{
-						MessageBox.Show("Вы ввели не верный пароль.","Сообщение:");
+						String pass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
+						if(textBox1.Text == pass){
+							Visible = false;
+							DataConfig.userName = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["name"].ToString();
+							DataConfig.userPass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
+							DataConfig.userPermissions = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["permissions"].ToString(); 
+							DataForms.FMain.Visible = false;
+							programClose = false;
+							DataForms.FClient = new FormClient();
+							DataForms.FClient.Show();
+							Utilits.Console.Log("Пользователь успешно авторизовался!");
+							Close();
+						}else{
+							MessageBox.Show("Вы ввели не верный пароль.","Сообщение:");
+						}
 					}
+				}catch{
+					MessageBox.Show("Ошибка ввода логина и пароля.","Сообщение:");
 				}
-			}catch{
-				MessageBox.Show("Ошибка ввода логина и пароля.","Сообщение:");
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+				try{
+					if(comboBox1.Text == ""){
+						MessageBox.Show("Вы не выбрали пользователя!","Сообщение:");
+					}else{
+						String pass = sqlServer.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
+						if(textBox1.Text == pass){
+							Visible = false;
+							DataConfig.userName = sqlServer.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["name"].ToString();
+							DataConfig.userPass = sqlServer.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
+							DataConfig.userPermissions = sqlServer.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["permissions"].ToString(); 
+							DataForms.FMain.Visible = false;
+							programClose = false;
+							DataForms.FClient = new FormClient();
+							DataForms.FClient.Show();
+							Utilits.Console.Log("Пользователь успешно авторизовался!");
+							Close();
+						}else{
+							MessageBox.Show("Вы ввели не верный пароль.","Сообщение:");
+						}
+					}
+				}catch{
+					MessageBox.Show("Ошибка ввода логина и пароля.","Сообщение:");
+				}
 			}
 		}
 		
