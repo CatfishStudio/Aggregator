@@ -100,6 +100,7 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.CheckBox checkBox11;
 		private System.Windows.Forms.CheckBox checkBox12;
 		private System.Windows.Forms.NumericUpDown numericUpDown16;
+		private System.Windows.Forms.Button resetSettingsButton;
 				
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -190,6 +191,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
 			this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.resetSettingsButton = new System.Windows.Forms.Button();
 			this.applySettingsButton = new System.Windows.Forms.Button();
 			this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
 			this.label15 = new System.Windows.Forms.Label();
@@ -306,7 +308,7 @@ namespace Aggregator.Client.Directories
 			this.tabPage1.Location = new System.Drawing.Point(4, 25);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(535, 424);
+			this.tabPage1.Size = new System.Drawing.Size(535, 457);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Основная информация";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -319,7 +321,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox3.Controls.Add(this.textBox11);
 			this.groupBox3.Location = new System.Drawing.Point(6, 304);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(515, 114);
+			this.groupBox3.Size = new System.Drawing.Size(515, 147);
 			this.groupBox3.TabIndex = 12;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Дополнительно:";
@@ -332,7 +334,7 @@ namespace Aggregator.Client.Directories
 			this.textBox11.Location = new System.Drawing.Point(7, 19);
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
-			this.textBox11.Size = new System.Drawing.Size(502, 89);
+			this.textBox11.Size = new System.Drawing.Size(502, 122);
 			this.textBox11.TabIndex = 0;
 			// 
 			// groupBox2
@@ -693,6 +695,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown16.Name = "numericUpDown16";
 			this.numericUpDown16.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown16.TabIndex = 27;
+			this.numericUpDown16.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// checkBox12
 			// 
@@ -711,6 +714,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown15.Name = "numericUpDown15";
 			this.numericUpDown15.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown15.TabIndex = 25;
+			this.numericUpDown15.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// checkBox11
 			// 
@@ -729,6 +733,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown14.Name = "numericUpDown14";
 			this.numericUpDown14.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown14.TabIndex = 23;
+			this.numericUpDown14.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// checkBox10
 			// 
@@ -747,6 +752,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown13.Name = "numericUpDown13";
 			this.numericUpDown13.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown13.TabIndex = 21;
+			this.numericUpDown13.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// numericUpDown12
 			// 
@@ -755,6 +761,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown12.Name = "numericUpDown12";
 			this.numericUpDown12.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown12.TabIndex = 20;
+			this.numericUpDown12.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// numericUpDown11
 			// 
@@ -763,6 +770,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown11.Name = "numericUpDown11";
 			this.numericUpDown11.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown11.TabIndex = 19;
+			this.numericUpDown11.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// numericUpDown10
 			// 
@@ -771,6 +779,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown10.Name = "numericUpDown10";
 			this.numericUpDown10.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown10.TabIndex = 18;
+			this.numericUpDown10.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// numericUpDown9
 			// 
@@ -779,6 +788,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown9.Name = "numericUpDown9";
 			this.numericUpDown9.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown9.TabIndex = 17;
+			this.numericUpDown9.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// checkBox9
 			// 
@@ -837,6 +847,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown8.Name = "numericUpDown8";
 			this.numericUpDown8.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown8.TabIndex = 11;
+			this.numericUpDown8.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// checkBox4
 			// 
@@ -885,6 +896,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown7.Name = "numericUpDown7";
 			this.numericUpDown7.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown7.TabIndex = 5;
+			this.numericUpDown7.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// numericUpDown6
 			// 
@@ -893,6 +905,7 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown6.Name = "numericUpDown6";
 			this.numericUpDown6.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown6.TabIndex = 3;
+			this.numericUpDown6.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// numericUpDown5
 			// 
@@ -901,11 +914,13 @@ namespace Aggregator.Client.Directories
 			this.numericUpDown5.Name = "numericUpDown5";
 			this.numericUpDown5.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown5.TabIndex = 1;
+			this.numericUpDown5.ValueChanged += new System.EventHandler(this.NumericUpDownAllValueChanged);
 			// 
 			// groupBox5
 			// 
 			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 			| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Controls.Add(this.resetSettingsButton);
 			this.groupBox5.Controls.Add(this.applySettingsButton);
 			this.groupBox5.Controls.Add(this.numericUpDown4);
 			this.groupBox5.Controls.Add(this.label15);
@@ -920,7 +935,18 @@ namespace Aggregator.Client.Directories
 			this.groupBox5.Size = new System.Drawing.Size(185, 175);
 			this.groupBox5.TabIndex = 1;
 			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "Настройка прайста:";
+			this.groupBox5.Text = "Настройка прайса:";
+			// 
+			// resetSettingsButton
+			// 
+			this.resetSettingsButton.Enabled = false;
+			this.resetSettingsButton.Location = new System.Drawing.Point(8, 143);
+			this.resetSettingsButton.Name = "resetSettingsButton";
+			this.resetSettingsButton.Size = new System.Drawing.Size(167, 23);
+			this.resetSettingsButton.TabIndex = 9;
+			this.resetSettingsButton.Text = "Сбросить настройки";
+			this.resetSettingsButton.UseVisualStyleBackColor = true;
+			this.resetSettingsButton.Click += new System.EventHandler(this.ResetSettingsButtonClick);
 			// 
 			// applySettingsButton
 			// 
@@ -952,7 +978,7 @@ namespace Aggregator.Client.Directories
 			// numericUpDown3
 			// 
 			this.numericUpDown3.Enabled = false;
-			this.numericUpDown3.Location = new System.Drawing.Point(120, 66);
+			this.numericUpDown3.Location = new System.Drawing.Point(120, 67);
 			this.numericUpDown3.Name = "numericUpDown3";
 			this.numericUpDown3.Size = new System.Drawing.Size(55, 20);
 			this.numericUpDown3.TabIndex = 5;
@@ -1090,7 +1116,7 @@ namespace Aggregator.Client.Directories
 			this.tabPage3.Location = new System.Drawing.Point(4, 25);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(535, 424);
+			this.tabPage3.Size = new System.Drawing.Size(535, 457);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Разное";
 			this.tabPage3.UseVisualStyleBackColor = true;

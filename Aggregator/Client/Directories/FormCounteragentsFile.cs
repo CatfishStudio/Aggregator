@@ -53,10 +53,14 @@ namespace Aggregator.Client.Directories
 		
 		void reopenExcel()
 		{
-			if(fileTextBox.Text.Substring(fileTextBox.Text.Length - 3) == "xls"){
-				readExcelFormat972003();
+			if(File.Exists(fileTextBox.Text)){
+				if(fileTextBox.Text.Substring(fileTextBox.Text.Length - 3) == "xls"){
+					readExcelFormat972003();
+				}else{
+					readExcelFormat2007();
+				}
 			}else{
-				readExcelFormat2007();
+				
 			}
 		}
 		
@@ -96,6 +100,7 @@ namespace Aggregator.Client.Directories
 			if(dataSet.Tables.Count > 0){
 				dataGrid1.Enabled = true;
 				applySettingsButton.Enabled = true;
+				resetSettingsButton.Enabled = true;
 				
 				numericUpDown1.Minimum = 1;
 				numericUpDown1.Maximum = dataSet.Tables[0].Rows.Count;
@@ -134,7 +139,18 @@ namespace Aggregator.Client.Directories
 			for(int i = 0; i < dataSet.Tables[0].Columns.Count; i++) {
 				dataSet.Tables[0].Columns[i].ColumnName = (i+1).ToString();
 			}
-			
+			if(numericUpDown5.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown5.Value - 1)].ColumnName = "Наименование";
+			if(numericUpDown6.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown6.Value - 1)].ColumnName = "Код";
+			if(numericUpDown7.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown7.Value - 1)].ColumnName = "Серия";
+			if(numericUpDown8.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown8.Value - 1)].ColumnName = "Артикул";
+			if(numericUpDown9.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown9.Value - 1)].ColumnName = "Цена отпускная";
+			if(numericUpDown10.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown10.Value - 1)].ColumnName = "Цена со скидкой 1";
+			if(numericUpDown11.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown11.Value - 1)].ColumnName = "Цена со скидкой 2";
+			if(numericUpDown12.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown12.Value - 1)].ColumnName = "Цена со скидкой 3";
+			if(numericUpDown13.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown13.Value - 1)].ColumnName = "Цена со скидкой 4";
+			if(numericUpDown14.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown14.Value - 1)].ColumnName = "Остаток";
+			if(numericUpDown15.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown15.Value - 1)].ColumnName = "Производитель";
+			if(numericUpDown16.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown16.Value - 1)].ColumnName = "Срок годности";
 		}
 		
 		/* =================================================================================================
@@ -193,6 +209,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown6.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown6.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox3CheckedChanged(object sender, EventArgs e)
 		{
@@ -211,6 +228,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown7.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown7.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox4CheckedChanged(object sender, EventArgs e)
 		{
@@ -229,6 +247,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown8.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown8.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox5CheckedChanged(object sender, EventArgs e)
 		{
@@ -247,6 +266,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown9.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown9.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox6CheckedChanged(object sender, EventArgs e)
 		{
@@ -265,6 +285,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown10.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown10.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox7CheckedChanged(object sender, EventArgs e)
 		{
@@ -283,6 +304,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown11.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown11.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox8CheckedChanged(object sender, EventArgs e)
 		{
@@ -301,6 +323,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown12.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown12.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox9CheckedChanged(object sender, EventArgs e)
 		{
@@ -319,6 +342,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown13.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown13.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox10CheckedChanged(object sender, EventArgs e)
 		{
@@ -337,6 +361,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown14.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown14.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox11CheckedChanged(object sender, EventArgs e)
 		{
@@ -355,6 +380,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown15.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown15.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox12CheckedChanged(object sender, EventArgs e)
 		{
@@ -373,6 +399,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown16.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown16.Value = 0;
 			}
+			initColunms();
 		}
 		void ApplySettingsButtonClick(object sender, EventArgs e)
 		{
@@ -382,20 +409,28 @@ namespace Aggregator.Client.Directories
 			int i;
 			int count;
 			count = dataSet.Tables[0].Rows.Count;
-			for(i = System.Convert.ToInt32(numericUpDown2.Value); i < count; i++){
+			for(i = Convert.ToInt32(numericUpDown2.Value); i < count; i++){
 				dataSet.Tables[0].Rows[i].Delete();
 			}
 			for(i = 0; i < numericUpDown1.Value - 1; i++){
 				dataSet.Tables[0].Rows[i].Delete();
 			}
 			count = dataSet.Tables[0].Columns.Count;
-			for(i = System.Convert.ToInt32(numericUpDown4.Value); i < count; i++){
+			for(i = Convert.ToInt32(numericUpDown4.Value); i < count; i++){
 				dataSet.Tables[0].Columns.RemoveAt(dataSet.Tables[0].Columns.Count-1);
 			}
 			for(i = 0; i < numericUpDown3.Value - 1; i++){
 				dataSet.Tables[0].Columns.RemoveAt(i);
 			}
 		}
-		
+		void ResetSettingsButtonClick(object sender, EventArgs e)
+		{
+			reopenExcel();
+			initEditor();
+		}
+		void NumericUpDownAllValueChanged(object sender, EventArgs e)
+		{
+			initColunms();
+		}
 	}
 }
