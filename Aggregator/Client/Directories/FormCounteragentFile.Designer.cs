@@ -162,6 +162,7 @@ namespace Aggregator.Client.Directories
 			this.buttonSave.Text = "Сохранить";
 			this.buttonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonSave.UseVisualStyleBackColor = true;
+			this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
 			// 
 			// buttonCancel
 			// 
@@ -175,6 +176,7 @@ namespace Aggregator.Client.Directories
 			this.buttonCancel.Text = "Отменить";
 			this.buttonCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonCancel.UseVisualStyleBackColor = true;
+			this.buttonCancel.Click += new System.EventHandler(this.ButtonCancelClick);
 			// 
 			// tabControl1
 			// 
@@ -237,7 +239,6 @@ namespace Aggregator.Client.Directories
 			this.dataGrid1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dataGrid1.Location = new System.Drawing.Point(3, 16);
 			this.dataGrid1.Name = "dataGrid1";
-			this.dataGrid1.ReadOnly = true;
 			this.dataGrid1.Size = new System.Drawing.Size(507, 104);
 			this.dataGrid1.TabIndex = 2;
 			// 

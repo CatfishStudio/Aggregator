@@ -86,7 +86,38 @@ namespace Aggregator.Client.Directories
 			if(dataSet == null) return;
 			if(dataSet.Tables.Count > 0){
 				dataGrid1.Enabled = true;
+				bool empty;
+				// check columns
+				for(int col = 0; col < dataSet.Tables[0].Columns.Count; col++){
+					empty = true;
+					for(int row = 0; row < dataSet.Tables[0].Rows.Count; row++){
+						if(dataSet.Tables[0].Rows[row][col].ToString() != ""){
+							empty = false;
+							break;
+						}
+					}
+					if(empty){
+						dataSet.Tables[0].Columns.RemoveAt(col);
+						col--;
+					}
+				}
+				// check rows
+				for(int row = 0; row < dataSet.Tables[0].Rows.Count; row++){
+					empty = true;
+					for(int col = 0; col < dataSet.Tables[0].Columns.Count; col++){
+						if(dataSet.Tables[0].Rows[row][col].ToString() != ""){
+							empty = false;
+							break;
+						}
+					}
+					if(empty){
+						dataSet.Tables[0].Rows.RemoveAt(row);
+						row--;
+					}
+				}
 			}
+			dataGrid1.Update();
+			initColunms();
 		}
 		
 		void initColunms()
@@ -179,6 +210,14 @@ namespace Aggregator.Client.Directories
 		{
 			initColunms();
 		}
-		
+		void ButtonSaveClick(object sender, EventArgs e)
+		{
+	
+		}
+		void ButtonCancelClick(object sender, EventArgs e)
+		{
+			Utilits.Console.Log(dataSet.Tables[0].Rows.Count.ToString());
+			Utilits.Console.Log(dataSet.Tables[0].Rows[0][0].ToString());
+		}
 	}
 }
