@@ -32,7 +32,7 @@ namespace Aggregator.Client.Directories
 		
 		void addUser()
 		{
-			FormCounteragentsEdit FCounteragentsEdit = new FormCounteragentsEdit();
+			FormCounteragentsFile FCounteragentsEdit = new FormCounteragentsFile();
 			FCounteragentsEdit.MdiParent = DataForms.FClient;
 			FCounteragentsEdit.ID = null;
 			FCounteragentsEdit.Show();

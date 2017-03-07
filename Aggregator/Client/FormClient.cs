@@ -268,6 +268,24 @@ namespace Aggregator.Client
 		{
 			counteragentsShow();
 		}
+		void ПанельИнструментовToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(панельИнструментовToolStripMenuItem.Checked){
+				панельИнструментовToolStripMenuItem.Checked = false;
+				toolStrip1.Visible = false;
+			}else{
+				панельИнструментовToolStripMenuItem.Checked = true;
+				toolStrip1.Visible = true;
+			}
+		}
+		void ToolStripButton2Click(object sender, EventArgs e)
+		{
+			constantsShow();
+		}
+		void ToolStripButton3Click(object sender, EventArgs e)
+		{
+			counteragentsShow();
+		}
 		
 	}
 }

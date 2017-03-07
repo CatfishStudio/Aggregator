@@ -19,9 +19,9 @@ namespace Aggregator.Client.Directories
 	/// <summary>
 	/// Description of FormCounteragentsEdit.
 	/// </summary>
-	public partial class FormCounteragentsEdit : Form
+	public partial class FormCounteragentsFile : Form
 	{
-		public FormCounteragentsEdit()
+		public FormCounteragentsFile()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -66,7 +66,7 @@ namespace Aggregator.Client.Directories
 				FileStream stream = File.Open(fileTextBox.Text, FileMode.Open, FileAccess.Read);
 				IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
 				dataSet = excelReader.AsDataSet();
-				for(int i = 0; i < dataSet.Tables[0].Columns.Count; i++) dataSet.Tables[0].Columns[i].ColumnName = (i+1).ToString();
+				initColunms();
 				dataGrid1.DataSource = dataSet;
 				dataGrid1.DataMember = dataSet.Tables[0].TableName;
 				excelReader.Close();
@@ -81,7 +81,7 @@ namespace Aggregator.Client.Directories
 				FileStream stream = File.Open(fileTextBox.Text, FileMode.Open, FileAccess.Read);
 				IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
 				dataSet = excelReader.AsDataSet();
-				for(int i = 0; i < dataSet.Tables[0].Columns.Count; i++) dataSet.Tables[0].Columns[i].ColumnName = (i+1).ToString();
+				initColunms();
 				dataGrid1.DataSource = dataSet;
 				dataGrid1.DataMember = dataSet.Tables[0].TableName;
 				excelReader.Close();				
@@ -128,6 +128,15 @@ namespace Aggregator.Client.Directories
 			}
 		}
 		
+		void initColunms()
+		{
+			if(dataSet == null) return;
+			for(int i = 0; i < dataSet.Tables[0].Columns.Count; i++) {
+				dataSet.Tables[0].Columns[i].ColumnName = (i+1).ToString();
+			}
+			
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -165,6 +174,7 @@ namespace Aggregator.Client.Directories
 				numericUpDown5.Maximum = dataSet.Tables[0].Columns.Count;
 				numericUpDown5.Value = 0;
 			}
+			initColunms();
 		}
 		void CheckBox2CheckedChanged(object sender, EventArgs e)
 		{
@@ -310,9 +320,64 @@ namespace Aggregator.Client.Directories
 				numericUpDown13.Value = 0;
 			}
 		}
+		void CheckBox10CheckedChanged(object sender, EventArgs e)
+		{
+			if(dataSet == null){
+				checkBox10.Checked = false;
+				return;
+			}
+			if(checkBox10.Checked){
+				numericUpDown14.Enabled = true;
+				numericUpDown14.Minimum = 1;
+				numericUpDown14.Maximum = dataSet.Tables[0].Columns.Count;
+				numericUpDown14.Value = 1;
+			}else{
+				numericUpDown14.Enabled = false;
+				numericUpDown14.Minimum = 0;
+				numericUpDown14.Maximum = dataSet.Tables[0].Columns.Count;
+				numericUpDown14.Value = 0;
+			}
+		}
+		void CheckBox11CheckedChanged(object sender, EventArgs e)
+		{
+			if(dataSet == null){
+				checkBox11.Checked = false;
+				return;
+			}
+			if(checkBox11.Checked){
+				numericUpDown15.Enabled = true;
+				numericUpDown15.Minimum = 1;
+				numericUpDown15.Maximum = dataSet.Tables[0].Columns.Count;
+				numericUpDown15.Value = 1;
+			}else{
+				numericUpDown15.Enabled = false;
+				numericUpDown15.Minimum = 0;
+				numericUpDown15.Maximum = dataSet.Tables[0].Columns.Count;
+				numericUpDown15.Value = 0;
+			}
+		}
+		void CheckBox12CheckedChanged(object sender, EventArgs e)
+		{
+			if(dataSet == null){
+				checkBox12.Checked = false;
+				return;
+			}
+			if(checkBox12.Checked){
+				numericUpDown16.Enabled = true;
+				numericUpDown16.Minimum = 1;
+				numericUpDown16.Maximum = dataSet.Tables[0].Columns.Count;
+				numericUpDown16.Value = 1;
+			}else{
+				numericUpDown16.Enabled = false;
+				numericUpDown16.Minimum = 0;
+				numericUpDown16.Maximum = dataSet.Tables[0].Columns.Count;
+				numericUpDown16.Value = 0;
+			}
+		}
 		void ApplySettingsButtonClick(object sender, EventArgs e)
 		{
 			reopenExcel();
+			if(dataSet == null) return;
 			
 			int i;
 			int count;
