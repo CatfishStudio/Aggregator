@@ -30,12 +30,20 @@ namespace Aggregator.Client.Directories
 			//
 		}
 		
-		void addUser()
+		void addFile()
 		{
 			FormCounteragentFile FCounteragentEdit = new FormCounteragentFile();
 			FCounteragentEdit.MdiParent = DataForms.FClient;
 			FCounteragentEdit.ID = null;
 			FCounteragentEdit.Show();
+		}
+		
+		void addFolder()
+		{
+			FormCounteragentFolder FCounteragentFolder = new FormCounteragentFolder();
+			FCounteragentFolder.MdiParent = DataForms.FClient;
+			FCounteragentFolder.ID = null;
+			FCounteragentFolder.Show();
 		}
 		
 		/* =================================================================================================
@@ -53,7 +61,11 @@ namespace Aggregator.Client.Directories
 		}
 		void AddButtonClick(object sender, EventArgs e)
 		{
-			addUser();
+			addFile();
+		}
+		void AddFolderButtonClick(object sender, EventArgs e)
+		{
+			addFolder();
 		}
 	}
 }

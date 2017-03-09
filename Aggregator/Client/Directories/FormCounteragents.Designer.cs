@@ -66,6 +66,14 @@ namespace Aggregator.Client.Directories
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.buttonClose = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.panel7 = new System.Windows.Forms.Panel();
+			this.findButton = new System.Windows.Forms.Button();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.deleteFolderButton = new System.Windows.Forms.Button();
+			this.editFolderButton = new System.Windows.Forms.Button();
+			this.addFolderButton = new System.Windows.Forms.Button();
+			this.refreshButton = new System.Windows.Forms.Button();
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.priceButton = new System.Windows.Forms.Button();
 			this.panel4 = new System.Windows.Forms.Panel();
@@ -78,15 +86,7 @@ namespace Aggregator.Client.Directories
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-			this.refreshButton = new System.Windows.Forms.Button();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.addFolderButton = new System.Windows.Forms.Button();
-			this.editFolderButton = new System.Windows.Forms.Button();
-			this.deleteFolderButton = new System.Windows.Forms.Button();
-			this.panel6 = new System.Windows.Forms.Panel();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.findButton = new System.Windows.Forms.Button();
-			this.panel7 = new System.Windows.Forms.Panel();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -133,6 +133,84 @@ namespace Aggregator.Client.Directories
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(713, 45);
 			this.panel2.TabIndex = 1;
+			// 
+			// panel7
+			// 
+			this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panel7.Location = new System.Drawing.Point(522, 12);
+			this.panel7.Name = "panel7";
+			this.panel7.Size = new System.Drawing.Size(4, 23);
+			this.panel7.TabIndex = 13;
+			// 
+			// findButton
+			// 
+			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
+			this.findButton.Location = new System.Drawing.Point(491, 12);
+			this.findButton.Name = "findButton";
+			this.findButton.Size = new System.Drawing.Size(25, 23);
+			this.findButton.TabIndex = 12;
+			this.toolTip1.SetToolTip(this.findButton, "Поиск");
+			this.findButton.UseVisualStyleBackColor = true;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(309, 12);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(176, 21);
+			this.comboBox1.TabIndex = 11;
+			// 
+			// panel6
+			// 
+			this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panel6.Location = new System.Drawing.Point(208, 12);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(4, 23);
+			this.panel6.TabIndex = 7;
+			// 
+			// deleteFolderButton
+			// 
+			this.deleteFolderButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteFolderButton.Image")));
+			this.deleteFolderButton.Location = new System.Drawing.Point(177, 12);
+			this.deleteFolderButton.Name = "deleteFolderButton";
+			this.deleteFolderButton.Size = new System.Drawing.Size(25, 23);
+			this.deleteFolderButton.TabIndex = 10;
+			this.toolTip1.SetToolTip(this.deleteFolderButton, "Удалить папку");
+			this.deleteFolderButton.UseVisualStyleBackColor = true;
+			// 
+			// editFolderButton
+			// 
+			this.editFolderButton.Image = ((System.Drawing.Image)(resources.GetObject("editFolderButton.Image")));
+			this.editFolderButton.Location = new System.Drawing.Point(146, 12);
+			this.editFolderButton.Name = "editFolderButton";
+			this.editFolderButton.Size = new System.Drawing.Size(25, 23);
+			this.editFolderButton.TabIndex = 9;
+			this.toolTip1.SetToolTip(this.editFolderButton, "Редактировать папку");
+			this.editFolderButton.UseVisualStyleBackColor = true;
+			// 
+			// addFolderButton
+			// 
+			this.addFolderButton.Image = ((System.Drawing.Image)(resources.GetObject("addFolderButton.Image")));
+			this.addFolderButton.Location = new System.Drawing.Point(115, 12);
+			this.addFolderButton.Name = "addFolderButton";
+			this.addFolderButton.Size = new System.Drawing.Size(25, 23);
+			this.addFolderButton.TabIndex = 8;
+			this.toolTip1.SetToolTip(this.addFolderButton, "Создать папку");
+			this.addFolderButton.UseVisualStyleBackColor = true;
+			this.addFolderButton.Click += new System.EventHandler(this.AddFolderButtonClick);
+			// 
+			// refreshButton
+			// 
+			this.refreshButton.Image = ((System.Drawing.Image)(resources.GetObject("refreshButton.Image")));
+			this.refreshButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.refreshButton.Location = new System.Drawing.Point(532, 12);
+			this.refreshButton.Name = "refreshButton";
+			this.refreshButton.Size = new System.Drawing.Size(85, 23);
+			this.refreshButton.TabIndex = 7;
+			this.refreshButton.Text = "Обновить";
+			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.refreshButton, "Обновить данные");
+			this.refreshButton.UseVisualStyleBackColor = true;
 			// 
 			// panel5
 			// 
@@ -239,83 +317,6 @@ namespace Aggregator.Client.Directories
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "№";
-			// 
-			// refreshButton
-			// 
-			this.refreshButton.Image = ((System.Drawing.Image)(resources.GetObject("refreshButton.Image")));
-			this.refreshButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.refreshButton.Location = new System.Drawing.Point(532, 12);
-			this.refreshButton.Name = "refreshButton";
-			this.refreshButton.Size = new System.Drawing.Size(85, 23);
-			this.refreshButton.TabIndex = 7;
-			this.refreshButton.Text = "Обновить";
-			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.toolTip1.SetToolTip(this.refreshButton, "Обновить данные");
-			this.refreshButton.UseVisualStyleBackColor = true;
-			// 
-			// addFolderButton
-			// 
-			this.addFolderButton.Image = ((System.Drawing.Image)(resources.GetObject("addFolderButton.Image")));
-			this.addFolderButton.Location = new System.Drawing.Point(115, 12);
-			this.addFolderButton.Name = "addFolderButton";
-			this.addFolderButton.Size = new System.Drawing.Size(25, 23);
-			this.addFolderButton.TabIndex = 8;
-			this.toolTip1.SetToolTip(this.addFolderButton, "Создать папку");
-			this.addFolderButton.UseVisualStyleBackColor = true;
-			// 
-			// editFolderButton
-			// 
-			this.editFolderButton.Image = ((System.Drawing.Image)(resources.GetObject("editFolderButton.Image")));
-			this.editFolderButton.Location = new System.Drawing.Point(146, 12);
-			this.editFolderButton.Name = "editFolderButton";
-			this.editFolderButton.Size = new System.Drawing.Size(25, 23);
-			this.editFolderButton.TabIndex = 9;
-			this.toolTip1.SetToolTip(this.editFolderButton, "Редактировать папку");
-			this.editFolderButton.UseVisualStyleBackColor = true;
-			// 
-			// deleteFolderButton
-			// 
-			this.deleteFolderButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteFolderButton.Image")));
-			this.deleteFolderButton.Location = new System.Drawing.Point(177, 12);
-			this.deleteFolderButton.Name = "deleteFolderButton";
-			this.deleteFolderButton.Size = new System.Drawing.Size(25, 23);
-			this.deleteFolderButton.TabIndex = 10;
-			this.toolTip1.SetToolTip(this.deleteFolderButton, "Удалить папку");
-			this.deleteFolderButton.UseVisualStyleBackColor = true;
-			// 
-			// panel6
-			// 
-			this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel6.Location = new System.Drawing.Point(208, 12);
-			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(4, 23);
-			this.panel6.TabIndex = 7;
-			// 
-			// comboBox1
-			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(309, 12);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(176, 21);
-			this.comboBox1.TabIndex = 11;
-			// 
-			// findButton
-			// 
-			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
-			this.findButton.Location = new System.Drawing.Point(491, 12);
-			this.findButton.Name = "findButton";
-			this.findButton.Size = new System.Drawing.Size(25, 23);
-			this.findButton.TabIndex = 12;
-			this.toolTip1.SetToolTip(this.findButton, "Поиск");
-			this.findButton.UseVisualStyleBackColor = true;
-			// 
-			// panel7
-			// 
-			this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel7.Location = new System.Drawing.Point(522, 12);
-			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(4, 23);
-			this.panel7.TabIndex = 13;
 			// 
 			// imageList1
 			// 
