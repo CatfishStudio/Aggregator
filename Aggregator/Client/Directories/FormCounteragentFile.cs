@@ -216,8 +216,16 @@ namespace Aggregator.Client.Directories
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
 		{
-			Utilits.Console.Log(dataSet.Tables[0].Rows.Count.ToString());
-			Utilits.Console.Log(dataSet.Tables[0].Rows[0][0].ToString());
+			
+		}
+		void DataGrid1PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		{
+			if (e.KeyData == Keys.Delete)
+			{
+				foreach (DataRow row in dataSet.Tables[0].Rows){
+					if(row.RowState == DataRowState.Deleted) row.Delete();
+				}
+			}
 		}
 	}
 }
