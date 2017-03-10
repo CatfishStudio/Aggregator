@@ -63,9 +63,9 @@ namespace Aggregator.Client.Directories
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonCancel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 68);
+			this.panel1.Location = new System.Drawing.Point(0, 64);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(351, 45);
+			this.panel1.Size = new System.Drawing.Size(350, 45);
 			this.panel1.TabIndex = 0;
 			// 
 			// buttonSave
@@ -73,7 +73,7 @@ namespace Aggregator.Client.Directories
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
 			this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSave.Location = new System.Drawing.Point(167, 10);
+			this.buttonSave.Location = new System.Drawing.Point(166, 10);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(83, 23);
 			this.buttonSave.TabIndex = 3;
@@ -86,7 +86,7 @@ namespace Aggregator.Client.Directories
 			this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonCancel.Image = ((System.Drawing.Image)(resources.GetObject("buttonCancel.Image")));
 			this.buttonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonCancel.Location = new System.Drawing.Point(256, 10);
+			this.buttonCancel.Location = new System.Drawing.Point(255, 10);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(83, 23);
 			this.buttonCancel.TabIndex = 2;
@@ -149,14 +149,15 @@ namespace Aggregator.Client.Directories
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(351, 113);
+			this.ClientSize = new System.Drawing.Size(350, 109);
+			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormCounteragentFolder";
 			this.Text = "Папка";
 			this.panel1.ResumeLayout(false);

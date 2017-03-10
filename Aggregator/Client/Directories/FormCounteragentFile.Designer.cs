@@ -91,6 +91,9 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.TextBox textBox11;
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.TextBox textBox12;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.Button button11;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -188,9 +191,12 @@ namespace Aggregator.Client.Directories
 			this.fileTextBox = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-			this.label12 = new System.Windows.Forms.Label();
+			this.button11 = new System.Windows.Forms.Button();
+			this.textBox12 = new System.Windows.Forms.TextBox();
+			this.label13 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.panel1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -222,9 +228,9 @@ namespace Aggregator.Client.Directories
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonCancel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 400);
+			this.panel1.Location = new System.Drawing.Point(0, 424);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(532, 45);
+			this.panel1.Size = new System.Drawing.Size(529, 45);
 			this.panel1.TabIndex = 1;
 			// 
 			// buttonSave
@@ -232,7 +238,7 @@ namespace Aggregator.Client.Directories
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
 			this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSave.Location = new System.Drawing.Point(348, 10);
+			this.buttonSave.Location = new System.Drawing.Point(345, 10);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(83, 23);
 			this.buttonSave.TabIndex = 1;
@@ -246,7 +252,7 @@ namespace Aggregator.Client.Directories
 			this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonCancel.Image = ((System.Drawing.Image)(resources.GetObject("buttonCancel.Image")));
 			this.buttonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonCancel.Location = new System.Drawing.Point(437, 10);
+			this.buttonCancel.Location = new System.Drawing.Point(434, 10);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(83, 23);
 			this.buttonCancel.TabIndex = 0;
@@ -265,7 +271,7 @@ namespace Aggregator.Client.Directories
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(532, 400);
+			this.tabControl1.Size = new System.Drawing.Size(529, 424);
 			this.tabControl1.TabIndex = 2;
 			// 
 			// tabPage1
@@ -276,7 +282,7 @@ namespace Aggregator.Client.Directories
 			this.tabPage1.Location = new System.Drawing.Point(4, 25);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(524, 371);
+			this.tabPage1.Size = new System.Drawing.Size(521, 395);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Основная информация";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -289,7 +295,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox4.Controls.Add(this.textBox11);
 			this.groupBox4.Location = new System.Drawing.Point(6, 304);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(515, 61);
+			this.groupBox4.Size = new System.Drawing.Size(512, 85);
 			this.groupBox4.TabIndex = 13;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Дополнительно:";
@@ -302,7 +308,7 @@ namespace Aggregator.Client.Directories
 			this.textBox11.Location = new System.Drawing.Point(7, 19);
 			this.textBox11.Multiline = true;
 			this.textBox11.Name = "textBox11";
-			this.textBox11.Size = new System.Drawing.Size(502, 36);
+			this.textBox11.Size = new System.Drawing.Size(499, 60);
 			this.textBox11.TabIndex = 0;
 			// 
 			// groupBox3
@@ -326,7 +332,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox3.Controls.Add(this.label11);
 			this.groupBox3.Location = new System.Drawing.Point(6, 155);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(515, 143);
+			this.groupBox3.Size = new System.Drawing.Size(512, 143);
 			this.groupBox3.TabIndex = 12;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Контактное лицо:";
@@ -477,7 +483,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox2.Controls.Add(this.label6);
 			this.groupBox2.Location = new System.Drawing.Point(6, 6);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(515, 143);
+			this.groupBox2.Size = new System.Drawing.Size(512, 143);
 			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Организация:";
@@ -615,7 +621,7 @@ namespace Aggregator.Client.Directories
 			this.tabPage2.Location = new System.Drawing.Point(4, 25);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(524, 371);
+			this.tabPage2.Size = new System.Drawing.Size(521, 395);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Прайс лист";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -628,7 +634,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox6.Controls.Add(this.dataGrid1);
 			this.groupBox6.Location = new System.Drawing.Point(5, 239);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(513, 119);
+			this.groupBox6.Size = new System.Drawing.Size(510, 150);
 			this.groupBox6.TabIndex = 6;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Проспотр прайса:";
@@ -645,7 +651,7 @@ namespace Aggregator.Client.Directories
 			this.dataGrid1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dataGrid1.Location = new System.Drawing.Point(3, 16);
 			this.dataGrid1.Name = "dataGrid1";
-			this.dataGrid1.Size = new System.Drawing.Size(507, 100);
+			this.dataGrid1.Size = new System.Drawing.Size(504, 131);
 			this.dataGrid1.TabIndex = 2;
 			this.dataGrid1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.DataGrid1PreviewKeyDown);
 			// 
@@ -679,7 +685,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox7.Controls.Add(this.numericUpDown5);
 			this.groupBox7.Location = new System.Drawing.Point(5, 72);
 			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(513, 161);
+			this.groupBox7.Size = new System.Drawing.Size(510, 161);
 			this.groupBox7.TabIndex = 5;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Основные поля данных:";
@@ -923,7 +929,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Location = new System.Drawing.Point(3, 6);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(515, 60);
+			this.groupBox1.Size = new System.Drawing.Size(512, 60);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Загрузка прайса:";
@@ -972,43 +978,73 @@ namespace Aggregator.Client.Directories
 			// 
 			// tabPage3
 			// 
+			this.tabPage3.Controls.Add(this.button11);
+			this.tabPage3.Controls.Add(this.textBox12);
+			this.tabPage3.Controls.Add(this.label13);
 			this.tabPage3.Controls.Add(this.comboBox1);
 			this.tabPage3.Controls.Add(this.label12);
 			this.tabPage3.Location = new System.Drawing.Point(4, 25);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(524, 371);
+			this.tabPage3.Size = new System.Drawing.Size(521, 395);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Разное";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
-			// openFileDialog1
+			// button11
 			// 
-			this.openFileDialog1.Filter = "*.xls|*.xls|*.xlsx|*.xlsx";
+			this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button11.Location = new System.Drawing.Point(495, 27);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(20, 20);
+			this.button11.TabIndex = 11;
+			this.button11.Text = "X";
+			this.button11.UseVisualStyleBackColor = true;
+			// 
+			// textBox12
+			// 
+			this.textBox12.Location = new System.Drawing.Point(118, 3);
+			this.textBox12.Name = "textBox12";
+			this.textBox12.ReadOnly = true;
+			this.textBox12.Size = new System.Drawing.Size(100, 20);
+			this.textBox12.TabIndex = 3;
+			// 
+			// label13
+			// 
+			this.label13.Location = new System.Drawing.Point(0, 6);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(100, 23);
+			this.label13.TabIndex = 2;
+			this.label13.Text = "Код:";
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(118, 26);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(372, 21);
+			this.comboBox1.TabIndex = 1;
 			// 
 			// label12
 			// 
-			this.label12.Location = new System.Drawing.Point(0, 14);
+			this.label12.Location = new System.Drawing.Point(0, 29);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(121, 23);
 			this.label12.TabIndex = 0;
 			this.label12.Text = "Родительская папка:";
 			// 
-			// comboBox1
+			// openFileDialog1
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(118, 11);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(398, 21);
-			this.comboBox1.TabIndex = 1;
+			this.openFileDialog1.Filter = "*.xls|*.xls|*.xlsx|*.xlsx";
 			// 
 			// FormCounteragentFile
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(532, 445);
+			this.ClientSize = new System.Drawing.Size(529, 469);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.panel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormCounteragentFile";
 			this.Text = "Контрагент";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCounteragentFileFormClosed);
@@ -1041,6 +1077,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.tabPage3.ResumeLayout(false);
+			this.tabPage3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}

@@ -39,6 +39,19 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.Panel panel7;
 		private System.Windows.Forms.Button findButton;
 		private System.Windows.Forms.ImageList imageList1;
+		private System.Windows.Forms.Panel panel8;
+		private System.Windows.Forms.Button viewButton;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem папкиToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem создатьПапкуToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem изменитьПапкуToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem удалитьПапкуToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem создатьЗаписьToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem изменитьЗаписьToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem удалитьЗаписьToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+		private System.Windows.Forms.ToolStripMenuItem выбратьЗаписьToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -66,6 +79,8 @@ namespace Aggregator.Client.Directories
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.buttonClose = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.viewButton = new System.Windows.Forms.Button();
+			this.panel8 = new System.Windows.Forms.Panel();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.findButton = new System.Windows.Forms.Button();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -86,11 +101,23 @@ namespace Aggregator.Client.Directories
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.папкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.создатьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.изменитьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.удалитьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+			this.создатьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.изменитьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.удалитьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+			this.выбратьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -111,9 +138,12 @@ namespace Aggregator.Client.Directories
 			this.buttonClose.TabIndex = 0;
 			this.buttonClose.Text = "Закрыть";
 			this.buttonClose.UseVisualStyleBackColor = true;
+			this.buttonClose.Click += new System.EventHandler(this.ButtonCloseClick);
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.viewButton);
+			this.panel2.Controls.Add(this.panel8);
 			this.panel2.Controls.Add(this.panel7);
 			this.panel2.Controls.Add(this.findButton);
 			this.panel2.Controls.Add(this.comboBox1);
@@ -134,10 +164,30 @@ namespace Aggregator.Client.Directories
 			this.panel2.Size = new System.Drawing.Size(713, 45);
 			this.panel2.TabIndex = 1;
 			// 
+			// viewButton
+			// 
+			this.viewButton.Image = ((System.Drawing.Image)(resources.GetObject("viewButton.Image")));
+			this.viewButton.Location = new System.Drawing.Point(215, 12);
+			this.viewButton.Name = "viewButton";
+			this.viewButton.Size = new System.Drawing.Size(25, 23);
+			this.viewButton.TabIndex = 16;
+			this.viewButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.viewButton, "Способ отображения.");
+			this.viewButton.UseVisualStyleBackColor = true;
+			this.viewButton.Click += new System.EventHandler(this.ViewButtonClick);
+			// 
+			// panel8
+			// 
+			this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panel8.Location = new System.Drawing.Point(246, 12);
+			this.panel8.Name = "panel8";
+			this.panel8.Size = new System.Drawing.Size(4, 23);
+			this.panel8.TabIndex = 14;
+			// 
 			// panel7
 			// 
 			this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel7.Location = new System.Drawing.Point(522, 12);
+			this.panel7.Location = new System.Drawing.Point(575, 12);
 			this.panel7.Name = "panel7";
 			this.panel7.Size = new System.Drawing.Size(4, 23);
 			this.panel7.TabIndex = 13;
@@ -145,7 +195,7 @@ namespace Aggregator.Client.Directories
 			// findButton
 			// 
 			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
-			this.findButton.Location = new System.Drawing.Point(491, 12);
+			this.findButton.Location = new System.Drawing.Point(544, 12);
 			this.findButton.Name = "findButton";
 			this.findButton.Size = new System.Drawing.Size(25, 23);
 			this.findButton.TabIndex = 12;
@@ -155,7 +205,7 @@ namespace Aggregator.Client.Directories
 			// comboBox1
 			// 
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(309, 12);
+			this.comboBox1.Location = new System.Drawing.Point(362, 12);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(176, 21);
 			this.comboBox1.TabIndex = 11;
@@ -203,7 +253,7 @@ namespace Aggregator.Client.Directories
 			// 
 			this.refreshButton.Image = ((System.Drawing.Image)(resources.GetObject("refreshButton.Image")));
 			this.refreshButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.refreshButton.Location = new System.Drawing.Point(532, 12);
+			this.refreshButton.Location = new System.Drawing.Point(585, 12);
 			this.refreshButton.Name = "refreshButton";
 			this.refreshButton.Size = new System.Drawing.Size(85, 23);
 			this.refreshButton.TabIndex = 7;
@@ -215,7 +265,7 @@ namespace Aggregator.Client.Directories
 			// panel5
 			// 
 			this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel5.Location = new System.Drawing.Point(299, 12);
+			this.panel5.Location = new System.Drawing.Point(352, 12);
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(4, 23);
 			this.panel5.TabIndex = 6;
@@ -224,11 +274,11 @@ namespace Aggregator.Client.Directories
 			// 
 			this.priceButton.Image = ((System.Drawing.Image)(resources.GetObject("priceButton.Image")));
 			this.priceButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.priceButton.Location = new System.Drawing.Point(218, 12);
+			this.priceButton.Location = new System.Drawing.Point(256, 12);
 			this.priceButton.Name = "priceButton";
-			this.priceButton.Size = new System.Drawing.Size(75, 23);
+			this.priceButton.Size = new System.Drawing.Size(90, 23);
 			this.priceButton.TabIndex = 5;
-			this.priceButton.Text = "Прайс";
+			this.priceButton.Text = "Прайс-лист";
 			this.priceButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.toolTip1.SetToolTip(this.priceButton, "Просмотреть прайс");
 			this.priceButton.UseVisualStyleBackColor = true;
@@ -289,15 +339,21 @@ namespace Aggregator.Client.Directories
 			this.columnHeader2,
 			this.columnHeader3,
 			this.columnHeader4});
+			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
+			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
+			this.listView1.LargeImageList = this.imageList1;
 			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(713, 300);
-			this.listView1.TabIndex = 1;
+			this.listView1.SmallImageList = this.imageList1;
+			this.listView1.StateImageList = this.imageList1;
+			this.listView1.TabIndex = 6;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
+			this.listView1.DoubleClick += new System.EventHandler(this.ListView1DoubleClick);
 			// 
 			// columnHeader1
 			// 
@@ -307,23 +363,107 @@ namespace Aggregator.Client.Directories
 			// columnHeader2
 			// 
 			this.columnHeader2.Text = "Наименование";
-			this.columnHeader2.Width = 300;
+			this.columnHeader2.Width = 400;
 			// 
 			// columnHeader3
 			// 
-			this.columnHeader3.Text = "Телефон";
-			this.columnHeader3.Width = 150;
+			this.columnHeader3.Text = "";
+			this.columnHeader3.Width = 50;
 			// 
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "№";
 			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.папкиToolStripMenuItem,
+			this.toolStripMenuItem1,
+			this.создатьЗаписьToolStripMenuItem,
+			this.изменитьЗаписьToolStripMenuItem,
+			this.удалитьЗаписьToolStripMenuItem,
+			this.toolStripMenuItem2,
+			this.выбратьЗаписьToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 126);
+			// 
+			// папкиToolStripMenuItem
+			// 
+			this.папкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.создатьПапкуToolStripMenuItem,
+			this.изменитьПапкуToolStripMenuItem,
+			this.удалитьПапкуToolStripMenuItem});
+			this.папкиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("папкиToolStripMenuItem.Image")));
+			this.папкиToolStripMenuItem.Name = "папкиToolStripMenuItem";
+			this.папкиToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+			this.папкиToolStripMenuItem.Text = "Папки:";
+			// 
+			// создатьПапкуToolStripMenuItem
+			// 
+			this.создатьПапкуToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("создатьПапкуToolStripMenuItem.Image")));
+			this.создатьПапкуToolStripMenuItem.Name = "создатьПапкуToolStripMenuItem";
+			this.создатьПапкуToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+			this.создатьПапкуToolStripMenuItem.Text = "Создать папку.";
+			// 
+			// изменитьПапкуToolStripMenuItem
+			// 
+			this.изменитьПапкуToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("изменитьПапкуToolStripMenuItem.Image")));
+			this.изменитьПапкуToolStripMenuItem.Name = "изменитьПапкуToolStripMenuItem";
+			this.изменитьПапкуToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+			this.изменитьПапкуToolStripMenuItem.Text = "Изменить папку.";
+			// 
+			// удалитьПапкуToolStripMenuItem
+			// 
+			this.удалитьПапкуToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("удалитьПапкуToolStripMenuItem.Image")));
+			this.удалитьПапкуToolStripMenuItem.Name = "удалитьПапкуToolStripMenuItem";
+			this.удалитьПапкуToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+			this.удалитьПапкуToolStripMenuItem.Text = "Удалить папку.";
+			// 
+			// toolStripMenuItem1
+			// 
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(168, 6);
+			// 
+			// создатьЗаписьToolStripMenuItem
+			// 
+			this.создатьЗаписьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("создатьЗаписьToolStripMenuItem.Image")));
+			this.создатьЗаписьToolStripMenuItem.Name = "создатьЗаписьToolStripMenuItem";
+			this.создатьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+			this.создатьЗаписьToolStripMenuItem.Text = "Создать запись.";
+			// 
+			// изменитьЗаписьToolStripMenuItem
+			// 
+			this.изменитьЗаписьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("изменитьЗаписьToolStripMenuItem.Image")));
+			this.изменитьЗаписьToolStripMenuItem.Name = "изменитьЗаписьToolStripMenuItem";
+			this.изменитьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+			this.изменитьЗаписьToolStripMenuItem.Text = "Изменить запись.";
+			// 
+			// удалитьЗаписьToolStripMenuItem
+			// 
+			this.удалитьЗаписьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("удалитьЗаписьToolStripMenuItem.Image")));
+			this.удалитьЗаписьToolStripMenuItem.Name = "удалитьЗаписьToolStripMenuItem";
+			this.удалитьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+			this.удалитьЗаписьToolStripMenuItem.Text = "Удалить запись.";
+			// 
+			// toolStripMenuItem2
+			// 
+			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(168, 6);
+			this.toolStripMenuItem2.Visible = false;
+			// 
+			// выбратьЗаписьToolStripMenuItem
+			// 
+			this.выбратьЗаписьToolStripMenuItem.Name = "выбратьЗаписьToolStripMenuItem";
+			this.выбратьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+			this.выбратьЗаписьToolStripMenuItem.Text = "Выбрать запись.";
+			this.выбратьЗаписьToolStripMenuItem.Visible = false;
+			// 
 			// imageList1
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "application.png");
-			this.imageList1.Images.SetKeyName(1, "folder.png");
+			this.imageList1.Images.SetKeyName(0, "folder.png");
+			this.imageList1.Images.SetKeyName(1, "page.png");
 			// 
 			// FormCounteragents
 			// 
@@ -333,6 +473,7 @@ namespace Aggregator.Client.Directories
 			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormCounteragents";
 			this.Text = "Контрагенты";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCounteragentsFormClosed);
@@ -340,6 +481,7 @@ namespace Aggregator.Client.Directories
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

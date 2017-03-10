@@ -7,9 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Data;
+using Aggregator.Database.Local;
+using Aggregator.Database.Server;
 
 namespace Aggregator.Client.Directories
 {
@@ -28,6 +31,127 @@ namespace Aggregator.Client.Directories
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+		}
+		
+		OleDb oleDb;
+		SqlServer sqlServer;
+		DataTable foldersTable;			// папки
+		DataTable filesTable; 			// файлы
+		String openFolder = ""; 		// открытая папка
+		bool folderExplore = true; 		// флаг отображения элементов в папках
+		int selectTableLine = 0;		// выбранная строка в таблице
+		
+		void TableUpdate(String actionFolder)
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
+				// OLEDB
+				try{
+					oleDb = new OleDb(DataConfig.localDatabase);
+					TableUpdateLocal(actionFolder);
+				}catch(Exception ex){
+					oleDb.Error();
+					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+				}
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+				// MSSQL SERVER
+				try{
+					sqlServer = new SqlServer();
+					TableUpdateServer(actionFolder);
+				}catch(Exception ex){
+					sqlServer.Error();
+					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+				}
+			}
+		}
+		
+		void TableUpdateLocal(String actionFolder)
+		{
+			listView1.Items.Clear();
+			// Папки
+			oleDb.dataSet.Clear();
+			oleDb.dataSet.DataSetName = "Counteragents";
+			if(actionFolder == "") {
+				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'folder') ORDER BY name ASC";
+			}else{
+				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'folder' AND name = '" + actionFolder + "') ORDER BY name ASC";
+			}
+			if(oleDb.ExecuteFill("Counteragents")){
+				foldersTable = oleDb.dataSet.Tables["Counteragents"];
+			}else{
+				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе папок.");
+				oleDb.Error();
+				return;
+			}
+			// Файлы			
+			oleDb.dataSet.Clear();
+			oleDb.dataSet.DataSetName = "Counteragents";
+			if(actionFolder == "" && folderExplore) {
+				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file' AND parent = '') ORDER BY name ASC";
+			}else{
+				if(folderExplore) oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file') ORDER BY name ASC";
+				else oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file' AND parent = '" + actionFolder + "') ORDER BY name ASC";
+			}
+			if(oleDb.ExecuteFill("Counteragents")){
+				filesTable = oleDb.dataSet.Tables["Counteragents"];
+			}else{
+				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе файлов.");
+				oleDb.Error();
+				return;
+			}
+			// ОТОБРАЖЕНИЕ: "Папок"
+			foreach(DataRow rowFolder in foldersTable.Rows)
+    		{
+				ListViewItem ListViewItem_add = new ListViewItem();
+				if(actionFolder == "") ListViewItem_add.SubItems.Add(rowFolder["name"].ToString());
+				else ListViewItem_add.SubItems.Add("..");
+				ListViewItem_add.StateImageIndex = 0;
+				ListViewItem_add.SubItems.Add("Папка");
+				ListViewItem_add.SubItems.Add(rowFolder["id"].ToString());
+				listView1.Items.Add(ListViewItem_add);
+			}
+			// ОТОБРАЖЕНИЕ "Файлов"
+			foreach(DataRow rowElement in filesTable.Rows)
+    		{
+				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add.SubItems.Add(rowElement["name"].ToString());
+				ListViewItem_add.StateImageIndex = 1;
+				ListViewItem_add.SubItems.Add("");
+				ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
+				listView1.Items.Add(ListViewItem_add);
+			}
+			// ВЫБОР: выдиляем ранее выбранный элемент.
+			listView1.SelectedIndices.IndexOf(selectTableLine);
+		}
+		
+		void TableUpdateServer(String actionFolder)
+		{
+			
+		}
+		
+		void hierarchy() // иерархическое отображение
+		{
+			if(folderExplore){
+				folderExplore = false;
+				Utilits.Console.Log("Контрагенты: группирование отключено.");
+				TableUpdate(""); // отображается всё содержимое
+			}else{
+				folderExplore = true;
+				Utilits.Console.Log("Контрагенты: группирование включено.");
+				TableUpdate(openFolder); //возвращаемся в последнюю активную папку.
+			}
+		}
+		
+		void showOpenCloseFolder() // показать открытую папку
+		{
+			if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() == "Папка" && folderExplore){
+				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".."){
+					openFolder = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+					TableUpdate(openFolder);
+				}else {
+					openFolder = "";
+					TableUpdate(openFolder);
+				}
+			}	
 		}
 		
 		void addFile()
@@ -56,12 +180,14 @@ namespace Aggregator.Client.Directories
 		 */	
 		void FormCounteragentsLoad(object sender, EventArgs e)
 		{
-	
+			TableUpdate(""); // Загрузка данных из базы данных
+			Utilits.Console.Log("Журнал Контрагентов: отркыт.");
 		}
 		void FormCounteragentsFormClosed(object sender, FormClosedEventArgs e)
 		{
 			Dispose();
 			DataForms.FCounteragents = null;
+			Utilits.Console.Log("Журнал Контрагентов: закрыт.");
 		}
 		void AddButtonClick(object sender, EventArgs e)
 		{
@@ -70,6 +196,18 @@ namespace Aggregator.Client.Directories
 		void AddFolderButtonClick(object sender, EventArgs e)
 		{
 			addFolder();
+		}
+		void ButtonCloseClick(object sender, EventArgs e)
+		{
+			Close();
+		}
+		void ViewButtonClick(object sender, EventArgs e)
+		{
+			hierarchy();  // иерархическое отображение
+		}
+		void ListView1DoubleClick(object sender, EventArgs e)
+		{
+			showOpenCloseFolder(); // показать открытую папку
 		}
 	}
 }

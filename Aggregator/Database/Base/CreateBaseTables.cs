@@ -69,7 +69,7 @@ namespace Aggregator.Database.Base
 			sqlCommand = "CREATE TABLE Counteragents (" +
 				"[id] COUNTER PRIMARY KEY, " +
 				"[type] VARCHAR DEFAULT '', " +
-				"[organization_name] VARCHAR DEFAULT '' UNIQUE, " +
+				"[name] VARCHAR DEFAULT '' UNIQUE, " +
 				"[organization_address] VARCHAR DEFAULT '', " +
 				"[organization_phone] VARCHAR DEFAULT '', " +
 				"[organization_site] VARCHAR DEFAULT '', " +
