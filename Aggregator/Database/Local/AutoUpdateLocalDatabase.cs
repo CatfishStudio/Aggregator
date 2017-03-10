@@ -104,6 +104,7 @@ namespace Aggregator.Database.Local
 		{
 			try{
 				if(tableName == "Users" && DataForms.FUsers != null) DataForms.FUsers.TableRefresh();
+				if(tableName == "Counteragents" && DataForms.FCounteragents != null) DataForms.FCounteragents.TableRefresh();
 			
 				Utilits.Console.Log("[ИСТОРИЯ] Таблица " + tableRepresent + " была успешно обновлена.");
 			}catch(Exception ex){
@@ -115,6 +116,7 @@ namespace Aggregator.Database.Local
 		int getTableIndex(String tableName)
 		{
 			if(tableName == "Users") return 0;
+			if(tableName == "Counteragents") return 1;
 			return -1;
 		}
 		
