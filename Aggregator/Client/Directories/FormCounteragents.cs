@@ -33,6 +33,8 @@ namespace Aggregator.Client.Directories
 			//
 		}
 		
+		public TextBox TextBoxReturnValue;	// объект принимаемый значение
+		
 		OleDb oleDb;
 		SqlServer sqlServer;
 		DataTable foldersTable;			// папки
@@ -46,7 +48,6 @@ namespace Aggregator.Client.Directories
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
 				// OLEDB
 				try{
-					oleDb = new OleDb(DataConfig.localDatabase);
 					TableUpdateLocal(actionFolder);
 				}catch(Exception ex){
 					oleDb.Error();
@@ -55,7 +56,6 @@ namespace Aggregator.Client.Directories
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
 				try{
-					sqlServer = new SqlServer();
 					TableUpdateServer(actionFolder);
 				}catch(Exception ex){
 					sqlServer.Error();
@@ -68,6 +68,7 @@ namespace Aggregator.Client.Directories
 		{
 			listView1.Items.Clear();
 			// Папки
+			oleDb = new OleDb(DataConfig.localDatabase);
 			oleDb.dataSet.Clear();
 			oleDb.dataSet.DataSetName = "Counteragents";
 			if(actionFolder == "") {
@@ -125,7 +126,69 @@ namespace Aggregator.Client.Directories
 		
 		void TableUpdateServer(String actionFolder)
 		{
-			
+			sqlServer = new SqlServer();
+			// ...
+		}
+		
+		void search()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
+				// OLEDB
+				try{
+					searchLocal();
+					Utilits.Console.Log("Журнал Контрагентов: поиск завершен.");
+				}catch(Exception ex){
+					oleDb.Error();
+					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+				}
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+				// MSSQL SERVER
+				try{
+					searchServer();
+					Utilits.Console.Log("Журнал Контрагентов: поиск завершен.");
+				}catch(Exception ex){
+					sqlServer.Error();
+					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+				}
+			}
+			comboBox1.Items.Add(comboBox1.Text);
+		}
+		
+		void searchLocal()
+		{
+			DataTable table;
+			oleDb = new OleDb(DataConfig.localDatabase);
+			oleDb.dataSet.Clear();
+			oleDb.dataSet.DataSetName = "Counteragents";
+			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (name LIKE '%" + comboBox1.Text + "%') ORDER BY name ASC";
+			if(oleDb.ExecuteFill("Counteragents")){
+				table = oleDb.dataSet.Tables["Counteragents"];
+			}else{
+				Utilits.Console.Log("[ОШИБКА] Ошибка поиска.");
+				oleDb.Error();
+				return;
+			}
+			listView1.Items.Clear();
+			foreach(DataRow row in table.Rows)
+        	{
+				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add.SubItems.Add(row["name"].ToString());
+				if(row["type"].ToString() == "folder"){
+					ListViewItem_add.StateImageIndex = 0;
+					ListViewItem_add.SubItems.Add("Папка");
+				}else{
+					ListViewItem_add.StateImageIndex = 1;
+					ListViewItem_add.SubItems.Add("");
+				}
+				ListViewItem_add.SubItems.Add(row["id"].ToString());
+				listView1.Items.Add(ListViewItem_add);
+			}
+		}
+		
+		void searchServer()
+		{
+			sqlServer = new SqlServer();
+			// ...
 		}
 		
 		void hierarchy() // иерархическое отображение
@@ -170,6 +233,14 @@ namespace Aggregator.Client.Directories
 			FCounteragentFolder.Show();
 		}
 		
+		void returnValue()
+		{
+			if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() != "Папка" && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".."){
+				TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+				this.Close();
+			}
+		}
+		
 		public void TableRefresh()
 		{
 			
@@ -208,6 +279,19 @@ namespace Aggregator.Client.Directories
 		void ListView1DoubleClick(object sender, EventArgs e)
 		{
 			showOpenCloseFolder(); // показать открытую папку
+		}
+		void ListView1SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// выбранная строка таблицы
+			if(listView1.SelectedItems.Count > 0) selectTableLine = listView1.SelectedItems[0].Index; // индекс выбраной строки
+		}
+		void FindButtonClick(object sender, EventArgs e)
+		{
+			search(); // поиск
+		}
+		void Button1Click(object sender, EventArgs e)
+		{
+			returnValue(); // возвращает выбраные данные
 		}
 	}
 }

@@ -52,6 +52,7 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.ToolStripMenuItem удалитьЗаписьToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem выбратьЗаписьToolStripMenuItem;
+		private System.Windows.Forms.Button button1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -77,6 +78,7 @@ namespace Aggregator.Client.Directories
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCounteragents));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.button1 = new System.Windows.Forms.Button();
 			this.buttonClose = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.viewButton = new System.Windows.Forms.Button();
@@ -122,12 +124,27 @@ namespace Aggregator.Client.Directories
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.buttonClose);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel1.Location = new System.Drawing.Point(0, 345);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(713, 45);
 			this.panel1.TabIndex = 0;
+			// 
+			// button1
+			// 
+			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button1.Location = new System.Drawing.Point(544, 10);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 1;
+			this.button1.Text = "Выбрать";
+			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Visible = false;
+			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
 			// buttonClose
 			// 
@@ -201,6 +218,7 @@ namespace Aggregator.Client.Directories
 			this.findButton.TabIndex = 12;
 			this.toolTip1.SetToolTip(this.findButton, "Поиск");
 			this.findButton.UseVisualStyleBackColor = true;
+			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
 			// 
 			// comboBox1
 			// 
@@ -353,6 +371,7 @@ namespace Aggregator.Client.Directories
 			this.listView1.TabIndex = 6;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
+			this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1SelectedIndexChanged);
 			this.listView1.DoubleClick += new System.EventHandler(this.ListView1DoubleClick);
 			// 
 			// columnHeader1
@@ -385,7 +404,7 @@ namespace Aggregator.Client.Directories
 			this.toolStripMenuItem2,
 			this.выбратьЗаписьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 126);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 148);
 			// 
 			// папкиToolStripMenuItem
 			// 
