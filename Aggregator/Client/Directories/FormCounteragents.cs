@@ -77,7 +77,7 @@ namespace Aggregator.Client.Directories
 				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'folder' AND name = '" + actionFolder + "') ORDER BY name ASC";
 			}
 			if(oleDb.ExecuteFill("Counteragents")){
-				foldersTable = oleDb.dataSet.Tables["Counteragents"];
+				foldersTable = oleDb.dataSet.Tables["Counteragents"].Copy();
 			}else{
 				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе папок.");
 				oleDb.Error();
@@ -93,7 +93,7 @@ namespace Aggregator.Client.Directories
 				else oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file' AND parent = '" + actionFolder + "') ORDER BY name ASC";
 			}
 			if(oleDb.ExecuteFill("Counteragents")){
-				filesTable = oleDb.dataSet.Tables["Counteragents"];
+				filesTable = oleDb.dataSet.Tables["Counteragents"].Copy();
 			}else{
 				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе файлов.");
 				oleDb.Error();
@@ -233,6 +233,14 @@ namespace Aggregator.Client.Directories
 			FCounteragentFolder.Show();
 		}
 		
+		void editFolder()
+		{
+			FormCounteragentFolder FCounteragentFolder = new FormCounteragentFolder();
+			FCounteragentFolder.MdiParent = DataForms.FClient;
+			FCounteragentFolder.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
+			FCounteragentFolder.Show();
+		}
+		
 		void returnValue()
 		{
 			if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() != "Папка" && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".."){
@@ -243,7 +251,12 @@ namespace Aggregator.Client.Directories
 		
 		public void TableRefresh()
 		{
-			
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
+				// OLEDB
+				TableUpdate(openFolder);
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+				// MSSQL SERVER
+			}
 		}
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
@@ -270,6 +283,10 @@ namespace Aggregator.Client.Directories
 		{
 			addFolder();
 		}
+		void EditFolderButtonClick(object sender, EventArgs e)
+		{
+			editFolder();
+		}
 		void ButtonCloseClick(object sender, EventArgs e)
 		{
 			Close();
@@ -295,5 +312,10 @@ namespace Aggregator.Client.Directories
 		{
 			returnValue(); // возвращает выбраные данные
 		}
+		void RefreshButtonClick(object sender, EventArgs e)
+		{
+			TableRefresh();
+		}
+		
 	}
 }

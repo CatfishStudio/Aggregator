@@ -18,9 +18,9 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.Button buttonSave;
 		private System.Windows.Forms.Button buttonCancel;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox nameTextBox;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox codeTextBox;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;
 		
@@ -50,9 +50,9 @@ namespace Aggregator.Client.Directories
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.nameTextBox = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.codeTextBox = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
@@ -80,6 +80,7 @@ namespace Aggregator.Client.Directories
 			this.buttonSave.Text = "Сохранить";
 			this.buttonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonSave.UseVisualStyleBackColor = true;
+			this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
 			// 
 			// buttonCancel
 			// 
@@ -93,6 +94,7 @@ namespace Aggregator.Client.Directories
 			this.buttonCancel.Text = "Отменить";
 			this.buttonCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonCancel.UseVisualStyleBackColor = true;
+			this.buttonCancel.Click += new System.EventHandler(this.ButtonCancelClick);
 			// 
 			// label1
 			// 
@@ -102,12 +104,12 @@ namespace Aggregator.Client.Directories
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Наименование:";
 			// 
-			// textBox1
+			// nameTextBox
 			// 
-			this.textBox1.Location = new System.Drawing.Point(103, 35);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(216, 20);
-			this.textBox1.TabIndex = 2;
+			this.nameTextBox.Location = new System.Drawing.Point(103, 35);
+			this.nameTextBox.Name = "nameTextBox";
+			this.nameTextBox.Size = new System.Drawing.Size(216, 20);
+			this.nameTextBox.TabIndex = 2;
 			// 
 			// label2
 			// 
@@ -117,13 +119,13 @@ namespace Aggregator.Client.Directories
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Код:";
 			// 
-			// textBox2
+			// codeTextBox
 			// 
-			this.textBox2.Location = new System.Drawing.Point(103, 6);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.ReadOnly = true;
-			this.textBox2.Size = new System.Drawing.Size(216, 20);
-			this.textBox2.TabIndex = 4;
+			this.codeTextBox.Location = new System.Drawing.Point(103, 6);
+			this.codeTextBox.Name = "codeTextBox";
+			this.codeTextBox.ReadOnly = true;
+			this.codeTextBox.Size = new System.Drawing.Size(216, 20);
+			this.codeTextBox.TabIndex = 4;
 			// 
 			// button1
 			// 
@@ -144,6 +146,7 @@ namespace Aggregator.Client.Directories
 			this.button2.TabIndex = 12;
 			this.button2.Text = "X";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.Button2Click);
 			// 
 			// FormCounteragentFolder
 			// 
@@ -153,13 +156,15 @@ namespace Aggregator.Client.Directories
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.textBox2);
+			this.Controls.Add(this.codeTextBox);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.nameTextBox);
 			this.Controls.Add(this.label1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormCounteragentFolder";
 			this.Text = "Папка";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCounteragentFolderFormClosed);
+			this.Load += new System.EventHandler(this.FormCounteragentFolderLoad);
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();

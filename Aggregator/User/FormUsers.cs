@@ -120,8 +120,7 @@ namespace Aggregator.User
 				TableRefresh();
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
-				
-				
+				sqlServer = new SqlServer();
 			}
 		}
 		void FormUsersFormClosed(object sender, FormClosedEventArgs e)

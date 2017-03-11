@@ -40,7 +40,7 @@ namespace Aggregator.Client
 		 * РАЗДЕЛ: ПРОЦЕДУР И ФУНКЦИЙ
 		 * =================================================================================================
 		 */	
-		AutoUpdateLocalDatabase autoUpdateLocalDatabase;
+		HistoryRefreshOleDb historyRefreshOleDb;
 		
 		/* Применить права пользователя */
 		void applyPermissions()
@@ -166,7 +166,7 @@ namespace Aggregator.Client
 			toolStripStatusLabel2.Text = message;
 		}
 		
-		/* Включить/отключить работу авто обновления таблиц */
+		/* Включить/отключить работу авто обновления таблиц (только для OleDb)*/
 		public void autoUpdateOn()
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
@@ -194,7 +194,13 @@ namespace Aggregator.Client
 		/* Обновть данные в Истории */
 		public void updateHistory(String tableName)
 		{
-			autoUpdateLocalDatabase.update(tableName);
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){	// OLEDB
+				if(DataConfig.autoUpdate && historyRefreshOleDb != null) historyRefreshOleDb.update(tableName);
+				if(!DataConfig.autoUpdate && historyRefreshOleDb != null) historyRefreshOleDb.refresh(tableName, tableName);
+			}else{	// MSSQL
+				//..
+			}
+			
 		}
 		
 		/* =================================================================================================
@@ -205,12 +211,12 @@ namespace Aggregator.Client
 		void FormClientLoad(object sender, EventArgs e)
 		{
 			statusStrip1.ImageList = imageList1;
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
-				autoUpdateLocalDatabase = new AutoUpdateLocalDatabase();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){ // OLEDB
+				historyRefreshOleDb = new HistoryRefreshOleDb();
 				if(DataConfig.autoUpdate) autoUpdateOn();
 				else autoUpdateOff();
-			}else{
-				autoUpdateOff();
+			}else{	// MSSQL
+				//..
 			}
 			applyPermissions();
 			Utilits.Console.Log("Программа успешно запущена!");
@@ -227,12 +233,12 @@ namespace Aggregator.Client
 		{
 			if(toolStripStatusLabel1.ImageIndex == 1) toolStripStatusLabel1.ImageIndex = 0;
 			else toolStripStatusLabel1.ImageIndex = 1;
-			autoUpdateLocalDatabase.check();
+			historyRefreshOleDb.check();
 		}
 		void FormClientFormClosed(object sender, FormClosedEventArgs e)
 		{
 			timer1.Stop();
-			autoUpdateLocalDatabase.Dispose();
+			if(historyRefreshOleDb != null) historyRefreshOleDb.Dispose();
 			Dispose();
 			Application.Exit();
 		}

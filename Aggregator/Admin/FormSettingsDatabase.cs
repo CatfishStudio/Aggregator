@@ -82,7 +82,8 @@ namespace Aggregator.Admin
 			DataConfig.serverConnection = serverTextBox.Text;
 			SavingConfig.SaveDatabaseSettings();
 			Close();
-			MessageBox.Show("Чтобы изменения вступили в силу, перезапустите программу.", "Сообщение:");
+			MessageBox.Show("Чтобы изменения вступили в силу, необходимо перезапустить программу.", "Сообщение:");
+			DataForms.FClient.Close();
 		}
 		void TestConnectButtonClick(object sender, EventArgs e)
 		{
@@ -90,8 +91,9 @@ namespace Aggregator.Admin
 			try{
 				conn = new SqlConnection(serverTextBox.Text);
 				conn.Open();
-				if(conn.State.ToString() == "open") MessageBox.Show("Проверка прошла успешно!");
-				else MessageBox.Show("Не удалось подключиться к базе данных.");
+				MessageBox.Show("Состояние соединения: " + conn.State.ToString());
+				//if(conn.State.ToString() == "open") MessageBox.Show("Проверка прошла успешно!");
+				//else MessageBox.Show("Не удалось подключиться к базе данных.");
 				conn.Close();
 			}catch(Exception ex){
 				conn.Close();

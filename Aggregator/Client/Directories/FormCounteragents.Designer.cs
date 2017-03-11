@@ -255,6 +255,7 @@ namespace Aggregator.Client.Directories
 			this.editFolderButton.TabIndex = 9;
 			this.toolTip1.SetToolTip(this.editFolderButton, "Редактировать папку");
 			this.editFolderButton.UseVisualStyleBackColor = true;
+			this.editFolderButton.Click += new System.EventHandler(this.EditFolderButtonClick);
 			// 
 			// addFolderButton
 			// 
@@ -279,6 +280,7 @@ namespace Aggregator.Client.Directories
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.toolTip1.SetToolTip(this.refreshButton, "Обновить данные");
 			this.refreshButton.UseVisualStyleBackColor = true;
+			this.refreshButton.Click += new System.EventHandler(this.RefreshButtonClick);
 			// 
 			// panel5
 			// 
@@ -404,7 +406,7 @@ namespace Aggregator.Client.Directories
 			this.toolStripMenuItem2,
 			this.выбратьЗаписьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 148);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 126);
 			// 
 			// папкиToolStripMenuItem
 			// 

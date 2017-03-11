@@ -77,10 +77,8 @@ namespace Aggregator.User
 				oleDb.oleDbCommandInsert.Parameters.Add("@info", OleDbType.LongVarChar, 0, "info");
 				if(oleDb.ExecuteUpdate("Users")){
 					DataForms.FClient.updateHistory("Users");
-					if(!DataConfig.autoUpdate) DataForms.FUsers.TableRefresh();
 					Close();
-				}
-				
+				}				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
 				
@@ -110,8 +108,7 @@ namespace Aggregator.User
 				if(oleDb.ExecuteUpdate("Users")){
 					DataForms.FClient.updateHistory("Users");
 					Close();
-				}
-				
+				}				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
 				
@@ -154,9 +151,10 @@ namespace Aggregator.User
 		 */
 		void FormUsersEditLoad(object sender, EventArgs e)
 		{
-			oleDb = new OleDb(DataConfig.localDatabase);
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb = new OleDb(DataConfig.localDatabase);
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer = new SqlServer();
 			if(ID == null){
-				Text = "Новый";
+				Text = "Создать";
 			}else{
 				Text = "Изменить";
 				open();
@@ -190,7 +188,7 @@ namespace Aggregator.User
 				if(ID == null) saveNew();
 				else saveEdit();
 			}else{
-				MessageBox.Show("Не корректно заполнена форма.", "Сообщение:");
+				MessageBox.Show("Некорректно заполнены поля формы.", "Сообщение:");
 			}
 		}
 		void PermissionsComboBoxSelectedIndexChanged(object sender, EventArgs e)
