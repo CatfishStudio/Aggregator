@@ -34,6 +34,8 @@ namespace Aggregator.Client.Settings
 		{
 			ReadingConfig.ReadSettings();
 			autoUpdateCheckBox.Checked = DataConfig.autoUpdate;
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) autoUpdateCheckBox.Enabled = true;
+			else autoUpdateCheckBox.Enabled = false;
 			// today, yesterday, week, month, year
 			if(DataConfig.period == "today") periodComboBox.Text = "Сегодня";
 			if(DataConfig.period == "yesterday") periodComboBox.Text = "Вчера";

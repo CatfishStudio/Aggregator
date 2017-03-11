@@ -194,8 +194,8 @@ namespace Aggregator.Client.Directories
 		}
 		void FormCounteragentFileFormClosed(object sender, FormClosedEventArgs e)
 		{
-			//if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb.Dispose();
-			//if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
 		}
 		void OpenExcelButtonClick(object sender, EventArgs e)

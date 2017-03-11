@@ -169,14 +169,26 @@ namespace Aggregator.Client
 		/* Включить/отключить работу авто обновления таблиц */
 		public void autoUpdateOn()
 		{
-			toolStripStatusLabel1.ImageIndex = 1;
-			timer1.Start();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				toolStripStatusLabel1.ImageIndex = 1;
+				toolStripStatusLabel1.Visible = true;
+				timer1.Start();
+			}else{
+				toolStripStatusLabel1.Visible = false;
+				timer1.Stop();
+			}
 		}
 		
 		public void autoUpdateOff()
 		{
-			timer1.Stop();
-			toolStripStatusLabel1.ImageIndex = 2;
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				toolStripStatusLabel1.ImageIndex = 2;
+				toolStripStatusLabel1.Visible = true;
+				timer1.Stop();
+			}else{
+				toolStripStatusLabel1.Visible = false;
+				timer1.Stop();
+			}
 		}
 		
 		/* Обновть данные в Истории */
@@ -193,9 +205,13 @@ namespace Aggregator.Client
 		void FormClientLoad(object sender, EventArgs e)
 		{
 			statusStrip1.ImageList = imageList1;
-			autoUpdateLocalDatabase = new AutoUpdateLocalDatabase();
-			if(DataConfig.autoUpdate) autoUpdateOn();
-			else autoUpdateOff();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				autoUpdateLocalDatabase = new AutoUpdateLocalDatabase();
+				if(DataConfig.autoUpdate) autoUpdateOn();
+				else autoUpdateOff();
+			}else{
+				autoUpdateOff();
+			}
 			applyPermissions();
 			Utilits.Console.Log("Программа успешно запущена!");
 		}

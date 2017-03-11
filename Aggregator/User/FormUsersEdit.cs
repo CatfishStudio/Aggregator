@@ -164,8 +164,8 @@ namespace Aggregator.User
 		}
 		void FormUsersEditFormClosed(object sender, FormClosedEventArgs e)
 		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb.Dispose();
-			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
 		}
 		void Button1Click(object sender, EventArgs e)

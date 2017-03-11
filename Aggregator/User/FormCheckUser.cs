@@ -143,9 +143,9 @@ namespace Aggregator.User
 		 */
 		void FormSelectUserFormClosed(object sender, FormClosedEventArgs e)
 		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			if(programClose) Application.Exit();
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb.Dispose();
-			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer.Dispose();
 		}
 		void Button2Click(object sender, EventArgs e)
 		{

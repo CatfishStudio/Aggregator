@@ -96,7 +96,7 @@ namespace Aggregator.Database.Config
 			
 			sqlCommand = "INSERT INTO Settings (" +
 				"[autoUpdate], [period]) " +
-				"VALUES ('True', 'today')";
+				"VALUES ('False', 'today')";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА:CreateConfigTables:TableSettings] ошибка добавления данных в таблицу Settings.", false, true);
 		}
