@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using Aggregator.Data;
 using Aggregator.Database.Local;
+using Aggregator.Database.Server;
 
 namespace Aggregator.User
 {
@@ -35,6 +36,7 @@ namespace Aggregator.User
 		
 		public String ID;
 		OleDb oleDb;
+		SqlServer sqlServer;
 		
 		String getPermissions(String value)
 		{
@@ -162,7 +164,8 @@ namespace Aggregator.User
 		}
 		void FormUsersEditFormClosed(object sender, FormClosedEventArgs e)
 		{
-			oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer.Dispose();
 			Dispose();
 		}
 		void Button1Click(object sender, EventArgs e)

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using Aggregator.Data;
 using Aggregator.Database.Local;
+using Aggregator.Database.Server;
 
 namespace Aggregator.User
 {
@@ -34,6 +35,7 @@ namespace Aggregator.User
 		}
 		
 		OleDb oleDb;
+		SqlServer sqlServer;
 		
 		public void TableRefresh()
 		{
@@ -124,7 +126,8 @@ namespace Aggregator.User
 		}
 		void FormUsersFormClosed(object sender, FormClosedEventArgs e)
 		{
-			oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer.Dispose();
 			Dispose();
 			DataForms.FUsers = null;
 		}

@@ -11,6 +11,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Data;
+using Aggregator.Data;
+using Aggregator.Database.Server;
 using Excel;
 using Aggregator.Database.Local;
 
@@ -35,6 +37,7 @@ namespace Aggregator.Client.Directories
 		
 		public String ID;
 		OleDb oleDb;
+		SqlServer sqlServer;
 		DataSet dataSet;
 		
 		void openFileExcel()
@@ -191,6 +194,8 @@ namespace Aggregator.Client.Directories
 		}
 		void FormCounteragentFileFormClosed(object sender, FormClosedEventArgs e)
 		{
+			//if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb.Dispose();
+			//if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer.Dispose();
 			Dispose();
 		}
 		void OpenExcelButtonClick(object sender, EventArgs e)

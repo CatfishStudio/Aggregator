@@ -256,6 +256,8 @@ namespace Aggregator.Client.Directories
 		}
 		void FormCounteragentsFormClosed(object sender, FormClosedEventArgs e)
 		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer.Dispose();
 			Dispose();
 			DataForms.FCounteragents = null;
 			Utilits.Console.Log("Журнал Контрагентов: закрыт.");
