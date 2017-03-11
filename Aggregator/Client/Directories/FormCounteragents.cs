@@ -86,10 +86,10 @@ namespace Aggregator.Client.Directories
 			// Файлы			
 			oleDb.dataSet.Clear();
 			oleDb.dataSet.DataSetName = "Counteragents";
-			if(actionFolder == "" && folderExplore) {
+			if(actionFolder == "" && folderExplore == true) {
 				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file' AND parent = '') ORDER BY name ASC";
 			}else{
-				if(folderExplore) oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file') ORDER BY name ASC";
+				if(folderExplore == false) oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file') ORDER BY name ASC";
 				else oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file' AND parent = '" + actionFolder + "') ORDER BY name ASC";
 			}
 			if(oleDb.ExecuteFill("Counteragents")){
@@ -222,6 +222,7 @@ namespace Aggregator.Client.Directories
 			FormCounteragentFile FCounteragentEdit = new FormCounteragentFile();
 			FCounteragentEdit.MdiParent = DataForms.FClient;
 			FCounteragentEdit.ID = null;
+			FCounteragentEdit.ParentFolder = openFolder;
 			FCounteragentEdit.Show();
 		}
 		
@@ -235,10 +236,16 @@ namespace Aggregator.Client.Directories
 		
 		void editFolder()
 		{
-			FormCounteragentFolder FCounteragentFolder = new FormCounteragentFolder();
-			FCounteragentFolder.MdiParent = DataForms.FClient;
-			FCounteragentFolder.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
-			FCounteragentFolder.Show();
+			if(listView1.SelectedIndices.Count > 0){
+				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() == "Папка" 
+				   && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".." 
+				   && listView1.SelectedItems[0].StateImageIndex == 0){
+					FormCounteragentFolder FCounteragentFolder = new FormCounteragentFolder();
+					FCounteragentFolder.MdiParent = DataForms.FClient;
+					FCounteragentFolder.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
+					FCounteragentFolder.Show();
+				}
+			}
 		}
 		
 		void returnValue()

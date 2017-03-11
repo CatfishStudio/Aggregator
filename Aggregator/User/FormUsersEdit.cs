@@ -77,13 +77,13 @@ namespace Aggregator.User
 				oleDb.oleDbCommandInsert.Parameters.Add("@info", OleDbType.LongVarChar, 0, "info");
 				if(oleDb.ExecuteUpdate("Users")){
 					DataForms.FClient.updateHistory("Users");
+					Utilits.Console.Log("Создан новый пользователь.");
 					Close();
 				}				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
 				
 			}
-			Utilits.Console.Log("Создан новый пользователь.");
 		}
 		
 		void saveEdit()
@@ -107,13 +107,13 @@ namespace Aggregator.User
 				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
 				if(oleDb.ExecuteUpdate("Users")){
 					DataForms.FClient.updateHistory("Users");
+					Utilits.Console.Log("Изменены данные пользователя ID:" + ID);
 					Close();
 				}				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
 				
 			}
-			Utilits.Console.Log("Изменены данные пользователя ID:" + ID);
 		}
 		
 		void open()

@@ -40,7 +40,7 @@ namespace Aggregator.Client.Directories
 		
 		void saveNew()
 		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
 				// OLEDB
 				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, type FROM Counteragents WHERE (id = 0)";
 				oleDb.ExecuteFill("Counteragents");				
@@ -57,7 +57,7 @@ namespace Aggregator.Client.Directories
 					DataForms.FClient.updateHistory("Counteragents");
 					Close();
 				}
-			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				
 			}
@@ -66,7 +66,7 @@ namespace Aggregator.Client.Directories
 		
 		void saveEdit()
 		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
 				// OLEDB
 				oleDb.dataSet.Tables["Counteragents"].Rows[0]["name"] = nameTextBox.Text;
 				oleDb.oleDbCommandUpdate.CommandText = "UPDATE Counteragents SET " +
@@ -78,7 +78,7 @@ namespace Aggregator.Client.Directories
 					DataForms.FClient.updateHistory("Counteragents");
 					Close();
 				}				
-			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				
 			}
@@ -87,13 +87,13 @@ namespace Aggregator.Client.Directories
 		
 		void open()
 		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
 				// OLEDB
 				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, type FROM Counteragents WHERE (id = " + ID + ")";
 				oleDb.ExecuteFill("Counteragents");
 				codeTextBox.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["id"].ToString();
 				nameTextBox.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
-			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				
 			}

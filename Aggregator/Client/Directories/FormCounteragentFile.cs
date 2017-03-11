@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Data;
+using System.Data.OleDb;
 using Aggregator.Data;
 using Aggregator.Database.Server;
 using Excel;
@@ -36,6 +37,9 @@ namespace Aggregator.Client.Directories
 		}
 		
 		public String ID;
+		public String ParentFolder;
+		String excelTableID;
+		
 		OleDb oleDb;
 		SqlServer sqlServer;
 		DataSet dataSet;
@@ -184,13 +188,173 @@ namespace Aggregator.Client.Directories
 			}
 		}
 		
+		void getFolders()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb.oleDbCommandSelect.CommandText = "SELECT name FROM Counteragents WHERE (type = 'folder')";
+				oleDb.ExecuteFill("Counteragents");
+				foreach(DataRow row in oleDb.dataSet.Tables["Counteragents"].Rows){
+					foldersComboBox.Items.Add(row["name"].ToString());
+				}
+				oleDb.dataSet.Clear();
+				foldersComboBox.Text = ParentFolder;
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				
+			}
+		}
+		
+		void open()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, type, " +
+					"organization_address, organization_phone, organization_site, organization_email, " +
+					"contact_fullname, contact_post, contact_phone, contact_skype, contact_email, information, " +
+					"excel_filename, excel_date, excel_column_name, excel_column_code, excel_column_series, " +
+					"excel_column_article, excel_column_remainder, excel_column_manufacturer, excel_column_price, " +
+					"excel_column_discount_1, excel_column_discount_2, excel_column_discount_3, excel_column_discount_4, " +
+					"excel_column_term, excel_table_id, parent" +
+					" FROM Counteragents WHERE (id = " + ID + ")";
+				oleDb.ExecuteFill("Counteragents");
+				idTextBox.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["id"].ToString();
+				textBox1.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+				// MSSQL SERVER
+				
+			}
+		}
+		
+		void saveNew()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, type, " +
+					"organization_address, organization_phone, organization_site, organization_email, " +
+					"contact_fullname, contact_post, contact_phone, contact_skype, contact_email, information, " +
+					"excel_filename, excel_date, excel_column_name, excel_column_code, excel_column_series, " +
+					"excel_column_article, excel_column_remainder, excel_column_manufacturer, excel_column_price, " +
+					"excel_column_discount_1, excel_column_discount_2, excel_column_discount_3, excel_column_discount_4, " +
+					"excel_column_term, excel_table_id, parent" +
+					" FROM Counteragents WHERE (id = 0)";
+				oleDb.ExecuteFill("Counteragents");				
+				
+				DataRow newRow = oleDb.dataSet.Tables["Counteragents"].NewRow();
+				newRow["name"] = textBox1.Text;
+				newRow["type"] = "file";
+				newRow["organization_address"] = textBox2.Text;
+				newRow["organization_phone"] = textBox3.Text;
+				newRow["organization_site"] = textBox4.Text;
+				newRow["organization_email"] = textBox5.Text;
+				newRow["contact_fullname"] = textBox6.Text;
+				newRow["contact_post"] = textBox7.Text;
+				newRow["contact_phone"] = textBox8.Text;
+				newRow["contact_skype"] = textBox9.Text;
+				newRow["contact_email"] = textBox10.Text;
+				newRow["information"] = textBox11.Text;
+				newRow["excel_filename"] = fileTextBox.Text;
+				newRow["excel_date"] = dateLabel.Text;
+				newRow["excel_column_name"] = numericUpDown5.Value;
+				newRow["excel_column_code"] = numericUpDown6.Value;
+				newRow["excel_column_series"] = numericUpDown7.Value;
+				newRow["excel_column_article"] = numericUpDown8.Value;
+				newRow["excel_column_remainder"] = numericUpDown14.Value;
+				newRow["excel_column_manufacturer"] = numericUpDown15.Value;
+				newRow["excel_column_price"] = numericUpDown9.Value;
+				newRow["excel_column_discount_1"] = numericUpDown10.Value;
+				newRow["excel_column_discount_2"] = numericUpDown11.Value;
+				newRow["excel_column_discount_3"] = numericUpDown12.Value;
+				newRow["excel_column_discount_4"] = numericUpDown13.Value;
+				newRow["excel_column_term"] = numericUpDown16.Value;
+				excelTableID = "Price" + String.Format("{0:ddMMyyyyHHmmss}", DateTime.Now); 
+				newRow["excel_table_id"] = excelTableID;
+				newRow["parent"] = foldersComboBox.Text; // (!) Проверить чтобы папка существовала
+				
+				oleDb.dataSet.Tables["Counteragents"].Rows.Add(newRow);
+				
+				oleDb.oleDbCommandInsert.CommandText = "INSERT INTO Counteragents " +
+					"(name, type, " +
+					"organization_address, organization_phone, organization_site, organization_email, " +
+					"contact_fullname, contact_post, contact_phone, contact_skype, contact_email, information, " +
+					"excel_filename, excel_date, excel_column_name, excel_column_code, excel_column_series, " +
+					"excel_column_article, excel_column_remainder, excel_column_manufacturer, excel_column_price, " +
+					"excel_column_discount_1, excel_column_discount_2, excel_column_discount_3, excel_column_discount_4, " +
+					"excel_column_term, excel_table_id, parent)" +
+					" VALUES (@name, @type, " +
+					"@organization_address, @organization_phone, @organization_site, @organization_email, " +
+					"@contact_fullname, @contact_post, @contact_phone, @contact_skype, @contact_email, @information, " +
+					"@excel_filename, @excel_date, @excel_column_name, @excel_column_code, @excel_column_series, " +
+					"@excel_column_article, @excel_column_remainder, @excel_column_manufacturer, @excel_column_price, " +
+					"@excel_column_discount_1, @excel_column_discount_2, @excel_column_discount_3, @excel_column_discount_4, " +
+					"@excel_column_term, @excel_table_id, @parent)";
+				oleDb.oleDbCommandInsert.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
+				oleDb.oleDbCommandInsert.Parameters.Add("@type", OleDbType.VarChar, 255, "type");
+				oleDb.oleDbCommandInsert.Parameters.Add("@organization_address", OleDbType.VarChar, 255, "organization_address");
+				oleDb.oleDbCommandInsert.Parameters.Add("@organization_phone", OleDbType.VarChar, 255, "organization_phone");
+				oleDb.oleDbCommandInsert.Parameters.Add("@organization_site", OleDbType.VarChar, 255, "organization_site");
+				oleDb.oleDbCommandInsert.Parameters.Add("@organization_email", OleDbType.VarChar, 255, "organization_email");
+				oleDb.oleDbCommandInsert.Parameters.Add("@contact_fullname", OleDbType.VarChar, 255, "contact_fullname");
+				oleDb.oleDbCommandInsert.Parameters.Add("@contact_post", OleDbType.VarChar, 255, "contact_post");
+				oleDb.oleDbCommandInsert.Parameters.Add("@contact_phone", OleDbType.VarChar, 255, "contact_phone");
+				oleDb.oleDbCommandInsert.Parameters.Add("@contact_skype", OleDbType.VarChar, 255, "contact_skype");
+				oleDb.oleDbCommandInsert.Parameters.Add("@contact_email", OleDbType.VarChar, 255, "contact_email");
+				oleDb.oleDbCommandInsert.Parameters.Add("@information", OleDbType.LongVarChar, 0, "information");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_filename", OleDbType.LongVarChar, 0, "excel_filename");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_date", OleDbType.VarChar, 255, "excel_date");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_name", OleDbType.Integer, 0, "excel_column_name");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_code", OleDbType.Integer, 0, "excel_column_code");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_series", OleDbType.Integer, 0, "excel_column_series");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_article", OleDbType.Integer, 0, "excel_column_article");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_remainder", OleDbType.Integer, 0, "excel_column_remainder");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_manufacturer", OleDbType.Integer, 0, "excel_column_manufacturer");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_price", OleDbType.Integer, 0, "excel_column_price");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_discount_1", OleDbType.Integer, 0, "excel_column_discount_1");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_discount_2", OleDbType.Integer, 0, "excel_column_discount_2");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_discount_3", OleDbType.Integer, 0, "excel_column_discount_3");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_discount_4", OleDbType.Integer, 0, "excel_column_discount_4");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_column_term", OleDbType.Integer, 0, "excel_column_term");
+				oleDb.oleDbCommandInsert.Parameters.Add("@excel_table_id", OleDbType.VarChar, 255, "excel_table_id");
+				oleDb.oleDbCommandInsert.Parameters.Add("@parent", OleDbType.VarChar, 255, "parent");
+				
+				if(oleDb.ExecuteUpdate("Counteragents")){
+					DataForms.FClient.updateHistory("Counteragents");
+					Utilits.Console.Log("Создан новый контрагент.");
+					Close();
+				}
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				
+			}
+			
+		}
+		
+		void saveEdit()
+		{
+			
+		}
+		
+		bool check()
+		{
+			if(textBox1.Text == "") return false;
+			return true;
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
 		 */	
 		void FormCounteragentFileLoad(object sender, EventArgs e)
 		{
-	
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb = new OleDb(DataConfig.localDatabase);
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer = new SqlServer();
+			getFolders();
+			if(ID == null){
+				Text = "Создать";
+			}else{
+				Text = "Изменить";
+				open();
+			}
 		}
 		void FormCounteragentFileFormClosed(object sender, FormClosedEventArgs e)
 		{
@@ -217,11 +381,16 @@ namespace Aggregator.Client.Directories
 		}
 		void ButtonSaveClick(object sender, EventArgs e)
 		{
-	
+			if(check()){
+				if(ID == null) saveNew();
+				else saveEdit();
+			}else{
+				MessageBox.Show("Некорректно заполнены поля формы.", "Сообщение:");
+			}
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
 		{
-			
+			Close();
 		}
 		void DataGrid1PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{

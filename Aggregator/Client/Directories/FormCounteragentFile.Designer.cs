@@ -89,9 +89,9 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.GroupBox groupBox4;
 		private System.Windows.Forms.TextBox textBox11;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox foldersComboBox;
 		private System.Windows.Forms.Label label12;
-		private System.Windows.Forms.TextBox textBox12;
+		private System.Windows.Forms.TextBox idTextBox;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.Button button11;
 		
@@ -192,9 +192,9 @@ namespace Aggregator.Client.Directories
 			this.label1 = new System.Windows.Forms.Label();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.button11 = new System.Windows.Forms.Button();
-			this.textBox12 = new System.Windows.Forms.TextBox();
+			this.idTextBox = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.foldersComboBox = new System.Windows.Forms.ComboBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.panel1.SuspendLayout();
@@ -979,9 +979,9 @@ namespace Aggregator.Client.Directories
 			// tabPage3
 			// 
 			this.tabPage3.Controls.Add(this.button11);
-			this.tabPage3.Controls.Add(this.textBox12);
+			this.tabPage3.Controls.Add(this.idTextBox);
 			this.tabPage3.Controls.Add(this.label13);
-			this.tabPage3.Controls.Add(this.comboBox1);
+			this.tabPage3.Controls.Add(this.foldersComboBox);
 			this.tabPage3.Controls.Add(this.label12);
 			this.tabPage3.Location = new System.Drawing.Point(4, 25);
 			this.tabPage3.Name = "tabPage3";
@@ -1001,13 +1001,13 @@ namespace Aggregator.Client.Directories
 			this.button11.Text = "X";
 			this.button11.UseVisualStyleBackColor = true;
 			// 
-			// textBox12
+			// idTextBox
 			// 
-			this.textBox12.Location = new System.Drawing.Point(118, 3);
-			this.textBox12.Name = "textBox12";
-			this.textBox12.ReadOnly = true;
-			this.textBox12.Size = new System.Drawing.Size(100, 20);
-			this.textBox12.TabIndex = 3;
+			this.idTextBox.Location = new System.Drawing.Point(118, 3);
+			this.idTextBox.Name = "idTextBox";
+			this.idTextBox.ReadOnly = true;
+			this.idTextBox.Size = new System.Drawing.Size(100, 20);
+			this.idTextBox.TabIndex = 3;
 			// 
 			// label13
 			// 
@@ -1017,13 +1017,13 @@ namespace Aggregator.Client.Directories
 			this.label13.TabIndex = 2;
 			this.label13.Text = "Код:";
 			// 
-			// comboBox1
+			// foldersComboBox
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(118, 26);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(372, 21);
-			this.comboBox1.TabIndex = 1;
+			this.foldersComboBox.FormattingEnabled = true;
+			this.foldersComboBox.Location = new System.Drawing.Point(118, 26);
+			this.foldersComboBox.Name = "foldersComboBox";
+			this.foldersComboBox.Size = new System.Drawing.Size(372, 21);
+			this.foldersComboBox.TabIndex = 1;
 			// 
 			// label12
 			// 
