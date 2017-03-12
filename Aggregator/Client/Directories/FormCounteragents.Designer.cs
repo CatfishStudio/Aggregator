@@ -53,6 +53,7 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem выбратьЗаписьToolStripMenuItem;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -103,6 +104,7 @@ namespace Aggregator.Client.Directories
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.папкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.создатьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -330,6 +332,7 @@ namespace Aggregator.Client.Directories
 			this.editButton.TabIndex = 1;
 			this.toolTip1.SetToolTip(this.editButton, "Изменить");
 			this.editButton.UseVisualStyleBackColor = true;
+			this.editButton.Click += new System.EventHandler(this.EditButtonClick);
 			// 
 			// addButton
 			// 
@@ -358,7 +361,8 @@ namespace Aggregator.Client.Directories
 			this.columnHeader1,
 			this.columnHeader2,
 			this.columnHeader3,
-			this.columnHeader4});
+			this.columnHeader4,
+			this.columnHeader5});
 			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -394,6 +398,11 @@ namespace Aggregator.Client.Directories
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "№";
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Прайс";
+			this.columnHeader5.Width = 150;
 			// 
 			// contextMenuStrip1
 			// 

@@ -108,6 +108,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.StateImageIndex = 0;
 				ListViewItem_add.SubItems.Add("Папка");
 				ListViewItem_add.SubItems.Add(rowFolder["id"].ToString());
+				ListViewItem_add.SubItems.Add(rowFolder["excel_table_id"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ОТОБРАЖЕНИЕ "Файлов"
@@ -118,6 +119,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.StateImageIndex = 1;
 				ListViewItem_add.SubItems.Add("");
 				ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
+				ListViewItem_add.SubItems.Add(rowElement["excel_table_id"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ВЫБОР: выдиляем ранее выбранный элемент.
@@ -226,6 +228,22 @@ namespace Aggregator.Client.Directories
 			FCounteragentEdit.Show();
 		}
 		
+		void editFile()
+		{
+			if(listView1.SelectedIndices.Count > 0){
+				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() == "" 
+				   && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".." 
+				   && listView1.SelectedItems[0].StateImageIndex == 1){
+					FormCounteragentFile FCounteragentEdit = new FormCounteragentFile();
+					FCounteragentEdit.MdiParent = DataForms.FClient;
+					FCounteragentEdit.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
+					FCounteragentEdit.ParentFolder = openFolder;
+					FCounteragentEdit.ExcelTableID = listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString();
+					FCounteragentEdit.Show();
+				}
+			}
+		}
+		
 		void addFolder()
 		{
 			FormCounteragentFolder FCounteragentFolder = new FormCounteragentFolder();
@@ -322,6 +340,10 @@ namespace Aggregator.Client.Directories
 		void RefreshButtonClick(object sender, EventArgs e)
 		{
 			TableRefresh();
+		}
+		void EditButtonClick(object sender, EventArgs e)
+		{
+			editFile();
 		}
 		
 	}

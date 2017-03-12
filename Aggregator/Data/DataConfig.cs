@@ -26,10 +26,10 @@ namespace Aggregator.Data
 		
 		/* Локальная база данных */		
 		public static String oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
-		//public static String oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
-		//public static String oledbConnectPass = "12345";
 		public static String oledbConnectLineEnd = "";
 		public static String oledbConnectPass = "";
+		//public static String oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
+		//public static String oledbConnectPass = "12345";
 		
 		/* Настройки подключения к базе данных */		
 		public static String localDatabase = "";		// адрес и имя файла базы данных database.mdb

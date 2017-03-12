@@ -40,7 +40,7 @@ namespace Aggregator.Database.Local
 				return true;
 			}catch(Exception ex){
 				oleDbConnection.Close();
-				Utilits.Console.Log("[ОШИБКА:QueryOleDb:Execute] ошибка выполнения запроса: " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА][QueryOleDb:Execute] ошибка выполнения запроса: " + ex.ToString(), false, true);
 				return false;
 			}
 		}
