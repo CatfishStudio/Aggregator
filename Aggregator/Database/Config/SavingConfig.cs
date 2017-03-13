@@ -46,11 +46,11 @@ namespace Aggregator.Database.Config
 				oleDb.ExecuteUpdate("DatabaseSettings");
 				
 				oleDb.Dispose();
-				Utilits.Console.Log("[SaveDatabaseSettings]: Сохранение настроек соединения с базой данных прошло успешно.");
+				Utilits.Console.Log("Сохранение настроек соединения с базой данных прошло успешно.");
 				return true;
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("[ОШИБКА][SaveDatabaseSettings]: Сохранение настроек соединения с базой данных. " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА] Сохранение настроек соединения с базой данных. " + ex.Message.ToString(), false, true);
 				return false;
 			}
 		}
@@ -74,16 +74,16 @@ namespace Aggregator.Database.Config
 				oleDb.dataSet.Tables["Settings"].Rows[0]["period"] = DataConfig.period;
 				if(oleDb.ExecuteUpdate("Settings")){
 					oleDb.Dispose();
-					Utilits.Console.Log("[SaveSettings]: Сохранение настроек программы прошло успешно.");
+					Utilits.Console.Log("Сохранение настроек программы прошло успешно.");
 					return true;
 				}else{
 					oleDb.Error();
-					Utilits.Console.Log("[ОШИБКА][SaveSettings]: Настройки программы не сохранены.", false, true);
+					Utilits.Console.Log("[ОШИБКА] Настройки программы не сохранены.", false, true);
 					return false;
 				}
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("[ОШИБКА][SaveSettings]: Произошла ошибка: " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
 				return false;
 			}
 		}

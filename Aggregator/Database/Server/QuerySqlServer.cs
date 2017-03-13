@@ -42,7 +42,7 @@ namespace Aggregator.Database.Server
 				return true;
 			}catch(Exception ex){
 				sqlConnection.Close();
-				Utilits.Console.Log("[ОШИБКА:QuerySqlServer:Execute] ошибка выполнения запроса: " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА] ошибка выполнения запроса: " + ex.Message.ToString(), false, true);
 				return false;
 			}
 		}

@@ -63,7 +63,7 @@ namespace Aggregator.Database.Local
 					tables.Add(table);
 				}
 			}else{
-				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ][AutoUpdateLocalDatabase] Служба истории обновлений базы данных не запущена!!!");
+				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Служба истории обновлений базы данных не запущена!!!");
 			}
 		}
 		
@@ -82,7 +82,7 @@ namespace Aggregator.Database.Local
 					}
 				}
 			}else{
-				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ][AutoUpdateLocalDatabase:check] Служба истории обновлений базы данных не удалось получить обновленные данные!");
+				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Служба истории обновлений базы данных не удалось получить обновленные данные!");
 			}
 		}
 		
@@ -93,10 +93,10 @@ namespace Aggregator.Database.Local
 				oleDb.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["user"] = DataConfig.userName;
 				oleDb.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["datetime"] = DateTime.Now.ToString();
 				
-				if(!oleDb.ExecuteUpdate("History")) Utilits.Console.Log("[ОШИБКА][AutoUpdateLocalDatabase:update] ошибка обновления данных.", false, true);
+				if(!oleDb.ExecuteUpdate("History")) Utilits.Console.Log("[ОШИБКА] ошибка обновления данных.", false, true);
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("[ОШИБКА][AutoUpdateLocalDatabase:update] " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
 			}
 		}
 		
@@ -110,7 +110,7 @@ namespace Aggregator.Database.Local
 				Utilits.Console.Log("[ИСТОРИЯ] Таблица " + tableRepresent + " была успешно обновлена.");
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("[ОШИБКА][AutoUpdateLocalDatabase:refresh] Обновление таблицы "+ tableRepresent + "! " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА] Обновление таблицы "+ tableRepresent + "! " + ex.Message.ToString(), false, true);
 			}
 		}
 		

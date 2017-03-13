@@ -31,7 +31,7 @@ namespace Aggregator.Database.Config
 				DataConfig.typeConnection = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["typeConnection"].ToString();
 				DataConfig.serverConnection = oleDb.dataSet.Tables["DatabaseSettings"].Rows[0]["serverConnection"].ToString();
 				oleDb.Dispose();
-				Utilits.Console.Log("[ReadDatabaseSettings]: Настройки соединения с базой данных успешно загружены.");
+				Utilits.Console.Log("Настройки соединения с базой данных успешно загружены.");
 			}catch(Exception ex){
 				oleDb.Error();
 				MessageBox.Show("[ReadDatabaseSettings]: " + ex.ToString(), "Ошибка");

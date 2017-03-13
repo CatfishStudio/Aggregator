@@ -56,13 +56,13 @@ namespace Aggregator.Client.Directories
 				oleDb.oleDbCommandInsert.Parameters.Add("@type", OleDbType.VarChar, 255, "type");
 				if(oleDb.ExecuteUpdate("Counteragents")){
 					DataForms.FClient.updateHistory("Counteragents");
+					Utilits.Console.Log("Создан новый папка.");
 					Close();
 				}
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				
 			}
-			Utilits.Console.Log("Создан новый пользователь.");
 		}
 		
 		void saveEdit()

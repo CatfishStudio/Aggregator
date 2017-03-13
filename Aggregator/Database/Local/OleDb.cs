@@ -51,7 +51,7 @@ namespace Aggregator.Database.Local
 				return true;
 			}catch(Exception ex){
 				oleDbConnection.Close();
-				Utilits.Console.Log("[ОШИБКА][OleDb:ExecuteFill] " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
 				return false;
 			}
 		}
@@ -68,7 +68,7 @@ namespace Aggregator.Database.Local
 				return true;
 			}catch(Exception ex){
 				oleDbConnection.Close();
-				Utilits.Console.Log("[ОШИБКА][OleDb:ExecuteUpdate] " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
 				return false;
 			}
 		} 

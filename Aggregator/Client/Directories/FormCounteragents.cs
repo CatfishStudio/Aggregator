@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -52,7 +53,7 @@ namespace Aggregator.Client.Directories
 					else TableRefreshLocal(actionFolder);
 				}catch(Exception ex){
 					oleDb.Error();
-					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 				}
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
@@ -61,7 +62,7 @@ namespace Aggregator.Client.Directories
 					else TableRefreshServer(actionFolder);
 				}catch(Exception ex){
 					sqlServer.Error();
-					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 				}
 			}
 		}
@@ -143,7 +144,7 @@ namespace Aggregator.Client.Directories
 					Utilits.Console.Log("Журнал Контрагентов: поиск завершен.");
 				}catch(Exception ex){
 					oleDb.Error();
-					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 				}
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
@@ -152,7 +153,7 @@ namespace Aggregator.Client.Directories
 					Utilits.Console.Log("Журнал Контрагентов: поиск завершен.");
 				}catch(Exception ex){
 					sqlServer.Error();
-					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 				}
 			}
 			comboBox1.Items.Add(comboBox1.Text);
@@ -257,7 +258,7 @@ namespace Aggregator.Client.Directories
 					String fileName = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
 					String priceName = listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString();
 					
-					if(MessageBox.Show("Удалить безвозвратно контрагента '" + fileName + "' и его прайс '" + priceName + "' ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+					if(MessageBox.Show("Удалить безвозвратно контрагента '" + fileName + "'" + Environment.NewLine + "и его прайс '" + priceName + "' ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
 						if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 							// OLEDB
 							QueryOleDb query = new QueryOleDb(DataConfig.localDatabase);
@@ -308,7 +309,54 @@ namespace Aggregator.Client.Directories
 		
 		void deleteFolder()
 		{
-			
+			if(listView1.SelectedIndices.Count > 0){
+				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() == "Папка" 
+				   && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".." 
+				   && listView1.SelectedItems[0].StateImageIndex == 0){
+					String folderID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
+					String folderName = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+					
+					if(MessageBox.Show("Удалить безвозвратно папку '" + folderName + "' и всё её содержимое ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+						if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+							// OLEDB
+							QueryOleDb query = new QueryOleDb(DataConfig.localDatabase);
+							oleDb = new OleDb(DataConfig.localDatabase);
+							oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE(parent = '" + folderName + "')";
+							if(oleDb.ExecuteFill("Counteragents")){
+								foreach(DataRow row in oleDb.dataSet.Tables[0].Rows){
+									query.SetCommand("DROP TABLE " + row["excel_table_id"].ToString());
+									if(query.Execute()){
+										Utilits.Console.Log("Прайс лист '" + row["excel_table_id"].ToString() + "' успешно удалён.");
+									}else{
+										Utilits.Console.Log("[ОШИБКА] Прайс лист '" + row["excel_table_id"].ToString() + "' не удалось удалить!", false, true);
+									}
+								}
+								query = new QueryOleDb(DataConfig.localDatabase);
+								query.SetCommand("DELETE FROM Counteragents WHERE (parent ='" + folderName +"')");
+								if(query.Execute()){
+									query = new QueryOleDb(DataConfig.localDatabase);
+									query.SetCommand("DELETE FROM Counteragents WHERE (id = " + folderID +")");
+									if(query.Execute()){
+										DataForms.FClient.updateHistory("Counteragents");
+										query.Dispose();
+										Utilits.Console.Log("Удаление папки '" + folderName + "' прошло успешно.");
+									}else{
+										query.Dispose();
+										Utilits.Console.Log("Папку '" + folderName + "' не удалось удалить!", false, true);
+									}
+								}else{
+									query.Dispose();
+									Utilits.Console.Log("[ОШИБКА] Ошибка удаления файлов в папке '" + folderName + "'", false, true);
+								}
+							}
+						} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+							// MSSQL SERVER
+							
+						}
+					}
+					
+				}
+			}
 		}
 		
 		void returnValue()
@@ -395,9 +443,8 @@ namespace Aggregator.Client.Directories
 		}
 		void DeleteFolderButtonClick(object sender, EventArgs e)
 		{
-	
+			deleteFolder();
 		}
-				
 		
 	}
 }

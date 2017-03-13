@@ -341,7 +341,7 @@ namespace Aggregator.Client.Directories
 					}
 				}catch(Exception ex){
 					oleDb.Error();
-					Utilits.Console.Log("[ОШИБКА] Ошибка совпадения колонок, или у одной из выбранных колонок не верный тим данных. Описание ошибки: " + ex.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА] Ошибка совпадения колонок, или у одной из выбранных колонок не верный тим данных. Описание ошибки: " + ex.Message.ToString(), false, true);
 					removePrice(ExcelTableID);
 					return false;
 				}
