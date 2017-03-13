@@ -45,7 +45,7 @@ namespace Aggregator.Client.Directories
 		
 		public void TableRefresh(String actionFolder = null)
 		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 				// OLEDB
 				try{
 					if(actionFolder == null) TableRefreshLocal(openFolder);
@@ -54,7 +54,7 @@ namespace Aggregator.Client.Directories
 					oleDb.Error();
 					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
 				}
-			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				try{
 					if(actionFolder == null) TableRefreshServer(openFolder);
@@ -246,6 +246,44 @@ namespace Aggregator.Client.Directories
 			}
 		}
 		
+		void deleteFile()
+		{
+			if(listView1.SelectedIndices.Count > 0){
+				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() == "" 
+				   && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".." 
+				   && listView1.SelectedItems[0].StateImageIndex == 1){
+					
+					String fileID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
+					String fileName = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+					String priceName = listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString();
+					
+					if(MessageBox.Show("Удалить безвозвратно контрагента '" + fileName + "' и его прайс '" + priceName + "' ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+						if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+							// OLEDB
+							QueryOleDb query = new QueryOleDb(DataConfig.localDatabase);
+							query.SetCommand("DELETE FROM Counteragents WHERE (id = " + fileID + ")");
+							if(query.Execute()){
+								query = new QueryOleDb(DataConfig.localDatabase);
+								query.SetCommand("DROP TABLE " + priceName);
+								if(query.Execute()){
+									Utilits.Console.Log("Контрагент '" + fileName + "' успешно удалён. Прайс '" + priceName + "' успешно удалён.");
+								}else{
+									Utilits.Console.Log("[ОШИБКА] Прайс '" + priceName + "' не удалось удалить!");
+								}
+								DataForms.FClient.updateHistory("Counteragents");
+							}else{
+								Utilits.Console.Log("[ОШИБКА] Контрагент '" + fileName + "' не удалось удалить!");
+							}
+						} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+							// MSSQL SERVER
+							
+						}
+					}					
+					
+				}
+			}
+		}
+		
 		void addFolder()
 		{
 			FormCounteragentFolder FCounteragentFolder = new FormCounteragentFolder();
@@ -266,6 +304,11 @@ namespace Aggregator.Client.Directories
 					FCounteragentFolder.Show();
 				}
 			}
+		}
+		
+		void deleteFolder()
+		{
+			
 		}
 		
 		void returnValue()
@@ -345,6 +388,14 @@ namespace Aggregator.Client.Directories
 		void EditButtonClick(object sender, EventArgs e)
 		{
 			editFile();
+		}
+		void DeleteButtonClick(object sender, EventArgs e)
+		{
+			deleteFile();
+		}
+		void DeleteFolderButtonClick(object sender, EventArgs e)
+		{
+	
 		}
 				
 		

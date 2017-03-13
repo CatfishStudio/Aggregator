@@ -248,6 +248,7 @@ namespace Aggregator.Client.Directories
 			this.deleteFolderButton.TabIndex = 10;
 			this.toolTip1.SetToolTip(this.deleteFolderButton, "Удалить папку");
 			this.deleteFolderButton.UseVisualStyleBackColor = true;
+			this.deleteFolderButton.Click += new System.EventHandler(this.DeleteFolderButtonClick);
 			// 
 			// editFolderButton
 			// 
@@ -323,6 +324,7 @@ namespace Aggregator.Client.Directories
 			this.deleteButton.TabIndex = 2;
 			this.toolTip1.SetToolTip(this.deleteButton, "Удалить");
 			this.deleteButton.UseVisualStyleBackColor = true;
+			this.deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
 			// 
 			// editButton
 			// 
