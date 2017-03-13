@@ -226,11 +226,12 @@ namespace Aggregator.Client.Directories
 				// OLEDB
 				oleDb = new OleDb(DataConfig.localDatabase);
 				oleDb.oleDbCommandSelect.CommandText = "SELECT name FROM Counteragents WHERE (type = 'folder')";
-				oleDb.ExecuteFill("Counteragents");
-				foreach(DataRow row in oleDb.dataSet.Tables["Counteragents"].Rows){
-					foldersComboBox.Items.Add(row["name"].ToString());
+				if(oleDb.ExecuteFill("Counteragents")){
+					foldersComboBox.Items.Clear();
+					foreach(DataRow row in oleDb.dataSet.Tables["Counteragents"].Rows){
+						foldersComboBox.Items.Add(row["name"].ToString());
+					}
 				}
-				foldersComboBox.Text = ParentFolder;
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				
@@ -671,6 +672,7 @@ namespace Aggregator.Client.Directories
 		{
 			if(textBox1.Text == "") return false;
 			if(foldersComboBox.Text != ""){
+				getFolders();
 				bool checkParent = false;
 				for(int i = 0; i < foldersComboBox.Items.Count; i++){
 					if(foldersComboBox.Text == foldersComboBox.Items[i].ToString()){
@@ -678,8 +680,12 @@ namespace Aggregator.Client.Directories
 						break;
 					}
 				}
-				if(checkParent) return true;
-				else return false;
+				if(checkParent){
+					return true;
+				}else{
+					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Папка '" + foldersComboBox.Text + "' не существует. Выберите другую родительскую папку.", false, true);
+					return false;
+				}
 			}else{
 				return true;
 			}
@@ -694,6 +700,7 @@ namespace Aggregator.Client.Directories
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb = new OleDb(DataConfig.localDatabase);
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer = new SqlServer();
 			getFolders();
+			foldersComboBox.Text = ParentFolder;
 			if(ID == null){
 				Text = "Создать";
 			}else{

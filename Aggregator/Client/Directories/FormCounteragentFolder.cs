@@ -37,6 +37,7 @@ namespace Aggregator.Client.Directories
 		public String ID;
 		OleDb oleDb;
 		SqlServer sqlServer;
+		String folderName;
 		
 		void saveNew()
 		{
@@ -75,14 +76,32 @@ namespace Aggregator.Client.Directories
 				oleDb.oleDbCommandUpdate.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
 				if(oleDb.ExecuteUpdate("Counteragents")){
-					DataForms.FClient.updateHistory("Counteragents");
+					moveFilesInRenameFolder();
+					DataForms.FClient.updateHistory("Counteragents");					
+					Utilits.Console.Log("Папка успешно переименована.");
 					Close();
 				}				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				
 			}
-			Utilits.Console.Log("Изменены данные пользователя ID:" + ID);
+			
+		}
+		
+		void moveFilesInRenameFolder()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				QueryOleDb query = new QueryOleDb(DataConfig.localDatabase);
+				query.SetCommand("UPDATE Counteragents SET parent='" + nameTextBox.Text + "' WHERE(parent = '" + folderName + "')");
+				query.Execute();
+				query.Dispose();
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				
+			}
+			
+			
 		}
 		
 		void open()
@@ -93,6 +112,7 @@ namespace Aggregator.Client.Directories
 				oleDb.ExecuteFill("Counteragents");
 				codeTextBox.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["id"].ToString();
 				nameTextBox.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
+				folderName = oleDb.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				

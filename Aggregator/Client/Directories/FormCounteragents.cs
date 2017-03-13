@@ -43,12 +43,13 @@ namespace Aggregator.Client.Directories
 		bool folderExplore = true; 		// флаг отображения элементов в папках
 		int selectTableLine = 0;		// выбранная строка в таблице
 		
-		void TableUpdate(String actionFolder)
+		public void TableRefresh(String actionFolder = null)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB) {
 				// OLEDB
 				try{
-					TableUpdateLocal(actionFolder);
+					if(actionFolder == null) TableRefreshLocal(openFolder);
+					else TableRefreshLocal(actionFolder);
 				}catch(Exception ex){
 					oleDb.Error();
 					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
@@ -56,7 +57,8 @@ namespace Aggregator.Client.Directories
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
 				try{
-					TableUpdateServer(actionFolder);
+					if(actionFolder == null) TableRefreshServer(openFolder);
+					else TableRefreshServer(actionFolder);
 				}catch(Exception ex){
 					sqlServer.Error();
 					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
@@ -64,7 +66,7 @@ namespace Aggregator.Client.Directories
 			}
 		}
 		
-		void TableUpdateLocal(String actionFolder)
+		void TableRefreshLocal(String actionFolder)
 		{
 			listView1.Items.Clear();
 			// Папки
@@ -126,7 +128,7 @@ namespace Aggregator.Client.Directories
 			listView1.SelectedIndices.IndexOf(selectTableLine);
 		}
 		
-		void TableUpdateServer(String actionFolder)
+		void TableRefreshServer(String actionFolder)
 		{
 			sqlServer = new SqlServer();
 			// ...
@@ -198,11 +200,11 @@ namespace Aggregator.Client.Directories
 			if(folderExplore){
 				folderExplore = false;
 				Utilits.Console.Log("Контрагенты: группирование отключено.");
-				TableUpdate(""); // отображается всё содержимое
+				TableRefresh(""); // отображается всё содержимое
 			}else{
 				folderExplore = true;
 				Utilits.Console.Log("Контрагенты: группирование включено.");
-				TableUpdate(openFolder); //возвращаемся в последнюю активную папку.
+				TableRefresh(openFolder); //возвращаемся в последнюю активную папку.
 			}
 		}
 		
@@ -211,10 +213,10 @@ namespace Aggregator.Client.Directories
 			if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() == "Папка" && folderExplore){
 				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".."){
 					openFolder = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
-					TableUpdate(openFolder);
+					TableRefresh(openFolder);
 				}else {
 					openFolder = "";
-					TableUpdate(openFolder);
+					TableRefresh(openFolder);
 				}
 			}	
 		}
@@ -274,22 +276,13 @@ namespace Aggregator.Client.Directories
 			}
 		}
 		
-		public void TableRefresh()
-		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
-				// OLEDB
-				TableUpdate(openFolder);
-			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
-				// MSSQL SERVER
-			}
-		}
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
 		 */	
 		void FormCounteragentsLoad(object sender, EventArgs e)
 		{
-			TableUpdate(""); // Загрузка данных из базы данных
+			TableRefresh(""); // Загрузка данных из базы данных
 			Utilits.Console.Log("Журнал Контрагентов: отркыт.");
 		}
 		void FormCounteragentsFormClosed(object sender, FormClosedEventArgs e)
@@ -347,7 +340,7 @@ namespace Aggregator.Client.Directories
 		}
 		void RefreshButtonClick(object sender, EventArgs e)
 		{
-			TableRefresh();
+			TableRefresh(openFolder);
 		}
 		void EditButtonClick(object sender, EventArgs e)
 		{
