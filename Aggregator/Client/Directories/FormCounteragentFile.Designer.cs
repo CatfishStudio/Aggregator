@@ -346,6 +346,7 @@ namespace Aggregator.Client.Directories
 			this.button10.TabIndex = 15;
 			this.button10.Text = "X";
 			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button9
 			// 
@@ -356,6 +357,7 @@ namespace Aggregator.Client.Directories
 			this.button9.TabIndex = 14;
 			this.button9.Text = "X";
 			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button8
 			// 
@@ -366,6 +368,7 @@ namespace Aggregator.Client.Directories
 			this.button8.TabIndex = 13;
 			this.button8.Text = "X";
 			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button7
 			// 
@@ -376,6 +379,7 @@ namespace Aggregator.Client.Directories
 			this.button7.TabIndex = 12;
 			this.button7.Text = "X";
 			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button6
 			// 
@@ -386,6 +390,7 @@ namespace Aggregator.Client.Directories
 			this.button6.TabIndex = 11;
 			this.button6.Text = "X";
 			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// textBox10
 			// 
@@ -497,6 +502,7 @@ namespace Aggregator.Client.Directories
 			this.button5.TabIndex = 14;
 			this.button5.Text = "X";
 			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button4
 			// 
@@ -507,6 +513,7 @@ namespace Aggregator.Client.Directories
 			this.button4.TabIndex = 13;
 			this.button4.Text = "X";
 			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button3
 			// 
@@ -517,6 +524,7 @@ namespace Aggregator.Client.Directories
 			this.button3.TabIndex = 12;
 			this.button3.Text = "X";
 			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button2
 			// 
@@ -527,6 +535,7 @@ namespace Aggregator.Client.Directories
 			this.button2.TabIndex = 11;
 			this.button2.Text = "X";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button1
 			// 
@@ -537,6 +546,7 @@ namespace Aggregator.Client.Directories
 			this.button1.TabIndex = 10;
 			this.button1.Text = "X";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// textBox5
 			// 
@@ -1000,6 +1010,7 @@ namespace Aggregator.Client.Directories
 			this.button11.TabIndex = 11;
 			this.button11.Text = "X";
 			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// idTextBox
 			// 

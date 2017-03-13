@@ -331,7 +331,15 @@ namespace Aggregator.Client.Directories
 		}
 		void FindButtonClick(object sender, EventArgs e)
 		{
+			openFolder = "";
 			search(); // поиск
+		}
+		void ComboBox1KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				openFolder = "";
+				search(); // поиск
+			}
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
@@ -345,6 +353,7 @@ namespace Aggregator.Client.Directories
 		{
 			editFile();
 		}
+				
 		
 	}
 }

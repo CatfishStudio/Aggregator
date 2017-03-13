@@ -229,6 +229,7 @@ namespace Aggregator.Client.Directories
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(176, 21);
 			this.comboBox1.TabIndex = 11;
+			this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComboBox1KeyDown);
 			// 
 			// panel6
 			// 

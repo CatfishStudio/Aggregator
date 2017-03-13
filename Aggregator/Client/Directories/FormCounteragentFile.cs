@@ -39,6 +39,7 @@ namespace Aggregator.Client.Directories
 		public String ID;
 		public String ParentFolder;
 		public String ExcelTableID;
+		bool firstColumnNumber;
 		
 		OleDb oleDb;
 		SqlServer sqlServer;
@@ -49,6 +50,8 @@ namespace Aggregator.Client.Directories
 			if(openFileDialog1.ShowDialog() == DialogResult.OK){
 				fileTextBox.Text = openFileDialog1.FileName;
 				dateLabel.Text = DateTime.Now.ToString();
+				firstColumnNumber = false;
+				resetEditor();
 				if(fileTextBox.Text.Substring(fileTextBox.Text.Length - 3) == "xls"){
 					readExcelFormat972003();
 				}else{
@@ -127,6 +130,34 @@ namespace Aggregator.Client.Directories
 			initColunms();
 		}
 		
+		void resetEditor()
+		{
+			numericUpDown5.Minimum = 0; numericUpDown5.Maximum = 0;
+			numericUpDown5.Value = 0; checkBox1.Checked = false;
+			numericUpDown6.Minimum = 0; numericUpDown6.Maximum = 0;
+			numericUpDown6.Value = 0; checkBox2.Checked = false;
+			numericUpDown7.Minimum = 0; numericUpDown7.Maximum = 0;
+			numericUpDown7.Value = 0; checkBox3.Checked = false;
+			numericUpDown8.Minimum = 0; numericUpDown8.Maximum = 0;
+			numericUpDown8.Value = 0; checkBox4.Checked = false;
+			numericUpDown9.Minimum = 0; numericUpDown9.Maximum = 0;
+			numericUpDown9.Value = 0; checkBox5.Checked = false;
+			numericUpDown10.Minimum = 0; numericUpDown10.Maximum = 0;
+			numericUpDown10.Value = 0; checkBox6.Checked = false;
+			numericUpDown11.Minimum = 0; numericUpDown11.Maximum = 0;
+			numericUpDown11.Value = 0; checkBox7.Checked = false;
+			numericUpDown12.Minimum = 0; numericUpDown12.Maximum = 0;
+			numericUpDown12.Value = 0; checkBox8.Checked = false;
+			numericUpDown13.Minimum = 0; numericUpDown13.Maximum = 0;
+			numericUpDown13.Value = 0; checkBox9.Checked = false;
+			numericUpDown14.Minimum = 0; numericUpDown14.Maximum = 0;
+			numericUpDown14.Value = 0; checkBox10.Checked = false;
+			numericUpDown15.Minimum = 0; numericUpDown15.Maximum = 0;
+			numericUpDown15.Value = 0; checkBox11.Checked = false;
+			numericUpDown16.Minimum = 0; numericUpDown16.Maximum = 0;
+			numericUpDown16.Value = 0; checkBox12.Checked = false;
+		}
+		
 		void initColunms()
 		{
 			if(dataSet == null) return;
@@ -159,7 +190,7 @@ namespace Aggregator.Client.Directories
 			if(numericUpDown14.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown14.Value - 1)].ColumnName = "Остаток";
 			if(numericUpDown15.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown15.Value - 1)].ColumnName = "Производитель";
 			if(numericUpDown16.Value > 0) dataSet.Tables[0].Columns[Convert.ToInt32(numericUpDown16.Value - 1)].ColumnName = "Срок годности";
-			if(ID != null) dataSet.Tables[0].Columns[0].ColumnName = "№ п/п";
+			if(firstColumnNumber) dataSet.Tables[0].Columns[0].ColumnName = "№ п/п";
 		}
 		
 		void enableNumeric(CheckBox cb, bool enable)
@@ -667,6 +698,7 @@ namespace Aggregator.Client.Directories
 				Text = "Создать";
 			}else{
 				Text = "Изменить";
+				firstColumnNumber = true;
 				open();
 			}
 		}
@@ -723,6 +755,21 @@ namespace Aggregator.Client.Directories
 					if(row.RowState == DataRowState.Deleted) row.Delete();
 				}
 			}
+		}
+		void ButtonClearClick(object sender, EventArgs e)
+		{
+			Button target = (sender as Button);
+			if(target.Name == "button1") textBox1.Clear();
+			if(target.Name == "button2") textBox2.Clear();
+			if(target.Name == "button3") textBox3.Clear();
+			if(target.Name == "button4") textBox4.Clear();
+			if(target.Name == "button5") textBox5.Clear();
+			if(target.Name == "button6") textBox6.Clear();
+			if(target.Name == "button7") textBox7.Clear();
+			if(target.Name == "button8") textBox8.Clear();
+			if(target.Name == "button9") textBox9.Clear();
+			if(target.Name == "button10") textBox10.Clear();
+			if(target.Name == "button11") foldersComboBox.Text = "";
 		}
 
 	}
