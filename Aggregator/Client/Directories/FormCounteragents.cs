@@ -359,6 +359,21 @@ namespace Aggregator.Client.Directories
 			}
 		}
 		
+		void openPrice()
+		{
+			if(listView1.SelectedIndices.Count > 0){
+				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() == "" 
+				   && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".." 
+				   && listView1.SelectedItems[0].StateImageIndex == 1){
+					FormCounteragentPrice FCounteragentPrice = new FormCounteragentPrice();
+					FCounteragentPrice.MdiParent = DataForms.FClient;
+					FCounteragentPrice.Text = "Прайс-лист контрагента: " + listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+					FCounteragentPrice.PriceName = listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString();
+					FCounteragentPrice.Show();
+				}
+			}
+		}
+		
 		void returnValue()
 		{
 			if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() != "Папка" && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".."){
@@ -444,6 +459,10 @@ namespace Aggregator.Client.Directories
 		void DeleteFolderButtonClick(object sender, EventArgs e)
 		{
 			deleteFolder();
+		}
+		void PriceButtonClick(object sender, EventArgs e)
+		{
+			openPrice();
 		}
 		
 	}

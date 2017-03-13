@@ -306,6 +306,7 @@ namespace Aggregator.Client.Directories
 			this.priceButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.toolTip1.SetToolTip(this.priceButton, "Просмотреть прайс");
 			this.priceButton.UseVisualStyleBackColor = true;
+			this.priceButton.Click += new System.EventHandler(this.PriceButtonClick);
 			// 
 			// panel4
 			// 
