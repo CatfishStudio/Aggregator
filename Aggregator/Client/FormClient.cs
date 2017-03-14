@@ -13,6 +13,7 @@ using Aggregator.Client.OpenFiles;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Admin;
+using Aggregator.Database.Server;
 using Aggregator.User;
 using Aggregator.Client.Settings;
 using Aggregator.Client.Directories;
@@ -41,6 +42,7 @@ namespace Aggregator.Client
 		 * =================================================================================================
 		 */	
 		HistoryRefreshOleDb historyRefreshOleDb;
+		HistoryRefreshSqlServer historyRefreshSqlServer;
 		
 		/* Применить права пользователя */
 		void applyPermissions()
@@ -211,8 +213,9 @@ namespace Aggregator.Client
 				historyRefreshOleDb = new HistoryRefreshOleDb();
 				if(DataConfig.autoUpdate) autoUpdateOn();
 				else autoUpdateOff();
-			}else{	// MSSQL
-				//..
+			}else if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER){	// MSSQL
+				historyRefreshSqlServer = new HistoryRefreshSqlServer();
+				historyRefreshSqlServer.MonitoringStart();
 			}
 			applyPermissions();
 			Utilits.Console.Log("Программа успешно запущена!");
@@ -234,7 +237,11 @@ namespace Aggregator.Client
 		void FormClientFormClosed(object sender, FormClosedEventArgs e)
 		{
 			timer1.Stop();
-			if(historyRefreshOleDb != null) historyRefreshOleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && historyRefreshOleDb != null) {
+				historyRefreshOleDb.Dispose();
+			}else if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && historyRefreshSqlServer != null){
+				historyRefreshSqlServer.MonitoringStop();
+			}			
 			Dispose();
 			Application.Exit();
 		}

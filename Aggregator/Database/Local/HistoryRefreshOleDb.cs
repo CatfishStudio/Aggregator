@@ -50,7 +50,7 @@ namespace Aggregator.Database.Local
 			oleDb.oleDbCommandUpdate.Parameters.Add("@error", OleDbType.VarChar, 255, "error");
 			oleDb.oleDbCommandUpdate.Parameters.Add("@user", OleDbType.VarChar, 255, "user");
 			oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
-			if(oleDb.ExecuteFill("History") == true){
+			if(oleDb.ExecuteFill("History")){
 				tables = new List<Table>();
 				Table table;
 				foreach(DataRow row in oleDb.dataSet.Tables["History"].Rows)

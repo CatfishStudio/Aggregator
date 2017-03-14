@@ -155,8 +155,8 @@ namespace Aggregator.Client.Directories
 		}
 		void FormCounteragentPriceFormClosed(object sender, FormClosedEventArgs e)
 		{
-			if(oleDb != null) oleDb.Dispose();
-			if(sqlServer != null) sqlServer.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
 		}
 		void ButtonCancelClick(object sender, EventArgs e)

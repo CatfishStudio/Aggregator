@@ -25,8 +25,8 @@ namespace Aggregator.Database.Server
 		public SqlCommand sqlCommandDelete;
 		public DataSet dataSet;
 		
-		SqlConnection sqlConnection;
-		SqlDataAdapter sqlDataAdapter;
+		public SqlConnection sqlConnection;
+		public SqlDataAdapter sqlDataAdapter;
 		
 		public SqlServer()
 		{

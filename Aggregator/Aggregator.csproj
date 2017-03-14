@@ -100,6 +100,7 @@
     <Compile Include="Database\Local\HistoryRefreshOleDb.cs" />
     <Compile Include="Database\Local\OleDb.cs" />
     <Compile Include="Database\Local\QueryOleDb.cs" />
+    <Compile Include="Database\Server\HistoryRefreshSqlServer.cs" />
     <Compile Include="Database\Server\QuerySqlServer.cs" />
     <Compile Include="Database\Server\SqlServer.cs" />
     <Compile Include="Data\DataConfig.cs" />

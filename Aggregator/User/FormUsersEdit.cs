@@ -82,7 +82,26 @@ namespace Aggregator.User
 				}				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, name, pass, permissions, info FROM Users WHERE (id = 0)";
+				sqlServer.ExecuteFill("Users");
 				
+				DataRow newRow = sqlServer.dataSet.Tables["Users"].NewRow();
+				newRow["name"] = nameTextBox.Text;
+				newRow["pass"] = passTextBox1.Text;
+				newRow["permissions"] = setPermissions(permissionsComboBox.Text);
+				newRow["info"] = infoTextBox.Text;
+				sqlServer.dataSet.Tables["Users"].Rows.Add(newRow);
+				
+				sqlServer.sqlCommandInsert.CommandText = "INSERT INTO Users (name, pass, permissions, info) VALUES (@name, @pass, @permissions, @info)";
+				sqlServer.sqlCommandInsert.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
+				sqlServer.sqlCommandInsert.Parameters.Add("@pass", SqlDbType.VarChar, 255, "pass");
+				sqlServer.sqlCommandInsert.Parameters.Add("@permissions", SqlDbType.VarChar, 255, "permissions");
+				sqlServer.sqlCommandInsert.Parameters.Add("@info", SqlDbType.Text, 0, "info");
+				if(sqlServer.ExecuteUpdate("Users")){
+					DataForms.FClient.updateHistory("Users");
+					Utilits.Console.Log("Создан новый пользователь.");
+					Close();
+				}
 			}
 		}
 		
@@ -112,7 +131,26 @@ namespace Aggregator.User
 				}				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
-				
+				sqlServer.dataSet.Tables["Users"].Rows[0]["name"] = nameTextBox.Text;
+				sqlServer.dataSet.Tables["Users"].Rows[0]["pass"] = passTextBox1.Text;
+				sqlServer.dataSet.Tables["Users"].Rows[0]["permissions"] = setPermissions(permissionsComboBox.Text);
+				sqlServer.dataSet.Tables["Users"].Rows[0]["info"] = infoTextBox.Text;
+				sqlServer.sqlCommandUpdate.CommandText = "UPDATE Users SET " +
+					"[name] = @name, " +
+					"[pass] = @pass, " +
+					"[permissions] = @permissions, " +
+					"[info] = @info " +
+					"WHERE ([id] = @id)";
+				sqlServer.sqlCommandUpdate.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@pass", SqlDbType.VarChar, 255, "pass");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@permissions", SqlDbType.VarChar, 255, "permissions");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@info", SqlDbType.Text, 0, "info");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
+				if(sqlServer.ExecuteUpdate("Users")){
+					DataForms.FClient.updateHistory("Users");
+					Utilits.Console.Log("Изменены данные пользователя ID:" + ID);
+					Close();
+				}
 			}
 		}
 		
@@ -129,7 +167,13 @@ namespace Aggregator.User
 				infoTextBox.Text = oleDb.dataSet.Tables["Users"].Rows[0]["info"].ToString();
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
-				
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, name, pass, permissions, info FROM Users WHERE (id = " + ID + ")";
+				sqlServer.ExecuteFill("Users");
+				nameTextBox.Text = sqlServer.dataSet.Tables["Users"].Rows[0]["name"].ToString();
+				passTextBox1.Text = sqlServer.dataSet.Tables["Users"].Rows[0]["pass"].ToString();
+				passTextBox2.Text = sqlServer.dataSet.Tables["Users"].Rows[0]["pass"].ToString();
+				permissionsComboBox.Text = getPermissions(sqlServer.dataSet.Tables["Users"].Rows[0]["permissions"].ToString());
+				infoTextBox.Text = sqlServer.dataSet.Tables["Users"].Rows[0]["info"].ToString();
 			}
 		}
 		
