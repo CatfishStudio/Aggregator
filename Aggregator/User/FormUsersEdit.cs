@@ -214,7 +214,7 @@ namespace Aggregator.User
 					checkBox1.Checked = false;
 					checkBox2.Checked = true;
 					checkBox3.Checked = true;
-					checkBox4.Checked = false;
+					checkBox4.Checked = true;
 					checkBox5.Checked = false;
 					checkBox6.Checked = false;
 					break;

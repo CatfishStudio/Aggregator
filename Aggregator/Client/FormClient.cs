@@ -53,10 +53,6 @@ namespace Aggregator.Client
 				администраторToolStripMenuItem.Visible = false;
 			}else if(DataConfig.userPermissions == "guest"){
 				администраторToolStripMenuItem.Visible = false;
-				константыToolStripMenuItem.Visible = false;
-				toolStripSeparator3.Visible = false;
-				документыToolStripMenuItem.Visible = false;
-				настройкиToolStripMenuItem.Visible = false;
 			}
 		}
 		

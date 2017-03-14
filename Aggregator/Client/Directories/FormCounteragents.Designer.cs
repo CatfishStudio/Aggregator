@@ -54,6 +54,8 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.ToolStripMenuItem выбратьЗаписьToolStripMenuItem;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem прайслистToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -114,6 +116,8 @@ namespace Aggregator.Client.Directories
 			this.создатьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.изменитьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.удалитьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.прайслистToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
 			this.выбратьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -416,10 +420,12 @@ namespace Aggregator.Client.Directories
 			this.создатьЗаписьToolStripMenuItem,
 			this.изменитьЗаписьToolStripMenuItem,
 			this.удалитьЗаписьToolStripMenuItem,
+			this.toolStripSeparator1,
+			this.прайслистToolStripMenuItem,
 			this.toolStripMenuItem2,
 			this.выбратьЗаписьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 126);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 176);
 			// 
 			// папкиToolStripMenuItem
 			// 
@@ -438,6 +444,7 @@ namespace Aggregator.Client.Directories
 			this.создатьПапкуToolStripMenuItem.Name = "создатьПапкуToolStripMenuItem";
 			this.создатьПапкуToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
 			this.создатьПапкуToolStripMenuItem.Text = "Создать папку.";
+			this.создатьПапкуToolStripMenuItem.Click += new System.EventHandler(this.СоздатьПапкуToolStripMenuItemClick);
 			// 
 			// изменитьПапкуToolStripMenuItem
 			// 
@@ -445,6 +452,7 @@ namespace Aggregator.Client.Directories
 			this.изменитьПапкуToolStripMenuItem.Name = "изменитьПапкуToolStripMenuItem";
 			this.изменитьПапкуToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
 			this.изменитьПапкуToolStripMenuItem.Text = "Изменить папку.";
+			this.изменитьПапкуToolStripMenuItem.Click += new System.EventHandler(this.ИзменитьПапкуToolStripMenuItemClick);
 			// 
 			// удалитьПапкуToolStripMenuItem
 			// 
@@ -452,6 +460,7 @@ namespace Aggregator.Client.Directories
 			this.удалитьПапкуToolStripMenuItem.Name = "удалитьПапкуToolStripMenuItem";
 			this.удалитьПапкуToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
 			this.удалитьПапкуToolStripMenuItem.Text = "Удалить папку.";
+			this.удалитьПапкуToolStripMenuItem.Click += new System.EventHandler(this.УдалитьПапкуToolStripMenuItemClick);
 			// 
 			// toolStripMenuItem1
 			// 
@@ -464,6 +473,7 @@ namespace Aggregator.Client.Directories
 			this.создатьЗаписьToolStripMenuItem.Name = "создатьЗаписьToolStripMenuItem";
 			this.создатьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
 			this.создатьЗаписьToolStripMenuItem.Text = "Создать запись.";
+			this.создатьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.СоздатьЗаписьToolStripMenuItemClick);
 			// 
 			// изменитьЗаписьToolStripMenuItem
 			// 
@@ -471,6 +481,7 @@ namespace Aggregator.Client.Directories
 			this.изменитьЗаписьToolStripMenuItem.Name = "изменитьЗаписьToolStripMenuItem";
 			this.изменитьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
 			this.изменитьЗаписьToolStripMenuItem.Text = "Изменить запись.";
+			this.изменитьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.ИзменитьЗаписьToolStripMenuItemClick);
 			// 
 			// удалитьЗаписьToolStripMenuItem
 			// 
@@ -478,6 +489,20 @@ namespace Aggregator.Client.Directories
 			this.удалитьЗаписьToolStripMenuItem.Name = "удалитьЗаписьToolStripMenuItem";
 			this.удалитьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
 			this.удалитьЗаписьToolStripMenuItem.Text = "Удалить запись.";
+			this.удалитьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.УдалитьЗаписьToolStripMenuItemClick);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
+			// 
+			// прайслистToolStripMenuItem
+			// 
+			this.прайслистToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("прайслистToolStripMenuItem.Image")));
+			this.прайслистToolStripMenuItem.Name = "прайслистToolStripMenuItem";
+			this.прайслистToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+			this.прайслистToolStripMenuItem.Text = "Прайс-лист";
+			this.прайслистToolStripMenuItem.Click += new System.EventHandler(this.ПрайслистToolStripMenuItemClick);
 			// 
 			// toolStripMenuItem2
 			// 

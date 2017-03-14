@@ -121,6 +121,7 @@ namespace Aggregator.Client.Directories
 			this.ClientSize = new System.Drawing.Size(519, 305);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormCounteragentPrice";
 			this.Text = "Прайс";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCounteragentPriceFormClosed);

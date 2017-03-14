@@ -734,6 +734,10 @@ namespace Aggregator.Client.Directories
 		}
 		void ButtonSaveClick(object sender, EventArgs e)
 		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
 			if(check()){
 				if(ID == null){
 					ExcelTableID = "Price" + String.Format("{0:ddMMyyyyHHmmss}", DateTime.Now);

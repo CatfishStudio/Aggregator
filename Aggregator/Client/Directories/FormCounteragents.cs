@@ -401,10 +401,18 @@ namespace Aggregator.Client.Directories
 		}
 		void AddButtonClick(object sender, EventArgs e)
 		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
 			addFile();
 		}
 		void AddFolderButtonClick(object sender, EventArgs e)
 		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
 			addFolder();
 		}
 		void EditFolderButtonClick(object sender, EventArgs e)
@@ -454,13 +462,65 @@ namespace Aggregator.Client.Directories
 		}
 		void DeleteButtonClick(object sender, EventArgs e)
 		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
 			deleteFile();
 		}
 		void DeleteFolderButtonClick(object sender, EventArgs e)
 		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
 			deleteFolder();
 		}
 		void PriceButtonClick(object sender, EventArgs e)
+		{
+			openPrice();
+		}
+		void СоздатьПапкуToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			addFolder();
+		}
+		void ИзменитьПапкуToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editFolder();
+		}
+		void УдалитьПапкуToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			deleteFolder();
+		}
+		void СоздатьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			addFile();
+		}
+		void ИзменитьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editFile();
+		}
+		void УдалитьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			deleteFile();
+		}
+		void ПрайслистToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			openPrice();
 		}

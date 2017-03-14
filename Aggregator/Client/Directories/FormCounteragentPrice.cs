@@ -38,22 +38,41 @@ namespace Aggregator.Client.Directories
 		OleDb oleDb;
 		SqlServer sqlServer;
 		
-		void inicColumn()
+		void renameColumn()
 		{
 			if(oleDb.dataSet != null){
-				oleDb.dataSet.Tables[0].Columns[0].Caption = "№ п/п";
-				oleDb.dataSet.Tables[0].Columns[1].Caption = "Наименование";
-				oleDb.dataSet.Tables[0].Columns[2].Caption = "Код";
-				oleDb.dataSet.Tables[0].Columns[3].Caption = "Серия";
-				oleDb.dataSet.Tables[0].Columns[4].Caption = "Артикул";
-				oleDb.dataSet.Tables[0].Columns[5].Caption = "Остаток";
-				oleDb.dataSet.Tables[0].Columns[6].Caption = "Производитель";
-				oleDb.dataSet.Tables[0].Columns[7].Caption = "Цена отпускная";
-				oleDb.dataSet.Tables[0].Columns[8].Caption = "Цена со скидкой 1";
-				oleDb.dataSet.Tables[0].Columns[9].Caption = "Цена со скидкой 2";
-				oleDb.dataSet.Tables[0].Columns[10].Caption = "Цена со скидкой 3";
-				oleDb.dataSet.Tables[0].Columns[11].Caption = "Цена со скидкой 4";
-				oleDb.dataSet.Tables[0].Columns[12].Caption = "Срок годности";
+				oleDb.dataSet.Tables[0].Columns[0].ColumnName = "№ п/п";
+				oleDb.dataSet.Tables[0].Columns[1].ColumnName = "Наименование";
+				oleDb.dataSet.Tables[0].Columns[2].ColumnName = "Код";
+				oleDb.dataSet.Tables[0].Columns[3].ColumnName = "Серия";
+				oleDb.dataSet.Tables[0].Columns[4].ColumnName = "Артикул";
+				oleDb.dataSet.Tables[0].Columns[5].ColumnName = "Остаток";
+				oleDb.dataSet.Tables[0].Columns[6].ColumnName = "Производитель";
+				oleDb.dataSet.Tables[0].Columns[7].ColumnName = "Цена отпускная";
+				oleDb.dataSet.Tables[0].Columns[8].ColumnName = "Цена со скидкой 1";
+				oleDb.dataSet.Tables[0].Columns[9].ColumnName = "Цена со скидкой 2";
+				oleDb.dataSet.Tables[0].Columns[10].ColumnName = "Цена со скидкой 3";
+				oleDb.dataSet.Tables[0].Columns[11].ColumnName = "Цена со скидкой 4";
+				oleDb.dataSet.Tables[0].Columns[12].ColumnName = "Срок годности";
+			}
+		}
+		
+		void returnNameColumn()
+		{
+			if(oleDb.dataSet != null){
+				oleDb.dataSet.Tables[0].Columns[0].ColumnName = "id";
+				oleDb.dataSet.Tables[0].Columns[1].ColumnName = "name";
+				oleDb.dataSet.Tables[0].Columns[2].ColumnName = "code";
+				oleDb.dataSet.Tables[0].Columns[3].ColumnName = "series";
+				oleDb.dataSet.Tables[0].Columns[4].ColumnName = "article";
+				oleDb.dataSet.Tables[0].Columns[5].ColumnName = "remainder";
+				oleDb.dataSet.Tables[0].Columns[6].ColumnName = "manufacturer";
+				oleDb.dataSet.Tables[0].Columns[7].ColumnName = "price";
+				oleDb.dataSet.Tables[0].Columns[8].ColumnName = "discount1";
+				oleDb.dataSet.Tables[0].Columns[9].ColumnName = "discount2";
+				oleDb.dataSet.Tables[0].Columns[10].ColumnName = "discount3";
+				oleDb.dataSet.Tables[0].Columns[11].ColumnName = "discount4";
+				oleDb.dataSet.Tables[0].Columns[12].ColumnName = "term";
 			}
 		}
 		
@@ -65,7 +84,7 @@ namespace Aggregator.Client.Directories
 				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM " + PriceName;
 				if(oleDb.ExecuteFill(PriceName)){
 					oleDb.dataSet.DataSetName = PriceName;
-					inicColumn();
+					renameColumn();
 					dataGrid1.CaptionText = PriceName;
 					dataGrid1.DataSource = oleDb.dataSet;
 					dataGrid1.DataMember = oleDb.dataSet.Tables[0].TableName;
@@ -83,6 +102,7 @@ namespace Aggregator.Client.Directories
 		
 		void savePrice()
 		{
+			returnNameColumn();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 				// OLEDB
 				oleDb.oleDbCommandUpdate.CommandText = "UPDATE " + PriceName + " SET " +
@@ -145,6 +165,10 @@ namespace Aggregator.Client.Directories
 		}
 		void ButtonSaveClick(object sender, EventArgs e)
 		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
 			savePrice();
 		}
 	}
