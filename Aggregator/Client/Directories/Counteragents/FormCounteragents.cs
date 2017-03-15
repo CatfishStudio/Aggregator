@@ -131,8 +131,64 @@ namespace Aggregator.Client.Directories
 		
 		void TableRefreshServer(String actionFolder)
 		{
+			listView1.Items.Clear();
+			// Папки
 			sqlServer = new SqlServer();
-			// ...
+			sqlServer.dataSet.Clear();
+			sqlServer.dataSet.DataSetName = "Counteragents";
+			if(actionFolder == "") {
+				sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'folder') ORDER BY name ASC";
+			}else{
+				sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'folder' AND name = '" + actionFolder + "') ORDER BY name ASC";
+			}
+			if(sqlServer.ExecuteFill("Counteragents")){
+				foldersTable = sqlServer.dataSet.Tables["Counteragents"].Copy();
+			}else{
+				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе папок.");
+				sqlServer.Error();
+				return;
+			}
+			// Файлы			
+			sqlServer.dataSet.Clear();
+			sqlServer.dataSet.DataSetName = "Counteragents";
+			if(actionFolder == "" && folderExplore == true) {
+				sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file' AND parent = '') ORDER BY name ASC";
+			}else{
+				if(folderExplore == false) sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file') ORDER BY name ASC";
+				else sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file' AND parent = '" + actionFolder + "') ORDER BY name ASC";
+			}
+			if(sqlServer.ExecuteFill("Counteragents")){
+				filesTable = sqlServer.dataSet.Tables["Counteragents"].Copy();
+			}else{
+				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе файлов.");
+				sqlServer.Error();
+				return;
+			}
+			// ОТОБРАЖЕНИЕ: "Папок"
+			foreach(DataRow rowFolder in foldersTable.Rows)
+    		{
+				ListViewItem ListViewItem_add = new ListViewItem();
+				if(actionFolder == "") ListViewItem_add.SubItems.Add(rowFolder["name"].ToString());
+				else ListViewItem_add.SubItems.Add("..");
+				ListViewItem_add.StateImageIndex = 0;
+				ListViewItem_add.SubItems.Add("Папка");
+				ListViewItem_add.SubItems.Add(rowFolder["id"].ToString());
+				ListViewItem_add.SubItems.Add(rowFolder["excel_table_id"].ToString());
+				listView1.Items.Add(ListViewItem_add);
+			}
+			// ОТОБРАЖЕНИЕ "Файлов"
+			foreach(DataRow rowElement in filesTable.Rows)
+    		{
+				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add.SubItems.Add(rowElement["name"].ToString());
+				ListViewItem_add.StateImageIndex = 1;
+				ListViewItem_add.SubItems.Add("");
+				ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
+				ListViewItem_add.SubItems.Add(rowElement["excel_table_id"].ToString());
+				listView1.Items.Add(ListViewItem_add);
+			}
+			// ВЫБОР: выдиляем ранее выбранный элемент.
+			listView1.SelectedIndices.IndexOf(selectTableLine);
 		}
 		
 		void search()
@@ -192,8 +248,33 @@ namespace Aggregator.Client.Directories
 		
 		void searchServer()
 		{
+			DataTable table;
 			sqlServer = new SqlServer();
-			// ...
+			sqlServer.dataSet.Clear();
+			sqlServer.dataSet.DataSetName = "Counteragents";
+			sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (name LIKE '%" + comboBox1.Text + "%') ORDER BY name ASC";
+			if(sqlServer.ExecuteFill("Counteragents")){
+				table = sqlServer.dataSet.Tables["Counteragents"];
+			}else{
+				Utilits.Console.Log("[ОШИБКА] Ошибка поиска.");
+				sqlServer.Error();
+				return;
+			}
+			listView1.Items.Clear();
+			foreach(DataRow row in table.Rows)
+        	{
+				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add.SubItems.Add(row["name"].ToString());
+				if(row["type"].ToString() == "folder"){
+					ListViewItem_add.StateImageIndex = 0;
+					ListViewItem_add.SubItems.Add("Папка");
+				}else{
+					ListViewItem_add.StateImageIndex = 1;
+					ListViewItem_add.SubItems.Add("");
+				}
+				ListViewItem_add.SubItems.Add(row["id"].ToString());
+				listView1.Items.Add(ListViewItem_add);
+			}
 		}
 		
 		void hierarchy() // иерархическое отображение
@@ -277,7 +358,20 @@ namespace Aggregator.Client.Directories
 							}
 						} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 							// MSSQL SERVER
-							
+							QuerySqlServer query = new QuerySqlServer();
+							query.SetCommand("DELETE FROM Counteragents WHERE (id = " + fileID + ")");
+							if(query.Execute()){
+								query = new QuerySqlServer();
+								query.SetCommand("DROP TABLE " + priceName);
+								if(query.Execute()){
+									Utilits.Console.Log("Контрагент '" + fileName + "' успешно удалён. Прайс '" + priceName + "' успешно удалён.");
+								}else{
+									Utilits.Console.Log("[ОШИБКА] Прайс '" + priceName + "' не удалось удалить!");
+								}
+								DataForms.FClient.updateHistory("Counteragents");
+							}else{
+								Utilits.Console.Log("[ОШИБКА] Контрагент '" + fileName + "' не удалось удалить!");
+							}
 						}
 					}					
 					
@@ -351,7 +445,36 @@ namespace Aggregator.Client.Directories
 							}
 						} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 							// MSSQL SERVER
-							
+							QuerySqlServer query = new QuerySqlServer();
+							sqlServer = new SqlServer();
+							sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE(parent = '" + folderName + "')";
+							if(sqlServer.ExecuteFill("Counteragents")){
+								foreach(DataRow row in sqlServer.dataSet.Tables[0].Rows){
+									query.SetCommand("DROP TABLE " + row["excel_table_id"].ToString());
+									if(query.Execute()){
+										Utilits.Console.Log("Прайс лист '" + row["excel_table_id"].ToString() + "' успешно удалён.");
+									}else{
+										Utilits.Console.Log("[ОШИБКА] Прайс лист '" + row["excel_table_id"].ToString() + "' не удалось удалить!", false, true);
+									}
+								}
+								query = new QuerySqlServer();
+								query.SetCommand("DELETE FROM Counteragents WHERE (parent ='" + folderName +"')");
+								if(query.Execute()){
+									query = new QuerySqlServer();
+									query.SetCommand("DELETE FROM Counteragents WHERE (id = " + folderID +")");
+									if(query.Execute()){
+										DataForms.FClient.updateHistory("Counteragents");
+										query.Dispose();
+										Utilits.Console.Log("Удаление папки '" + folderName + "' прошло успешно.");
+									}else{
+										query.Dispose();
+										Utilits.Console.Log("Папку '" + folderName + "' не удалось удалить!", false, true);
+									}
+								}else{
+									query.Dispose();
+									Utilits.Console.Log("[ОШИБКА] Ошибка удаления файлов в папке '" + folderName + "'", false, true);
+								}
+							}
 						}
 					}
 					

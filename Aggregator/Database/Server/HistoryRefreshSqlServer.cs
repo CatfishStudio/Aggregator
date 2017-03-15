@@ -60,15 +60,36 @@ namespace Aggregator.Database.Server
 					table.user = row["user"].ToString();
 					tables.Add(table);
 				}
+				sqlServer.Dispose();
 			}else{
-				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Служба истории обновлений базы данных не запущена!!!");
+				sqlServer.Dispose();
+				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] История обновления баз данных не загружена!");
 			}
 		}
 		
-		public void MonitoringStart()
+		public void MonitoringStart(String databaseName)
 		{
 			if(sqlServer.dataSet.Tables.Count == 0) return;
 			
+			try{
+				SqlDependency.Start(DataConfig.serverConnection, "ALTER DATABASE "+databaseName+" set enable_broker");
+				using (SqlConnection connection = new SqlConnection(DataConfig.serverConnection))
+		        {
+		            connection.Open();
+		            using (var command = new SqlCommand(
+		                "SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", connection))
+			            {
+			                var sqlDependency = new SqlDependency(command);
+			                sqlDependency.OnChange += new OnChangeEventHandler(OnDependencyChange);
+			                command.ExecuteReader();
+			            }
+		        }
+			}catch(Exception ex){
+				Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
+			}
+			
+			
+			/*
 			SqlDependency.Start(DataConfig.serverConnection);
 			using (SqlCommand command = new SqlCommand("SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", sqlServer.sqlConnection))
     		{
@@ -79,11 +100,17 @@ namespace Aggregator.Database.Server
 		        	Utilits.Console.Log("[MonitoringStart] " + reader.ToString());
 		        }
 			}
-
+			*/
 		}
 		
 		void OnDependencyChange(object sender, SqlNotificationEventArgs e)
 		{
+			SqlNotificationInfo info = e.Info;
+        	if (SqlNotificationInfo.Insert.Equals(info) || SqlNotificationInfo.Update.Equals(info)
+            	|| SqlNotificationInfo.Delete.Equals(info))
+        	{
+            	//...
+        	}
 			Utilits.Console.Log("[OnDependencyChange] " + e.ToString());
 		}
 

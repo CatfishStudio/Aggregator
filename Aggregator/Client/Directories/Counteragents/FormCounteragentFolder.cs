@@ -9,6 +9,7 @@
 using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.Sql;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -61,7 +62,22 @@ namespace Aggregator.Client.Directories
 				}
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, name, type FROM Counteragents WHERE (id = 0)";
+				sqlServer.ExecuteFill("Counteragents");				
 				
+				DataRow newRow = sqlServer.dataSet.Tables["Counteragents"].NewRow();
+				newRow["name"] = nameTextBox.Text;
+				newRow["type"] = "folder";
+				sqlServer.dataSet.Tables["Counteragents"].Rows.Add(newRow);
+				
+				sqlServer.sqlCommandInsert.CommandText = "INSERT INTO Counteragents (name, type) VALUES (@name, @type)";
+				sqlServer.sqlCommandInsert.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
+				sqlServer.sqlCommandInsert.Parameters.Add("@type", SqlDbType.VarChar, 255, "type");
+				if(sqlServer.ExecuteUpdate("Counteragents")){
+					DataForms.FClient.updateHistory("Counteragents");
+					Utilits.Console.Log("Создан новый папка.");
+					Close();
+				}
 			}
 		}
 		
@@ -83,7 +99,18 @@ namespace Aggregator.Client.Directories
 				}				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
-				
+				sqlServer.dataSet.Tables["Counteragents"].Rows[0]["name"] = nameTextBox.Text;
+				sqlServer.sqlCommandUpdate.CommandText = "UPDATE Counteragents SET " +
+					"[name] = @name " +
+					"WHERE ([id] = @id)";
+				sqlServer.sqlCommandUpdate.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
+				if(sqlServer.ExecuteUpdate("Counteragents")){
+					moveFilesInRenameFolder();
+					DataForms.FClient.updateHistory("Counteragents");					
+					Utilits.Console.Log("Папка успешно переименована.");
+					Close();
+				}
 			}
 			
 		}
@@ -98,7 +125,10 @@ namespace Aggregator.Client.Directories
 				query.Dispose();
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
-				
+				QuerySqlServer query = new QuerySqlServer();
+				query.SetCommand("UPDATE Counteragents SET parent='" + nameTextBox.Text + "' WHERE(parent = '" + folderName + "')");
+				query.Execute();
+				query.Dispose();
 			}
 			
 			
@@ -115,7 +145,11 @@ namespace Aggregator.Client.Directories
 				folderName = oleDb.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
-				
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, name, type FROM Counteragents WHERE (id = " + ID + ")";
+				sqlServer.ExecuteFill("Counteragents");
+				codeTextBox.Text = sqlServer.dataSet.Tables["Counteragents"].Rows[0]["id"].ToString();
+				nameTextBox.Text = sqlServer.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
+				folderName = sqlServer.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
 			}
 		}
 		

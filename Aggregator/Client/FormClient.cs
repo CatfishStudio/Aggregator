@@ -215,7 +215,7 @@ namespace Aggregator.Client
 				else autoUpdateOff();
 			}else if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER){	// MSSQL
 				historyRefreshSqlServer = new HistoryRefreshSqlServer();
-				historyRefreshSqlServer.MonitoringStart();
+				historyRefreshSqlServer.MonitoringStart("database");
 			}
 			applyPermissions();
 			Utilits.Console.Log("Программа успешно запущена!");
