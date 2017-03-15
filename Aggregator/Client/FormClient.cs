@@ -214,6 +214,7 @@ namespace Aggregator.Client
 				if(DataConfig.autoUpdate) autoUpdateOn();
 				else autoUpdateOff();
 			}else if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER){	// MSSQL
+				toolStripStatusLabel1.Visible = false;
 				historyRefreshSqlServer = new HistoryRefreshSqlServer();
 				historyRefreshSqlServer.MonitoringStart("database");
 			}
@@ -310,6 +311,30 @@ namespace Aggregator.Client
 		void ToolStripButton3Click(object sender, EventArgs e)
 		{
 			counteragentsShow();
+		}
+		void КалькуляторToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("calc.exe");
+		}
+		void БлокнотToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("notepad.exe");
+		}
+		void WordPadToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("wordpad.exe");
+		}
+		void PaintToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("mspaint.exe");
+		}
+		void ExplorerToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("explorer.exe");
+		}
+		void КоманданяСтрокаToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("cmd.exe");
 		}
 		
 	}
