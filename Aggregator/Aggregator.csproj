@@ -78,6 +78,10 @@
     <Compile Include="Client\Directories\Counteragents\FormCounteragents.Designer.cs">
       <DependentUpon>FormCounteragents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Directories\FormNomenclature.cs" />
+    <Compile Include="Client\Directories\FormNomenclature.Designer.cs">
+      <DependentUpon>FormNomenclature.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\FormClient.cs" />
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
@@ -147,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Directories\Counteragents\FormCounteragents.resx">
       <DependentUpon>FormCounteragents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Directories\FormNomenclature.resx">
+      <DependentUpon>FormNomenclature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>

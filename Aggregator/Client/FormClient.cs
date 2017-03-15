@@ -159,6 +159,16 @@ namespace Aggregator.Client
 			}
 		}
 		
+		/* Открыть окно номенклатуры */
+		void nomenclatureShow()
+		{
+			if(DataForms.FNomenclature == null){
+				DataForms.FNomenclature = new FormNomenclature();
+				DataForms.FNomenclature.MdiParent = DataForms.FClient;
+				DataForms.FNomenclature.Show();
+			}
+		}
+		
 		/* Сообщение в статусе */
 		public void messageInStatus(String message) {
 			toolStripStatusLabel2.Text = message;
@@ -335,6 +345,14 @@ namespace Aggregator.Client
 		void КоманданяСтрокаToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("cmd.exe");
+		}
+		void НоменклатураToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			nomenclatureShow();
+		}
+		void ToolStripButton4Click(object sender, EventArgs e)
+		{
+			nomenclatureShow();
 		}
 		
 	}

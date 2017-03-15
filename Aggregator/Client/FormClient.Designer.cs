@@ -134,6 +134,7 @@ namespace Aggregator.Client
 			this.блокнотToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.wordPadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
 			this.explorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.команданяСтрокаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.администраторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -161,7 +162,6 @@ namespace Aggregator.Client
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.openFileDialogXLS = new System.Windows.Forms.OpenFileDialog();
 			this.openFileDialogXLSX = new System.Windows.Forms.OpenFileDialog();
-			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -331,6 +331,7 @@ namespace Aggregator.Client
 			this.номенклатураToolStripMenuItem.Name = "номенклатураToolStripMenuItem";
 			this.номенклатураToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
 			this.номенклатураToolStripMenuItem.Text = "Номенклатура";
+			this.номенклатураToolStripMenuItem.Click += new System.EventHandler(this.НоменклатураToolStripMenuItemClick);
 			// 
 			// документыToolStripMenuItem
 			// 
@@ -446,6 +447,11 @@ namespace Aggregator.Client
 			this.paintToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
 			this.paintToolStripMenuItem.Text = "Paint";
 			this.paintToolStripMenuItem.Click += new System.EventHandler(this.PaintToolStripMenuItemClick);
+			// 
+			// toolStripSeparator6
+			// 
+			this.toolStripSeparator6.Name = "toolStripSeparator6";
+			this.toolStripSeparator6.Size = new System.Drawing.Size(172, 6);
 			// 
 			// explorerToolStripMenuItem
 			// 
@@ -587,6 +593,7 @@ namespace Aggregator.Client
 			this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton4.Text = "Номенклатура";
 			this.toolStripButton4.ToolTipText = "Номенклатура";
+			this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4Click);
 			// 
 			// toolStripSeparator5
 			// 
@@ -658,11 +665,6 @@ namespace Aggregator.Client
 			// openFileDialogXLSX
 			// 
 			this.openFileDialogXLSX.Filter = "*.xlsx|*.xlsx";
-			// 
-			// toolStripSeparator6
-			// 
-			this.toolStripSeparator6.Name = "toolStripSeparator6";
-			this.toolStripSeparator6.Size = new System.Drawing.Size(172, 6);
 			// 
 			// FormClient
 			// 
