@@ -82,7 +82,7 @@ namespace Aggregator.Client.Directories
 			if(oleDb.ExecuteFill("Counteragents")){
 				foldersTable = oleDb.dataSet.Tables["Counteragents"].Copy();
 			}else{
-				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе папок.");
+				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагенты при отборе папок.");
 				oleDb.Error();
 				return;
 			}
@@ -98,7 +98,7 @@ namespace Aggregator.Client.Directories
 			if(oleDb.ExecuteFill("Counteragents")){
 				filesTable = oleDb.dataSet.Tables["Counteragents"].Copy();
 			}else{
-				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе файлов.");
+				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагенты при отборе файлов.");
 				oleDb.Error();
 				return;
 			}
@@ -144,7 +144,7 @@ namespace Aggregator.Client.Directories
 			if(sqlServer.ExecuteFill("Counteragents")){
 				foldersTable = sqlServer.dataSet.Tables["Counteragents"].Copy();
 			}else{
-				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе папок.");
+				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагенты при отборе папок.");
 				sqlServer.Error();
 				return;
 			}
@@ -160,7 +160,7 @@ namespace Aggregator.Client.Directories
 			if(sqlServer.ExecuteFill("Counteragents")){
 				filesTable = sqlServer.dataSet.Tables["Counteragents"].Copy();
 			}else{
-				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагентов при отборе файлов.");
+				Utilits.Console.Log("[ОШИБКА] Ошибка выполнения запроса к таблице Контрагенты при отборе файлов.");
 				sqlServer.Error();
 				return;
 			}
@@ -197,7 +197,7 @@ namespace Aggregator.Client.Directories
 				// OLEDB
 				try{
 					searchLocal();
-					Utilits.Console.Log("Журнал Контрагентов: поиск завершен.");
+					Utilits.Console.Log("Журнал Контрагенты: поиск завершен.");
 				}catch(Exception ex){
 					oleDb.Error();
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
@@ -206,7 +206,7 @@ namespace Aggregator.Client.Directories
 				// MSSQL SERVER
 				try{
 					searchServer();
-					Utilits.Console.Log("Журнал Контрагентов: поиск завершен.");
+					Utilits.Console.Log("Журнал Контрагенты: поиск завершен.");
 				}catch(Exception ex){
 					sqlServer.Error();
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
@@ -512,7 +512,7 @@ namespace Aggregator.Client.Directories
 		void FormCounteragentsLoad(object sender, EventArgs e)
 		{
 			TableRefresh(""); // Загрузка данных из базы данных
-			Utilits.Console.Log("Журнал Контрагентов: отркыт.");
+			Utilits.Console.Log("Журнал Контрагенты: отркыт.");
 		}
 		void FormCounteragentsFormClosed(object sender, FormClosedEventArgs e)
 		{
@@ -520,7 +520,8 @@ namespace Aggregator.Client.Directories
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
 			DataForms.FCounteragents = null;
-			Utilits.Console.Log("Журнал Контрагентов: закрыт.");
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log("Журнал Контрагенты: закрыт.");
 		}
 		void AddButtonClick(object sender, EventArgs e)
 		{
@@ -646,6 +647,10 @@ namespace Aggregator.Client.Directories
 		void ПрайслистToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			openPrice();
+		}
+		void FormCounteragentsActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus("Контрагенты");
 		}
 		
 	}

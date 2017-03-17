@@ -7,7 +7,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Aggregator</RootNamespace>
-    <AssemblyName>Catfish Aggregator 1.0</AssemblyName>
+    <AssemblyName>Catfish Aggregator 1.0.0</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <NoWin32Manifest>False</NoWin32Manifest>
@@ -82,6 +82,14 @@
     <Compile Include="Client\Directories\FormNomenclature.Designer.cs">
       <DependentUpon>FormNomenclature.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Directories\FormNomenclatureFile.cs" />
+    <Compile Include="Client\Directories\FormNomenclatureFile.Designer.cs">
+      <DependentUpon>FormNomenclatureFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Directories\FormNomenclatureFolder.cs" />
+    <Compile Include="Client\Directories\FormNomenclatureFolder.Designer.cs">
+      <DependentUpon>FormNomenclatureFolder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\FormClient.cs" />
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
@@ -154,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Directories\FormNomenclature.resx">
       <DependentUpon>FormNomenclature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Directories\FormNomenclatureFile.resx">
+      <DependentUpon>FormNomenclatureFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>

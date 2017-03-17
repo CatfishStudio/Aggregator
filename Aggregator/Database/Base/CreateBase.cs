@@ -31,6 +31,7 @@ namespace Aggregator.Database.Base
 			/* Создание таблиц */
 			CreateBaseTables.TableUsers();
 			CreateBaseTables.TableCounteragents();
+			CreateBaseTables.TableNomenclature();
 			CreateBaseTables.TableHistory();
 		}
 	}

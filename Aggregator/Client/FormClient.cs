@@ -133,7 +133,7 @@ namespace Aggregator.Client
 		{
 			MessageBox.Show("Программа: Catfish Aggregator" + System.Environment.NewLine +
 			                "Лиценция: Freeware" + System.Environment.NewLine +
-			                "Версия: 1.0" + System.Environment.NewLine +
+			                "Версия: 1.0.0" + System.Environment.NewLine +
 			                "Дата: 01.03.2017" + System.Environment.NewLine +
 			                "Автор: Сомов Евгений Павлович (Catfish Studio)" + System.Environment.NewLine +
 			                "Сайт: http://somov.hol.es/", "О программе");

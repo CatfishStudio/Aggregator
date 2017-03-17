@@ -31,31 +31,31 @@ namespace Aggregator.Database.Base
 				"[info] TEXT" +
 				")";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Users.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Пользователи.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions], [info]) " +
 				"VALUES ('Администратор', '', 'admin', '')";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Users.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Пользователи.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions], [info]) " +
 				"VALUES ('Оператор', '', 'operator', '')";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Users.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Пользователи.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions], [info]) " +
 				"VALUES ('Пользователь', '', 'user', '')";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Users.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Пользователи.", false, true);
 			
 			sqlCommand = "INSERT INTO Users (" +
 				"[name], [pass], [permissions], [info]) " +
 				"VALUES ('Гость', '', 'guest', '')";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Users.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Пользователи.", false, true);
 			
 			query.Dispose();
 		}
@@ -98,7 +98,28 @@ namespace Aggregator.Database.Base
 				"[parent] VARCHAR DEFAULT ''" +
 				")";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Counteragents.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Контрагенты.", false, true);
+		}
+		
+		public static void TableNomenclature()
+		{
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.localDatabase);
+			
+			sqlCommand = "CREATE TABLE Nomenclature (" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[type] VARCHAR DEFAULT '', " +
+				"[name] VARCHAR DEFAULT '' UNIQUE, " +
+				"[code] VARCHAR DEFAULT '', " +
+				"[series] VARCHAR DEFAULT '', " +
+				"[article] VARCHAR DEFAULT '', " +
+				"[manufacturer] VARCHAR DEFAULT '', " +
+				"[price] FLOAT DEFAULT 0, " +
+				"[parent] VARCHAR DEFAULT ''" +
+				")";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Номенклатура.", false, true);
 		}
 		
 		public static void TableHistory()
@@ -116,19 +137,25 @@ namespace Aggregator.Database.Base
 				"[user] VARCHAR DEFAULT ''" +
 				")";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы History.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы История.", false, true);
 			
 			sqlCommand = "INSERT INTO History (" +
 				"[name], [represent], [datetime], [error], [user]) " +
 				"VALUES ('Users', 'Пользователи', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу History.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу История.", false, true);
 			
 			sqlCommand = "INSERT INTO History (" +
 				"[name], [represent], [datetime], [error], [user]) " +
 				"VALUES ('Counteragents', 'Контрагенты', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
 			query.SetCommand(sqlCommand);
-			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу History.", false, true);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу История.", false, true);
+			
+			sqlCommand = "INSERT INTO History (" +
+				"[name], [represent], [datetime], [error], [user]) " +
+				"VALUES ('Nomenclature', 'Номенклатура', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу История.", false, true);
 		}
 	}
 }

@@ -106,6 +106,7 @@ namespace Aggregator.Database.Local
 			try{
 				if(tableName == "Users" && DataForms.FUsers != null) DataForms.FUsers.TableRefresh();
 				if(tableName == "Counteragents" && DataForms.FCounteragents != null) DataForms.FCounteragents.TableRefresh();
+				if(tableName == "Nomenclature" && DataForms.FNomenclature != null) DataForms.FNomenclature.TableRefresh();
 			
 				Utilits.Console.Log("[ИСТОРИЯ] Таблица " + tableRepresent + " была успешно обновлена.");
 			}catch(Exception ex){
@@ -118,6 +119,7 @@ namespace Aggregator.Database.Local
 		{
 			if(tableName == "Users") return 0;
 			if(tableName == "Counteragents") return 1;
+			if(tableName == "Nomenclature") return 2;
 			return -1;
 		}
 		
