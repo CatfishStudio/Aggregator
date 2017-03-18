@@ -593,6 +593,10 @@ namespace Aggregator.Client.Directories
 			if(panelLoading.Visible) panelLoading.Visible = false;
 			else panelLoading.Visible = true;
 		}
+		void Button3Click(object sender, EventArgs e)
+		{
+			
+		}
 		
 	}
 }

@@ -116,6 +116,7 @@ namespace Aggregator.Database.Base
 				"[article] VARCHAR DEFAULT '', " +
 				"[manufacturer] VARCHAR DEFAULT '', " +
 				"[price] FLOAT DEFAULT 0, " +
+				"[units] VARCHAR DEFAULT '', " +
 				"[parent] VARCHAR DEFAULT ''" +
 				")";
 			query.SetCommand(sqlCommand);

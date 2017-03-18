@@ -1,8 +1,8 @@
 ﻿/*
  * Создано в SharpDevelop.
  * Пользователь: Cartish
- * Дата: 09.03.2017
- * Время: 20:03
+ * Дата: 17.03.2017
+ * Время: 9:53
  * 
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
@@ -12,7 +12,6 @@ using System.Data.OleDb;
 using System.Data.Sql;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
@@ -20,11 +19,11 @@ using Aggregator.Database.Server;
 namespace Aggregator.Client.Directories
 {
 	/// <summary>
-	/// Description of FormCounteragentFolder.
+	/// Description of FormNomenclatureFolder.
 	/// </summary>
-	public partial class FormCounteragentFolder : Form
+	public partial class FormNomenclatureFolder : Form
 	{
-		public FormCounteragentFolder()
+		public FormNomenclatureFolder()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -35,6 +34,7 @@ namespace Aggregator.Client.Directories
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
 		public String ID;
 		OleDb oleDb;
 		SqlServer sqlServer;
@@ -44,37 +44,37 @@ namespace Aggregator.Client.Directories
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
 				// OLEDB
-				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, type FROM Counteragents WHERE (id = 0)";
-				oleDb.ExecuteFill("Counteragents");				
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, type FROM Nomenclature WHERE (id = 0)";
+				oleDb.ExecuteFill("Nomenclature");				
 				
-				DataRow newRow = oleDb.dataSet.Tables["Counteragents"].NewRow();
+				DataRow newRow = oleDb.dataSet.Tables["Nomenclature"].NewRow();
 				newRow["name"] = nameTextBox.Text;
 				newRow["type"] = DataConstants.FOLDER;
-				oleDb.dataSet.Tables["Counteragents"].Rows.Add(newRow);
+				oleDb.dataSet.Tables["Nomenclature"].Rows.Add(newRow);
 				
-				oleDb.oleDbCommandInsert.CommandText = "INSERT INTO Counteragents (name, type) VALUES (@name, @type)";
+				oleDb.oleDbCommandInsert.CommandText = "INSERT INTO Nomenclature (name, type) VALUES (@name, @type)";
 				oleDb.oleDbCommandInsert.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
 				oleDb.oleDbCommandInsert.Parameters.Add("@type", OleDbType.VarChar, 255, "type");
-				if(oleDb.ExecuteUpdate("Counteragents")){
-					DataForms.FClient.updateHistory("Counteragents");
+				if(oleDb.ExecuteUpdate("Nomenclature")){
+					DataForms.FClient.updateHistory("Nomenclature");
 					Utilits.Console.Log("Создана новая папка.");
 					Close();
 				}
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
-				sqlServer.sqlCommandSelect.CommandText = "SELECT id, name, type FROM Counteragents WHERE (id = 0)";
-				sqlServer.ExecuteFill("Counteragents");				
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, name, type FROM Nomenclature WHERE (id = 0)";
+				sqlServer.ExecuteFill("Nomenclature");				
 				
-				DataRow newRow = sqlServer.dataSet.Tables["Counteragents"].NewRow();
+				DataRow newRow = sqlServer.dataSet.Tables["Nomenclature"].NewRow();
 				newRow["name"] = nameTextBox.Text;
-				newRow["type"] = DataConstants.FOLDER;
-				sqlServer.dataSet.Tables["Counteragents"].Rows.Add(newRow);
+				newRow["type"] = "folder";
+				sqlServer.dataSet.Tables["Nomenclature"].Rows.Add(newRow);
 				
-				sqlServer.sqlCommandInsert.CommandText = "INSERT INTO Counteragents (name, type) VALUES (@name, @type)";
+				sqlServer.sqlCommandInsert.CommandText = "INSERT INTO Nomenclature (name, type) VALUES (@name, @type)";
 				sqlServer.sqlCommandInsert.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
 				sqlServer.sqlCommandInsert.Parameters.Add("@type", SqlDbType.VarChar, 255, "type");
-				if(sqlServer.ExecuteUpdate("Counteragents")){
-					DataForms.FClient.updateHistory("Counteragents");
+				if(sqlServer.ExecuteUpdate("Nomenclature")){
+					DataForms.FClient.updateHistory("Nomenclature");
 					Utilits.Console.Log("Создана новая папка.");
 					Close();
 				}
@@ -85,29 +85,29 @@ namespace Aggregator.Client.Directories
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
 				// OLEDB
-				oleDb.dataSet.Tables["Counteragents"].Rows[0]["name"] = nameTextBox.Text;
-				oleDb.oleDbCommandUpdate.CommandText = "UPDATE Counteragents SET " +
+				oleDb.dataSet.Tables["Nomenclature"].Rows[0]["name"] = nameTextBox.Text;
+				oleDb.oleDbCommandUpdate.CommandText = "UPDATE Nomenclature SET " +
 					"[name] = @name " +
 					"WHERE ([id] = @id)";
 				oleDb.oleDbCommandUpdate.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
-				if(oleDb.ExecuteUpdate("Counteragents")){
+				if(oleDb.ExecuteUpdate("Nomenclature")){
 					moveFilesInRenameFolder();
-					DataForms.FClient.updateHistory("Counteragents");					
+					DataForms.FClient.updateHistory("Nomenclature");					
 					Utilits.Console.Log("Папка успешно переименована.");
 					Close();
 				}				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				sqlServer.dataSet.Tables["Counteragents"].Rows[0]["name"] = nameTextBox.Text;
-				sqlServer.sqlCommandUpdate.CommandText = "UPDATE Counteragents SET " +
+				sqlServer.sqlCommandUpdate.CommandText = "UPDATE Nomenclature SET " +
 					"[name] = @name " +
 					"WHERE ([id] = @id)";
 				sqlServer.sqlCommandUpdate.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
 				sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
-				if(sqlServer.ExecuteUpdate("Counteragents")){
+				if(sqlServer.ExecuteUpdate("Nomenclature")){
 					moveFilesInRenameFolder();
-					DataForms.FClient.updateHistory("Counteragents");					
+					DataForms.FClient.updateHistory("Nomenclature");					
 					Utilits.Console.Log("Папка успешно переименована.");
 					Close();
 				}
@@ -119,13 +119,13 @@ namespace Aggregator.Client.Directories
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
 				// OLEDB
 				QueryOleDb query = new QueryOleDb(DataConfig.localDatabase);
-				query.SetCommand("UPDATE Counteragents SET parent='" + nameTextBox.Text + "' WHERE(parent = '" + folderName + "')");
+				query.SetCommand("UPDATE Nomenclature SET parent='" + nameTextBox.Text + "' WHERE(parent = '" + folderName + "')");
 				query.Execute();
 				query.Dispose();
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				QuerySqlServer query = new QuerySqlServer();
-				query.SetCommand("UPDATE Counteragents SET parent='" + nameTextBox.Text + "' WHERE(parent = '" + folderName + "')");
+				query.SetCommand("UPDATE Nomenclature SET parent='" + nameTextBox.Text + "' WHERE(parent = '" + folderName + "')");
 				query.Execute();
 				query.Dispose();
 			}
@@ -135,18 +135,18 @@ namespace Aggregator.Client.Directories
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
 				// OLEDB
-				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, type FROM Counteragents WHERE (id = " + ID + ")";
-				oleDb.ExecuteFill("Counteragents");
-				codeTextBox.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["id"].ToString();
-				nameTextBox.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
-				folderName = oleDb.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, name, type FROM Nomenclature WHERE (id = " + ID + ")";
+				oleDb.ExecuteFill("Nomenclature");
+				codeTextBox.Text = oleDb.dataSet.Tables["Nomenclature"].Rows[0]["id"].ToString();
+				nameTextBox.Text = oleDb.dataSet.Tables["Nomenclature"].Rows[0]["name"].ToString();
+				folderName = oleDb.dataSet.Tables["Nomenclature"].Rows[0]["name"].ToString();
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
-				sqlServer.sqlCommandSelect.CommandText = "SELECT id, name, type FROM Counteragents WHERE (id = " + ID + ")";
-				sqlServer.ExecuteFill("Counteragents");
-				codeTextBox.Text = sqlServer.dataSet.Tables["Counteragents"].Rows[0]["id"].ToString();
-				nameTextBox.Text = sqlServer.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
-				folderName = sqlServer.dataSet.Tables["Counteragents"].Rows[0]["name"].ToString();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, name, type FROM Nomenclature WHERE (id = " + ID + ")";
+				sqlServer.ExecuteFill("Nomenclature");
+				codeTextBox.Text = sqlServer.dataSet.Tables["Nomenclature"].Rows[0]["id"].ToString();
+				nameTextBox.Text = sqlServer.dataSet.Tables["Nomenclature"].Rows[0]["name"].ToString();
+				folderName = sqlServer.dataSet.Tables["Nomenclature"].Rows[0]["name"].ToString();
 			}
 		}
 		
@@ -160,7 +160,7 @@ namespace Aggregator.Client.Directories
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
 		 */	
-		void FormCounteragentFolderLoad(object sender, EventArgs e)
+		void FormNomenclatureFolderLoad(object sender, EventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb = new OleDb(DataConfig.localDatabase);
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer = new SqlServer();
@@ -171,7 +171,7 @@ namespace Aggregator.Client.Directories
 				open();
 			}
 		}
-		void FormCounteragentFolderFormClosed(object sender, FormClosedEventArgs e)
+		void FormNomenclatureFolderFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();

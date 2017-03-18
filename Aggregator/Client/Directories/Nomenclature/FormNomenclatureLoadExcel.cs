@@ -2,7 +2,7 @@
  * Создано в SharpDevelop.
  * Пользователь: Cartish
  * Дата: 17.03.2017
- * Время: 9:53
+ * Время: 10:42
  * 
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
@@ -13,11 +13,11 @@ using System.Windows.Forms;
 namespace Aggregator.Client.Directories
 {
 	/// <summary>
-	/// Description of FormNomenclatureFolder.
+	/// Description of FormNomenclatureLoadExcel.
 	/// </summary>
-	public partial class FormNomenclatureFolder : Form
+	public partial class FormNomenclatureLoadExcel : Form
 	{
-		public FormNomenclatureFolder()
+		public FormNomenclatureLoadExcel()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -28,6 +28,5 @@ namespace Aggregator.Client.Directories
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
-		public String ID;
 	}
 }

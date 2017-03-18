@@ -21,5 +21,7 @@ namespace Aggregator.Data
 		public const String TYPE_MSSQL = "type_mssql";
 		public const String ADMIN = "admin";
 		public const String USER = "user";
+		public const String FOLDER = "folder";
+		public const String FILE = "file";
 	}
 }

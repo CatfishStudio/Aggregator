@@ -1004,7 +1004,7 @@ namespace Aggregator.Client.Directories
 			// button11
 			// 
 			this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button11.Location = new System.Drawing.Point(495, 27);
+			this.button11.Location = new System.Drawing.Point(493, 30);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(20, 20);
 			this.button11.TabIndex = 11;
@@ -1014,7 +1014,7 @@ namespace Aggregator.Client.Directories
 			// 
 			// idTextBox
 			// 
-			this.idTextBox.Location = new System.Drawing.Point(118, 3);
+			this.idTextBox.Location = new System.Drawing.Point(118, 6);
 			this.idTextBox.Name = "idTextBox";
 			this.idTextBox.ReadOnly = true;
 			this.idTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1022,7 +1022,7 @@ namespace Aggregator.Client.Directories
 			// 
 			// label13
 			// 
-			this.label13.Location = new System.Drawing.Point(0, 6);
+			this.label13.Location = new System.Drawing.Point(4, 9);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(100, 23);
 			this.label13.TabIndex = 2;
@@ -1031,18 +1031,18 @@ namespace Aggregator.Client.Directories
 			// foldersComboBox
 			// 
 			this.foldersComboBox.FormattingEnabled = true;
-			this.foldersComboBox.Location = new System.Drawing.Point(118, 26);
+			this.foldersComboBox.Location = new System.Drawing.Point(118, 29);
 			this.foldersComboBox.Name = "foldersComboBox";
 			this.foldersComboBox.Size = new System.Drawing.Size(372, 21);
 			this.foldersComboBox.TabIndex = 1;
 			// 
 			// label12
 			// 
-			this.label12.Location = new System.Drawing.Point(0, 29);
+			this.label12.Location = new System.Drawing.Point(4, 32);
 			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(121, 23);
+			this.label12.Size = new System.Drawing.Size(113, 23);
 			this.label12.TabIndex = 0;
-			this.label12.Text = "Родительская папка:";
+			this.label12.Text = "Папка:";
 			// 
 			// openFileDialog1
 			// 

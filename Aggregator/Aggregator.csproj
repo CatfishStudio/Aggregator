@@ -78,17 +78,25 @@
     <Compile Include="Client\Directories\Counteragents\FormCounteragents.Designer.cs">
       <DependentUpon>FormCounteragents.cs</DependentUpon>
     </Compile>
-    <Compile Include="Client\Directories\FormNomenclature.cs" />
-    <Compile Include="Client\Directories\FormNomenclature.Designer.cs">
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclature.cs" />
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclature.Designer.cs">
       <DependentUpon>FormNomenclature.cs</DependentUpon>
     </Compile>
-    <Compile Include="Client\Directories\FormNomenclatureFile.cs" />
-    <Compile Include="Client\Directories\FormNomenclatureFile.Designer.cs">
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclatureFile.cs" />
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclatureFile.Designer.cs">
       <DependentUpon>FormNomenclatureFile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Client\Directories\FormNomenclatureFolder.cs" />
-    <Compile Include="Client\Directories\FormNomenclatureFolder.Designer.cs">
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclatureFolder.cs" />
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclatureFolder.Designer.cs">
       <DependentUpon>FormNomenclatureFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclatureLoadExcel.cs" />
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclatureLoadExcel.Designer.cs">
+      <DependentUpon>FormNomenclatureLoadExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclatureLoadPrice.cs" />
+    <Compile Include="Client\Directories\Nomenclature\FormNomenclatureLoadPrice.Designer.cs">
+      <DependentUpon>FormNomenclatureLoadPrice.cs</DependentUpon>
     </Compile>
     <Compile Include="Client\FormClient.cs" />
     <Compile Include="Client\FormClient.Designer.cs">
@@ -136,7 +144,12 @@
     <Compile Include="User\FormUsersEdit.Designer.cs">
       <DependentUpon>FormUsersEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilits\Calculator.cs" />
+    <Compile Include="Utilits\Calculator.Designer.cs">
+      <DependentUpon>Calculator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilits\Console.cs" />
+    <Compile Include="Utilits\Conversion.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Admin\FormConsoleQuery.resx">
@@ -160,11 +173,14 @@
     <EmbeddedResource Include="Client\Directories\Counteragents\FormCounteragents.resx">
       <DependentUpon>FormCounteragents.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Client\Directories\FormNomenclature.resx">
+    <EmbeddedResource Include="Client\Directories\Nomenclature\FormNomenclature.resx">
       <DependentUpon>FormNomenclature.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Client\Directories\FormNomenclatureFile.resx">
+    <EmbeddedResource Include="Client\Directories\Nomenclature\FormNomenclatureFile.resx">
       <DependentUpon>FormNomenclatureFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Directories\Nomenclature\FormNomenclatureFolder.resx">
+      <DependentUpon>FormNomenclatureFolder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
@@ -187,11 +203,15 @@
     <EmbeddedResource Include="User\FormUsersEdit.resx">
       <DependentUpon>FormUsersEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utilits\Calculator.resx">
+      <DependentUpon>Calculator.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Client\Directories" />
     <Folder Include="Client\Directories\Constants" />
     <Folder Include="Client\Directories\Counteragents" />
+    <Folder Include="Client\Directories\Nomenclature" />
     <Folder Include="Client\OpenFiles" />
     <Folder Include="Client\Settings" />
     <Folder Include="Data" />

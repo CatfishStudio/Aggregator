@@ -2,13 +2,13 @@
  * Создано в SharpDevelop.
  * Пользователь: Cartish
  * Дата: 17.03.2017
- * Время: 9:53
+ * Время: 10:42
  * 
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
 namespace Aggregator.Client.Directories
 {
-	partial class FormNomenclatureFolder
+	partial class FormNomenclatureLoadPrice
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -37,11 +37,11 @@ namespace Aggregator.Client.Directories
 		private void InitializeComponent()
 		{
 			// 
-			// FormNomenclatureFolder
+			// FormNomenclatureLoadPrice
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Text = "FormNomenclatureFolder";
-			this.Name = "FormNomenclatureFolder";
+			this.Text = "FormNomenclatureLoadPrice";
+			this.Name = "FormNomenclatureLoadPrice";
 		}
 	}
 }
