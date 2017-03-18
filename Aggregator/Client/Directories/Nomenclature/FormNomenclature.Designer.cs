@@ -548,6 +548,7 @@ namespace Aggregator.Client.Directories
 			this.button4.TabIndex = 1;
 			this.button4.Text = "из табличного файла excel.";
 			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.Button4Click);
 			// 
 			// button3
 			// 

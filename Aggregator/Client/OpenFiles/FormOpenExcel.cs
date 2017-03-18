@@ -35,7 +35,6 @@ namespace Aggregator.Client.OpenFiles
 		}
 		
 		public String FileName;
-		public String FileFormat;
 		
 		void excelDataRead()
 		{
@@ -125,12 +124,11 @@ namespace Aggregator.Client.OpenFiles
 		
 		void FormOpenXLSLoad(object sender, EventArgs e)
 		{
-			if(FileFormat == "xls"){
+			if(FileName.Substring(FileName.Length - 3) == "xls"){
 				readExcelFormat972003();
-			}else if(FileFormat == "xlsx"){
+			}else{
 				readExcelFormat2007();
 			}
-			
 		}
 		
 	}

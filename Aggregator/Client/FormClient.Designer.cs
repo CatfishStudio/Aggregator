@@ -54,7 +54,6 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
 		private System.Windows.Forms.OpenFileDialog openFileDialogXLS;
-		private System.Windows.Forms.ToolStripMenuItem excelФайлФормат972003ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem excelФайлФормат2007ToolStripMenuItem;
 		private System.Windows.Forms.OpenFileDialog openFileDialogXLSX;
 		private System.Windows.Forms.ToolStripMenuItem текстовыйФайлToolStripMenuItem1;
@@ -107,7 +106,6 @@ namespace Aggregator.Client
 			this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.текстовыйФайлToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.документWordpadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.excelФайлФормат972003ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.excelФайлФормат2007ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -203,7 +201,7 @@ namespace Aggregator.Client
 			this.создатьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.текстовыйФайлToolStripMenuItem});
 			this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-			this.создатьToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+			this.создатьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.создатьToolStripMenuItem.Text = "Создать";
 			// 
 			// текстовыйФайлToolStripMenuItem
@@ -218,52 +216,43 @@ namespace Aggregator.Client
 			this.открытьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.текстовыйФайлToolStripMenuItem1,
 			this.документWordpadToolStripMenuItem,
-			this.excelФайлФормат972003ToolStripMenuItem,
 			this.excelФайлФормат2007ToolStripMenuItem});
 			this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-			this.открытьToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+			this.открытьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.открытьToolStripMenuItem.Text = "Открыть";
 			// 
 			// текстовыйФайлToolStripMenuItem1
 			// 
 			this.текстовыйФайлToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("текстовыйФайлToolStripMenuItem1.Image")));
 			this.текстовыйФайлToolStripMenuItem1.Name = "текстовыйФайлToolStripMenuItem1";
-			this.текстовыйФайлToolStripMenuItem1.Size = new System.Drawing.Size(254, 22);
+			this.текстовыйФайлToolStripMenuItem1.Size = new System.Drawing.Size(217, 22);
 			this.текстовыйФайлToolStripMenuItem1.Text = "Текстовый файл (*.txt)";
 			// 
 			// документWordpadToolStripMenuItem
 			// 
 			this.документWordpadToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("документWordpadToolStripMenuItem.Image")));
 			this.документWordpadToolStripMenuItem.Name = "документWordpadToolStripMenuItem";
-			this.документWordpadToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+			this.документWordpadToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
 			this.документWordpadToolStripMenuItem.Text = "Документ WordPad (*.rtf)";
-			// 
-			// excelФайлФормат972003ToolStripMenuItem
-			// 
-			this.excelФайлФормат972003ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("excelФайлФормат972003ToolStripMenuItem.Image")));
-			this.excelФайлФормат972003ToolStripMenuItem.Name = "excelФайлФормат972003ToolStripMenuItem";
-			this.excelФайлФормат972003ToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
-			this.excelФайлФормат972003ToolStripMenuItem.Text = "Excel файл формат 97-2003 (*.xls)";
-			this.excelФайлФормат972003ToolStripMenuItem.Click += new System.EventHandler(this.ExcelФайлФормат972003ToolStripMenuItemClick);
 			// 
 			// excelФайлФормат2007ToolStripMenuItem
 			// 
 			this.excelФайлФормат2007ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("excelФайлФормат2007ToolStripMenuItem.Image")));
 			this.excelФайлФормат2007ToolStripMenuItem.Name = "excelФайлФормат2007ToolStripMenuItem";
-			this.excelФайлФормат2007ToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
-			this.excelФайлФормат2007ToolStripMenuItem.Text = "Excel файл формат 2007 (*.xlsx)";
+			this.excelФайлФормат2007ToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+			this.excelФайлФормат2007ToolStripMenuItem.Text = "Excel файл (*.xls или *.xlsx)";
 			this.excelФайлФормат2007ToolStripMenuItem.Click += new System.EventHandler(this.ExcelФайлФормат2007ToolStripMenuItemClick);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(118, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
 			// 
 			// выходToolStripMenuItem
 			// 
 			this.выходToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выходToolStripMenuItem.Image")));
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-			this.выходToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+			this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.выходToolStripMenuItem.Text = "Выход";
 			this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItemClick);
 			// 

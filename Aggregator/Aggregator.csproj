@@ -182,6 +182,9 @@
     <EmbeddedResource Include="Client\Directories\Nomenclature\FormNomenclatureFolder.resx">
       <DependentUpon>FormNomenclatureFolder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Client\Directories\Nomenclature\FormNomenclatureLoadExcel.resx">
+      <DependentUpon>FormNomenclatureLoadExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
     </EmbeddedResource>

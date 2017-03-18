@@ -105,26 +105,15 @@ namespace Aggregator.Client
 			}
 		}
 		
-		/* Открыть XLS файл */
-		void openFileExcel(String fileFormat)
+		/* Открыть Excel файл */
+		void openFileExcel()
 		{
 			FormOpenExcel FOpenExcel;
-			if(fileFormat == "xls"){
-				if(openFileDialogXLS.ShowDialog() == DialogResult.OK){
-					FOpenExcel = new FormOpenExcel();
-					FOpenExcel.FileName = openFileDialogXLS.FileName;
-					FOpenExcel.FileFormat = fileFormat;
-					FOpenExcel.MdiParent = DataForms.FClient;
-					FOpenExcel.Show();
-				}
-			}else if(fileFormat == "xlsx"){
-				if(openFileDialogXLSX.ShowDialog() == DialogResult.OK){
-					FOpenExcel = new FormOpenExcel();
-					FOpenExcel.FileName = openFileDialogXLSX.FileName;
-					FOpenExcel.FileFormat = fileFormat;
-					FOpenExcel.MdiParent = DataForms.FClient;
-					FOpenExcel.Show();
-				}
+			if(openFileDialogXLS.ShowDialog() == DialogResult.OK){
+				FOpenExcel = new FormOpenExcel();
+				FOpenExcel.FileName = openFileDialogXLS.FileName;
+				FOpenExcel.MdiParent = DataForms.FClient;
+				FOpenExcel.Show();
 			}
 		}
 		
@@ -280,13 +269,9 @@ namespace Aggregator.Client
 		{
 			settingsShow();
 		}
-		void ExcelФайлФормат972003ToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			openFileExcel("xls");
-		}
 		void ExcelФайлФормат2007ToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			openFileExcel("xlsx");
+			openFileExcel();
 		}
 		void ВыходToolStripMenuItemClick(object sender, EventArgs e)
 		{

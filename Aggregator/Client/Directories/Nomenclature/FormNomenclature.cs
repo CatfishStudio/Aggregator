@@ -448,6 +448,13 @@ namespace Aggregator.Client.Directories
 			}
 		}
 		
+		void loadFileExcel()
+		{
+			FormNomenclatureLoadExcel FNomenclatureLoadExcel = new FormNomenclatureLoadExcel();
+			FNomenclatureLoadExcel.MdiParent = DataForms.FClient;
+			FNomenclatureLoadExcel.ParentFolder = openFolder;
+			FNomenclatureLoadExcel.Show();
+		}
 		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
@@ -595,7 +602,19 @@ namespace Aggregator.Client.Directories
 		}
 		void Button3Click(object sender, EventArgs e)
 		{
-			
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+		}
+		void Button4Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			panelLoading.Visible = false;
+			loadFileExcel();
 		}
 		
 	}
