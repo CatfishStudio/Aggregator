@@ -133,6 +133,7 @@ namespace Aggregator.Client.Directories
 			this.buttonSave.Text = "Сохранить";
 			this.buttonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonSave.UseVisualStyleBackColor = true;
+			this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
 			// 
 			// buttonCancel
 			// 
@@ -146,6 +147,7 @@ namespace Aggregator.Client.Directories
 			this.buttonCancel.Text = "Отменить";
 			this.buttonCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonCancel.UseVisualStyleBackColor = true;
+			this.buttonCancel.Click += new System.EventHandler(this.ButtonCancelClick);
 			// 
 			// tabControl1
 			// 
@@ -201,6 +203,7 @@ namespace Aggregator.Client.Directories
 			this.button9.TabIndex = 22;
 			this.button9.Text = "X";
 			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button8
 			// 
@@ -247,6 +250,7 @@ namespace Aggregator.Client.Directories
 			this.button6.TabIndex = 17;
 			this.button6.Text = "X";
 			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button5
 			// 
@@ -257,6 +261,7 @@ namespace Aggregator.Client.Directories
 			this.button5.TabIndex = 16;
 			this.button5.Text = "X";
 			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button4
 			// 
@@ -267,6 +272,7 @@ namespace Aggregator.Client.Directories
 			this.button4.TabIndex = 15;
 			this.button4.Text = "X";
 			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button3
 			// 
@@ -277,6 +283,7 @@ namespace Aggregator.Client.Directories
 			this.button3.TabIndex = 14;
 			this.button3.Text = "X";
 			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button2
 			// 
@@ -287,6 +294,7 @@ namespace Aggregator.Client.Directories
 			this.button2.TabIndex = 13;
 			this.button2.Text = "X";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// button1
 			// 
@@ -297,6 +305,7 @@ namespace Aggregator.Client.Directories
 			this.button1.TabIndex = 12;
 			this.button1.Text = "X";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// priceTextBox
 			// 
@@ -417,6 +426,7 @@ namespace Aggregator.Client.Directories
 			this.button11.TabIndex = 12;
 			this.button11.Text = "X";
 			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.ButtonClearClick);
 			// 
 			// foldersComboBox
 			// 
