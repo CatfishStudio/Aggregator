@@ -63,7 +63,7 @@ namespace Aggregator.Client.Directories
 			this.panel1.Controls.Add(this.loadButton);
 			this.panel1.Controls.Add(this.closeButton);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 101);
+			this.panel1.Location = new System.Drawing.Point(0, 86);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(427, 45);
 			this.panel1.TabIndex = 1;
@@ -96,7 +96,7 @@ namespace Aggregator.Client.Directories
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(427, 101);
+			this.panel2.Size = new System.Drawing.Size(427, 86);
 			this.panel2.TabIndex = 2;
 			// 
 			// groupBox1
@@ -109,7 +109,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(421, 92);
+			this.groupBox1.Size = new System.Drawing.Size(421, 77);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Контрагент:";
@@ -147,7 +147,7 @@ namespace Aggregator.Client.Directories
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(427, 146);
+			this.ClientSize = new System.Drawing.Size(427, 131);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -248,6 +248,7 @@ namespace Aggregator.Client.Directories
 		
 		void getPrice()
 		{
+			if(ExcelTableID == "") return;
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
 				// OLEDB
 				oleDb = new OleDb(DataConfig.localDatabase);
@@ -1107,14 +1108,24 @@ namespace Aggregator.Client.Directories
 			}
 			if(check()){
 				if(ID == null){
-					ExcelTableID = "Price" + String.Format("{0:ddMMyyyyHHmmss}", DateTime.Now);
-					if(setPrice()) saveNew();
+					if(fileTextBox.Text == ""){
+						ExcelTableID = "";
+						saveNew();
+					}else{
+						ExcelTableID = "Price" + String.Format("{0:ddMMyyyyHHmmss}", DateTime.Now);
+						if(setPrice()) saveNew();
+					}
 				}else{
-					String oldExcelTableID = ExcelTableID;
-					ExcelTableID = "Price" + String.Format("{0:ddMMyyyyHHmmss}", DateTime.Now);
-					if(setPrice()){
-						removePrice(oldExcelTableID);
+					if(fileTextBox.Text == ""){
+						ExcelTableID = "";
 						saveEdit();
+					}else{
+						String oldExcelTableID = ExcelTableID;
+						ExcelTableID = "Price" + String.Format("{0:ddMMyyyyHHmmss}", DateTime.Now);
+						if(setPrice()){
+							if(oldExcelTableID != "") removePrice(oldExcelTableID);
+							saveEdit();
+						}
 					}
 				}
 			}else{

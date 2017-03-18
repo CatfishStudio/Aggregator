@@ -205,6 +205,10 @@ namespace Aggregator.Client.Directories
 				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
 				return;
 			}
+			if(textBox1.Text == ""){
+				MessageBox.Show("У данного контрагента нет прайс-листа.", "Сообщение");
+				return;
+			}
 			if(openPrice()){
 				saveNew();
 			}

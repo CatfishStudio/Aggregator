@@ -975,6 +975,7 @@ namespace Aggregator.Client.Directories
 			// 
 			this.fileTextBox.Location = new System.Drawing.Point(45, 17);
 			this.fileTextBox.Name = "fileTextBox";
+			this.fileTextBox.ReadOnly = true;
 			this.fileTextBox.Size = new System.Drawing.Size(433, 20);
 			this.fileTextBox.TabIndex = 2;
 			// 
