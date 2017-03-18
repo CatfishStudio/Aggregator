@@ -158,6 +158,15 @@ namespace Aggregator.Client
 			}
 		}
 		
+		void unitsShow()
+		{
+			if(DataForms.FUnits == null){
+				DataForms.FUnits = new FormUnits();
+				DataForms.FUnits.MdiParent = DataForms.FClient;
+				DataForms.FUnits.Show();
+			}
+		}
+		
 		/* Сообщение в статусе */
 		public void messageInStatus(String message) {
 			toolStripStatusLabel2.Text = message;
@@ -338,6 +347,14 @@ namespace Aggregator.Client
 		void ToolStripButton4Click(object sender, EventArgs e)
 		{
 			nomenclatureShow();
+		}
+		void ЕдинициИзмеренияToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			unitsShow();
+		}
+		void ToolStripButton5Click(object sender, EventArgs e)
+		{
+			unitsShow();
 		}
 		
 	}

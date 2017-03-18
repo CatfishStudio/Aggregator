@@ -633,6 +633,28 @@ namespace Aggregator.Client.Directories
 			panelLoading.Visible = false;
 			loadFileExcel();
 		}
+		void ИзПрайслистовКонтрагентовToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			panelLoading.Visible = false;
+			loadPriceList();
+		}
+		void ИзТабличногоФайлаExcelToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			panelLoading.Visible = false;
+			loadFileExcel();
+		}
+		void ВыбратьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			returnValue();
+		}
 		
 	}
 }

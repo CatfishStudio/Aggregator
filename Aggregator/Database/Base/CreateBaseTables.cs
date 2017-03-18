@@ -123,6 +123,69 @@ namespace Aggregator.Database.Base
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Номенклатура.", false, true);
 		}
 		
+		public static void TableUnits()
+		{
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.localDatabase);
+			
+			sqlCommand = "CREATE TABLE Units (" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[name] VARCHAR DEFAULT '' UNIQUE, " +
+				"[info] TEXT" +
+				")";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Единицы измерения.", false, true);
+			
+			sqlCommand = "INSERT INTO Units (" +
+				"[name], [info]) " +
+				"VALUES ('г.', 'Граммы.')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
+			
+			sqlCommand = "INSERT INTO Units (" +
+				"[name], [info]) " +
+				"VALUES ('кг.', 'Килограммы.')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
+			
+			sqlCommand = "INSERT INTO Units (" +
+				"[name], [info]) " +
+				"VALUES ('л.', 'Литры.')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
+			
+			sqlCommand = "INSERT INTO Units (" +
+				"[name], [info]) " +
+				"VALUES ('м.', 'Метры.')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
+			
+			sqlCommand = "INSERT INTO Units (" +
+				"[name], [info]) " +
+				"VALUES ('см.', 'Сантиметры.')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
+			
+			sqlCommand = "INSERT INTO Units (" +
+				"[name], [info]) " +
+				"VALUES ('шт.', 'Штуки.')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
+			
+			sqlCommand = "INSERT INTO Units (" +
+				"[name], [info]) " +
+				"VALUES ('уп.', 'Упаковки.')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
+			
+			sqlCommand = "INSERT INTO Units (" +
+				"[name], [info]) " +
+				"VALUES ('ящ.', 'Ящики.')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
+		}
+		
 		public static void TableHistory()
 		{
 			String sqlCommand;
@@ -155,6 +218,12 @@ namespace Aggregator.Database.Base
 			sqlCommand = "INSERT INTO History (" +
 				"[name], [represent], [datetime], [error], [user]) " +
 				"VALUES ('Nomenclature', 'Номенклатура', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу История.", false, true);
+			
+			sqlCommand = "INSERT INTO History (" +
+				"[name], [represent], [datetime], [error], [user]) " +
+				"VALUES ('Units', 'Единицы измерения', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу История.", false, true);
 		}

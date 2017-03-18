@@ -28,6 +28,7 @@ namespace Aggregator.Data
 		public static FormConstants FConstants;
 		public static FormCounteragents FCounteragents;
 		public static FormNomenclature FNomenclature;
+		public static FormUnits FUnits;
 		/*Администратор*/
 		public static FormSettingsDatabase FSettingsDatabase;
 		public static FormConsoleQuery FConsoleQuery;

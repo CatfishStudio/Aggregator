@@ -75,6 +75,8 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripMenuItem explorerToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem команданяСтрокаToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+		private System.Windows.Forms.ToolStripMenuItem единициИзмеренияToolStripMenuItem;
+		private System.Windows.Forms.ToolStripButton toolStripButton5;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -117,6 +119,7 @@ namespace Aggregator.Client
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.контрагентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.номенклатураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.единициИзмеренияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.документыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.заказToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.планЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -149,6 +152,7 @@ namespace Aggregator.Client
 			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -201,7 +205,7 @@ namespace Aggregator.Client
 			this.создатьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.текстовыйФайлToolStripMenuItem});
 			this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-			this.создатьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.создатьToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
 			this.создатьToolStripMenuItem.Text = "Создать";
 			// 
 			// текстовыйФайлToolStripMenuItem
@@ -218,7 +222,7 @@ namespace Aggregator.Client
 			this.документWordpadToolStripMenuItem,
 			this.excelФайлФормат2007ToolStripMenuItem});
 			this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-			this.открытьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.открытьToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
 			this.открытьToolStripMenuItem.Text = "Открыть";
 			// 
 			// текстовыйФайлToolStripMenuItem1
@@ -246,13 +250,13 @@ namespace Aggregator.Client
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(118, 6);
 			// 
 			// выходToolStripMenuItem
 			// 
 			this.выходToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выходToolStripMenuItem.Image")));
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-			this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.выходToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
 			this.выходToolStripMenuItem.Text = "Выход";
 			this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItemClick);
 			// 
@@ -288,7 +292,8 @@ namespace Aggregator.Client
 			this.константыToolStripMenuItem,
 			this.toolStripSeparator3,
 			this.контрагентыToolStripMenuItem,
-			this.номенклатураToolStripMenuItem});
+			this.номенклатураToolStripMenuItem,
+			this.единициИзмеренияToolStripMenuItem});
 			this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
 			this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
 			this.справочникиToolStripMenuItem.Text = "Справочники";
@@ -297,20 +302,20 @@ namespace Aggregator.Client
 			// 
 			this.константыToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("константыToolStripMenuItem.Image")));
 			this.константыToolStripMenuItem.Name = "константыToolStripMenuItem";
-			this.константыToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+			this.константыToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
 			this.константыToolStripMenuItem.Text = "Константы";
 			this.константыToolStripMenuItem.Click += new System.EventHandler(this.КонстантыToolStripMenuItemClick);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(152, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(181, 6);
 			// 
 			// контрагентыToolStripMenuItem
 			// 
 			this.контрагентыToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("контрагентыToolStripMenuItem.Image")));
 			this.контрагентыToolStripMenuItem.Name = "контрагентыToolStripMenuItem";
-			this.контрагентыToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+			this.контрагентыToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
 			this.контрагентыToolStripMenuItem.Text = "Контрагенты";
 			this.контрагентыToolStripMenuItem.Click += new System.EventHandler(this.КонтрагентыToolStripMenuItemClick);
 			// 
@@ -318,9 +323,17 @@ namespace Aggregator.Client
 			// 
 			this.номенклатураToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("номенклатураToolStripMenuItem.Image")));
 			this.номенклатураToolStripMenuItem.Name = "номенклатураToolStripMenuItem";
-			this.номенклатураToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+			this.номенклатураToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
 			this.номенклатураToolStripMenuItem.Text = "Номенклатура";
 			this.номенклатураToolStripMenuItem.Click += new System.EventHandler(this.НоменклатураToolStripMenuItemClick);
+			// 
+			// единициИзмеренияToolStripMenuItem
+			// 
+			this.единициИзмеренияToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("единициИзмеренияToolStripMenuItem.Image")));
+			this.единициИзмеренияToolStripMenuItem.Name = "единициИзмеренияToolStripMenuItem";
+			this.единициИзмеренияToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+			this.единициИзмеренияToolStripMenuItem.Text = "Единици измерения";
+			this.единициИзмеренияToolStripMenuItem.Click += new System.EventHandler(this.ЕдинициИзмеренияToolStripMenuItemClick);
 			// 
 			// документыToolStripMenuItem
 			// 
@@ -528,6 +541,7 @@ namespace Aggregator.Client
 			this.toolStripButton2,
 			this.toolStripButton3,
 			this.toolStripButton4,
+			this.toolStripButton5,
 			this.toolStripSeparator5});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 24);
 			this.toolStrip1.Name = "toolStrip1";
@@ -583,6 +597,16 @@ namespace Aggregator.Client
 			this.toolStripButton4.Text = "Номенклатура";
 			this.toolStripButton4.ToolTipText = "Номенклатура";
 			this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4Click);
+			// 
+			// toolStripButton5
+			// 
+			this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+			this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton5.Name = "toolStripButton5";
+			this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton5.Text = "Единицы измерения";
+			this.toolStripButton5.Click += new System.EventHandler(this.ToolStripButton5Click);
 			// 
 			// toolStripSeparator5
 			// 

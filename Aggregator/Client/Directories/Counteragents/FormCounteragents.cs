@@ -661,6 +661,10 @@ namespace Aggregator.Client.Directories
 		{
 			DataForms.FClient.messageInStatus("Контрагенты");
 		}
+		void ВыбратьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			returnValue();
+		}
 		
 	}
 }

@@ -159,6 +159,7 @@ namespace Aggregator.Client.Directories
 			// 
 			// button1
 			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
 			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.button1.Location = new System.Drawing.Point(544, 10);
@@ -414,7 +415,7 @@ namespace Aggregator.Client.Directories
 			this.toolStripMenuItem2,
 			this.выбратьЗаписьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(260, 154);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(260, 176);
 			// 
 			// папкиToolStripMenuItem
 			// 
@@ -499,12 +500,14 @@ namespace Aggregator.Client.Directories
 			this.изПрайслистовКонтрагентовToolStripMenuItem.Name = "изПрайслистовКонтрагентовToolStripMenuItem";
 			this.изПрайслистовКонтрагентовToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
 			this.изПрайслистовКонтрагентовToolStripMenuItem.Text = "из прайс-листов контрагентов.";
+			this.изПрайслистовКонтрагентовToolStripMenuItem.Click += new System.EventHandler(this.ИзПрайслистовКонтрагентовToolStripMenuItemClick);
 			// 
 			// изТабличногоФайлаExcelToolStripMenuItem
 			// 
 			this.изТабличногоФайлаExcelToolStripMenuItem.Name = "изТабличногоФайлаExcelToolStripMenuItem";
 			this.изТабличногоФайлаExcelToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
 			this.изТабличногоФайлаExcelToolStripMenuItem.Text = "из табличного файла excel.";
+			this.изТабличногоФайлаExcelToolStripMenuItem.Click += new System.EventHandler(this.ИзТабличногоФайлаExcelToolStripMenuItemClick);
 			// 
 			// toolStripMenuItem2
 			// 
@@ -518,6 +521,7 @@ namespace Aggregator.Client.Directories
 			this.выбратьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
 			this.выбратьЗаписьToolStripMenuItem.Text = "Выбрать запись.";
 			this.выбратьЗаписьToolStripMenuItem.Visible = false;
+			this.выбратьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.ВыбратьЗаписьToolStripMenuItemClick);
 			// 
 			// imageList1
 			// 
