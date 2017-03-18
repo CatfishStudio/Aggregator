@@ -153,7 +153,7 @@ namespace Aggregator.Client.Directories
 			this.buttonLoading.Name = "buttonLoading";
 			this.buttonLoading.Size = new System.Drawing.Size(200, 23);
 			this.buttonLoading.TabIndex = 2;
-			this.buttonLoading.Text = "Загрузить наименования товаров";
+			this.buttonLoading.Text = "Загрузка номенклатуры";
 			this.buttonLoading.UseVisualStyleBackColor = true;
 			this.buttonLoading.Click += new System.EventHandler(this.ButtonLoadingClick);
 			// 

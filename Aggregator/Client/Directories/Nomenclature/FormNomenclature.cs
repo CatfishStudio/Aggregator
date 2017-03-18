@@ -456,6 +456,21 @@ namespace Aggregator.Client.Directories
 			FNomenclatureLoadExcel.Show();
 		}
 		
+		void loadPriceList()
+		{
+			FormNomenclatureLoadPrice FNomenclatureLoadPrice = new FormNomenclatureLoadPrice();
+			FNomenclatureLoadPrice.MdiParent = DataForms.FClient;
+			FNomenclatureLoadPrice.ParentFolder = openFolder;
+			FNomenclatureLoadPrice.Show();
+		}
+		
+		public void ShowMenuReturnValue()
+		{
+			toolStripMenuItem2.Visible = true;
+			выбратьЗаписьToolStripMenuItem.Visible = true;
+			button1.Visible = true;
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -606,6 +621,8 @@ namespace Aggregator.Client.Directories
 				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
 				return;
 			}
+			panelLoading.Visible = false;
+			loadPriceList();
 		}
 		void Button4Click(object sender, EventArgs e)
 		{

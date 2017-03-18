@@ -35,6 +35,7 @@ namespace Aggregator.Client.Directories
 		}
 		
 		public TextBox TextBoxReturnValue;	// объект принимаемый значение
+		public String TypeReturnValue;		// тип возвращаемого значения: name, price
 		
 		OleDb oleDb;
 		SqlServer sqlServer;
@@ -500,9 +501,17 @@ namespace Aggregator.Client.Directories
 		void returnValue()
 		{
 			if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() != "Папка" && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".."){
-				TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+				if(TypeReturnValue == "name") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+				if(TypeReturnValue == "price") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString();
 				this.Close();
 			}
+		}
+		
+		public void ShowMenuReturnValue()
+		{
+			toolStripMenuItem2.Visible = true;
+			выбратьЗаписьToolStripMenuItem.Visible = true;
+			button1.Visible = true;
 		}
 		
 		/* =================================================================================================

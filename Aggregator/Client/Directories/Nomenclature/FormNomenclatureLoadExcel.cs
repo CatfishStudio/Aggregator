@@ -191,6 +191,12 @@ namespace Aggregator.Client.Directories
 		{
 			
 		}
+		void FormNomenclatureLoadExcelFormClosed(object sender, FormClosedEventArgs e)
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
+			Dispose();
+		}
 		void Button1Click(object sender, EventArgs e)
 		{
 			openFileExcel();
@@ -210,6 +216,7 @@ namespace Aggregator.Client.Directories
 				else Utilits.Console.Log("Неудалось открыть и прочитать файл Excel. Данные не загружены." , false, true);
 			}
 		}
+		
 		
 	}
 }

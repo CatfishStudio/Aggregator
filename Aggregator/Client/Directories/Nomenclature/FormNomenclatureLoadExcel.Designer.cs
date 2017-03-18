@@ -186,6 +186,7 @@ namespace Aggregator.Client.Directories
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormNomenclatureLoadExcel";
 			this.Text = "Загрузка номенклатуры из Excel файла";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormNomenclatureLoadExcelFormClosed);
 			this.Load += new System.EventHandler(this.FormNomenclatureLoadExcelLoad);
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
