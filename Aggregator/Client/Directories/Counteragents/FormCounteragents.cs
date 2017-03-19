@@ -500,10 +500,12 @@ namespace Aggregator.Client.Directories
 		
 		void returnValue()
 		{
-			if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() != "Папка" && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".."){
-				if(TypeReturnValue == "name") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
-				if(TypeReturnValue == "price") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString();
-				this.Close();
+			if(listView1.SelectedIndices.Count > 0){
+				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() != "Папка" && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".."){
+					if(TypeReturnValue == "name") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+					if(TypeReturnValue == "price") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString();
+					this.Close();
+				}
 			}
 		}
 		

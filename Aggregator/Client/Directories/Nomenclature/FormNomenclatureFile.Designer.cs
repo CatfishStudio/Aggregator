@@ -214,6 +214,7 @@ namespace Aggregator.Client.Directories
 			this.button8.Size = new System.Drawing.Size(26, 20);
 			this.button8.TabIndex = 21;
 			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.Button8Click);
 			// 
 			// unitsTextBox
 			// 

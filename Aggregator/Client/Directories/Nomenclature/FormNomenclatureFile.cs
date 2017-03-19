@@ -387,5 +387,16 @@ namespace Aggregator.Client.Directories
 			if(target.Name == "button9") unitsTextBox.Clear();
 			if(target.Name == "button11") foldersComboBox.Text = "";
 		}
+		void Button8Click(object sender, EventArgs e)
+		{
+			if(DataForms.FUnits != null) DataForms.FUnits.Close();
+			if(DataForms.FUnits == null) {
+				DataForms.FUnits = new FormUnits();
+				DataForms.FUnits.MdiParent = DataForms.FClient;
+				DataForms.FUnits.TextBoxReturnValue = unitsTextBox;
+				DataForms.FUnits.ShowMenuReturnValue();
+				DataForms.FUnits.Show();
+			}
+		}
 	}
 }

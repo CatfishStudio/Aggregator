@@ -127,7 +127,8 @@ namespace Aggregator.Utilits
 			// 
 			// button18
 			// 
-			this.button18.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.button18.Image = ((System.Drawing.Image)(resources.GetObject("button18.Image")));
+			this.button18.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.button18.Location = new System.Drawing.Point(122, 100);
 			this.button18.Name = "button18";
 			this.button18.Size = new System.Drawing.Size(62, 23);

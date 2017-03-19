@@ -51,10 +51,10 @@ namespace Aggregator.Database.Config
 				else DataConfig.autoUpdate = false;
 				DataConfig.period = oleDb.dataSet.Tables["Settings"].Rows[0]["period"].ToString();
 				oleDb.Dispose();
-				Utilits.Console.Log("[ReadSettings]: Настройки программы успешно загружены.");
+				Utilits.Console.Log("[Настройки]: Настройки программы успешно загружены.");
 			}catch(Exception ex){
 				oleDb.Error();
-				MessageBox.Show("[ReadSettings]: " + ex.ToString(), "Ошибка");
+				MessageBox.Show("[Настройки]: " + ex.ToString(), "Ошибка");
 				Application.Exit();
 			}
 		}

@@ -102,6 +102,10 @@
     <Compile Include="Client\Directories\Units\FormUnits.Designer.cs">
       <DependentUpon>FormUnits.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Directories\Units\FormUnitsFile.cs" />
+    <Compile Include="Client\Directories\Units\FormUnitsFile.Designer.cs">
+      <DependentUpon>FormUnitsFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\FormClient.cs" />
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
@@ -194,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Directories\Units\FormUnits.resx">
       <DependentUpon>FormUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Directories\Units\FormUnitsFile.resx">
+      <DependentUpon>FormUnitsFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>

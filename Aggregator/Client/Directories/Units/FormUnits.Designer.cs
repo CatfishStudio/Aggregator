@@ -119,6 +119,7 @@ namespace Aggregator.Client.Directories
 			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Visible = false;
+			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
 			// buttonClose
 			// 
@@ -164,6 +165,7 @@ namespace Aggregator.Client.Directories
 			this.findButton.TabIndex = 12;
 			this.toolTip1.SetToolTip(this.findButton, "Поиск");
 			this.findButton.UseVisualStyleBackColor = true;
+			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
 			// 
 			// comboBox1
 			// 
@@ -185,6 +187,7 @@ namespace Aggregator.Client.Directories
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.toolTip1.SetToolTip(this.refreshButton, "Обновить данные");
 			this.refreshButton.UseVisualStyleBackColor = true;
+			this.refreshButton.Click += new System.EventHandler(this.RefreshButtonClick);
 			// 
 			// panel4
 			// 
@@ -203,6 +206,7 @@ namespace Aggregator.Client.Directories
 			this.deleteButton.TabIndex = 2;
 			this.toolTip1.SetToolTip(this.deleteButton, "Удалить");
 			this.deleteButton.UseVisualStyleBackColor = true;
+			this.deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
 			// 
 			// editButton
 			// 
@@ -213,6 +217,7 @@ namespace Aggregator.Client.Directories
 			this.editButton.TabIndex = 1;
 			this.toolTip1.SetToolTip(this.editButton, "Изменить");
 			this.editButton.UseVisualStyleBackColor = true;
+			this.editButton.Click += new System.EventHandler(this.EditButtonClick);
 			// 
 			// addButton
 			// 
@@ -223,6 +228,7 @@ namespace Aggregator.Client.Directories
 			this.addButton.TabIndex = 0;
 			this.toolTip1.SetToolTip(this.addButton, "Добавить");
 			this.addButton.UseVisualStyleBackColor = true;
+			this.addButton.Click += new System.EventHandler(this.AddButtonClick);
 			// 
 			// panel3
 			// 
@@ -284,7 +290,7 @@ namespace Aggregator.Client.Directories
 			this.toolStripMenuItem2,
 			this.выбратьЗаписьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 98);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 120);
 			// 
 			// создатьЗаписьToolStripMenuItem
 			// 
@@ -292,6 +298,7 @@ namespace Aggregator.Client.Directories
 			this.создатьЗаписьToolStripMenuItem.Name = "создатьЗаписьToolStripMenuItem";
 			this.создатьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
 			this.создатьЗаписьToolStripMenuItem.Text = "Создать запись.";
+			this.создатьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.СоздатьЗаписьToolStripMenuItemClick);
 			// 
 			// изменитьЗаписьToolStripMenuItem
 			// 
@@ -299,6 +306,7 @@ namespace Aggregator.Client.Directories
 			this.изменитьЗаписьToolStripMenuItem.Name = "изменитьЗаписьToolStripMenuItem";
 			this.изменитьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
 			this.изменитьЗаписьToolStripMenuItem.Text = "Изменить запись.";
+			this.изменитьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.ИзменитьЗаписьToolStripMenuItemClick);
 			// 
 			// удалитьЗаписьToolStripMenuItem
 			// 
@@ -306,6 +314,7 @@ namespace Aggregator.Client.Directories
 			this.удалитьЗаписьToolStripMenuItem.Name = "удалитьЗаписьToolStripMenuItem";
 			this.удалитьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
 			this.удалитьЗаписьToolStripMenuItem.Text = "Удалить запись.";
+			this.удалитьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.УдалитьЗаписьToolStripMenuItemClick);
 			// 
 			// toolStripMenuItem2
 			// 
@@ -319,6 +328,7 @@ namespace Aggregator.Client.Directories
 			this.выбратьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
 			this.выбратьЗаписьToolStripMenuItem.Text = "Выбрать запись.";
 			this.выбратьЗаписьToolStripMenuItem.Visible = false;
+			this.выбратьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.ВыбратьЗаписьToolStripMenuItemClick);
 			// 
 			// imageList1
 			// 
