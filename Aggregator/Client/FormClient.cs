@@ -17,6 +17,7 @@ using Aggregator.Database.Server;
 using Aggregator.User;
 using Aggregator.Client.Settings;
 using Aggregator.Client.Directories;
+using Aggregator.Client.Documents.PurchasePlan;
 
 namespace Aggregator.Client
 {
@@ -164,6 +165,15 @@ namespace Aggregator.Client
 				DataForms.FUnits = new FormUnits();
 				DataForms.FUnits.MdiParent = DataForms.FClient;
 				DataForms.FUnits.Show();
+			}
+		}
+		
+		void purchasePlanJournalShow()
+		{
+			if(DataForms.FPurchasePlanJournal == null){
+				DataForms.FPurchasePlanJournal = new FormPurchasePlanJournal();
+				DataForms.FPurchasePlanJournal.MdiParent = DataForms.FClient;
+				DataForms.FPurchasePlanJournal.Show();
 			}
 		}
 		
@@ -355,6 +365,18 @@ namespace Aggregator.Client
 		void ToolStripButton5Click(object sender, EventArgs e)
 		{
 			unitsShow();
+		}
+		void ПланЗакупокToolStripMenuItemClick(object sender, EventArgs e)
+		{
+	
+		}
+		void ЖурналЗакупокToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			purchasePlanJournalShow();
+		}
+		void ToolStripButton10Click(object sender, EventArgs e)
+		{
+			purchasePlanJournalShow();
 		}
 		
 	}

@@ -23,5 +23,10 @@ namespace Aggregator.Data
 		public const String USER = "user";
 		public const String FOLDER = "folder";
 		public const String FILE = "file";
+		public const String TODAY = "today";
+		public const String YESTERDAY = "yesterday";
+		public const String WEEK = "week";
+		public const String MONTH = "month";
+		public const String YEAR = "year";
 	}
 }

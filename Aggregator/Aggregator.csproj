@@ -106,6 +106,14 @@
     <Compile Include="Client\Directories\Units\FormUnitsFile.Designer.cs">
       <DependentUpon>FormUnitsFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanDoc.cs" />
+    <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanDoc.Designer.cs">
+      <DependentUpon>FormPurchasePlanDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanJournal.cs" />
+    <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanJournal.Designer.cs">
+      <DependentUpon>FormPurchasePlanJournal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\FormClient.cs" />
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
@@ -202,6 +210,12 @@
     <EmbeddedResource Include="Client\Directories\Units\FormUnitsFile.resx">
       <DependentUpon>FormUnitsFile.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Client\Documents\PurchasePlan\FormPurchasePlanDoc.resx">
+      <DependentUpon>FormPurchasePlanDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Documents\PurchasePlan\FormPurchasePlanJournal.resx">
+      <DependentUpon>FormPurchasePlanJournal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,9 +246,11 @@
     <Folder Include="Client\Directories\Constants" />
     <Folder Include="Client\Directories\Counteragents" />
     <Folder Include="Client\Directories\Nomenclature" />
+    <Folder Include="Client\Documents\PurchasePlan" />
     <Folder Include="Client\OpenFiles" />
     <Folder Include="Client\Settings" />
     <Folder Include="Client\Directories\Units" />
+    <Folder Include="Client\Documents" />
     <Folder Include="Data" />
     <Folder Include="Client" />
     <Folder Include="Database" />
