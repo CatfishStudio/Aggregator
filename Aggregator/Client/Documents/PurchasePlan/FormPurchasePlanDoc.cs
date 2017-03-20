@@ -9,6 +9,9 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Aggregator.Data;
+using Aggregator.Database.Local;
+using Aggregator.Database.Server;
 
 namespace Aggregator.Client.Documents.PurchasePlan
 {
@@ -28,5 +31,34 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
+		OleDb oleDb;
+		SqlServer sqlServer;
+		
+		
+		
+		/* =================================================================================================
+		 * РАЗДЕЛ: СОБЫТИЙ
+		 * =================================================================================================
+		 */	
+		void FormPurchasePlanDocLoad(object sender, EventArgs e)
+		{
+			TableRefresh(); // Загрузка данных из базы данных
+			Utilits.Console.Log("Журнал закупок: отркыт.");
+		}
+		void FormPurchasePlanDocFormClosed(object sender, FormClosedEventArgs e)
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
+			Dispose();
+			DataForms.FPurchasePlanJournal = null;
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log("Журнал закупок: закрыт.");
+		}
+		void ButtonCancelClick(object sender, EventArgs e)
+		{
+			Close();
+		}
+		
 	}
 }

@@ -110,7 +110,7 @@ namespace Aggregator.Database.Base
 			sqlCommand = "CREATE TABLE Nomenclature (" +
 				"[id] COUNTER PRIMARY KEY, " +
 				"[type] VARCHAR DEFAULT '', " +
-				"[name] VARCHAR DEFAULT '' UNIQUE, " +
+				"[name] VARCHAR DEFAULT '', " +
 				"[code] VARCHAR DEFAULT '', " +
 				"[series] VARCHAR DEFAULT '', " +
 				"[article] VARCHAR DEFAULT '', " +
@@ -186,6 +186,52 @@ namespace Aggregator.Database.Base
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
 		}
 		
+		public static void TablePurchasePlan()
+		{
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.localDatabase);
+			
+			sqlCommand = "CREATE TABLE PurchasePlan (" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[docDate] DATETIME, " +
+				"[docNumber] VARCHAR DEFAULT '', " +
+				"[docName] VARCHAR DEFAULT '', " +
+				"[docAutor] VARCHAR DEFAULT '', " +
+				"[docSum] FLOAT DEFAULT 0, " +
+				"[docVat] FLOAT DEFAULT 0, " +
+				"[docTotal] FLOAT DEFAULT 0" +
+				")";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы План закупок.", false, true);
+		}
+		
+		public static void TablePurchasePlanPriceLists()
+		{
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.localDatabase);
+			
+			sqlCommand = "CREATE TABLE PurchasePlanPriceLists (" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[counteragentName] VARCHAR DEFAULT '', " +
+				"[counteragentPricelist] VARCHAR DEFAULT '', " +
+				"[docID] VARCHAR DEFAULT ''" +
+				")";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы План закупок.", false, true);
+		}
+		
+		public static void TableOrderNomenclature()
+		{
+			
+		}
+		
+		public static void TableOrders()
+		{
+			
+		}
+		
 		public static void TableHistory()
 		{
 			String sqlCommand;
@@ -224,6 +270,12 @@ namespace Aggregator.Database.Base
 			sqlCommand = "INSERT INTO History (" +
 				"[name], [represent], [datetime], [error], [user]) " +
 				"VALUES ('Units', 'Единицы измерения', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу История.", false, true);
+			
+			sqlCommand = "INSERT INTO History (" +
+				"[name], [represent], [datetime], [error], [user]) " +
+				"VALUES ('PurchasePlan', 'План закупок', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу История.", false, true);
 		}

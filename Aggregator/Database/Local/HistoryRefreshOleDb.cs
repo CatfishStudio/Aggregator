@@ -108,7 +108,8 @@ namespace Aggregator.Database.Local
 				if(tableName == "Counteragents" && DataForms.FCounteragents != null) DataForms.FCounteragents.TableRefresh();
 				if(tableName == "Nomenclature" && DataForms.FNomenclature != null) DataForms.FNomenclature.TableRefresh();
 				if(tableName == "Units" && DataForms.FUnits != null) DataForms.FUnits.TableRefresh();
-			
+				if(tableName == "PurchasePlan" && DataForms.FPurchasePlanJournal != null) DataForms.FPurchasePlanJournal.TableRefresh();
+				
 				Utilits.Console.Log("[ИСТОРИЯ] Таблица " + tableRepresent + " была успешно обновлена.");
 			}catch(Exception ex){
 				oleDb.Error();
@@ -122,6 +123,7 @@ namespace Aggregator.Database.Local
 			if(tableName == "Counteragents") return 1;
 			if(tableName == "Nomenclature") return 2;
 			if(tableName == "Units") return 3;
+			if(tableName == "PurchasePlan") return 3;
 			return -1;
 		}
 		

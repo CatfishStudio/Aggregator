@@ -33,6 +33,10 @@ namespace Aggregator.Database.Base
 			CreateBaseTables.TableCounteragents();
 			CreateBaseTables.TableNomenclature();
 			CreateBaseTables.TableUnits();
+			CreateBaseTables.TablePurchasePlan();
+			CreateBaseTables.TablePurchasePlanPriceLists();
+			CreateBaseTables.TableOrderNomenclature();
+			CreateBaseTables.TableOrders();
 			CreateBaseTables.TableHistory();
 		}
 	}
