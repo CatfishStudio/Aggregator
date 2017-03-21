@@ -271,6 +271,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.priceButton.Text = "Прайс-лист";
 			this.priceButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.priceButton.UseVisualStyleBackColor = true;
+			this.priceButton.Click += new System.EventHandler(this.PriceButtonClick);
 			// 
 			// panel4
 			// 
@@ -288,6 +289,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.deleteButton.Size = new System.Drawing.Size(25, 23);
 			this.deleteButton.TabIndex = 4;
 			this.deleteButton.UseVisualStyleBackColor = true;
+			this.deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
 			// 
 			// addButton
 			// 
@@ -297,6 +299,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.addButton.Size = new System.Drawing.Size(25, 23);
 			this.addButton.TabIndex = 3;
 			this.addButton.UseVisualStyleBackColor = true;
+			this.addButton.Click += new System.EventHandler(this.AddButtonClick);
 			// 
 			// tabPage2
 			// 
