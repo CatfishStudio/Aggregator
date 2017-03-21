@@ -110,9 +110,9 @@ namespace Aggregator.Client
 		void openFileExcel()
 		{
 			FormOpenExcel FOpenExcel;
-			if(openFileDialogXLS.ShowDialog() == DialogResult.OK){
+			if(openFileDialog1.ShowDialog() == DialogResult.OK){
 				FOpenExcel = new FormOpenExcel();
-				FOpenExcel.FileName = openFileDialogXLS.FileName;
+				FOpenExcel.FileName = openFileDialog1.FileName;
 				FOpenExcel.MdiParent = DataForms.FClient;
 				FOpenExcel.Show();
 			}
@@ -175,6 +175,14 @@ namespace Aggregator.Client
 				DataForms.FPurchasePlanJournal.MdiParent = DataForms.FClient;
 				DataForms.FPurchasePlanJournal.Show();
 			}
+		}
+		
+		void purchasePlanDoclShow()
+		{
+			FormPurchasePlanDoc FPurchasePlanDoc = new FormPurchasePlanDoc();
+			FPurchasePlanDoc.MdiParent = DataForms.FClient;
+			FPurchasePlanDoc.ID = null;
+			FPurchasePlanDoc.Show();
 		}
 		
 		/* Сообщение в статусе */
@@ -368,7 +376,7 @@ namespace Aggregator.Client
 		}
 		void ПланЗакупокToolStripMenuItemClick(object sender, EventArgs e)
 		{
-	
+			purchasePlanDoclShow();
 		}
 		void ЖурналЗакупокToolStripMenuItemClick(object sender, EventArgs e)
 		{
@@ -377,6 +385,10 @@ namespace Aggregator.Client
 		void ToolStripButton10Click(object sender, EventArgs e)
 		{
 			purchasePlanJournalShow();
+		}
+		void ToolStripButton6Click(object sender, EventArgs e)
+		{
+			purchasePlanDoclShow();
 		}
 		
 	}

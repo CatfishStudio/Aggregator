@@ -134,29 +134,54 @@ namespace Aggregator.Client.Directories
 		void resetEditor()
 		{
 			numericUpDown5.Minimum = 0; numericUpDown5.Maximum = 0;
-			numericUpDown5.Value = 0; checkBox1.Checked = false;
+			numericUpDown5.Value = 0; numericUpDown5.Enabled = true;
+			checkBox1.Checked = false; checkBox1.Enabled = true;
+			
 			numericUpDown6.Minimum = 0; numericUpDown6.Maximum = 0;
-			numericUpDown6.Value = 0; checkBox2.Checked = false;
+			numericUpDown6.Value = 0; numericUpDown6.Enabled = true;
+			checkBox2.Checked = false; checkBox2.Enabled = true;
+			
 			numericUpDown7.Minimum = 0; numericUpDown7.Maximum = 0;
-			numericUpDown7.Value = 0; checkBox3.Checked = false;
+			numericUpDown7.Value = 0; numericUpDown7.Enabled = true;
+			checkBox3.Checked = false; checkBox3.Enabled = true;
+			
 			numericUpDown8.Minimum = 0; numericUpDown8.Maximum = 0;
-			numericUpDown8.Value = 0; checkBox4.Checked = false;
+			numericUpDown8.Value = 0; numericUpDown8.Enabled = true;
+			checkBox4.Checked = false; checkBox4.Enabled = true;
+			
 			numericUpDown9.Minimum = 0; numericUpDown9.Maximum = 0;
-			numericUpDown9.Value = 0; checkBox5.Checked = false;
+			numericUpDown9.Value = 0; numericUpDown9.Enabled = true;
+			checkBox5.Checked = false; checkBox5.Enabled = true;
+			
 			numericUpDown10.Minimum = 0; numericUpDown10.Maximum = 0;
-			numericUpDown10.Value = 0; checkBox6.Checked = false;
+			numericUpDown10.Value = 0; numericUpDown10.Enabled = true;
+			checkBox6.Checked = false; checkBox6.Enabled = true;
+			
 			numericUpDown11.Minimum = 0; numericUpDown11.Maximum = 0;
-			numericUpDown11.Value = 0; checkBox7.Checked = false;
+			numericUpDown11.Value = 0; numericUpDown11.Enabled = true;
+			checkBox7.Checked = false; checkBox7.Enabled = true;
+			
 			numericUpDown12.Minimum = 0; numericUpDown12.Maximum = 0;
-			numericUpDown12.Value = 0; checkBox8.Checked = false;
+			numericUpDown12.Value = 0; numericUpDown12.Enabled = true;
+			checkBox8.Checked = false; checkBox8.Enabled = true;
+			
 			numericUpDown13.Minimum = 0; numericUpDown13.Maximum = 0;
-			numericUpDown13.Value = 0; checkBox9.Checked = false;
+			numericUpDown13.Value = 0; numericUpDown13.Enabled = true;
+			checkBox9.Checked = false; checkBox9.Enabled = true;
+			
 			numericUpDown14.Minimum = 0; numericUpDown14.Maximum = 0;
-			numericUpDown14.Value = 0; checkBox10.Checked = false;
+			numericUpDown14.Value = 0; numericUpDown14.Enabled = true;
+			checkBox10.Checked = false;  checkBox10.Enabled = true;
+			
 			numericUpDown15.Minimum = 0; numericUpDown15.Maximum = 0;
-			numericUpDown15.Value = 0; checkBox11.Checked = false;
+			numericUpDown15.Value = 0; numericUpDown15.Enabled = true;
+			checkBox11.Checked = false; checkBox11.Enabled = true;
+			
 			numericUpDown16.Minimum = 0; numericUpDown16.Maximum = 0;
-			numericUpDown16.Value = 0; checkBox12.Checked = false;
+			numericUpDown16.Value = 0; numericUpDown16.Enabled = true;
+			checkBox12.Checked = false; checkBox12.Enabled = true;
+			
+			dataGrid1.ReadOnly = false;
 		}
 		
 		void initColunms()
@@ -564,18 +589,19 @@ namespace Aggregator.Client.Directories
 				textBox11.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["information"].ToString();
 				fileTextBox.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["excel_filename"].ToString();
 				dateLabel.Text = oleDb.dataSet.Tables["Counteragents"].Rows[0]["excel_date"].ToString();
-				checkBox1.Checked = true;	numericUpDown5.Value = 2;
-				checkBox2.Checked = true;	numericUpDown6.Value = 3;
-				checkBox3.Checked = true;	numericUpDown7.Value = 4;
-				checkBox4.Checked = true;	numericUpDown8.Value = 5;
-				checkBox10.Checked = true;	numericUpDown14.Value = 6;
-				checkBox11.Checked = true;	numericUpDown15.Value = 7;
-				checkBox5.Checked = true;	numericUpDown9.Value = 8;
-				checkBox6.Checked = true;	numericUpDown10.Value = 9;
-				checkBox7.Checked = true;	numericUpDown11.Value = 10;
-				checkBox8.Checked = true;	numericUpDown12.Value = 11;
-				checkBox9.Checked = true;	numericUpDown13.Value = 12;
-				checkBox12.Checked = true;	numericUpDown16.Value = 13;
+				checkBox1.Checked = true;	checkBox1.Enabled = false;	numericUpDown5.Value = 2;	numericUpDown5.Enabled = false;
+				checkBox2.Checked = true;	checkBox2.Enabled = false;	numericUpDown6.Value = 3;	numericUpDown6.Enabled = false;
+				checkBox3.Checked = true;	checkBox3.Enabled = false;	numericUpDown7.Value = 4;	numericUpDown7.Enabled = false;
+				checkBox4.Checked = true;	checkBox4.Enabled = false;	numericUpDown8.Value = 5;	numericUpDown8.Enabled = false;
+				checkBox10.Checked = true;	checkBox10.Enabled = false;	numericUpDown14.Value = 6;	numericUpDown14.Enabled = false;
+				checkBox11.Checked = true;	checkBox11.Enabled = false;	numericUpDown15.Value = 7;	numericUpDown15.Enabled = false;
+				checkBox5.Checked = true;	checkBox5.Enabled = false;	numericUpDown9.Value = 8;	numericUpDown9.Enabled = false;
+				checkBox6.Checked = true;	checkBox6.Enabled = false;	numericUpDown10.Value = 9;	numericUpDown10.Enabled = false;
+				checkBox7.Checked = true;	checkBox7.Enabled = false;	numericUpDown11.Value = 10;	numericUpDown11.Enabled = false;
+				checkBox8.Checked = true;	checkBox8.Enabled = false;	numericUpDown12.Value = 11;	numericUpDown12.Enabled = false;
+				checkBox9.Checked = true;	checkBox9.Enabled = false;	numericUpDown13.Value = 12;	numericUpDown13.Enabled = false;
+				checkBox12.Checked = true;	checkBox12.Enabled = false;	numericUpDown16.Value = 13;	numericUpDown16.Enabled = false;
+				dataGrid1.ReadOnly = true;
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				// MSSQL SERVER
 				getPrice();
@@ -603,18 +629,19 @@ namespace Aggregator.Client.Directories
 				textBox11.Text = sqlServer.dataSet.Tables["Counteragents"].Rows[0]["information"].ToString();
 				fileTextBox.Text = sqlServer.dataSet.Tables["Counteragents"].Rows[0]["excel_filename"].ToString();
 				dateLabel.Text = sqlServer.dataSet.Tables["Counteragents"].Rows[0]["excel_date"].ToString();
-				checkBox1.Checked = true;	numericUpDown5.Value = 2;
-				checkBox2.Checked = true;	numericUpDown6.Value = 3;
-				checkBox3.Checked = true;	numericUpDown7.Value = 4;
-				checkBox4.Checked = true;	numericUpDown8.Value = 5;
-				checkBox10.Checked = true;	numericUpDown14.Value = 6;
-				checkBox11.Checked = true;	numericUpDown15.Value = 7;
-				checkBox5.Checked = true;	numericUpDown9.Value = 8;
-				checkBox6.Checked = true;	numericUpDown10.Value = 9;
-				checkBox7.Checked = true;	numericUpDown11.Value = 10;
-				checkBox8.Checked = true;	numericUpDown12.Value = 11;
-				checkBox9.Checked = true;	numericUpDown13.Value = 12;
-				checkBox12.Checked = true;	numericUpDown16.Value = 13;
+				checkBox1.Checked = true;	checkBox1.Enabled = false;	numericUpDown5.Value = 2;	numericUpDown5.Enabled = false;
+				checkBox2.Checked = true;	checkBox2.Enabled = false;	numericUpDown6.Value = 3;	numericUpDown6.Enabled = false;
+				checkBox3.Checked = true;	checkBox3.Enabled = false;	numericUpDown7.Value = 4;	numericUpDown7.Enabled = false;
+				checkBox4.Checked = true;	checkBox4.Enabled = false;	numericUpDown8.Value = 5;	numericUpDown8.Enabled = false;
+				checkBox10.Checked = true;	checkBox10.Enabled = false;	numericUpDown14.Value = 6;	numericUpDown14.Enabled = false;
+				checkBox11.Checked = true;	checkBox11.Enabled = false;	numericUpDown15.Value = 7;	numericUpDown15.Enabled = false;
+				checkBox5.Checked = true;	checkBox5.Enabled = false;	numericUpDown9.Value = 8;	numericUpDown9.Enabled = false;
+				checkBox6.Checked = true;	checkBox6.Enabled = false;	numericUpDown10.Value = 9;	numericUpDown10.Enabled = false;
+				checkBox7.Checked = true;	checkBox7.Enabled = false;	numericUpDown11.Value = 10;	numericUpDown11.Enabled = false;
+				checkBox8.Checked = true;	checkBox8.Enabled = false;	numericUpDown12.Value = 11;	numericUpDown12.Enabled = false;
+				checkBox9.Checked = true;	checkBox9.Enabled = false;	numericUpDown13.Value = 12;	numericUpDown13.Enabled = false;
+				checkBox12.Checked = true;	checkBox12.Enabled = false;	numericUpDown16.Value = 13;	numericUpDown16.Enabled = false;
+				dataGrid1.ReadOnly = true;
 			}
 		}
 		
@@ -1108,22 +1135,26 @@ namespace Aggregator.Client.Directories
 			}
 			if(check()){
 				if(ID == null){
-					if(fileTextBox.Text == ""){
+					if(fileTextBox.Text == ""){	// новый: если прайст не загржен
 						ExcelTableID = "";
 						saveNew();
-					}else{
+					}else{	// новый: если прайс загружен
 						ExcelTableID = "Price" + String.Format("{0:ddMMyyyyHHmmss}", DateTime.Now);
 						if(setPrice()) saveNew();
 					}
 				}else{
-					if(fileTextBox.Text == ""){
+					if(fileTextBox.Text == ""){	// изменить: если прайс не загружен
 						ExcelTableID = "";
 						saveEdit();
 					}else{
-						String oldExcelTableID = ExcelTableID;
-						ExcelTableID = "Price" + String.Format("{0:ddMMyyyyHHmmss}", DateTime.Now);
-						if(setPrice()){
-							if(oldExcelTableID != "") removePrice(oldExcelTableID);
+						if(dataGrid1.ReadOnly == false){	// изменить: если при изменении контрагента был загружен новый прайс
+							String oldExcelTableID = ExcelTableID;
+							ExcelTableID = "Price" + String.Format("{0:ddMMyyyyHHmmss}", DateTime.Now);
+							if(setPrice()){
+								if(oldExcelTableID != "") removePrice(oldExcelTableID);
+								saveEdit();
+							}
+						}else{	// изменить: если при изменении контрагента прайс не меняется
 							saveEdit();
 						}
 					}

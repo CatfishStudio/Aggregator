@@ -53,9 +53,8 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
-		private System.Windows.Forms.OpenFileDialog openFileDialogXLS;
+		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.ToolStripMenuItem excelФайлФормат2007ToolStripMenuItem;
-		private System.Windows.Forms.OpenFileDialog openFileDialogXLSX;
 		private System.Windows.Forms.ToolStripMenuItem текстовыйФайлToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem документWordpadToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem заказToolStripMenuItem;
@@ -167,6 +166,7 @@ namespace Aggregator.Client
 			this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -175,9 +175,7 @@ namespace Aggregator.Client
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.openFileDialogXLS = new System.Windows.Forms.OpenFileDialog();
-			this.openFileDialogXLSX = new System.Windows.Forms.OpenFileDialog();
-			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -362,14 +360,14 @@ namespace Aggregator.Client
 			// 
 			this.заказToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("заказToolStripMenuItem.Image")));
 			this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
-			this.заказToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.заказToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.заказToolStripMenuItem.Text = "Заказ";
 			// 
 			// планЗакупокToolStripMenuItem
 			// 
 			this.планЗакупокToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("планЗакупокToolStripMenuItem.Image")));
 			this.планЗакупокToolStripMenuItem.Name = "планЗакупокToolStripMenuItem";
-			this.планЗакупокToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.планЗакупокToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.планЗакупокToolStripMenuItem.Text = "План закупок";
 			this.планЗакупокToolStripMenuItem.Click += new System.EventHandler(this.ПланЗакупокToolStripMenuItemClick);
 			// 
@@ -658,6 +656,7 @@ namespace Aggregator.Client
 			this.toolStripButton6.Name = "toolStripButton6";
 			this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton6.Text = "План закупок";
+			this.toolStripButton6.Click += new System.EventHandler(this.ToolStripButton6Click);
 			// 
 			// toolStripSeparator7
 			// 
@@ -691,6 +690,11 @@ namespace Aggregator.Client
 			this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton10.Text = "Журнал закупок";
 			this.toolStripButton10.Click += new System.EventHandler(this.ToolStripButton10Click);
+			// 
+			// toolStripSeparator8
+			// 
+			this.toolStripSeparator8.Name = "toolStripSeparator8";
+			this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
 			// 
 			// statusStrip1
 			// 
@@ -750,18 +754,9 @@ namespace Aggregator.Client
 			this.imageList1.Images.SetKeyName(1, "database_go.png");
 			this.imageList1.Images.SetKeyName(2, "database_delete.png");
 			// 
-			// openFileDialogXLS
+			// openFileDialog1
 			// 
-			this.openFileDialogXLS.Filter = "*.xls|*.xls";
-			// 
-			// openFileDialogXLSX
-			// 
-			this.openFileDialogXLSX.Filter = "*.xlsx|*.xlsx";
-			// 
-			// toolStripSeparator8
-			// 
-			this.toolStripSeparator8.Name = "toolStripSeparator8";
-			this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
+			this.openFileDialog1.Filter = "*.xls|*.xls|*.xlsx|*.xlsx";
 			// 
 			// FormClient
 			// 

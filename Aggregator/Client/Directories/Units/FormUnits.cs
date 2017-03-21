@@ -195,51 +195,42 @@ namespace Aggregator.Client.Directories
 		void editFile()
 		{
 			if(listView1.SelectedIndices.Count > 0){
-				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() == "" 
-				   && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".." 
-				   && listView1.SelectedItems[0].StateImageIndex == 1){
-					FormUnitsFile FUnitsFile = new FormUnitsFile();
-					FUnitsFile.MdiParent = DataForms.FClient;
-					FUnitsFile.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
-					FUnitsFile.Show();
-				}
+				FormUnitsFile FUnitsFile = new FormUnitsFile();
+				FUnitsFile.MdiParent = DataForms.FClient;
+				FUnitsFile.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
+				FUnitsFile.Show();
 			}
 		}
 		
 		void deleteFile()
 		{
 			if(listView1.SelectedIndices.Count > 0){
-				if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() == "" 
-				   && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".." 
-				   && listView1.SelectedItems[0].StateImageIndex == 1){
-					
-					String fileID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
-					String fileName = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
-					
-					if(MessageBox.Show("Удалить безвозвратно '" + fileName + "'?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
-						if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
-							// OLEDB
-							QueryOleDb query = new QueryOleDb(DataConfig.localDatabase);
-							query.SetCommand("DELETE FROM Units WHERE (id = " + fileID + ")");
-							if(query.Execute()){
-								DataForms.FClient.updateHistory("Units");
-								Utilits.Console.Log("Единица измерений '" + fileName + "' успешно удалена.");
-							}else{
-								Utilits.Console.Log("[ОШИБКА] Единица измерений '" + fileName + "' не удалось удалить!");
-							}
-						} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
-							// MSSQL SERVER
-							QuerySqlServer query = new QuerySqlServer();
-							query.SetCommand("DELETE FROM Units WHERE (id = " + fileID + ")");
-							if(query.Execute()){
-								Utilits.Console.Log("Единица измерений '" + fileName + "' успешно удалена.");
-								DataForms.FClient.updateHistory("Units");
-							}else{
-								Utilits.Console.Log("[ОШИБКА] Единица измерений '" + fileName + "' не удалось удалить!");
-							}
+				String fileID = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
+				String fileName = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+				
+				if(MessageBox.Show("Удалить безвозвратно '" + fileName + "'?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+					if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+						// OLEDB
+						QueryOleDb query = new QueryOleDb(DataConfig.localDatabase);
+						query.SetCommand("DELETE FROM Units WHERE (id = " + fileID + ")");
+						if(query.Execute()){
+							DataForms.FClient.updateHistory("Units");
+							Utilits.Console.Log("Единица измерений '" + fileName + "' успешно удалена.");
+						}else{
+							Utilits.Console.Log("[ОШИБКА] Единица измерений '" + fileName + "' не удалось удалить!");
 						}
-					}					
-				}
+					} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+						// MSSQL SERVER
+						QuerySqlServer query = new QuerySqlServer();
+						query.SetCommand("DELETE FROM Units WHERE (id = " + fileID + ")");
+						if(query.Execute()){
+							Utilits.Console.Log("Единица измерений '" + fileName + "' успешно удалена.");
+							DataForms.FClient.updateHistory("Units");
+						}else{
+							Utilits.Console.Log("[ОШИБКА] Единица измерений '" + fileName + "' не удалось удалить!");
+						}
+					}
+				}					
 			}
 		}
 		

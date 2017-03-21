@@ -32,6 +32,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			//
 		}
 		
+		public String ID;
 		OleDb oleDb;
 		SqlServer sqlServer;
 		
@@ -43,8 +44,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		 */	
 		void FormPurchasePlanDocLoad(object sender, EventArgs e)
 		{
-			TableRefresh(); // Загрузка данных из базы данных
-			Utilits.Console.Log("Журнал закупок: отркыт.");
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb = new OleDb(DataConfig.localDatabase);
+			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer = new SqlServer();
+			if(ID == null){
+				Text = "Создать";
+			}else{
+				Text = "Изменить";
+				//open();
+			}
 		}
 		void FormPurchasePlanDocFormClosed(object sender, FormClosedEventArgs e)
 		{

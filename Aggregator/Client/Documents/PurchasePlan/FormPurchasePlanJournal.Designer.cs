@@ -30,7 +30,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.Panel panel4;
 		private System.Windows.Forms.Button deleteButton;
 		private System.Windows.Forms.Button editButton;
-		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button dateButton;
 		private System.Windows.Forms.DateTimePicker dateTimePicker2;
 		private System.Windows.Forms.DateTimePicker dateTimePicker1;
 		private System.Windows.Forms.Label label1;
@@ -73,7 +73,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.findButton = new System.Windows.Forms.Button();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.panel5 = new System.Windows.Forms.Panel();
-			this.button5 = new System.Windows.Forms.Button();
+			this.dateButton = new System.Windows.Forms.Button();
 			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.label1 = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel2.Controls.Add(this.findButton);
 			this.panel2.Controls.Add(this.comboBox1);
 			this.panel2.Controls.Add(this.panel5);
-			this.panel2.Controls.Add(this.button5);
+			this.panel2.Controls.Add(this.dateButton);
 			this.panel2.Controls.Add(this.dateTimePicker2);
 			this.panel2.Controls.Add(this.dateTimePicker1);
 			this.panel2.Controls.Add(this.label1);
@@ -149,6 +149,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.toolTip1.SetToolTip(this.refreshButton, "Обновить данные");
 			this.refreshButton.UseVisualStyleBackColor = true;
+			this.refreshButton.Click += new System.EventHandler(this.RefreshButtonClick);
 			// 
 			// panel6
 			// 
@@ -167,6 +168,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.findButton.TabIndex = 22;
 			this.toolTip1.SetToolTip(this.findButton, "Поиск");
 			this.findButton.UseVisualStyleBackColor = true;
+			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
 			// 
 			// comboBox1
 			// 
@@ -184,16 +186,17 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel5.Size = new System.Drawing.Size(4, 23);
 			this.panel5.TabIndex = 20;
 			// 
-			// button5
+			// dateButton
 			// 
-			this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-			this.button5.Location = new System.Drawing.Point(348, 12);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(25, 23);
-			this.button5.TabIndex = 19;
-			this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.toolTip1.SetToolTip(this.button5, "Применить период.");
-			this.button5.UseVisualStyleBackColor = true;
+			this.dateButton.Image = ((System.Drawing.Image)(resources.GetObject("dateButton.Image")));
+			this.dateButton.Location = new System.Drawing.Point(348, 12);
+			this.dateButton.Name = "dateButton";
+			this.dateButton.Size = new System.Drawing.Size(25, 23);
+			this.dateButton.TabIndex = 19;
+			this.dateButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.dateButton, "Применить период.");
+			this.dateButton.UseVisualStyleBackColor = true;
+			this.dateButton.Click += new System.EventHandler(this.DateButtonClick);
 			// 
 			// dateTimePicker2
 			// 
@@ -238,6 +241,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.deleteButton.TabIndex = 6;
 			this.toolTip1.SetToolTip(this.deleteButton, "Удалить");
 			this.deleteButton.UseVisualStyleBackColor = true;
+			this.deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
 			// 
 			// editButton
 			// 
@@ -248,6 +252,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.editButton.TabIndex = 5;
 			this.toolTip1.SetToolTip(this.editButton, "Изменить");
 			this.editButton.UseVisualStyleBackColor = true;
+			this.editButton.Click += new System.EventHandler(this.EditButtonClick);
 			// 
 			// addButton
 			// 
@@ -258,6 +263,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.addButton.TabIndex = 1;
 			this.toolTip1.SetToolTip(this.addButton, "Добавить");
 			this.addButton.UseVisualStyleBackColor = true;
+			this.addButton.Click += new System.EventHandler(this.AddButtonClick);
 			// 
 			// panel3
 			// 
@@ -282,10 +288,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
+			this.listView1.LargeImageList = this.imageList1;
 			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(729, 358);
+			this.listView1.SmallImageList = this.imageList1;
+			this.listView1.StateImageList = this.imageList1;
 			this.listView1.TabIndex = 6;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;

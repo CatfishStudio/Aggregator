@@ -104,7 +104,7 @@ namespace Aggregator.Client.Directories
 					if(colsCount > 3) newRow["article"] = row[3];
 					if(colsCount > 4) newRow["manufacturer"] = row[4];
 					if(colsCount > 5){
-						if(row[5] == "") newRow["price"] = 0;
+						if(row[5].ToString() == "") newRow["price"] = 0;
 						else newRow["price"] = row[5];
 					}
 					if(colsCount > 6) newRow["units"] = row[6];	
@@ -151,7 +151,7 @@ namespace Aggregator.Client.Directories
 					if(colsCount > 3) newRow["article"] = row[3];
 					if(colsCount > 4) newRow["manufacturer"] = row[4];
 					if(colsCount > 5){
-						if(row[5] == "") newRow["price"] = 0;
+						if(row[5].ToString() == "") newRow["price"] = 0;
 						else newRow["price"] = row[5];
 					}
 					if(colsCount > 6) newRow["units"] = row[6];	
