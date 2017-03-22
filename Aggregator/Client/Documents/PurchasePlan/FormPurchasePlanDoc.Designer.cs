@@ -23,9 +23,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.DateTimePicker dateTimePicker1;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label autorLabel;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ListView listView1;
@@ -36,6 +35,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.Button addButton;
 		private System.Windows.Forms.Panel panel4;
 		private System.Windows.Forms.Button priceButton;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.TextBox docNumberTextBox;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -64,10 +65,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.label3 = new System.Windows.Forms.Label();
+			this.autorLabel = new System.Windows.Forms.Label();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.docNumberTextBox = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -75,6 +76,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.priceButton = new System.Windows.Forms.Button();
@@ -111,6 +113,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonSave.Text = "Сохранить";
 			this.buttonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonSave.UseVisualStyleBackColor = true;
+			this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
 			// 
 			// buttonCancel
 			// 
@@ -128,10 +131,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// panel2
 			// 
-			this.panel2.Controls.Add(this.label3);
+			this.panel2.Controls.Add(this.autorLabel);
 			this.panel2.Controls.Add(this.dateTimePicker1);
 			this.panel2.Controls.Add(this.label2);
-			this.panel2.Controls.Add(this.textBox1);
+			this.panel2.Controls.Add(this.docNumberTextBox);
 			this.panel2.Controls.Add(this.label1);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -139,13 +142,15 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel2.Size = new System.Drawing.Size(717, 40);
 			this.panel2.TabIndex = 4;
 			// 
-			// label3
+			// autorLabel
 			// 
-			this.label3.Location = new System.Drawing.Point(385, 9);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(100, 23);
-			this.label3.TabIndex = 18;
-			this.label3.Text = "Автор:";
+			this.autorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.autorLabel.Location = new System.Drawing.Point(385, 9);
+			this.autorLabel.Name = "autorLabel";
+			this.autorLabel.Size = new System.Drawing.Size(320, 23);
+			this.autorLabel.TabIndex = 18;
+			this.autorLabel.Text = "Автор:";
 			// 
 			// dateTimePicker1
 			// 
@@ -164,14 +169,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Дата:";
 			// 
-			// textBox1
+			// docNumberTextBox
 			// 
-			this.textBox1.Location = new System.Drawing.Point(53, 6);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(171, 20);
-			this.textBox1.TabIndex = 1;
-			this.textBox1.Text = "ПЗ-";
+			this.docNumberTextBox.Location = new System.Drawing.Point(53, 6);
+			this.docNumberTextBox.Name = "docNumberTextBox";
+			this.docNumberTextBox.ReadOnly = true;
+			this.docNumberTextBox.Size = new System.Drawing.Size(171, 20);
+			this.docNumberTextBox.TabIndex = 1;
+			this.docNumberTextBox.Text = "ПЗ-";
 			// 
 			// label1
 			// 
@@ -211,7 +216,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 			this.columnHeader1,
 			this.columnHeader2,
-			this.columnHeader3});
+			this.columnHeader3,
+			this.columnHeader4});
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
@@ -240,6 +246,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.columnHeader3.Text = "Прайс-лист";
 			this.columnHeader3.Width = 200;
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "№";
 			// 
 			// imageList1
 			// 

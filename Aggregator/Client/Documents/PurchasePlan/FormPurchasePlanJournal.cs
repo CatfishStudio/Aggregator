@@ -89,20 +89,26 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		
 		void TableRefreshLocal()
 		{
+			
 			oleDb = new OleDb(DataConfig.localDatabase);
 			oleDb.dataSet.Clear();
 			oleDb.dataSet.DataSetName = "PurchasePlan";
-			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM PurchasePlan WHERE (docDate BETWEEN '" + 
-				dateTimePicker1.Text + "' AND '" + dateTimePicker2.Text + 
-				"' AND (docNumber LIKE '%" + comboBox1.Text + "%' OR docTotal LIKE '%" + comboBox1.Text + "%' OR docAutor LIKE '%" + comboBox1.Text + 
-				"%')) ORDER BY docDate ASC";
+			
+			//Дата в формате: BETWEEN #22/03/2017# AND #22/03/2017#
+			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM PurchasePlan WHERE (docDate BETWEEN #" + 
+				dateTimePicker1.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "# AND #" + 
+				dateTimePicker2.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "#) " +
+				"AND (docNumber LIKE '%" + comboBox1.Text + "%' OR docTotal LIKE '%" + comboBox1.Text + "%' OR docAutor LIKE '%" + comboBox1.Text +
+				"%') ORDER BY docDate ASC";
 			
 			if(oleDb.ExecuteFill("PurchasePlan")){
 				listView1.Items.Clear();
 				foreach(DataRow rowElement in oleDb.dataSet.Tables[0].Rows)
 	    		{
 					ListViewItem ListViewItem_add = new ListViewItem();
-					ListViewItem_add.SubItems.Add(rowElement["docDate"].ToString());
+					DateTime dt = new DateTime();
+					DateTime.TryParse(rowElement["docDate"].ToString(), out dt);
+					ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
 					ListViewItem_add.StateImageIndex = 0;
 					ListViewItem_add.SubItems.Add(rowElement["docNumber"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docName"].ToString());
