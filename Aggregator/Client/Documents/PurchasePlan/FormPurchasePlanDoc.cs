@@ -10,6 +10,7 @@ using System;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.Sql;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Data;
@@ -41,6 +42,57 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		SqlServer sqlServer;
 		int selectTableLine = 0;
 		
+		String getDocNumber()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+				// OLEDB
+				OleDbConnection oleDbConnection = new OleDbConnection();
+				oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + DataConfig.localDatabase + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
+				try{
+					
+					OleDbCommand oleDbCommand = new OleDbCommand("SELECT MAX(id) FROM PurchasePlan", oleDbConnection);
+					oleDbConnection.Open();
+					var order_id = oleDbCommand.ExecuteScalar();
+					oleDbConnection.Close();
+					
+					int num;
+					if (order_id.ToString() == "") num = 1;
+					else num = (int)order_id + 1;
+					String idStr = num.ToString();
+					String numStr = "ПЗ-0000000";
+					numStr = numStr.Remove((numStr.Length - idStr.Length));
+					numStr += idStr;
+					return numStr;
+				}catch(Exception ex){
+					oleDbConnection.Close();
+					//Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+				}
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				SqlConnection sqlConnection = new SqlConnection(DataConfig.serverConnection);
+				try{
+					SqlCommand sqlCommand = new SqlCommand("SELECT SCOPE_IDENTITY(PurchasePlan)", sqlConnection);
+					sqlConnection.Open();
+					var order_id = sqlCommand.ExecuteScalar();
+					sqlConnection.Close();
+					
+					int num;
+					if (order_id.ToString() == "") num = 1;
+					else num = (int)order_id + 1;
+					String idStr = num.ToString();
+					String numStr = "ПЗ-0000000";
+					numStr = numStr.Remove((numStr.Length - idStr.Length));
+					numStr += idStr;
+					return numStr;
+				}catch(Exception ex){
+					sqlConnection.Close();
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
+				}
+			}
+			return null;
+		}
+		
 		void openPrice()
 		{
 			if(listView1.SelectedIndices.Count > 0){
@@ -61,7 +113,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				
 				DataRow newRow = oleDb.dataSet.Tables["PurchasePlan"].NewRow();
 				newRow["docDate"] = dateTimePicker1.Value;
-				newRow["docNumber"] = docNumberTextBox.Text;
+				String docNumber = getDocNumber();	if(docNumber == null) return;
+				newRow["docNumber"] = docNumber;
 				newRow["docName"] = "План закупок";
 				newRow["docAutor"] = DataConfig.userName;
 				newRow["docSum"] = 0;
@@ -90,7 +143,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				
 				DataRow newRow = oleDb.dataSet.Tables["PurchasePlan"].NewRow();
 				newRow["docDate"] = dateTimePicker1.Value;
-				newRow["docNumber"] = docNumberTextBox.Text;
+				String docNumber = getDocNumber();	if(docNumber == null) return;
+				newRow["docNumber"] = docNumber;
 				newRow["docName"] = "План закупок";
 				newRow["docAutor"] = DataConfig.userName;
 				newRow["docSum"] = 0;

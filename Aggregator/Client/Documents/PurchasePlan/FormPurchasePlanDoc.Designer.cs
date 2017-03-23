@@ -176,7 +176,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.docNumberTextBox.ReadOnly = true;
 			this.docNumberTextBox.Size = new System.Drawing.Size(171, 20);
 			this.docNumberTextBox.TabIndex = 1;
-			this.docNumberTextBox.Text = "ПЗ-";
+			this.docNumberTextBox.Text = "ПЗ-0000000";
 			// 
 			// label1
 			// 
