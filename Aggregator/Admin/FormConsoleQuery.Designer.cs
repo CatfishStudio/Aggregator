@@ -15,7 +15,6 @@ namespace Aggregator.Admin
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.TextBox textBox5;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Label label1;
@@ -35,6 +34,7 @@ namespace Aggregator.Admin
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.ComboBox comboBox2;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -58,7 +58,7 @@ namespace Aggregator.Admin
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
@@ -93,7 +93,7 @@ namespace Aggregator.Admin
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox1.Controls.Add(this.textBox5);
+			this.groupBox1.Controls.Add(this.comboBox2);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.comboBox1);
 			this.groupBox1.Controls.Add(this.label1);
@@ -104,12 +104,25 @@ namespace Aggregator.Admin
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Основные настройки:";
 			// 
-			// textBox5
+			// comboBox2
 			// 
-			this.textBox5.Location = new System.Drawing.Point(91, 46);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(362, 20);
-			this.textBox5.TabIndex = 3;
+			this.comboBox2.FormattingEnabled = true;
+			this.comboBox2.Items.AddRange(new object[] {
+			"-- Config -----------------------------------",
+			"Settings",
+			"DatabaseSettings",
+			"-- Database ------------------------------",
+			"Users",
+			"Counteragents",
+			"Nomenclature",
+			"Units",
+			"PurchasePlan",
+			"PurchasePlanPriceLists",
+			"History"});
+			this.comboBox2.Location = new System.Drawing.Point(91, 46);
+			this.comboBox2.Name = "comboBox2";
+			this.comboBox2.Size = new System.Drawing.Size(362, 21);
+			this.comboBox2.TabIndex = 3;
 			// 
 			// label2
 			// 
@@ -349,7 +362,6 @@ namespace Aggregator.Admin
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormConsoleQueryFormClosed);
 			this.Load += new System.EventHandler(this.FormConsoleQueryLoad);
 			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);

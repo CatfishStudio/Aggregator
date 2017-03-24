@@ -195,7 +195,7 @@ namespace Aggregator.Database.Base
 			sqlCommand = "CREATE TABLE PurchasePlan (" +
 				"[id] COUNTER PRIMARY KEY, " +
 				"[docDate] DATETIME, " +
-				"[docNumber] VARCHAR DEFAULT '', " +
+				"[docNumber] VARCHAR DEFAULT '' UNIQUE, " +
 				"[docName] VARCHAR DEFAULT '', " +
 				"[docAutor] VARCHAR DEFAULT '', " +
 				"[docSum] FLOAT DEFAULT 0, " +

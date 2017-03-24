@@ -46,11 +46,11 @@ namespace Aggregator.Admin
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
-			if(comboBox1.Text != "" && textBox5.Text != ""){
+			if(comboBox1.Text != "" && comboBox2.Text != ""){
 				oleDb.dataSet.Clear();
 				dataGrid1.DataSource = oleDb.dataSet;
 				oleDb.oleDbCommandSelect.CommandText = textBox1.Text;
-				oleDb.ExecuteFill(textBox5.Text);
+				oleDb.ExecuteFill(comboBox2.Text);
 			}else{
 				MessageBox.Show("Вы не выбрали файл базы данных или не указали имя таблицы!");
 			}
@@ -66,14 +66,14 @@ namespace Aggregator.Admin
 				MessageBox.Show("Необходимо ввести запрос Select");
 				return;
 			}
-			if(comboBox1.Text != "" && textBox5.Text != ""){
+			if(comboBox1.Text != "" && comboBox2.Text != ""){
 				query.SetCommand(textBox2.Text);
 				query.Execute();
 				
 				oleDb.dataSet.Clear();
 				dataGrid1.DataSource = oleDb.dataSet;
 				oleDb.oleDbCommandSelect.CommandText = textBox1.Text;
-				oleDb.ExecuteFill(textBox5.Text);
+				oleDb.ExecuteFill(comboBox2.Text);
 			}else{
 				MessageBox.Show("Вы не выбрали файл базы данных или не указали имя таблицы!");
 			}
@@ -84,14 +84,14 @@ namespace Aggregator.Admin
 				MessageBox.Show("Необходимо ввести запрос Select");
 				return;
 			}
-			if(comboBox1.Text != "" && textBox5.Text != ""){
+			if(comboBox1.Text != "" && comboBox2.Text != ""){
 				query.SetCommand(textBox3.Text);
 				query.Execute();
 				
 				oleDb.dataSet.Clear();
 				dataGrid1.DataSource = oleDb.dataSet;
 				oleDb.oleDbCommandSelect.CommandText = textBox1.Text;
-				oleDb.ExecuteFill(textBox5.Text);
+				oleDb.ExecuteFill(comboBox2.Text);
 			}else{
 				MessageBox.Show("Вы не выбрали файл базы данных или не указали имя таблицы!");
 			}
@@ -102,14 +102,14 @@ namespace Aggregator.Admin
 				MessageBox.Show("Необходимо ввести запрос Select");
 				return;
 			}
-			if(comboBox1.Text != "" && textBox5.Text != ""){
+			if(comboBox1.Text != "" && comboBox2.Text != ""){
 				query.SetCommand(textBox4.Text);
 				query.Execute();
 				
 				oleDb.dataSet.Clear();
 				dataGrid1.DataSource = oleDb.dataSet;
 				oleDb.oleDbCommandSelect.CommandText = textBox1.Text;
-				oleDb.ExecuteFill(textBox5.Text);
+				oleDb.ExecuteFill(comboBox2.Text);
 			}else{
 				MessageBox.Show("Вы не выбрали файл базы данных или не указали имя таблицы!");
 			}

@@ -41,6 +41,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		OleDb oleDb;
 		SqlServer sqlServer;
 		int selectTableLine = 0;
+		String docNumber;
 		
 		String getDocNumber()
 		{
@@ -106,14 +107,20 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		
 		void saveNew()
 		{
+			docNumber = getDocNumber();
+			if(docNumber == null) {
+				Utilits.Console.Log("[ОШИБКА] автонумерация не смогла назначить номер для документа.");
+				return;
+			}
+			
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
 				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
 				oleDb.oleDbCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docAutor, docSum, docVat, docTotal FROM PurchasePlan WHERE (id = 0)";
 				oleDb.ExecuteFill("PurchasePlan");				
 				
 				DataRow newRow = oleDb.dataSet.Tables["PurchasePlan"].NewRow();
 				newRow["docDate"] = dateTimePicker1.Value;
-				String docNumber = getDocNumber();	if(docNumber == null) return;
 				newRow["docNumber"] = docNumber;
 				newRow["docName"] = "План закупок";
 				newRow["docAutor"] = DataConfig.userName;
@@ -133,17 +140,21 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				oleDb.oleDbCommandInsert.Parameters.Add("@docTotal", OleDbType.Double, 15, "docTotal");
 				if(oleDb.ExecuteUpdate("PurchasePlan")){
 					DataForms.FClient.updateHistory("PurchasePlan");
-					Utilits.Console.Log("Документ 'План закупок' успешно создан.");
-					Close();
+					if(saveNewChangesPriceLists()){
+						Utilits.Console.Log("Документ План закупок №" + docNumber + ": успешно создан.");
+						Close();
+					}else{
+						Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Документ План закупок №" + docNumber + ": не удалось сохранить список выбранных прайс листов.", false, true);
+					}
 				}
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
+				sqlServer = new SqlServer();
 				sqlServer.sqlCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docAutor, docSum, docVat, docTotal FROM PurchasePlan WHERE (id = 0)";
 				sqlServer.ExecuteFill("PurchasePlan");				
 				
 				DataRow newRow = oleDb.dataSet.Tables["PurchasePlan"].NewRow();
 				newRow["docDate"] = dateTimePicker1.Value;
-				String docNumber = getDocNumber();	if(docNumber == null) return;
 				newRow["docNumber"] = docNumber;
 				newRow["docName"] = "План закупок";
 				newRow["docAutor"] = DataConfig.userName;
@@ -163,10 +174,49 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				sqlServer.sqlCommandInsert.Parameters.Add("@docTotal", SqlDbType.Float, 15, "docTotal");
 				if(sqlServer.ExecuteUpdate("PurchasePlan")){
 					DataForms.FClient.updateHistory("PurchasePlan");
-					Utilits.Console.Log("Документ 'План закупок' успешно создан.");
-					Close();
+					if(saveNewChangesPriceLists()){
+						Utilits.Console.Log("Документ 'План закупок' успешно создан.");
+						Close();
+					}else{
+						Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Документ План закупок №" + docNumber + ": не удалось сохранить список выбранных прайс листов.", false, true);
+					}
 				}
 			}
+		}
+		
+		bool saveNewChangesPriceLists()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT counteragentName, counteragentPricelist, docID FROM PurchasePlanPriceLists WHERE (id = 0)";
+				oleDb.ExecuteFill("PurchasePlanPriceLists");				
+				
+				DataRow newRow = null;
+				for(int i = 0; i < listView1.Items.Count; i++){
+					newRow = oleDb.dataSet.Tables["PurchasePlanPriceLists"].NewRow();
+					newRow["counteragentName"] = listView1.Items[i].SubItems[1].Text.ToString();
+					newRow["counteragentPricelist"] = listView1.Items[i].SubItems[2].Text.ToString();
+					newRow["docID"] = docNumber;
+					oleDb.dataSet.Tables["PurchasePlanPriceLists"].Rows.Add(newRow);
+				}
+				
+				oleDb.oleDbCommandInsert.CommandText = "INSERT INTO PurchasePlanPriceLists (counteragentName, counteragentPricelist, docID) " +
+					"VALUES (@counteragentName, @counteragentPricelist, @docID)";
+				oleDb.oleDbCommandInsert.Parameters.Add("@counteragentName", OleDbType.VarChar, 255, "counteragentName");
+				oleDb.oleDbCommandInsert.Parameters.Add("@counteragentPricelist", OleDbType.VarChar, 255, "counteragentPricelist");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docID", OleDbType.VarChar, 255, "docID");
+				if(oleDb.ExecuteUpdate("PurchasePlanPriceLists")){
+					return true;
+				}else{
+					return false;
+				}
+				
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				
+			}
+			return false;
 		}
 		
 		/* =================================================================================================
@@ -175,8 +225,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		 */	
 		void FormPurchasePlanDocLoad(object sender, EventArgs e)
 		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb = new OleDb(DataConfig.localDatabase);
-			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer = new SqlServer();
+			//if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb = new OleDb(DataConfig.localDatabase);
+			//if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer = new SqlServer();
 			if(ID == null){
 				Text = "Создать";
 				dateTimePicker1.Value = DateTime.Today.Date;
