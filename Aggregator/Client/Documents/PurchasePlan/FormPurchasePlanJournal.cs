@@ -180,7 +180,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 				}
 			}
-			comboBox1.Items.Add(comboBox1.Text);
+			if(comboBox1.Text != "")  comboBox1.Items.Add(comboBox1.Text);
 		}
 		
 		void addFile()
@@ -204,17 +204,34 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		void deleteFile()
 		{
 			if(listView1.SelectedIndices.Count > 0){
-				/*
-				if(MessageBox.Show("Удалить безвозвратно '" + fileName + "'?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+				String docID = listView1.Items[listView1.SelectedIndices[0]].SubItems[6].Text.ToString();
+				String docName = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString();
+				
+				if(MessageBox.Show("Удалить безвозвратно документ план закупок №" + docName + " ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
 					if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 						// OLEDB
+						QueryOleDb query;
+						query = new QueryOleDb(DataConfig.localDatabase);
+						query.SetCommand("DELETE FROM PurchasePlanPriceLists WHERE (docID = '" + docName + "')");
+						if(query.Execute()){
+							query = new QueryOleDb(DataConfig.localDatabase);
+							query.SetCommand("DELETE FROM PurchasePlan WHERE (id = " + docID + ")");
+							if(query.Execute()){
+								DataForms.FClient.updateHistory("PurchasePlan");
+								Utilits.Console.Log("Документ план закупок №" + docName + " успешно удален.");
+							}else{
+								Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не удалось удалить!");
+							}	
+						}else{
+							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не удалось удалить вложенные прайс-листы!");
+						}						
 						
+											
 					} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 						// MSSQL SERVER
 						
 					}
-				}
-				*/					
+				}			
 			}
 		}
 		
@@ -243,6 +260,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void RefreshButtonClick(object sender, EventArgs e)
 		{
+			comboBox1.Text = "";
 			TableRefresh();
 		}
 		void DateButtonClick(object sender, EventArgs e)

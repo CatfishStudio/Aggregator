@@ -38,6 +38,10 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.Button button7;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.TextBox textBox7;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -85,10 +89,15 @@ namespace Aggregator.Client.Directories
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
+			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -96,7 +105,7 @@ namespace Aggregator.Client.Directories
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonCancel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 213);
+			this.panel1.Location = new System.Drawing.Point(0, 317);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(428, 54);
 			this.panel1.TabIndex = 0;
@@ -125,12 +134,13 @@ namespace Aggregator.Client.Directories
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.groupBox3);
 			this.panel2.Controls.Add(this.groupBox2);
 			this.panel2.Controls.Add(this.groupBox1);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(428, 213);
+			this.panel2.Size = new System.Drawing.Size(428, 317);
 			this.panel2.TabIndex = 1;
 			// 
 			// groupBox2
@@ -319,11 +329,48 @@ namespace Aggregator.Client.Directories
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Наименование огранизации:";
 			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.button1);
+			this.groupBox3.Controls.Add(this.textBox7);
+			this.groupBox3.Controls.Add(this.label7);
+			this.groupBox3.Location = new System.Drawing.Point(3, 214);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(420, 61);
+			this.groupBox3.TabIndex = 4;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Данные:";
+			// 
+			// label7
+			// 
+			this.label7.Location = new System.Drawing.Point(9, 25);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(150, 23);
+			this.label7.TabIndex = 0;
+			this.label7.Text = "НДС ( значение в % )";
+			// 
+			// button1
+			// 
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button1.Location = new System.Drawing.Point(394, 19);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(20, 20);
+			this.button1.TabIndex = 11;
+			this.button1.Text = "X";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// textBox7
+			// 
+			this.textBox7.Location = new System.Drawing.Point(165, 19);
+			this.textBox7.Name = "textBox7";
+			this.textBox7.Size = new System.Drawing.Size(223, 20);
+			this.textBox7.TabIndex = 10;
+			// 
 			// FormConstants
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(428, 267);
+			this.ClientSize = new System.Drawing.Size(428, 371);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -337,6 +384,8 @@ namespace Aggregator.Client.Directories
 			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.groupBox3.ResumeLayout(false);
+			this.groupBox3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}

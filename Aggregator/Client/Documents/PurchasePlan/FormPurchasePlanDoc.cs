@@ -292,7 +292,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				sqlServer = new SqlServer();
-				sqlServer.sqlCommandSelect.CommandText = "SELECT counteragentName, counteragentPricelist, docID FROM PurchasePlanPriceLists WHERE (docID = " + docNumber + ")";
+				sqlServer.sqlCommandSelect.CommandText = "SELECT counteragentName, counteragentPricelist, docID FROM PurchasePlanPriceLists WHERE (docID = '" + docNumber + "')";
 				if(sqlServer.ExecuteFill("PurchasePlanPriceLists")){
 					ListViewItem ListViewItem_add;
 					foreach(DataRow row in sqlServer.dataSet.Tables["PurchasePlanPriceLists"].Rows){
@@ -306,6 +306,100 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] программа не смогла загрузить прайс листы документа план закупок №" + docNumber, false, true);
 				}
 			}
+		}
+		
+		bool saveEdit()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docAutor, docSum, docVat, docTotal FROM PurchasePlan WHERE (id = " + ID + ")";
+				if(oleDb.ExecuteFill("PurchasePlan")){
+					oleDb.dataSet.Tables["PurchasePlan"].Rows[0]["docDate"] = dateTimePicker1.Value;
+					oleDb.dataSet.Tables["PurchasePlan"].Rows[0]["docAutor"] = DataConfig.userName;
+					oleDb.oleDbCommandUpdate.CommandText = "UPDATE PurchasePlan SET " +
+					"[docDate] = @docDate, [docNumber] = @docNumber, " +
+					"[docName] = @docName, [docAutor] = @docAutor, [docSum] = @docSum, " +
+					"[docVat] = @docVat, [docTotal] = @docTotal " +
+					"WHERE ([id] = @id)";
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docDate", OleDbType.Date, 255, "docDate");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docNumber", OleDbType.VarChar, 255, "docNumber");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docName", OleDbType.VarChar, 255, "docName");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docAutor", OleDbType.VarChar, 255, "docAutor");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docSum", OleDbType.Double, 15, "docSum");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docVat", OleDbType.Double, 15, "docVat");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docTotal", OleDbType.Double, 15, "docTotal");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
+					if(oleDb.ExecuteUpdate("PurchasePlan")){
+						return true;
+					}else{
+						Utilits.Console.Log("[ОШИБКА] программа не смогла сохранить основные данные документа план закупок №" + docNumber, false, true);
+					}
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла загрузить данные документа план закупок №" + docNumber, false, true);
+				}			
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docAutor, docSum, docVat, docTotal FROM PurchasePlan WHERE (id = " + ID + ")";
+				if(sqlServer.ExecuteFill("PurchasePlan")){
+					sqlServer.dataSet.Tables["PurchasePlan"].Rows[0]["docDate"] = dateTimePicker1.Value;
+					sqlServer.dataSet.Tables["PurchasePlan"].Rows[0]["docAutor"] = DataConfig.userName;
+					sqlServer.sqlCommandUpdate.CommandText = "UPDATE PurchasePlan SET " +
+					"[docDate] = @docDate, [docNumber] = @docNumber, " +
+					"[docName] = @docName, [docAutor] = @docAutor, [docSum] = @docSum, " +
+					"[docVat] = @docVat, [docTotal] = @docTotal " +
+					"WHERE ([id] = @id)";
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docDate", SqlDbType.Date, 255, "docDate");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docNumber", SqlDbType.VarChar, 255, "docNumber");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docName", SqlDbType.VarChar, 255, "docName");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docAutor", SqlDbType.VarChar, 255, "docAutor");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docSum", SqlDbType.Float, 15, "docSum");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docVat", SqlDbType.Float, 15, "docVat");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docTotal", SqlDbType.Float, 15, "docTotal");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
+					if(sqlServer.ExecuteUpdate("PurchasePlan")){
+						return true;
+					}else{
+						Utilits.Console.Log("[ОШИБКА] программа не смогла сохранить основные данные документа план закупок №" + docNumber, false, true);
+					}
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла загрузить данные документа план закупок №" + docNumber, false, true);
+				}
+			}
+			return false;
+		}
+		
+		bool saveEditPrices()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				QueryOleDb query = new QueryOleDb(DataConfig.localDatabase);
+				query.SetCommand("DELETE FROM PurchasePlanPriceLists WHERE (docID = '" + docNumber + "')");
+				if(query.Execute()){
+					if(saveNewChangesPriceLists()){
+						return true;
+					}else{
+						Utilits.Console.Log("[ОШИБКА] программа не смогла записать ищменённый выбор прайс-листов в документ план закупок №" + docNumber, false, true);
+					}
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла удалить прайс-листы из документа план закупок №" + docNumber, false, true);
+				}
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				QuerySqlServer query = new QuerySqlServer();
+				query.SetCommand("DELETE FROM PurchasePlanPriceLists WHERE (docID = '" + docNumber + "')");
+				if(query.Execute()){
+					if(saveNewChangesPriceLists()){
+						return true;
+					}else{
+						Utilits.Console.Log("[ОШИБКА] программа не смогла записать ищменённый выбор прайс-листов в документ план закупок №" + docNumber, false, true);
+					}
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла удалить прайс-листы из документа план закупок №" + docNumber, false, true);
+				}
+			}
+			return false;
 		}
 		
 		/* =================================================================================================
@@ -359,7 +453,18 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
 				return;
 			}
-			saveNew();
+			if(ID == null){
+				saveNew();
+			}else{
+				if(saveEdit() && saveEditPrices()){
+					DataForms.FClient.updateHistory("PurchasePlan");
+					Utilits.Console.Log("Документ План закупок №" + docNumber + ": успешно изменён и сохранён.");
+					Close();
+				}else{
+					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Документ План закупок №" + docNumber + ": не удалось сохранить изменения.", false, true);
+				}
+			}
+			
 			/*
 			if(check()){
 				if(ID == null) saveNew();

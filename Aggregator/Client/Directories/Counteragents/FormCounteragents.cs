@@ -215,7 +215,7 @@ namespace Aggregator.Client.Directories
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 				}
 			}
-			comboBox1.Items.Add(comboBox1.Text);
+			if(comboBox1.Text != "") comboBox1.Items.Add(comboBox1.Text);
 		}
 		
 		void searchLocal()
@@ -598,6 +598,7 @@ namespace Aggregator.Client.Directories
 		}
 		void RefreshButtonClick(object sender, EventArgs e)
 		{
+			comboBox1.Text = "";
 			TableRefresh(openFolder);
 		}
 		void EditButtonClick(object sender, EventArgs e)

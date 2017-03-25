@@ -216,8 +216,7 @@ namespace Aggregator.Database.Base
 				"[id] COUNTER PRIMARY KEY, " +
 				"[counteragentName] VARCHAR DEFAULT '', " +
 				"[counteragentPricelist] VARCHAR DEFAULT '', " +
-				"[docID] VARCHAR DEFAULT '', " +
-				"FOREIGN KEY (docID) REFERENCES PurchasePlan(id) ON UPDATE CASCADE ON DELETE CASCADE" +
+				"[docID] VARCHAR DEFAULT '' " +
 				")";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы План закупок.", false, true);
