@@ -134,51 +134,51 @@ namespace Aggregator.Client.Directories
 		void resetEditor()
 		{
 			numericUpDown5.Minimum = 0; numericUpDown5.Maximum = 0;
-			numericUpDown5.Value = 0; numericUpDown5.Enabled = true;
+			numericUpDown5.Value = 0; numericUpDown5.Enabled = false;
 			checkBox1.Checked = false; checkBox1.Enabled = true;
 			
 			numericUpDown6.Minimum = 0; numericUpDown6.Maximum = 0;
-			numericUpDown6.Value = 0; numericUpDown6.Enabled = true;
+			numericUpDown6.Value = 0; numericUpDown6.Enabled = false;
 			checkBox2.Checked = false; checkBox2.Enabled = true;
 			
 			numericUpDown7.Minimum = 0; numericUpDown7.Maximum = 0;
-			numericUpDown7.Value = 0; numericUpDown7.Enabled = true;
+			numericUpDown7.Value = 0; numericUpDown7.Enabled = false;
 			checkBox3.Checked = false; checkBox3.Enabled = true;
 			
 			numericUpDown8.Minimum = 0; numericUpDown8.Maximum = 0;
-			numericUpDown8.Value = 0; numericUpDown8.Enabled = true;
+			numericUpDown8.Value = 0; numericUpDown8.Enabled = false;
 			checkBox4.Checked = false; checkBox4.Enabled = true;
 			
 			numericUpDown9.Minimum = 0; numericUpDown9.Maximum = 0;
-			numericUpDown9.Value = 0; numericUpDown9.Enabled = true;
+			numericUpDown9.Value = 0; numericUpDown9.Enabled = false;
 			checkBox5.Checked = false; checkBox5.Enabled = true;
 			
 			numericUpDown10.Minimum = 0; numericUpDown10.Maximum = 0;
-			numericUpDown10.Value = 0; numericUpDown10.Enabled = true;
+			numericUpDown10.Value = 0; numericUpDown10.Enabled = false;
 			checkBox6.Checked = false; checkBox6.Enabled = true;
 			
 			numericUpDown11.Minimum = 0; numericUpDown11.Maximum = 0;
-			numericUpDown11.Value = 0; numericUpDown11.Enabled = true;
+			numericUpDown11.Value = 0; numericUpDown11.Enabled = false;
 			checkBox7.Checked = false; checkBox7.Enabled = true;
 			
 			numericUpDown12.Minimum = 0; numericUpDown12.Maximum = 0;
-			numericUpDown12.Value = 0; numericUpDown12.Enabled = true;
+			numericUpDown12.Value = 0; numericUpDown12.Enabled = false;
 			checkBox8.Checked = false; checkBox8.Enabled = true;
 			
 			numericUpDown13.Minimum = 0; numericUpDown13.Maximum = 0;
-			numericUpDown13.Value = 0; numericUpDown13.Enabled = true;
+			numericUpDown13.Value = 0; numericUpDown13.Enabled = false;
 			checkBox9.Checked = false; checkBox9.Enabled = true;
 			
 			numericUpDown14.Minimum = 0; numericUpDown14.Maximum = 0;
-			numericUpDown14.Value = 0; numericUpDown14.Enabled = true;
+			numericUpDown14.Value = 0; numericUpDown14.Enabled = false;
 			checkBox10.Checked = false;  checkBox10.Enabled = true;
 			
 			numericUpDown15.Minimum = 0; numericUpDown15.Maximum = 0;
-			numericUpDown15.Value = 0; numericUpDown15.Enabled = true;
+			numericUpDown15.Value = 0; numericUpDown15.Enabled = false;
 			checkBox11.Checked = false; checkBox11.Enabled = true;
 			
 			numericUpDown16.Minimum = 0; numericUpDown16.Maximum = 0;
-			numericUpDown16.Value = 0; numericUpDown16.Enabled = true;
+			numericUpDown16.Value = 0; numericUpDown16.Enabled = false;
 			checkBox12.Checked = false; checkBox12.Enabled = true;
 			
 			dataGrid1.ReadOnly = false;
