@@ -40,7 +40,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		public String ID;
 		OleDb oleDb;
 		SqlServer sqlServer;
-		int selectTableLine = 0;
 		String docNumber;
 		
 		String getDocNumber()
@@ -94,13 +93,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			return null;
 		}
 		
-		void openPrice()
+		void editPrice()
 		{
-			if(listView1.SelectedIndices.Count > 0){
+			if(listViewPrices.SelectedIndices.Count > 0){
 				FormCounteragentPrice FCounteragentPrice = new FormCounteragentPrice();
 				FCounteragentPrice.MdiParent = DataForms.FClient;
-				FCounteragentPrice.Text = "Прайс-лист контрагента: " + listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
-				FCounteragentPrice.PriceName = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString();
+				FCounteragentPrice.Text = "Прайс-лист контрагента: " + listViewPrices.Items[listViewPrices.SelectedIndices[0]].SubItems[1].Text.ToString();
+				FCounteragentPrice.PriceName = listViewPrices.Items[listViewPrices.SelectedIndices[0]].SubItems[2].Text.ToString();
 				FCounteragentPrice.Show();
 			}
 		}
@@ -175,7 +174,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				if(sqlServer.ExecuteUpdate("PurchasePlan")){
 					DataForms.FClient.updateHistory("PurchasePlan");
 					if(saveNewChangesPriceLists()){
-						Utilits.Console.Log("Документ 'План закупок' успешно создан.");
+						Utilits.Console.Log("Документ План закупок №" + docNumber + ": успешно создан.");
 						Close();
 					}else{
 						Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Документ План закупок №" + docNumber + ": не удалось сохранить список выбранных прайс листов.", false, true);
@@ -193,10 +192,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				oleDb.ExecuteFill("PurchasePlanPriceLists");				
 				
 				DataRow newRow = null;
-				for(int i = 0; i < listView1.Items.Count; i++){
+				for(int i = 0; i < listViewPrices.Items.Count; i++){
 					newRow = oleDb.dataSet.Tables["PurchasePlanPriceLists"].NewRow();
-					newRow["counteragentName"] = listView1.Items[i].SubItems[1].Text.ToString();
-					newRow["counteragentPricelist"] = listView1.Items[i].SubItems[2].Text.ToString();
+					newRow["counteragentName"] = listViewPrices.Items[i].SubItems[1].Text.ToString();
+					newRow["counteragentPricelist"] = listViewPrices.Items[i].SubItems[2].Text.ToString();
 					newRow["docID"] = docNumber;
 					oleDb.dataSet.Tables["PurchasePlanPriceLists"].Rows.Add(newRow);
 				}
@@ -214,9 +213,99 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT counteragentName, counteragentPricelist, docID FROM PurchasePlanPriceLists WHERE (id = 0)";
+				sqlServer.ExecuteFill("PurchasePlanPriceLists");
 				
+				DataRow newRow = null;
+				for(int i = 0; i < listViewPrices.Items.Count; i++){
+					newRow = oleDb.dataSet.Tables["PurchasePlanPriceLists"].NewRow();
+					newRow["counteragentName"] = listViewPrices.Items[i].SubItems[1].Text.ToString();
+					newRow["counteragentPricelist"] = listViewPrices.Items[i].SubItems[2].Text.ToString();
+					newRow["docID"] = docNumber;
+					sqlServer.dataSet.Tables["PurchasePlanPriceLists"].Rows.Add(newRow);
+				}
+				
+				sqlServer.sqlCommandInsert.CommandText = "INSERT INTO PurchasePlanPriceLists (counteragentName, counteragentPricelist, docID) " +
+					"VALUES (@counteragentName, @counteragentPricelist, @docID)";
+				sqlServer.sqlCommandInsert.Parameters.Add("@counteragentName", SqlDbType.VarChar, 255, "counteragentName");
+				sqlServer.sqlCommandInsert.Parameters.Add("@counteragentPricelist", SqlDbType.VarChar, 255, "counteragentPricelist");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docID", SqlDbType.VarChar, 255, "docID");
+				if(sqlServer.ExecuteUpdate("PurchasePlanPriceLists")){
+					return true;
+				}else{
+					return false;
+				}
 			}
 			return false;
+		}
+		
+		void open()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docAutor, docSum, docVat, docTotal FROM PurchasePlan WHERE (id = " + ID + ")";
+				if(oleDb.ExecuteFill("PurchasePlan")){
+					docNumber = oleDb.dataSet.Tables["PurchasePlan"].Rows[0]["docNumber"].ToString();
+					docNumberTextBox.Text = docNumber;
+					dateTimePicker1.Value = (DateTime)oleDb.dataSet.Tables["PurchasePlan"].Rows[0]["docDate"];
+					autorLabel.Text = "Автор: " + oleDb.dataSet.Tables["PurchasePlan"].Rows[0]["docAutor"].ToString();
+					openPrices();
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла открыть документ план закупок.", false, true);
+				}
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docAutor, docSum, docVat, docTotal FROM PurchasePlan WHERE (id = " + ID + ")";
+				if(sqlServer.ExecuteFill("PurchasePlan")){
+					docNumber = sqlServer.dataSet.Tables["PurchasePlan"].Rows[0]["docNumber"].ToString();
+					docNumberTextBox.Text = docNumber;
+					dateTimePicker1.Value = (DateTime)sqlServer.dataSet.Tables["PurchasePlan"].Rows[0]["docDate"];
+					autorLabel.Text = "Автор: " + sqlServer.dataSet.Tables["PurchasePlan"].Rows[0]["docAutor"].ToString();
+					openPrices();
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла открыть документ план закупок.", false, true);
+				}
+			}
+		}
+		
+		void openPrices()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT counteragentName, counteragentPricelist, docID FROM PurchasePlanPriceLists WHERE (docID = '" + docNumber + "')";
+				if(oleDb.ExecuteFill("PurchasePlanPriceLists")){
+					ListViewItem ListViewItem_add;
+					foreach(DataRow row in oleDb.dataSet.Tables["PurchasePlanPriceLists"].Rows){
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(row["counteragentName"].ToString());
+						ListViewItem_add.StateImageIndex = 1;
+						ListViewItem_add.SubItems.Add(row["counteragentPricelist"].ToString());
+						listViewPrices.Items.Add(ListViewItem_add);
+					}
+				}else{
+					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] программа не смогла загрузить прайс листы документа план закупок №" + docNumber, false, true);
+				}
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT counteragentName, counteragentPricelist, docID FROM PurchasePlanPriceLists WHERE (docID = " + docNumber + ")";
+				if(sqlServer.ExecuteFill("PurchasePlanPriceLists")){
+					ListViewItem ListViewItem_add;
+					foreach(DataRow row in sqlServer.dataSet.Tables["PurchasePlanPriceLists"].Rows){
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(row["counteragentName"].ToString());
+						ListViewItem_add.StateImageIndex = 1;
+						ListViewItem_add.SubItems.Add(row["counteragentPricelist"].ToString());
+						listViewPrices.Items.Add(ListViewItem_add);
+					}
+				}else{
+					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] программа не смогла загрузить прайс листы документа план закупок №" + docNumber, false, true);
+				}
+			}
 		}
 		
 		/* =================================================================================================
@@ -225,15 +314,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		 */	
 		void FormPurchasePlanDocLoad(object sender, EventArgs e)
 		{
-			//if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb = new OleDb(DataConfig.localDatabase);
-			//if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer = new SqlServer();
 			if(ID == null){
 				Text = "Создать";
 				dateTimePicker1.Value = DateTime.Today.Date;
 				autorLabel.Text = "Автор: " + DataConfig.userName;
 			}else{
 				Text = "Изменить";
-				//open();
+				open();
 			}
 		}
 		void FormPurchasePlanDocFormClosed(object sender, FormClosedEventArgs e)
@@ -252,7 +339,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			if(DataForms.FCounteragents == null) {
 				DataForms.FCounteragents = new FormCounteragents();
 				DataForms.FCounteragents.MdiParent = DataForms.FClient;
-				DataForms.FCounteragents.ListViewReturnValue = listView1;
+				DataForms.FCounteragents.ListViewReturnValue = listViewPrices;
 				DataForms.FCounteragents.TypeReturnValue = "name&price";
 				DataForms.FCounteragents.ShowMenuReturnValue();
 				DataForms.FCounteragents.Show();
@@ -260,11 +347,11 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void DeleteButtonClick(object sender, EventArgs e)
 		{
-			if(listView1.SelectedItems.Count > 0) listView1.Items[listView1.SelectedItems[0].Index].Remove();
+			if(listViewPrices.SelectedItems.Count > 0) listViewPrices.Items[listViewPrices.SelectedItems[0].Index].Remove();
 		}
 		void PriceButtonClick(object sender, EventArgs e)
 		{
-			openPrice();
+			editPrice();
 		}
 		void ButtonSaveClick(object sender, EventArgs e)
 		{

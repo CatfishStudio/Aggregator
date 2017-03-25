@@ -99,7 +99,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				dateTimePicker1.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "# AND #" + 
 				dateTimePicker2.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "#) " +
 				"AND (docNumber LIKE '%" + comboBox1.Text + "%' OR docTotal LIKE '%" + comboBox1.Text + "%' OR docAutor LIKE '%" + comboBox1.Text +
-				"%') ORDER BY docDate ASC";
+				"%') ORDER BY docDate DESC";
 			
 			if(oleDb.ExecuteFill("PurchasePlan")){
 				listView1.Items.Clear();

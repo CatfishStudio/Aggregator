@@ -27,7 +27,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.Label autorLabel;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.ImageList imageList1;
-		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.ListView listViewPrices;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -35,7 +35,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.Button addButton;
 		private System.Windows.Forms.Panel panel4;
 		private System.Windows.Forms.Button priceButton;
-		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.TextBox docNumberTextBox;
 		
 		/// <summary>
@@ -72,11 +71,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.label1 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.listView1 = new System.Windows.Forms.ListView();
+			this.listViewPrices = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.priceButton = new System.Windows.Forms.Button();
@@ -200,7 +198,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// tabPage1
 			// 
-			this.tabPage1.Controls.Add(this.listView1);
+			this.tabPage1.Controls.Add(this.listViewPrices);
 			this.tabPage1.Controls.Add(this.panel3);
 			this.tabPage1.Location = new System.Drawing.Point(4, 25);
 			this.tabPage1.Name = "tabPage1";
@@ -210,27 +208,26 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.tabPage1.Text = "Прайс-листы";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
-			// listView1
+			// listViewPrices
 			// 
-			this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
-			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.listViewPrices.Activation = System.Windows.Forms.ItemActivation.OneClick;
+			this.listViewPrices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 			this.columnHeader1,
 			this.columnHeader2,
-			this.columnHeader3,
-			this.columnHeader4});
-			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listView1.FullRowSelect = true;
-			this.listView1.LargeImageList = this.imageList1;
-			this.listView1.Location = new System.Drawing.Point(3, 32);
-			this.listView1.MultiSelect = false;
-			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(703, 299);
-			this.listView1.SmallImageList = this.imageList1;
-			this.listView1.StateImageList = this.imageList1;
-			this.listView1.TabIndex = 7;
-			this.listView1.UseCompatibleStateImageBehavior = false;
-			this.listView1.View = System.Windows.Forms.View.Details;
+			this.columnHeader3});
+			this.listViewPrices.Cursor = System.Windows.Forms.Cursors.Default;
+			this.listViewPrices.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listViewPrices.FullRowSelect = true;
+			this.listViewPrices.LargeImageList = this.imageList1;
+			this.listViewPrices.Location = new System.Drawing.Point(3, 32);
+			this.listViewPrices.MultiSelect = false;
+			this.listViewPrices.Name = "listViewPrices";
+			this.listViewPrices.Size = new System.Drawing.Size(703, 299);
+			this.listViewPrices.SmallImageList = this.imageList1;
+			this.listViewPrices.StateImageList = this.imageList1;
+			this.listViewPrices.TabIndex = 7;
+			this.listViewPrices.UseCompatibleStateImageBehavior = false;
+			this.listViewPrices.View = System.Windows.Forms.View.Details;
 			// 
 			// columnHeader1
 			// 
@@ -246,10 +243,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.columnHeader3.Text = "Прайс-лист";
 			this.columnHeader3.Width = 200;
-			// 
-			// columnHeader4
-			// 
-			this.columnHeader4.Text = "№";
 			// 
 			// imageList1
 			// 
