@@ -474,6 +474,42 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			}
 			*/
 		}
+		void ButtonNomenclatureAddClick(object sender, EventArgs e)
+		{
+			if(DataForms.FNomenclature != null) DataForms.FNomenclature.Close();
+			if(DataForms.FNomenclature == null) {
+				DataForms.FNomenclature = new FormNomenclature();
+				DataForms.FNomenclature.MdiParent = DataForms.FClient;
+				DataForms.FNomenclature.ListViewReturnValue = listViewNomenclature;
+				DataForms.FNomenclature.TypeReturnValue = "file";
+				DataForms.FNomenclature.ShowMenuReturnValue();
+				DataForms.FNomenclature.Show();
+			}
+		}
+		void ButtonNomenclatureDeleteClick(object sender, EventArgs e)
+		{
+			if(listViewNomenclature.SelectedItems.Count > 0) listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].Remove();
+		}
+		void ButtonNomenclaturesAddClick(object sender, EventArgs e)
+		{
+			if(DataForms.FNomenclature != null) DataForms.FNomenclature.Close();
+			if(DataForms.FNomenclature == null) {
+				DataForms.FNomenclature = new FormNomenclature();
+				DataForms.FNomenclature.MdiParent = DataForms.FClient;
+				DataForms.FNomenclature.ListViewReturnValue = listViewNomenclature;
+				DataForms.FNomenclature.TypeReturnValue = "folder";
+				DataForms.FNomenclature.ShowMenuReturnValue();
+				DataForms.FNomenclature.Show();
+			}
+		}
+		void ButtonNomenclaturesDeleteClick(object sender, EventArgs e)
+		{
+			while(listViewNomenclature.Items.Count > 0){
+				listViewNomenclature.Items[0].Remove();
+			}
+			
+
+		}
 
 		
 	}

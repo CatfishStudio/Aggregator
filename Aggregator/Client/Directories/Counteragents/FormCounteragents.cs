@@ -509,7 +509,7 @@ namespace Aggregator.Client.Directories
 					if(TypeReturnValue == "name&price"){
 						ListViewItem ListViewItem_add = new ListViewItem();
 						ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString());
-						ListViewItem_add.StateImageIndex = 1;
+						ListViewItem_add.StateImageIndex = 0;
 						ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString());
 						ListViewReturnValue.Items.Add(ListViewItem_add);
 					}
