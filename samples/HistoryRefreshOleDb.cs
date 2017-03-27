@@ -1,17 +1,18 @@
 ﻿/*
  * Создано в SharpDevelop.
  * Пользователь: Cartish
- * Дата: 27.03.2017
- * Время: 11:02
+ * Дата: 11.03.2017
+ * Время: 16:29
  * 
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
 using System;
-using System.Data;
-using System.Data.Odbc;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using Aggregator.Data;
+using Aggregator.Database.Local;
+
 
 namespace Aggregator.Database.Local
 {
@@ -30,34 +31,10 @@ namespace Aggregator.Database.Local
 	public class HistoryRefreshOleDb
 	{
 		OleDb oleDb;
-		OleDbConnection oleDbConnection;
-		OleDbCommand oleDbCommand;
-		OleDbDataReader oleDbDataReader;
-		
-		List<Table> tables;		
+		List<Table> tables;
 		
 		public HistoryRefreshOleDb()
 		{
-			tables = new List<Table>();
-			Table table;
-			
-			oleDbConnection = new OleDbConnection();
-			oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + DataConfig.localDatabase + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
-			oleDbConnection.Open();
-			oleDbCommand = new OleDbCommand("SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", oleDbConnection);
-			oleDbDataReader = oleDbCommand.ExecuteReader();
-			while (oleDbDataReader.Read())
-	        {
-				table.name = oleDbDataReader["name"].ToString();
-				table.represent = oleDbDataReader["represent"].ToString();
-				table.datetime = oleDbDataReader["datetime"].ToString();
-				table.error = oleDbDataReader["error"].ToString();
-				table.user = oleDbDataReader["user"].ToString();
-				tables.Add(table);
-			}
-			oleDbDataReader.Close();
-			oleDbConnection.Close();
-			
 			oleDb = new OleDb(DataConfig.localDatabase);
 			oleDb.oleDbCommandSelect.CommandText = "SELECT [id], [name], [represent], [datetime], [error], [user] FROM History";
 			oleDb.oleDbCommandUpdate.CommandText = "UPDATE History SET " +
@@ -73,38 +50,43 @@ namespace Aggregator.Database.Local
 			oleDb.oleDbCommandUpdate.Parameters.Add("@error", OleDbType.VarChar, 255, "error");
 			oleDb.oleDbCommandUpdate.Parameters.Add("@user", OleDbType.VarChar, 255, "user");
 			oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
-			oleDb.ExecuteFill("History");
+			if(oleDb.ExecuteFill("History")){
+				tables = new List<Table>();
+				Table table;
+				foreach(DataRow row in oleDb.dataSet.Tables["History"].Rows)
+				{
+					table.name = row["name"].ToString();
+					table.represent = row["represent"].ToString();
+					table.datetime = row["datetime"].ToString();
+					table.error = row["error"].ToString();
+					table.user = row["user"].ToString();
+					tables.Add(table);
+				}
+			}else{
+				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Служба истории обновлений базы данных не запущена!!!");
+			}
 		}
 		
-		/* Проверить обновления */
+		/* Проверка обновленных таблиц в базе данных */
 		public void check()
 		{
-			Table table;
-			
-			oleDbConnection.Open();
-			oleDbCommand = new OleDbCommand("SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", oleDbConnection);
-			oleDbDataReader = oleDbCommand.ExecuteReader();
-			
-			int i = 0;
-			while (oleDbDataReader.Read())
-	        {
-				table.name = oleDbDataReader["name"].ToString();
-				table.represent = oleDbDataReader["represent"].ToString();
-				table.datetime = oleDbDataReader["datetime"].ToString();
-				table.error = oleDbDataReader["error"].ToString();
-				table.user = oleDbDataReader["user"].ToString();
-
-				if(tables[i].datetime != table.datetime){
-					refresh(tables[i].name, tables[i].represent);
-					tables[i] = table;
+			oleDb.dataSet.Clear();
+			if(oleDb.ExecuteFill("History") == true){
+				Table table;
+				for(int i = 0; i < tables.Count; i++){
+					if(tables[i].datetime != oleDb.dataSet.Tables["History"].Rows[i]["datetime"].ToString()){
+						refresh(tables[i].name, tables[i].represent);
+						table = tables[i];
+						table.datetime = oleDb.dataSet.Tables["History"].Rows[i]["datetime"].ToString();
+						tables[i] = table;
+					}
 				}
-				i++;
+			}else{
+				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Служба истории обновлений базы данных не удалось получить обновленные данные!");
 			}
-			oleDbDataReader.Close();
-			oleDbConnection.Close();
 		}
 		
-		/* Обновить */
+		/* Отметить обновление данных в базе данных */
 		public void update(String tableName)
 		{
 			try{

@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
+using Aggregator.Logic;
 using Aggregator.Client.Directories;
 
 namespace Aggregator.Client.Documents.PurchasePlan
@@ -40,6 +41,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		public String ID;
 		OleDb oleDb;
 		SqlServer sqlServer;
+		NomenclatureSelection nomenclatureSelection;
 		String docNumber;
 		
 		String getDocNumber()
@@ -509,6 +511,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			}
 			
 
+		}
+		void Button4Click(object sender, EventArgs e)
+		{
+			String nID = listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].SubItems[2].Text;
+			nomenclatureSelection = new NomenclatureSelection();
+			nomenclatureSelection.setPrices(listViewPrices);
+			nomenclatureSelection.getFindNomenclature(nID);
+			
 		}
 
 		

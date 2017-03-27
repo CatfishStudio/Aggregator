@@ -486,6 +486,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.button4.Text = "Подобрать номенклатуру";
 			this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.Button4Click);
 			// 
 			// button1
 			// 
