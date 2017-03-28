@@ -94,7 +94,7 @@ namespace Aggregator.Client.Directories
 			if(actionFolder == "" && folderExplore == true) {
 				oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (type = 'file' AND parent = '') ORDER BY name ASC";
 			}else{
-				if(folderExplore == false) oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file') ORDER BY name ASC";
+				if(folderExplore == false) oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (type = 'file') ORDER BY name ASC";
 				else oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (type = 'file' AND parent = '" + actionFolder + "') ORDER BY name ASC";
 			}
 			if(oleDb.ExecuteFill("Nomenclature")){
@@ -154,7 +154,7 @@ namespace Aggregator.Client.Directories
 			if(actionFolder == "" && folderExplore == true) {
 				sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (type = 'file' AND parent = '') ORDER BY name ASC";
 			}else{
-				if(folderExplore == false) sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE (type = 'file') ORDER BY name ASC";
+				if(folderExplore == false) sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (type = 'file') ORDER BY name ASC";
 				else sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (type = 'file' AND parent = '" + actionFolder + "') ORDER BY name ASC";
 			}
 			if(sqlServer.ExecuteFill("Nomenclature")){

@@ -507,6 +507,14 @@ namespace Aggregator.Client.Directories
 					if(TypeReturnValue == "name") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
 					if(TypeReturnValue == "price") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString();
 					if(TypeReturnValue == "name&price"){
+						int count = ListViewReturnValue.Items.Count;
+						for(int i = 0; i < count; i++){
+							if(ListViewReturnValue.Items[i].SubItems[2].Text == listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text){
+								MessageBox.Show("Контрагент " + listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text + " уже был добавлен.", "Сообщение");
+								return;
+							}
+						}
+						
 						ListViewItem ListViewItem_add = new ListViewItem();
 						ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString());
 						ListViewItem_add.StateImageIndex = 0;
