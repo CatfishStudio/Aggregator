@@ -184,9 +184,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.autorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.autorLabel.Location = new System.Drawing.Point(385, 9);
+			this.autorLabel.Location = new System.Drawing.Point(474, 14);
 			this.autorLabel.Name = "autorLabel";
-			this.autorLabel.Size = new System.Drawing.Size(320, 23);
+			this.autorLabel.Size = new System.Drawing.Size(236, 23);
 			this.autorLabel.TabIndex = 18;
 			this.autorLabel.Text = "Автор:";
 			// 
@@ -194,14 +194,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
 			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dateTimePicker1.Location = new System.Drawing.Point(270, 6);
+			this.dateTimePicker1.Location = new System.Drawing.Point(372, 9);
 			this.dateTimePicker1.Name = "dateTimePicker1";
 			this.dateTimePicker1.Size = new System.Drawing.Size(96, 20);
 			this.dateTimePicker1.TabIndex = 17;
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(230, 9);
+			this.label2.Location = new System.Drawing.Point(331, 14);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(100, 23);
 			this.label2.TabIndex = 2;
@@ -209,7 +209,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// docNumberTextBox
 			// 
-			this.docNumberTextBox.Location = new System.Drawing.Point(53, 6);
+			this.docNumberTextBox.Location = new System.Drawing.Point(154, 9);
 			this.docNumberTextBox.Name = "docNumberTextBox";
 			this.docNumberTextBox.ReadOnly = true;
 			this.docNumberTextBox.Size = new System.Drawing.Size(171, 20);
@@ -218,11 +218,12 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(4, 9);
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label1.Location = new System.Drawing.Point(7, 9);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(100, 23);
+			this.label1.Size = new System.Drawing.Size(167, 23);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Номер:";
+			this.label1.Text = "План закупок №";
 			// 
 			// tabControl1
 			// 

@@ -148,6 +148,9 @@ namespace Aggregator.Database.Local
 		public void Dispose()
 		{
 			oleDb.Dispose();
+			oleDbDataReader.Close();
+			oleDbCommand.Dispose();
+			oleDbConnection.Dispose();
 			tables.Clear();
 			tables = null;
 		}

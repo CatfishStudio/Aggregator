@@ -7,6 +7,7 @@
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.Sql;
@@ -514,11 +515,18 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void Button4Click(object sender, EventArgs e)
 		{
+			if(listViewPrices.Items.Count == 0){
+				MessageBox.Show("Вы не добавили не одного прайса.", "Сообщение");
+				return;
+			}
+			
+			List<Nomenclature> nomenclatureList;
+			
 			String nID = listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].SubItems[2].Text;
 			nomenclatureSelection = new NomenclatureSelection();
 			nomenclatureSelection.setPrices(listViewPrices);
-			nomenclatureSelection.getFindNomenclature(nID);
-			
+			nomenclatureList = nomenclatureSelection.getFindNomenclature(nID);
+			MessageBox.Show(nomenclatureList[nomenclatureList.Count-1].Name);
 		}
 
 		
