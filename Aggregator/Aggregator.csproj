@@ -136,13 +136,13 @@
     <Compile Include="Database\Local\HistoryRefreshOleDb.cs" />
     <Compile Include="Database\Local\OleDb.cs" />
     <Compile Include="Database\Local\QueryOleDb.cs" />
+    <Compile Include="Database\Local\SearchNomenclatureOleDb.cs" />
     <Compile Include="Database\Server\HistoryRefreshSqlServer.cs" />
     <Compile Include="Database\Server\QuerySqlServer.cs" />
     <Compile Include="Database\Server\SqlServer.cs" />
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\DataForms.cs" />
-    <Compile Include="Logic\NomenclatureSelection.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -262,7 +262,6 @@
     <Folder Include="Database\Server" />
     <Folder Include="Utilits" />
     <Folder Include="User" />
-    <Folder Include="Logic" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

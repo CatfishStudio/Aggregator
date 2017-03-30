@@ -42,19 +42,18 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.Button buttonNomenclatureDelete;
 		private System.Windows.Forms.Button buttonNomenclatureAdd;
 		private System.Windows.Forms.ListView listViewNomenclature;
-		private System.Windows.Forms.ColumnHeader columnHeader4;
-		private System.Windows.Forms.ColumnHeader columnHeader5;
-		private System.Windows.Forms.ColumnHeader columnHeader6;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button buttonNomenclaturesAdd;
 		private System.Windows.Forms.Button buttonNomenclaturesDelete;
+		private System.Windows.Forms.ImageList imageList2;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.ColumnHeader columnHeader6;
 		private System.Windows.Forms.ColumnHeader columnHeader7;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.ColumnHeader columnHeader9;
 		private System.Windows.Forms.ColumnHeader columnHeader10;
-		private System.Windows.Forms.ColumnHeader columnHeader11;
-		private System.Windows.Forms.ImageList imageList2;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -102,14 +101,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.addButton = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.listViewNomenclature = new System.Windows.Forms.ListView();
-			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
 			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.panel5 = new System.Windows.Forms.Panel();
@@ -120,6 +111,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel6 = new System.Windows.Forms.Panel();
 			this.buttonNomenclatureDelete = new System.Windows.Forms.Button();
 			this.buttonNomenclatureAdd = new System.Windows.Forms.Button();
+			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -367,8 +365,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader7,
 			this.columnHeader8,
 			this.columnHeader9,
-			this.columnHeader10,
-			this.columnHeader11});
+			this.columnHeader10});
 			this.listViewNomenclature.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listViewNomenclature.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewNomenclature.FullRowSelect = true;
@@ -382,46 +379,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listViewNomenclature.TabIndex = 8;
 			this.listViewNomenclature.UseCompatibleStateImageBehavior = false;
 			this.listViewNomenclature.View = System.Windows.Forms.View.Details;
-			// 
-			// columnHeader4
-			// 
-			this.columnHeader4.Text = "...";
-			this.columnHeader4.Width = 40;
-			// 
-			// columnHeader5
-			// 
-			this.columnHeader5.Text = "Номенклатура";
-			this.columnHeader5.Width = 250;
-			// 
-			// columnHeader6
-			// 
-			this.columnHeader6.Text = "№";
-			this.columnHeader6.Width = 40;
-			// 
-			// columnHeader7
-			// 
-			this.columnHeader7.Text = "...";
-			this.columnHeader7.Width = 40;
-			// 
-			// columnHeader8
-			// 
-			this.columnHeader8.Text = "Номенклатура";
-			this.columnHeader8.Width = 250;
-			// 
-			// columnHeader9
-			// 
-			this.columnHeader9.Text = "Цена";
-			this.columnHeader9.Width = 150;
-			// 
-			// columnHeader10
-			// 
-			this.columnHeader10.Text = "Количество";
-			this.columnHeader10.Width = 250;
-			// 
-			// columnHeader11
-			// 
-			this.columnHeader11.Text = "Серия";
-			this.columnHeader11.Width = 100;
 			// 
 			// imageList2
 			// 
@@ -528,6 +485,41 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonNomenclatureAdd.TabIndex = 3;
 			this.buttonNomenclatureAdd.UseVisualStyleBackColor = true;
 			this.buttonNomenclatureAdd.Click += new System.EventHandler(this.ButtonNomenclatureAddClick);
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "...";
+			this.columnHeader4.Width = 40;
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Номенклатура";
+			this.columnHeader5.Width = 250;
+			// 
+			// columnHeader6
+			// 
+			this.columnHeader6.Text = "№";
+			this.columnHeader6.Width = 0;
+			// 
+			// columnHeader7
+			// 
+			this.columnHeader7.Text = "Ед. изм.";
+			this.columnHeader7.Width = 40;
+			// 
+			// columnHeader8
+			// 
+			this.columnHeader8.Text = "Кол-во";
+			this.columnHeader8.Width = 50;
+			// 
+			// columnHeader9
+			// 
+			this.columnHeader9.Text = "...";
+			this.columnHeader9.Width = 40;
+			// 
+			// columnHeader10
+			// 
+			this.columnHeader10.Text = "Номенклатура";
+			this.columnHeader10.Width = 250;
 			// 
 			// FormPurchasePlanDoc
 			// 
