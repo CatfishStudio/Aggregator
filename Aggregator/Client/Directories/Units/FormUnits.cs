@@ -68,9 +68,10 @@ namespace Aggregator.Client.Directories
 			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Units ORDER BY name ASC";
 			if(oleDb.ExecuteFill("Units")){
 				listView1.Items.Clear();
+				ListViewItem ListViewItem_add;
 				foreach(DataRow rowElement in oleDb.dataSet.Tables[0].Rows)
 	    		{
-					ListViewItem ListViewItem_add = new ListViewItem();
+					ListViewItem_add = new ListViewItem();
 					ListViewItem_add.SubItems.Add(rowElement["name"].ToString());
 					ListViewItem_add.StateImageIndex = 1;
 					ListViewItem_add.SubItems.Add("");
@@ -94,9 +95,10 @@ namespace Aggregator.Client.Directories
 			sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Units ORDER BY name ASC";
 			if(sqlServer.ExecuteFill("Units")){
 				listView1.Items.Clear();
+				ListViewItem ListViewItem_add;
 				foreach(DataRow rowElement in sqlServer.dataSet.Tables[0].Rows)
 	    		{
-					ListViewItem ListViewItem_add = new ListViewItem();
+					ListViewItem_add = new ListViewItem();
 					ListViewItem_add.SubItems.Add(rowElement["name"].ToString());
 					ListViewItem_add.StateImageIndex = 1;
 					ListViewItem_add.SubItems.Add("");
@@ -144,9 +146,10 @@ namespace Aggregator.Client.Directories
 			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Units WHERE (name LIKE '%" + comboBox1.Text + "%') ORDER BY name ASC";
 			if(oleDb.ExecuteFill("Units")){
 				listView1.Items.Clear();
+				ListViewItem ListViewItem_add;
 				foreach(DataRow rowElement in oleDb.dataSet.Tables[0].Rows)
 	    		{
-					ListViewItem ListViewItem_add = new ListViewItem();
+					ListViewItem_add = new ListViewItem();
 					ListViewItem_add.SubItems.Add(rowElement["name"].ToString());
 					ListViewItem_add.StateImageIndex = 1;
 					ListViewItem_add.SubItems.Add("");
@@ -168,9 +171,10 @@ namespace Aggregator.Client.Directories
 			sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Units WHERE (name LIKE '%" + comboBox1.Text + "%') ORDER BY name ASC";
 			if(sqlServer.ExecuteFill("Units")){
 				listView1.Items.Clear();
+				ListViewItem ListViewItem_add;
 				foreach(DataRow rowElement in sqlServer.dataSet.Tables[0].Rows)
 	    		{
-					ListViewItem ListViewItem_add = new ListViewItem();
+					ListViewItem_add = new ListViewItem();
 					ListViewItem_add.SubItems.Add(rowElement["name"].ToString());
 					ListViewItem_add.StateImageIndex = 1;
 					ListViewItem_add.SubItems.Add("");

@@ -114,6 +114,10 @@
     <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanJournal.Designer.cs">
       <DependentUpon>FormPurchasePlanJournal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanNomenclature.cs" />
+    <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanNomenclature.Designer.cs">
+      <DependentUpon>FormPurchasePlanNomenclature.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\FormClient.cs" />
     <Compile Include="Client\FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
@@ -216,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Documents\PurchasePlan\FormPurchasePlanJournal.resx">
       <DependentUpon>FormPurchasePlanJournal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Documents\PurchasePlan\FormPurchasePlanNomenclature.resx">
+      <DependentUpon>FormPurchasePlanNomenclature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client\FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>

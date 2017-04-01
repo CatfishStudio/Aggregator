@@ -273,7 +273,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.tabPage1.Location = new System.Drawing.Point(4, 25);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(709, 334);
+			this.tabPage1.Size = new System.Drawing.Size(719, 334);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Прайс-листы";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -292,7 +292,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listViewPrices.Location = new System.Drawing.Point(3, 32);
 			this.listViewPrices.MultiSelect = false;
 			this.listViewPrices.Name = "listViewPrices";
-			this.listViewPrices.Size = new System.Drawing.Size(703, 299);
+			this.listViewPrices.Size = new System.Drawing.Size(713, 299);
 			this.listViewPrices.SmallImageList = this.imageList1;
 			this.listViewPrices.StateImageList = this.imageList1;
 			this.listViewPrices.TabIndex = 7;
@@ -329,7 +329,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel3.Location = new System.Drawing.Point(3, 3);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(703, 29);
+			this.panel3.Size = new System.Drawing.Size(713, 29);
 			this.panel3.TabIndex = 0;
 			// 
 			// priceButton
@@ -404,7 +404,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listViewNomenclature.Location = new System.Drawing.Point(3, 32);
 			this.listViewNomenclature.MultiSelect = false;
 			this.listViewNomenclature.Name = "listViewNomenclature";
-			this.listViewNomenclature.Size = new System.Drawing.Size(713, 197);
+			this.listViewNomenclature.Size = new System.Drawing.Size(713, 203);
 			this.listViewNomenclature.SmallImageList = this.imageList2;
 			this.listViewNomenclature.StateImageList = this.imageList2;
 			this.listViewNomenclature.TabIndex = 8;
@@ -459,9 +459,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.panel7.Controls.Add(this.splitContainer1);
 			this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel7.Location = new System.Drawing.Point(3, 229);
+			this.panel7.Location = new System.Drawing.Point(3, 235);
 			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(713, 102);
+			this.panel7.Size = new System.Drawing.Size(713, 96);
 			this.panel7.TabIndex = 9;
 			// 
 			// splitContainer1
@@ -477,7 +477,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-			this.splitContainer1.Size = new System.Drawing.Size(713, 102);
+			this.splitContainer1.Size = new System.Drawing.Size(713, 96);
 			this.splitContainer1.SplitterDistance = 297;
 			this.splitContainer1.TabIndex = 0;
 			// 
@@ -496,7 +496,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(297, 102);
+			this.groupBox1.Size = new System.Drawing.Size(297, 96);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Свойства:";
@@ -603,7 +603,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox2.Location = new System.Drawing.Point(0, 0);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(412, 102);
+			this.groupBox2.Size = new System.Drawing.Size(412, 96);
 			this.groupBox2.TabIndex = 0;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Итоги:";

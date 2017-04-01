@@ -519,13 +519,21 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				return;
 			}
 			
-			List<Nomenclature> nomenclatureList;
-			
-			String nID = listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].SubItems[2].Text;
-			searchNomenclatureOleDb = new SearchNomenclatureOleDb();
-			searchNomenclatureOleDb.setPrices(listViewPrices);
-			nomenclatureList = searchNomenclatureOleDb.getFindNomenclature(nID);
-			MessageBox.Show(nomenclatureList[nomenclatureList.Count-1].Name);
+			if(listViewNomenclature.SelectedItems.Count > 0){
+				List<Nomenclature> nomenclatureList;
+				
+				String nID = listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].SubItems[2].Text;
+				searchNomenclatureOleDb = new SearchNomenclatureOleDb();
+				searchNomenclatureOleDb.setPrices(listViewPrices);
+				nomenclatureList = searchNomenclatureOleDb.getFindNomenclature(nID);
+				if(nomenclatureList.Count > 0){
+					
+					FormPurchasePlanNomenclature FPurchasePlanNomenclature = new FormPurchasePlanNomenclature();
+					FPurchasePlanNomenclature.MdiParent = DataForms.FClient;
+					FPurchasePlanNomenclature.LoadNomenclature(nomenclatureList);
+					FPurchasePlanNomenclature.Show();
+				}
+			}
 		}
 		void ListViewNomenclatureSelectedIndexChanged(object sender, EventArgs e)
 		{

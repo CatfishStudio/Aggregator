@@ -105,9 +105,10 @@ namespace Aggregator.Client.Directories
 				return;
 			}
 			// ОТОБРАЖЕНИЕ: "Папок"
+			ListViewItem ListViewItem_add;
 			foreach(DataRow rowFolder in foldersTable.Rows)
     		{
-				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add = new ListViewItem();
 				if(actionFolder == "") ListViewItem_add.SubItems.Add(rowFolder["name"].ToString());
 				else ListViewItem_add.SubItems.Add("..");
 				ListViewItem_add.StateImageIndex = 0;
@@ -119,7 +120,7 @@ namespace Aggregator.Client.Directories
 			// ОТОБРАЖЕНИЕ "Файлов"
 			foreach(DataRow rowElement in filesTable.Rows)
     		{
-				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add = new ListViewItem();
 				ListViewItem_add.SubItems.Add(rowElement["name"].ToString());
 				ListViewItem_add.StateImageIndex = 1;
 				ListViewItem_add.SubItems.Add("");
@@ -167,9 +168,10 @@ namespace Aggregator.Client.Directories
 				return;
 			}
 			// ОТОБРАЖЕНИЕ: "Папок"
+			ListViewItem ListViewItem_add;
 			foreach(DataRow rowFolder in foldersTable.Rows)
     		{
-				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add = new ListViewItem();
 				if(actionFolder == "") ListViewItem_add.SubItems.Add(rowFolder["name"].ToString());
 				else ListViewItem_add.SubItems.Add("..");
 				ListViewItem_add.StateImageIndex = 0;
@@ -181,7 +183,7 @@ namespace Aggregator.Client.Directories
 			// ОТОБРАЖЕНИЕ "Файлов"
 			foreach(DataRow rowElement in filesTable.Rows)
     		{
-				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add = new ListViewItem();
 				ListViewItem_add.SubItems.Add(rowElement["name"].ToString());
 				ListViewItem_add.StateImageIndex = 1;
 				ListViewItem_add.SubItems.Add("");
@@ -232,9 +234,10 @@ namespace Aggregator.Client.Directories
 				return;
 			}
 			listView1.Items.Clear();
+			ListViewItem ListViewItem_add;
 			foreach(DataRow row in table.Rows)
         	{
-				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add = new ListViewItem();
 				ListViewItem_add.SubItems.Add(row["name"].ToString());
 				if(row["type"].ToString() == "folder"){
 					ListViewItem_add.StateImageIndex = 0;
@@ -264,9 +267,10 @@ namespace Aggregator.Client.Directories
 				return;
 			}
 			listView1.Items.Clear();
+			ListViewItem ListViewItem_add;
 			foreach(DataRow row in table.Rows)
         	{
-				ListViewItem ListViewItem_add = new ListViewItem();
+				ListViewItem_add = new ListViewItem();
 				ListViewItem_add.SubItems.Add(row["name"].ToString());
 				if(row["type"].ToString() == "folder"){
 					ListViewItem_add.StateImageIndex = 0;

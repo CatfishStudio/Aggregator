@@ -57,6 +57,9 @@ namespace Aggregator.Database.Local
 		{
 			priceList = new List<Price>();
 			nomenclatureList = new List<Nomenclature>();
+			oleDbConnection = new OleDbConnection();
+			oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + DataConfig.localDatabase + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
+			
 		}
 		
 		public void setPrices(ListView listViewPrices)
@@ -76,27 +79,11 @@ namespace Aggregator.Database.Local
 		{
 			nomenclatureList = new List<Nomenclature>();
 			
-			oleDbConnection = new OleDbConnection();
-			oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + DataConfig.localDatabase + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
+			String selectionCriteria = getSelectionCriteria(nomenclatureID);
+			
 			oleDbConnection.Open();
-			
-			Nomenclature templeteNomenclature;
-			oleDbCommand = new OleDbCommand("SELECT * FROM Nomenclature WHERE (id = " + nomenclatureID + ")", oleDbConnection);
-			oleDbDataReader = oleDbCommand.ExecuteReader();
-			oleDbDataReader.Read();
-			templeteNomenclature.Name = oleDbDataReader["name"].ToString();
-			templeteNomenclature.Code = oleDbDataReader["code"].ToString();
-			templeteNomenclature.Series = oleDbDataReader["series"].ToString();
-			templeteNomenclature.Article = oleDbDataReader["article"].ToString();
-			templeteNomenclature.Manufacturer = oleDbDataReader["manufacturer"].ToString();
-			templeteNomenclature.Price = (Double)oleDbDataReader["price"];
-			templeteNomenclature.Units = oleDbDataReader["units"].ToString();
-			oleDbDataReader.Close();
-			
 			foreach(Price price in priceList){
-				oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + 
-				                                " WHERE name LIKE '%" + templeteNomenclature.Name + "%'", 
-				                                oleDbConnection);
+				oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " " + selectionCriteria, oleDbConnection);
 				oleDbDataReader = oleDbCommand.ExecuteReader();
 				Nomenclature nomenclature;
 		        while (oleDbDataReader.Read())
@@ -125,6 +112,28 @@ namespace Aggregator.Database.Local
 			oleDbConnection.Close();
 			
 			return nomenclatureList;
+		}
+		
+		String getSelectionCriteria(String nomenclatureID)
+		{
+			oleDbConnection.Open();
+			Nomenclature templeteNomenclature;
+			oleDbCommand = new OleDbCommand("SELECT * FROM Nomenclature WHERE (id = " + nomenclatureID + ")", oleDbConnection);
+			oleDbDataReader = oleDbCommand.ExecuteReader();
+			oleDbDataReader.Read();
+			templeteNomenclature.Name = oleDbDataReader["name"].ToString();
+			templeteNomenclature.Code = oleDbDataReader["code"].ToString();
+			templeteNomenclature.Series = oleDbDataReader["series"].ToString();
+			templeteNomenclature.Article = oleDbDataReader["article"].ToString();
+			templeteNomenclature.Manufacturer = oleDbDataReader["manufacturer"].ToString();
+			templeteNomenclature.Price = (Double)oleDbDataReader["price"];
+			templeteNomenclature.Units = oleDbDataReader["units"].ToString();
+			oleDbDataReader.Close();
+			oleDbConnection.Close();
+			
+			String textQuery = "WHERE name LIKE '%" + templeteNomenclature.Name + "%'";
+			
+			return textQuery;
 		}
 	}
 }
