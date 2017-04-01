@@ -37,7 +37,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			foreach(Nomenclature nomenclature in nomenclatureList){
 				ListViewItem_add = new ListViewItem();
 				ListViewItem_add.SubItems.Add(nomenclature.Name);
-				ListViewItem_add.StateImageIndex = 1;
+				ListViewItem_add.StateImageIndex = 0;
 				ListViewItem_add.SubItems.Add(nomenclature.Price.ToString());
 				ListViewItem_add.SubItems.Add(nomenclature.Manufacturer);
 				ListViewItem_add.SubItems.Add(nomenclature.Remainder.ToString());

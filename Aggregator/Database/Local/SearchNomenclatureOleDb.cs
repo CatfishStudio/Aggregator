@@ -59,7 +59,6 @@ namespace Aggregator.Database.Local
 			nomenclatureList = new List<Nomenclature>();
 			oleDbConnection = new OleDbConnection();
 			oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + DataConfig.localDatabase + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
-			
 		}
 		
 		public void setPrices(ListView listViewPrices)
@@ -84,6 +83,7 @@ namespace Aggregator.Database.Local
 			oleDbConnection.Open();
 			foreach(Price price in priceList){
 				oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " " + selectionCriteria, oleDbConnection);
+				Utilits.Console.Log(oleDbCommand.CommandText);
 				oleDbDataReader = oleDbCommand.ExecuteReader();
 				Nomenclature nomenclature;
 		        while (oleDbDataReader.Read())
@@ -131,9 +131,21 @@ namespace Aggregator.Database.Local
 			oleDbDataReader.Close();
 			oleDbConnection.Close();
 			
-			String textQuery = "WHERE name LIKE '%" + templeteNomenclature.Name + "%'";
+			//String textQuery = "WHERE name LIKE '%" + templeteNomenclature.Name + "%'";
 			
-			return textQuery;
+			String stringQuery = "WHERE ";
+			String[] words =  templeteNomenclature.Name.Split();
+			int count = words.Length;
+			for(int i = 0; i < count; i++){
+				if(i == 0) stringQuery += "(";
+				if(words[i].Length > 2){
+					stringQuery += "name LIKE '%" + words[i] + "%'";
+					if(i < (count-1)) stringQuery += " AND ";
+				}
+				if(i == (count-1)) stringQuery += ")";
+			}
+			
+			return stringQuery;
 		}
 	}
 }
