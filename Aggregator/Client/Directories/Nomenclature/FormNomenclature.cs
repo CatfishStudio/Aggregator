@@ -113,6 +113,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.StateImageIndex = 0;
 				ListViewItem_add.SubItems.Add("Папка");
 				ListViewItem_add.SubItems.Add(rowFolder["id"].ToString());
+				ListViewItem_add.SubItems.Add(rowFolder["units"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ОТОБРАЖЕНИЕ "Файлов"
@@ -123,6 +124,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.StateImageIndex = 1;
 				ListViewItem_add.SubItems.Add("");
 				ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
+				ListViewItem_add.SubItems.Add(rowElement["units"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ВЫБОР: выдиляем ранее выбранный элемент.
@@ -173,6 +175,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.StateImageIndex = 0;
 				ListViewItem_add.SubItems.Add("Папка");
 				ListViewItem_add.SubItems.Add(rowFolder["id"].ToString());
+				ListViewItem_add.SubItems.Add(rowFolder["units"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ОТОБРАЖЕНИЕ "Файлов"
@@ -183,6 +186,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.StateImageIndex = 1;
 				ListViewItem_add.SubItems.Add("");
 				ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
+				ListViewItem_add.SubItems.Add(rowElement["units"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ВЫБОР: выдиляем ранее выбранный элемент.
@@ -240,6 +244,7 @@ namespace Aggregator.Client.Directories
 					ListViewItem_add.SubItems.Add("");
 				}
 				ListViewItem_add.SubItems.Add(row["id"].ToString());
+				ListViewItem_add.SubItems.Add(row["units"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 		}
@@ -271,6 +276,7 @@ namespace Aggregator.Client.Directories
 					ListViewItem_add.SubItems.Add("");
 				}
 				ListViewItem_add.SubItems.Add(row["id"].ToString());
+				ListViewItem_add.SubItems.Add(row["units"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 		}
@@ -456,8 +462,8 @@ namespace Aggregator.Client.Directories
 					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[1].Text.ToString());
 					ListViewItem_add.StateImageIndex = 0;
 					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[3].Text.ToString());
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("0");
+					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[4].Text.ToString());
+					ListViewItem_add.SubItems.Add("0,00");
 					ListViewItem_add.SubItems.Add("-->");
 					ListViewReturnValue.Items.Add(ListViewItem_add);
 				}
@@ -475,8 +481,8 @@ namespace Aggregator.Client.Directories
 							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString());
 							ListViewItem_add.StateImageIndex = 0;
 							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString());
-							ListViewItem_add.SubItems.Add("");
-							ListViewItem_add.SubItems.Add("0");
+							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString());
+							ListViewItem_add.SubItems.Add("0,00");
 							ListViewItem_add.SubItems.Add("-->");
 							ListViewReturnValue.Items.Add(ListViewItem_add);
 						}

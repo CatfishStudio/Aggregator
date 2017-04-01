@@ -18,6 +18,7 @@ using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
 using Aggregator.Client.Directories;
+using Aggregator.Utilits;
 
 namespace Aggregator.Client.Documents.PurchasePlan
 {
@@ -43,6 +44,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		SearchNomenclatureOleDb searchNomenclatureOleDb;
 		SqlServer sqlServer;
 		String docNumber;
+		int selectTableLine = 0;		// выбранная строка в таблице
 		
 		String getDocNumber()
 		{
@@ -509,8 +511,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			while(listViewNomenclature.Items.Count > 0){
 				listViewNomenclature.Items[0].Remove();
 			}
-			
-
 		}
 		void Button4Click(object sender, EventArgs e)
 		{
@@ -527,7 +527,66 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			nomenclatureList = searchNomenclatureOleDb.getFindNomenclature(nID);
 			MessageBox.Show(nomenclatureList[nomenclatureList.Count-1].Name);
 		}
-
+		void ListViewNomenclatureSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(listViewNomenclature.SelectedItems.Count > 0){
+				selectTableLine = listViewNomenclature.SelectedItems[0].Index;
+				textBox1.Text = listViewNomenclature.Items[selectTableLine].SubItems[1].Text;
+				textBox2.Text = listViewNomenclature.Items[selectTableLine].SubItems[4].Text;
+				textBox3.Text = listViewNomenclature.Items[selectTableLine].SubItems[3].Text;
+			}
+		}
+		void Button8Click(object sender, EventArgs e)
+		{
+			if(DataForms.FUnits != null) DataForms.FUnits.Close();
+			if(DataForms.FUnits == null) {
+				DataForms.FUnits = new FormUnits();
+				DataForms.FUnits.MdiParent = DataForms.FClient;
+				DataForms.FUnits.TextBoxReturnValue = textBox3;
+				DataForms.FUnits.ShowMenuReturnValue();
+				DataForms.FUnits.Show();
+			}
+		}
+		void Button9Click(object sender, EventArgs e)
+		{
+			textBox3.Clear();
+		}
+		void TextBox3TextChanged(object sender, EventArgs e)
+		{
+			if(listViewNomenclature.Items.Count > 0){
+				listViewNomenclature.Items[selectTableLine].SubItems[3].Text = textBox3.Text;
+			}
+		}
+		void TextBox2KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab){
+				String Value = textBox2.Text;
+				textBox2.Clear();
+				textBox2.Text = Conversion.StringToMoney(Conversion.StringToDouble(Value).ToString());
+				if(textBox2.Text == "" || Conversion.checkString(textBox2.Text) == false) textBox2.Text = "0,00";
+			}
+		}
+		void TextBox2TextLostFocus(object sender, EventArgs e)
+		{
+			String Value = textBox2.Text;
+			textBox2.Clear();
+			textBox2.Text = Conversion.StringToMoney(Conversion.StringToDouble(Value).ToString());
+			if(textBox2.Text == "" || Conversion.checkString(textBox2.Text) == false) textBox2.Text = "0,00";
+		}
+		void TextBox2TextChanged(object sender, EventArgs e)
+		{
+			if(textBox2.Text == "" || Conversion.checkString(textBox2.Text) == false) textBox2.Text = "0,00";
+			if(listViewNomenclature.Items.Count > 0){
+				listViewNomenclature.Items[selectTableLine].SubItems[4].Text = textBox2.Text;
+			}
+		}
+		void Button7Click(object sender, EventArgs e)
+		{
+			Calculator Calc = new Calculator();
+			Calc.TextBoxReturnValue = textBox2;
+			Calc.MdiParent = DataForms.FClient;
+			Calc.Show();
+		}
 		
 	}
 }
