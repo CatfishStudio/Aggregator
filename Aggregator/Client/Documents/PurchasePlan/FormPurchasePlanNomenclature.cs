@@ -39,7 +39,18 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				ListViewItem_add.SubItems.Add(nomenclature.Name);
 				ListViewItem_add.StateImageIndex = 1;
 				ListViewItem_add.SubItems.Add(nomenclature.Price.ToString());
+				ListViewItem_add.SubItems.Add(nomenclature.Manufacturer);
+				ListViewItem_add.SubItems.Add(nomenclature.Remainder.ToString());
+				ListViewItem_add.SubItems.Add(nomenclature.Term.ToString());
 				ListViewItem_add.SubItems.Add(nomenclature.Discount1.ToString());
+				ListViewItem_add.SubItems.Add(nomenclature.Discount2.ToString());
+				ListViewItem_add.SubItems.Add(nomenclature.Discount3.ToString());
+				ListViewItem_add.SubItems.Add(nomenclature.Discount4.ToString());
+				ListViewItem_add.SubItems.Add(nomenclature.Code);
+				ListViewItem_add.SubItems.Add(nomenclature.Series);
+				ListViewItem_add.SubItems.Add(nomenclature.Article);
+				ListViewItem_add.SubItems.Add(nomenclature.CounteragentName);
+				ListViewItem_add.SubItems.Add(nomenclature.CounteragentPrice);
 				listView1.Items.Add(ListViewItem_add);
 			}
 

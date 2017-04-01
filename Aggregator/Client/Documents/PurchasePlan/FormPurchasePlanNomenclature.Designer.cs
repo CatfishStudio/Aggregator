@@ -33,7 +33,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ColumnHeader columnHeader13;
 		private System.Windows.Forms.ColumnHeader columnHeader14;
 		private System.Windows.Forms.ColumnHeader columnHeader15;
-		private System.Windows.Forms.ColumnHeader columnHeader16;
 		private System.Windows.Forms.ImageList imageList1;
 		
 		/// <summary>
@@ -78,7 +77,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader15 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader16 = new System.Windows.Forms.ColumnHeader();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -137,8 +135,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader12,
 			this.columnHeader13,
 			this.columnHeader14,
-			this.columnHeader15,
-			this.columnHeader16});
+			this.columnHeader15});
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
@@ -171,66 +168,59 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// columnHeader4
 			// 
-			this.columnHeader4.Text = "Скидка №1";
-			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader4.Width = 100;
+			this.columnHeader4.Text = "Производитель";
+			this.columnHeader4.Width = 250;
 			// 
 			// columnHeader5
 			// 
-			this.columnHeader5.Text = "Скидка №2";
+			this.columnHeader5.Text = "Остаток";
 			this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader5.Width = 100;
 			// 
 			// columnHeader6
 			// 
-			this.columnHeader6.Text = "Скидка №3";
-			this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader6.Width = 100;
+			this.columnHeader6.Text = "Срок годности";
 			// 
 			// columnHeader7
 			// 
-			this.columnHeader7.Text = "Скидка №4";
+			this.columnHeader7.Text = "Скидка №1";
 			this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader7.Width = 100;
 			// 
 			// columnHeader8
 			// 
-			this.columnHeader8.Text = "Остаток";
+			this.columnHeader8.Text = "Скидка №2";
 			this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// columnHeader9
 			// 
-			this.columnHeader9.Text = "Производитель";
-			this.columnHeader9.Width = 250;
+			this.columnHeader9.Text = "Скидка №3";
+			this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// columnHeader10
 			// 
-			this.columnHeader10.Text = "Код";
+			this.columnHeader10.Text = "Скидка №4";
+			this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// columnHeader11
 			// 
-			this.columnHeader11.Text = "Серия";
+			this.columnHeader11.Text = "Код товара";
 			// 
 			// columnHeader12
 			// 
-			this.columnHeader12.Text = "Артикул";
+			this.columnHeader12.Text = "Серия";
 			// 
 			// columnHeader13
 			// 
-			this.columnHeader13.Text = "Срок годности";
+			this.columnHeader13.Text = "Артикул";
 			// 
 			// columnHeader14
 			// 
 			this.columnHeader14.Text = "Контрагент";
+			this.columnHeader14.Width = 250;
 			// 
 			// columnHeader15
 			// 
 			this.columnHeader15.Text = "Прайс-лист";
-			// 
-			// columnHeader16
-			// 
-			this.columnHeader16.Text = "№";
-			this.columnHeader16.Width = 40;
+			this.columnHeader15.Width = 100;
 			// 
 			// imageList1
 			// 
