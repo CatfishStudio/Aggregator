@@ -463,12 +463,26 @@ namespace Aggregator.Client.Directories
 				ListViewItem ListViewItem_add;
 				for(int i = 1; i < count; i++){
 					ListViewItem_add = new ListViewItem();
-					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[1].Text.ToString());
+					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[1].Text);
 					ListViewItem_add.StateImageIndex = 0;
-					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[3].Text.ToString());
-					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[4].Text.ToString());
+					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[3].Text);
+					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[4].Text);
 					ListViewItem_add.SubItems.Add("0,00");
 					ListViewItem_add.SubItems.Add("-->");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
 					ListViewReturnValue.Items.Add(ListViewItem_add);
 				}
 				Close();
@@ -477,17 +491,31 @@ namespace Aggregator.Client.Directories
 				
 			}else if(TypeReturnValue != "folder"){
 				if(listView1.SelectedIndices.Count > 0){
-					if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString() != "Папка" && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString() != ".."){
-						if(TypeReturnValue == "id") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString();
-						if(TypeReturnValue == "name") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString();
+					if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text != "Папка" && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text != ".."){
+						if(TypeReturnValue == "id") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text;
+						if(TypeReturnValue == "name") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text;
 						if(TypeReturnValue == "file"){
 							ListViewItem ListViewItem_add = new ListViewItem();
-							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text.ToString());
+							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text);
 							ListViewItem_add.StateImageIndex = 0;
-							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text.ToString());
-							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text.ToString());
+							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text);
+							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text);
 							ListViewItem_add.SubItems.Add("0,00");
 							ListViewItem_add.SubItems.Add("-->");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
+							ListViewItem_add.SubItems.Add("");
 							ListViewReturnValue.Items.Add(ListViewItem_add);
 						}
 						Close();

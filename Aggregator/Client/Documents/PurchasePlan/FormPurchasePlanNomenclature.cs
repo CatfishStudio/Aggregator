@@ -31,6 +31,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			//
 		}
 		
+		public ListView ListViewReturnValue;
+		public int SelectTableLine;
+		
 		public void LoadNomenclature(List<Nomenclature> nomenclatureList)
 		{
 			ListViewItem ListViewItem_add;
@@ -56,6 +59,29 @@ namespace Aggregator.Client.Documents.PurchasePlan
 
 		}
 		
+		bool returnValue()
+		{
+			if(listView1.SelectedIndices.Count > 0){
+				ListViewReturnValue.Items[SelectTableLine].StateImageIndex = 1;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[6].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[1].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[7].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[2].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[8].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[3].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[9].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[4].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[10].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[5].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[11].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[6].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[12].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[7].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[13].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[8].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[14].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[9].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[15].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[10].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[16].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[11].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[17].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[12].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[18].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[13].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[19].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[14].Text;
+				return true;
+			}
+			return false;
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -66,7 +92,15 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void FormPurchasePlanNomenclatureFormClosed(object sender, FormClosedEventArgs e)
 		{
-	
+			Dispose();
+		}
+		void ButtonCancelClick(object sender, EventArgs e)
+		{
+			Close();
+		}
+		void ButtonSaveClick(object sender, EventArgs e)
+		{
+			if(returnValue()) Close();
 		}
 	}
 }

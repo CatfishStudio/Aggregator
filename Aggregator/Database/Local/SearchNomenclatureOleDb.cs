@@ -139,8 +139,8 @@ namespace Aggregator.Database.Local
 			for(int i = 0; i < count; i++){
 				if(i == 0) stringQuery += "(";
 				if(words[i].Length > 2){
+					if( i > 0) stringQuery += " AND ";
 					stringQuery += "name LIKE '%" + words[i] + "%'";
-					if(i < (count-1)) stringQuery += " AND ";
 				}
 				if(i == (count-1)) stringQuery += ")";
 			}

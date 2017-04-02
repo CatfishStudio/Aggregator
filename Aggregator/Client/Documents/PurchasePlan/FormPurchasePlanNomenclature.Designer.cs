@@ -103,6 +103,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonSave.Text = "Выбрать";
 			this.buttonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonSave.UseVisualStyleBackColor = true;
+			this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
 			// 
 			// buttonCancel
 			// 
@@ -116,6 +117,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonCancel.Text = "Отмена";
 			this.buttonCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonCancel.UseVisualStyleBackColor = true;
+			this.buttonCancel.Click += new System.EventHandler(this.ButtonCancelClick);
 			// 
 			// listView1
 			// 

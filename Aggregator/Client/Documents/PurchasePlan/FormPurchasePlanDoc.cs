@@ -44,7 +44,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		SearchNomenclatureOleDb searchNomenclatureOleDb;
 		SqlServer sqlServer;
 		String docNumber;
-		int selectTableLine = 0;		// выбранная строка в таблице
+		int selectTableLine = -1;		// выбранная строка в таблице
 		
 		String getDocNumber()
 		{
@@ -493,6 +493,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		void ButtonNomenclatureDeleteClick(object sender, EventArgs e)
 		{
 			if(listViewNomenclature.SelectedItems.Count > 0) listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].Remove();
+			selectTableLine = -1;
+			textBox1.Clear();
+			textBox3.Clear();
+			textBox2.Text = "0,00";
 		}
 		void ButtonNomenclaturesAddClick(object sender, EventArgs e)
 		{
@@ -511,6 +515,11 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			while(listViewNomenclature.Items.Count > 0){
 				listViewNomenclature.Items[0].Remove();
 			}
+			selectTableLine = -1;
+			textBox1.Clear();
+			textBox3.Clear();
+			textBox2.Text = "0,00";
+				
 		}
 		void Button4Click(object sender, EventArgs e)
 		{
@@ -530,6 +539,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					
 					FormPurchasePlanNomenclature FPurchasePlanNomenclature = new FormPurchasePlanNomenclature();
 					FPurchasePlanNomenclature.MdiParent = DataForms.FClient;
+					FPurchasePlanNomenclature.ListViewReturnValue = listViewNomenclature;
+					FPurchasePlanNomenclature.SelectTableLine = selectTableLine;
 					FPurchasePlanNomenclature.LoadNomenclature(nomenclatureList);
 					FPurchasePlanNomenclature.Show();
 				}
@@ -561,7 +572,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void TextBox3TextChanged(object sender, EventArgs e)
 		{
-			if(listViewNomenclature.Items.Count > 0){
+			if(listViewNomenclature.Items.Count > 0 && selectTableLine > -1){
 				listViewNomenclature.Items[selectTableLine].SubItems[3].Text = textBox3.Text;
 			}
 		}
@@ -584,9 +595,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		void TextBox2TextChanged(object sender, EventArgs e)
 		{
 			if(textBox2.Text == "" || Conversion.checkString(textBox2.Text) == false) textBox2.Text = "0,00";
-			if(listViewNomenclature.Items.Count > 0){
+			if(listViewNomenclature.Items.Count > 0 && selectTableLine > -1){
 				listViewNomenclature.Items[selectTableLine].SubItems[4].Text = textBox2.Text;
 			}
+		}
+		void Button6Click(object sender, EventArgs e)
+		{
+			textBox2.Text = "0,00";
 		}
 		void Button7Click(object sender, EventArgs e)
 		{
@@ -595,6 +610,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			Calc.MdiParent = DataForms.FClient;
 			Calc.Show();
 		}
+		
 		
 	}
 }

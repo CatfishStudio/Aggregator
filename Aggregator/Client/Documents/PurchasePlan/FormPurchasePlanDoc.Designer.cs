@@ -67,6 +67,19 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.Button button9;
 		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.ColumnHeader columnHeader11;
+		private System.Windows.Forms.ColumnHeader columnHeader12;
+		private System.Windows.Forms.ColumnHeader columnHeader13;
+		private System.Windows.Forms.ColumnHeader columnHeader14;
+		private System.Windows.Forms.ColumnHeader columnHeader15;
+		private System.Windows.Forms.ColumnHeader columnHeader16;
+		private System.Windows.Forms.ColumnHeader columnHeader17;
+		private System.Windows.Forms.ColumnHeader columnHeader18;
+		private System.Windows.Forms.ColumnHeader columnHeader19;
+		private System.Windows.Forms.ColumnHeader columnHeader20;
+		private System.Windows.Forms.ColumnHeader columnHeader21;
+		private System.Windows.Forms.ColumnHeader columnHeader22;
+		private System.Windows.Forms.ColumnHeader columnHeader23;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -144,6 +157,19 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel6 = new System.Windows.Forms.Panel();
 			this.buttonNomenclatureDelete = new System.Windows.Forms.Button();
 			this.buttonNomenclatureAdd = new System.Windows.Forms.Button();
+			this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader15 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader16 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader17 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader18 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader19 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader20 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader21 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader22 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader23 = new System.Windows.Forms.ColumnHeader();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -396,7 +422,20 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader7,
 			this.columnHeader8,
 			this.columnHeader9,
-			this.columnHeader10});
+			this.columnHeader10,
+			this.columnHeader11,
+			this.columnHeader12,
+			this.columnHeader13,
+			this.columnHeader14,
+			this.columnHeader15,
+			this.columnHeader16,
+			this.columnHeader17,
+			this.columnHeader18,
+			this.columnHeader19,
+			this.columnHeader20,
+			this.columnHeader21,
+			this.columnHeader22,
+			this.columnHeader23});
 			this.listViewNomenclature.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listViewNomenclature.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewNomenclature.FullRowSelect = true;
@@ -503,9 +542,11 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// textBox2
 			// 
+			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox2.Location = new System.Drawing.Point(98, 66);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(135, 20);
+			this.textBox2.Size = new System.Drawing.Size(140, 20);
 			this.textBox2.TabIndex = 4;
 			this.textBox2.Text = "0,00";
 			this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -523,8 +564,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// button9
 			// 
+			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button9.Location = new System.Drawing.Point(267, 42);
+			this.button9.Location = new System.Drawing.Point(267, 43);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(20, 20);
 			this.button9.TabIndex = 24;
@@ -534,9 +576,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// button7
 			// 
+			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-			this.button7.Location = new System.Drawing.Point(235, 66);
+			this.button7.Location = new System.Drawing.Point(239, 66);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(26, 20);
 			this.button7.TabIndex = 20;
@@ -545,9 +588,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// button8
 			// 
+			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-			this.button8.Location = new System.Drawing.Point(235, 42);
+			this.button8.Location = new System.Drawing.Point(239, 43);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(26, 20);
 			this.button8.TabIndex = 23;
@@ -556,6 +600,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// button6
 			// 
+			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button6.Location = new System.Drawing.Point(267, 66);
 			this.button6.Name = "button6";
@@ -563,17 +608,22 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.button6.TabIndex = 19;
 			this.button6.Text = "X";
 			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.Button6Click);
 			// 
 			// textBox3
 			// 
+			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox3.Location = new System.Drawing.Point(98, 43);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(135, 20);
+			this.textBox3.Size = new System.Drawing.Size(140, 20);
 			this.textBox3.TabIndex = 5;
 			this.textBox3.TextChanged += new System.EventHandler(this.TextBox3TextChanged);
 			// 
 			// textBox1
 			// 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.Location = new System.Drawing.Point(98, 19);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ReadOnly = true;
@@ -695,6 +745,68 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonNomenclatureAdd.TabIndex = 3;
 			this.buttonNomenclatureAdd.UseVisualStyleBackColor = true;
 			this.buttonNomenclatureAdd.Click += new System.EventHandler(this.ButtonNomenclatureAddClick);
+			// 
+			// columnHeader11
+			// 
+			this.columnHeader11.Text = "Цена";
+			this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader11.Width = 100;
+			// 
+			// columnHeader12
+			// 
+			this.columnHeader12.Text = "Производитель";
+			this.columnHeader12.Width = 250;
+			// 
+			// columnHeader13
+			// 
+			this.columnHeader13.Text = "Остаток";
+			this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader14
+			// 
+			this.columnHeader14.Text = "Срок годности";
+			// 
+			// columnHeader15
+			// 
+			this.columnHeader15.Text = "Скидка №1";
+			this.columnHeader15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader16
+			// 
+			this.columnHeader16.Text = "Скидка №2";
+			this.columnHeader16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader17
+			// 
+			this.columnHeader17.Text = "Скидка №3";
+			this.columnHeader17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader18
+			// 
+			this.columnHeader18.Text = "Скидка №4";
+			this.columnHeader18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader19
+			// 
+			this.columnHeader19.Text = "Код товара";
+			// 
+			// columnHeader20
+			// 
+			this.columnHeader20.Text = "Серия";
+			// 
+			// columnHeader21
+			// 
+			this.columnHeader21.Text = "Артикул";
+			// 
+			// columnHeader22
+			// 
+			this.columnHeader22.Text = "Контрагент";
+			this.columnHeader22.Width = 250;
+			// 
+			// columnHeader23
+			// 
+			this.columnHeader23.Text = "Прайс-лист";
+			this.columnHeader23.Width = 100;
 			// 
 			// FormPurchasePlanDoc
 			// 
