@@ -463,9 +463,9 @@ namespace Aggregator.Client.Directories
 				ListViewItem ListViewItem_add;
 				for(int i = 1; i < count; i++){
 					ListViewItem_add = new ListViewItem();
-					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[1].Text);
-					ListViewItem_add.StateImageIndex = 0;
 					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[3].Text);
+					ListViewItem_add.StateImageIndex = 0;
+					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[1].Text);
 					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[4].Text);
 					ListViewItem_add.SubItems.Add("0,00");
 					ListViewItem_add.SubItems.Add("-->");
@@ -496,9 +496,9 @@ namespace Aggregator.Client.Directories
 						if(TypeReturnValue == "name") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text;
 						if(TypeReturnValue == "file"){
 							ListViewItem ListViewItem_add = new ListViewItem();
-							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text);
-							ListViewItem_add.StateImageIndex = 0;
 							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text);
+							ListViewItem_add.StateImageIndex = 0;
+							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text);
 							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text);
 							ListViewItem_add.SubItems.Add("0,00");
 							ListViewItem_add.SubItems.Add("-->");

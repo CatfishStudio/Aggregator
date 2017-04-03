@@ -531,7 +531,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			if(listViewNomenclature.SelectedItems.Count > 0){
 				List<Nomenclature> nomenclatureList;
 				
-				String nID = listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].SubItems[2].Text;
+				String nID = listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].SubItems[1].Text;
 				searchNomenclatureOleDb = new SearchNomenclatureOleDb();
 				searchNomenclatureOleDb.setPrices(listViewPrices);
 				nomenclatureList = searchNomenclatureOleDb.getFindNomenclature(nID);
@@ -550,7 +550,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		{
 			if(listViewNomenclature.SelectedItems.Count > 0){
 				selectTableLine = listViewNomenclature.SelectedItems[0].Index;
-				textBox1.Text = listViewNomenclature.Items[selectTableLine].SubItems[1].Text;
+				textBox1.Text = listViewNomenclature.Items[selectTableLine].SubItems[2].Text;
 				textBox2.Text = listViewNomenclature.Items[selectTableLine].SubItems[4].Text;
 				textBox3.Text = listViewNomenclature.Items[selectTableLine].SubItems[3].Text;
 			}

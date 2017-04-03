@@ -134,10 +134,11 @@ namespace Aggregator.Database.Local
 			oleDbDataReader.Close();
 			oleDbConnection.Close();
 			
-			//String textQuery = "WHERE name LIKE '%" + templeteNomenclature.Name + "%'";
 			
+			// Начало построения запроса
 			String stringQuery = "WHERE ";
 			
+			// По Наименованию - точное совпадение
 			String str = "";
 			String[] words =  templeteNomenclature.Name.Split();
 			int count = words.Length;
@@ -154,6 +155,7 @@ namespace Aggregator.Database.Local
 			str = str.Replace(".", "").Replace(",", "");
 			stringQuery += str;
 			
+			// По Наименованию - частичное совпадение
 			str = "";
 			count = words.Length;
 			for(i = 0; i < count; i++){
@@ -167,6 +169,14 @@ namespace Aggregator.Database.Local
 			
 			str = str.Replace(".", "").Replace(",", "");			
 			stringQuery += " OR " + str;
+			
+			// По Коду, Серии, Артиклу
+			stringQuery += " OR (code = '" + templeteNomenclature.Code + "' AND code <> '')"+
+						" OR (series = '" + templeteNomenclature.Series + "' AND series <> '')"+
+						" OR (article = '" + templeteNomenclature.Article + "' AND article <> '')";
+			
+			// Упорядочить
+			stringQuery += " ORDER BY price ASC";
 			
 			return stringQuery;
 		}

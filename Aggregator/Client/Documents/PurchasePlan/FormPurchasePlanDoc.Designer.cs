@@ -128,12 +128,25 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.listViewNomenclature = new System.Windows.Forms.ListView();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader15 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader16 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader17 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader18 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader19 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader20 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader21 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader22 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader23 = new System.Windows.Forms.ColumnHeader();
 			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -157,19 +170,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel6 = new System.Windows.Forms.Panel();
 			this.buttonNomenclatureDelete = new System.Windows.Forms.Button();
 			this.buttonNomenclatureAdd = new System.Windows.Forms.Button();
-			this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader15 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader16 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader17 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader18 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader19 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader20 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader21 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader22 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader23 = new System.Windows.Forms.ColumnHeader();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -417,8 +417,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listViewNomenclature.Activation = System.Windows.Forms.ItemActivation.OneClick;
 			this.listViewNomenclature.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 			this.columnHeader4,
-			this.columnHeader5,
 			this.columnHeader6,
+			this.columnHeader5,
 			this.columnHeader7,
 			this.columnHeader8,
 			this.columnHeader9,
@@ -456,15 +456,15 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader4.Text = "...";
 			this.columnHeader4.Width = 40;
 			// 
-			// columnHeader5
-			// 
-			this.columnHeader5.Text = "Номенклатура";
-			this.columnHeader5.Width = 250;
-			// 
 			// columnHeader6
 			// 
 			this.columnHeader6.Text = "№";
 			this.columnHeader6.Width = 0;
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Номенклатура";
+			this.columnHeader5.Width = 250;
 			// 
 			// columnHeader7
 			// 
@@ -485,6 +485,68 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.columnHeader10.Text = "Номенклатура";
 			this.columnHeader10.Width = 250;
+			// 
+			// columnHeader11
+			// 
+			this.columnHeader11.Text = "Цена";
+			this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader11.Width = 100;
+			// 
+			// columnHeader12
+			// 
+			this.columnHeader12.Text = "Производитель";
+			this.columnHeader12.Width = 250;
+			// 
+			// columnHeader13
+			// 
+			this.columnHeader13.Text = "Остаток";
+			this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader14
+			// 
+			this.columnHeader14.Text = "Срок годности";
+			// 
+			// columnHeader15
+			// 
+			this.columnHeader15.Text = "Скидка №1";
+			this.columnHeader15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader16
+			// 
+			this.columnHeader16.Text = "Скидка №2";
+			this.columnHeader16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader17
+			// 
+			this.columnHeader17.Text = "Скидка №3";
+			this.columnHeader17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader18
+			// 
+			this.columnHeader18.Text = "Скидка №4";
+			this.columnHeader18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader19
+			// 
+			this.columnHeader19.Text = "Код товара";
+			// 
+			// columnHeader20
+			// 
+			this.columnHeader20.Text = "Серия";
+			// 
+			// columnHeader21
+			// 
+			this.columnHeader21.Text = "Артикул";
+			// 
+			// columnHeader22
+			// 
+			this.columnHeader22.Text = "Контрагент";
+			this.columnHeader22.Width = 250;
+			// 
+			// columnHeader23
+			// 
+			this.columnHeader23.Text = "Прайс-лист";
+			this.columnHeader23.Width = 100;
 			// 
 			// imageList2
 			// 
@@ -745,68 +807,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonNomenclatureAdd.TabIndex = 3;
 			this.buttonNomenclatureAdd.UseVisualStyleBackColor = true;
 			this.buttonNomenclatureAdd.Click += new System.EventHandler(this.ButtonNomenclatureAddClick);
-			// 
-			// columnHeader11
-			// 
-			this.columnHeader11.Text = "Цена";
-			this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader11.Width = 100;
-			// 
-			// columnHeader12
-			// 
-			this.columnHeader12.Text = "Производитель";
-			this.columnHeader12.Width = 250;
-			// 
-			// columnHeader13
-			// 
-			this.columnHeader13.Text = "Остаток";
-			this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// columnHeader14
-			// 
-			this.columnHeader14.Text = "Срок годности";
-			// 
-			// columnHeader15
-			// 
-			this.columnHeader15.Text = "Скидка №1";
-			this.columnHeader15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// columnHeader16
-			// 
-			this.columnHeader16.Text = "Скидка №2";
-			this.columnHeader16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// columnHeader17
-			// 
-			this.columnHeader17.Text = "Скидка №3";
-			this.columnHeader17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// columnHeader18
-			// 
-			this.columnHeader18.Text = "Скидка №4";
-			this.columnHeader18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// columnHeader19
-			// 
-			this.columnHeader19.Text = "Код товара";
-			// 
-			// columnHeader20
-			// 
-			this.columnHeader20.Text = "Серия";
-			// 
-			// columnHeader21
-			// 
-			this.columnHeader21.Text = "Артикул";
-			// 
-			// columnHeader22
-			// 
-			this.columnHeader22.Text = "Контрагент";
-			this.columnHeader22.Width = 250;
-			// 
-			// columnHeader23
-			// 
-			this.columnHeader23.Text = "Прайс-лист";
-			this.columnHeader23.Width = 100;
 			// 
 			// FormPurchasePlanDoc
 			// 
