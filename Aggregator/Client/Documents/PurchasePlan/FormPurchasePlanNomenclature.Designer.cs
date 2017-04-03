@@ -34,6 +34,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ColumnHeader columnHeader14;
 		private System.Windows.Forms.ColumnHeader columnHeader15;
 		private System.Windows.Forms.ImageList imageList1;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem выбратьНоменклатуруToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -78,7 +80,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader15 = new System.Windows.Forms.ColumnHeader();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.выбратьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1.SuspendLayout();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -138,6 +143,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader13,
 			this.columnHeader14,
 			this.columnHeader15});
+			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
@@ -230,6 +236,21 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "page.png");
 			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.выбратьНоменклатуруToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(204, 48);
+			// 
+			// выбратьНоменклатуруToolStripMenuItem
+			// 
+			this.выбратьНоменклатуруToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выбратьНоменклатуруToolStripMenuItem.Image")));
+			this.выбратьНоменклатуруToolStripMenuItem.Name = "выбратьНоменклатуруToolStripMenuItem";
+			this.выбратьНоменклатуруToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+			this.выбратьНоменклатуруToolStripMenuItem.Text = "Выбрать номенклатуру";
+			this.выбратьНоменклатуруToolStripMenuItem.Click += new System.EventHandler(this.ВыбратьНоменклатуруToolStripMenuItemClick);
+			// 
 			// FormPurchasePlanNomenclature
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,6 +264,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPurchasePlanNomenclatureFormClosed);
 			this.Load += new System.EventHandler(this.FormPurchasePlanNomenclatureLoad);
 			this.panel1.ResumeLayout(false);
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

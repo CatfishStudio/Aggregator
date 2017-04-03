@@ -102,5 +102,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		{
 			if(returnValue()) Close();
 		}
+		void ВыбратьНоменклатуруToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(returnValue()) Close();
+		}
 	}
 }

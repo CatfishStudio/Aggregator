@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.OleDb;
@@ -83,7 +84,9 @@ namespace Aggregator.Database.Local
 			oleDbConnection.Open();
 			foreach(Price price in priceList){
 				oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " " + selectionCriteria, oleDbConnection);
-				Utilits.Console.Log(oleDbCommand.CommandText);
+				
+				Utilits.Console.Log("[getFindNomenclature] ЗАПРОС: " + oleDbCommand.CommandText);
+				
 				oleDbDataReader = oleDbCommand.ExecuteReader();
 				Nomenclature nomenclature;
 		        while (oleDbDataReader.Read())
@@ -134,18 +137,47 @@ namespace Aggregator.Database.Local
 			//String textQuery = "WHERE name LIKE '%" + templeteNomenclature.Name + "%'";
 			
 			String stringQuery = "WHERE ";
+			
+			String str = "";
 			String[] words =  templeteNomenclature.Name.Split();
 			int count = words.Length;
-			for(int i = 0; i < count; i++){
-				if(i == 0) stringQuery += "(";
+			int i = 0;
+			for(i = 0; i < count; i++){
+				if(i == 0) str += "(";
 				if(words[i].Length > 2){
-					if( i > 0) stringQuery += " AND ";
-					stringQuery += "name LIKE '%" + words[i] + "%'";
+					if( i > 0) str += " AND ";
+					str += "name LIKE '%" + words[i] + "%'";
 				}
-				if(i == (count-1)) stringQuery += ")";
+				if(i == (count-1)) str += ")";
 			}
 			
+			str = str.Replace(".", "").Replace(",", "");
+			stringQuery += str;
+			
+			str = "";
+			count = words.Length;
+			for(i = 0; i < count; i++){
+				if(i == 0) str += "(";
+				if(words[i].Length > 3 && checkIgnore(words[i]) == false){
+					if( i > 0) str += " OR ";
+					str += "name LIKE '%" + words[i] + "%'";
+				}
+				if(i == (count-1)) str += ")";
+			}
+			
+			str = str.Replace(".", "").Replace(",", "");			
+			stringQuery += " OR " + str;
+			
 			return stringQuery;
+		}
+		
+		bool checkIgnore(String str)
+		{
+			Regex rgx = new Regex(@"[0-9]"); //@"[a-zA-Z0-9]" 
+			if(rgx.IsMatch(str)) return true;
+			rgx = new Regex(@"[/,№,\\]");
+			if(rgx.IsMatch(str)) return true;
+			return false;
 		}
 	}
 }
