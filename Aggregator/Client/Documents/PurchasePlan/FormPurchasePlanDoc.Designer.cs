@@ -80,6 +80,24 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ColumnHeader columnHeader21;
 		private System.Windows.Forms.ColumnHeader columnHeader22;
 		private System.Windows.Forms.ColumnHeader columnHeader23;
+		private System.Windows.Forms.Button buttonPrintPreview;
+		private System.Windows.Forms.Button buttonPrint;
+		private System.Drawing.Printing.PrintDocument printDocument1;
+		private System.Windows.Forms.PrintDialog printDialog1;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.ToolStripMenuItem добавитьПрайслистToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem удалитьПрайслистToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem просмотретьПрайслистToolStripMenuItem;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+		private System.Windows.Forms.ToolStripMenuItem добавитьНоменклатуруToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem добавитьМножествоНоменклатурыToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem удалитьВыбраннуюНоменклатуруToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem удалитьВесьПереченьНоменклатурыToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem подобратьНоменклатуруToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem автоподборНоменклатурыToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -105,6 +123,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPurchasePlanDoc));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.buttonPrintPreview = new System.Windows.Forms.Button();
+			this.buttonPrint = new System.Windows.Forms.Button();
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -119,6 +139,11 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.добавитьПрайслистToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.удалитьПрайслистToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.просмотретьПрайслистToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.priceButton = new System.Windows.Forms.Button();
@@ -147,6 +172,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader21 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader22 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader23 = new System.Windows.Forms.ColumnHeader();
+			this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.добавитьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.добавитьМножествоНоменклатурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.удалитьВыбраннуюНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.удалитьВесьПереченьНоменклатурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.подобратьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.автоподборНоменклатурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -170,12 +203,17 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel6 = new System.Windows.Forms.Panel();
 			this.buttonNomenclatureDelete = new System.Windows.Forms.Button();
 			this.buttonNomenclatureAdd = new System.Windows.Forms.Button();
+			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+			this.printDialog1 = new System.Windows.Forms.PrintDialog();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
+			this.contextMenuStrip1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.tabPage2.SuspendLayout();
+			this.contextMenuStrip2.SuspendLayout();
 			this.panel7.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -186,6 +224,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.buttonPrintPreview);
+			this.panel1.Controls.Add(this.buttonPrint);
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonCancel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -193,6 +233,34 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(727, 45);
 			this.panel1.TabIndex = 3;
+			// 
+			// buttonPrintPreview
+			// 
+			this.buttonPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonPrintPreview.Image = ((System.Drawing.Image)(resources.GetObject("buttonPrintPreview.Image")));
+			this.buttonPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.buttonPrintPreview.Location = new System.Drawing.Point(7, 11);
+			this.buttonPrintPreview.Name = "buttonPrintPreview";
+			this.buttonPrintPreview.Size = new System.Drawing.Size(85, 23);
+			this.buttonPrintPreview.TabIndex = 40;
+			this.buttonPrintPreview.Text = "Просмотр";
+			this.buttonPrintPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.buttonPrintPreview.UseVisualStyleBackColor = true;
+			this.buttonPrintPreview.Click += new System.EventHandler(this.ButtonPrintPreviewClick);
+			// 
+			// buttonPrint
+			// 
+			this.buttonPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonPrint.Image = ((System.Drawing.Image)(resources.GetObject("buttonPrint.Image")));
+			this.buttonPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.buttonPrint.Location = new System.Drawing.Point(98, 11);
+			this.buttonPrint.Name = "buttonPrint";
+			this.buttonPrint.Size = new System.Drawing.Size(75, 23);
+			this.buttonPrint.TabIndex = 39;
+			this.buttonPrint.Text = "Печать.";
+			this.buttonPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.buttonPrint.UseVisualStyleBackColor = true;
+			this.buttonPrint.Click += new System.EventHandler(this.ButtonPrintClick);
 			// 
 			// buttonSave
 			// 
@@ -311,6 +379,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader1,
 			this.columnHeader2,
 			this.columnHeader3});
+			this.listViewPrices.ContextMenuStrip = this.contextMenuStrip1;
 			this.listViewPrices.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listViewPrices.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewPrices.FullRowSelect = true;
@@ -340,6 +409,45 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader3.Text = "Прайс-лист";
 			this.columnHeader3.Width = 200;
 			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.добавитьПрайслистToolStripMenuItem,
+			this.удалитьПрайслистToolStripMenuItem,
+			this.toolStripSeparator1,
+			this.просмотретьПрайслистToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(215, 76);
+			// 
+			// добавитьПрайслистToolStripMenuItem
+			// 
+			this.добавитьПрайслистToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("добавитьПрайслистToolStripMenuItem.Image")));
+			this.добавитьПрайслистToolStripMenuItem.Name = "добавитьПрайслистToolStripMenuItem";
+			this.добавитьПрайслистToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+			this.добавитьПрайслистToolStripMenuItem.Text = "Добавить прайс-лист";
+			this.добавитьПрайслистToolStripMenuItem.Click += new System.EventHandler(this.ДобавитьПрайслистToolStripMenuItemClick);
+			// 
+			// удалитьПрайслистToolStripMenuItem
+			// 
+			this.удалитьПрайслистToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("удалитьПрайслистToolStripMenuItem.Image")));
+			this.удалитьПрайслистToolStripMenuItem.Name = "удалитьПрайслистToolStripMenuItem";
+			this.удалитьПрайслистToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+			this.удалитьПрайслистToolStripMenuItem.Text = "Удалить прайс-лист";
+			this.удалитьПрайслистToolStripMenuItem.Click += new System.EventHandler(this.УдалитьПрайслистToolStripMenuItemClick);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
+			// 
+			// просмотретьПрайслистToolStripMenuItem
+			// 
+			this.просмотретьПрайслистToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("просмотретьПрайслистToolStripMenuItem.Image")));
+			this.просмотретьПрайслистToolStripMenuItem.Name = "просмотретьПрайслистToolStripMenuItem";
+			this.просмотретьПрайслистToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+			this.просмотретьПрайслистToolStripMenuItem.Text = "Просмотреть прайс-лист";
+			this.просмотретьПрайслистToolStripMenuItem.Click += new System.EventHandler(this.ПросмотретьПрайслистToolStripMenuItemClick);
+			// 
 			// imageList1
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -368,6 +476,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.priceButton.TabIndex = 6;
 			this.priceButton.Text = "Прайс-лист";
 			this.priceButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.priceButton, "Просмотреть прайс-лист");
 			this.priceButton.UseVisualStyleBackColor = true;
 			this.priceButton.Click += new System.EventHandler(this.PriceButtonClick);
 			// 
@@ -386,6 +495,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.deleteButton.Name = "deleteButton";
 			this.deleteButton.Size = new System.Drawing.Size(25, 23);
 			this.deleteButton.TabIndex = 4;
+			this.toolTip1.SetToolTip(this.deleteButton, "Удалить прайс-лист");
 			this.deleteButton.UseVisualStyleBackColor = true;
 			this.deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
 			// 
@@ -396,6 +506,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.addButton.Name = "addButton";
 			this.addButton.Size = new System.Drawing.Size(25, 23);
 			this.addButton.TabIndex = 3;
+			this.toolTip1.SetToolTip(this.addButton, "Добавить прайс-лист");
 			this.addButton.UseVisualStyleBackColor = true;
 			this.addButton.Click += new System.EventHandler(this.AddButtonClick);
 			// 
@@ -436,6 +547,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader21,
 			this.columnHeader22,
 			this.columnHeader23});
+			this.listViewNomenclature.ContextMenuStrip = this.contextMenuStrip2;
 			this.listViewNomenclature.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listViewNomenclature.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewNomenclature.FullRowSelect = true;
@@ -547,6 +659,72 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.columnHeader23.Text = "Прайс-лист";
 			this.columnHeader23.Width = 100;
+			// 
+			// contextMenuStrip2
+			// 
+			this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.добавитьНоменклатуруToolStripMenuItem,
+			this.добавитьМножествоНоменклатурыToolStripMenuItem,
+			this.удалитьВыбраннуюНоменклатуруToolStripMenuItem,
+			this.удалитьВесьПереченьНоменклатурыToolStripMenuItem,
+			this.toolStripSeparator2,
+			this.подобратьНоменклатуруToolStripMenuItem,
+			this.автоподборНоменклатурыToolStripMenuItem});
+			this.contextMenuStrip2.Name = "contextMenuStrip2";
+			this.contextMenuStrip2.Size = new System.Drawing.Size(286, 164);
+			// 
+			// добавитьНоменклатуруToolStripMenuItem
+			// 
+			this.добавитьНоменклатуруToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("добавитьНоменклатуруToolStripMenuItem.Image")));
+			this.добавитьНоменклатуруToolStripMenuItem.Name = "добавитьНоменклатуруToolStripMenuItem";
+			this.добавитьНоменклатуруToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+			this.добавитьНоменклатуруToolStripMenuItem.Text = "Добавить номенклатуру";
+			this.добавитьНоменклатуруToolStripMenuItem.Click += new System.EventHandler(this.ДобавитьНоменклатуруToolStripMenuItemClick);
+			// 
+			// добавитьМножествоНоменклатурыToolStripMenuItem
+			// 
+			this.добавитьМножествоНоменклатурыToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("добавитьМножествоНоменклатурыToolStripMenuItem.Image")));
+			this.добавитьМножествоНоменклатурыToolStripMenuItem.Name = "добавитьМножествоНоменклатурыToolStripMenuItem";
+			this.добавитьМножествоНоменклатурыToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+			this.добавитьМножествоНоменклатурыToolStripMenuItem.Text = "Добавить множество номенклатуры";
+			this.добавитьМножествоНоменклатурыToolStripMenuItem.Click += new System.EventHandler(this.ДобавитьМножествоНоменклатурыToolStripMenuItemClick);
+			// 
+			// удалитьВыбраннуюНоменклатуруToolStripMenuItem
+			// 
+			this.удалитьВыбраннуюНоменклатуруToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("удалитьВыбраннуюНоменклатуруToolStripMenuItem.Image")));
+			this.удалитьВыбраннуюНоменклатуруToolStripMenuItem.Name = "удалитьВыбраннуюНоменклатуруToolStripMenuItem";
+			this.удалитьВыбраннуюНоменклатуруToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+			this.удалитьВыбраннуюНоменклатуруToolStripMenuItem.Text = "Удалить выбранную номенклатуру";
+			this.удалитьВыбраннуюНоменклатуруToolStripMenuItem.Click += new System.EventHandler(this.УдалитьВыбраннуюНоменклатуруToolStripMenuItemClick);
+			// 
+			// удалитьВесьПереченьНоменклатурыToolStripMenuItem
+			// 
+			this.удалитьВесьПереченьНоменклатурыToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("удалитьВесьПереченьНоменклатурыToolStripMenuItem.Image")));
+			this.удалитьВесьПереченьНоменклатурыToolStripMenuItem.Name = "удалитьВесьПереченьНоменклатурыToolStripMenuItem";
+			this.удалитьВесьПереченьНоменклатурыToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+			this.удалитьВесьПереченьНоменклатурыToolStripMenuItem.Text = "Удалить весь перечень номенклатуры";
+			this.удалитьВесьПереченьНоменклатурыToolStripMenuItem.Click += new System.EventHandler(this.УдалитьВесьПереченьНоменклатурыToolStripMenuItemClick);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(282, 6);
+			// 
+			// подобратьНоменклатуруToolStripMenuItem
+			// 
+			this.подобратьНоменклатуруToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("подобратьНоменклатуруToolStripMenuItem.Image")));
+			this.подобратьНоменклатуруToolStripMenuItem.Name = "подобратьНоменклатуруToolStripMenuItem";
+			this.подобратьНоменклатуруToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+			this.подобратьНоменклатуруToolStripMenuItem.Text = "Подобрать номенклатуру";
+			this.подобратьНоменклатуруToolStripMenuItem.Click += new System.EventHandler(this.ПодобратьНоменклатуруToolStripMenuItemClick);
+			// 
+			// автоподборНоменклатурыToolStripMenuItem
+			// 
+			this.автоподборНоменклатурыToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("автоподборНоменклатурыToolStripMenuItem.Image")));
+			this.автоподборНоменклатурыToolStripMenuItem.Name = "автоподборНоменклатурыToolStripMenuItem";
+			this.автоподборНоменклатурыToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+			this.автоподборНоменклатурыToolStripMenuItem.Text = "Автоподбор номенклатуры";
+			this.автоподборНоменклатурыToolStripMenuItem.Click += new System.EventHandler(this.АвтоподборНоменклатурыToolStripMenuItemClick);
 			// 
 			// imageList2
 			// 
@@ -742,6 +920,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonNomenclaturesDelete.Name = "buttonNomenclaturesDelete";
 			this.buttonNomenclaturesDelete.Size = new System.Drawing.Size(25, 23);
 			this.buttonNomenclaturesDelete.TabIndex = 9;
+			this.toolTip1.SetToolTip(this.buttonNomenclaturesDelete, "Удалить весь перечень номенклатуры");
 			this.buttonNomenclaturesDelete.UseVisualStyleBackColor = true;
 			this.buttonNomenclaturesDelete.Click += new System.EventHandler(this.ButtonNomenclaturesDeleteClick);
 			// 
@@ -752,6 +931,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonNomenclaturesAdd.Name = "buttonNomenclaturesAdd";
 			this.buttonNomenclaturesAdd.Size = new System.Drawing.Size(25, 23);
 			this.buttonNomenclaturesAdd.TabIndex = 8;
+			this.toolTip1.SetToolTip(this.buttonNomenclaturesAdd, "Добавить множество номенклатуры");
 			this.buttonNomenclaturesAdd.UseVisualStyleBackColor = true;
 			this.buttonNomenclaturesAdd.Click += new System.EventHandler(this.ButtonNomenclaturesAddClick);
 			// 
@@ -765,6 +945,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.button4.TabIndex = 7;
 			this.button4.Text = "Подобрать номенклатуру";
 			this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.button4, "Ручной подбор номенклатуры");
 			this.button4.UseVisualStyleBackColor = true;
 			this.button4.Click += new System.EventHandler(this.Button4Click);
 			// 
@@ -778,6 +959,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.button1.TabIndex = 6;
 			this.button1.Text = "Автоподбор номенклатуры";
 			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.button1, "Автоматический подбор номенклатуры");
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
@@ -796,6 +978,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonNomenclatureDelete.Name = "buttonNomenclatureDelete";
 			this.buttonNomenclatureDelete.Size = new System.Drawing.Size(25, 23);
 			this.buttonNomenclatureDelete.TabIndex = 4;
+			this.toolTip1.SetToolTip(this.buttonNomenclatureDelete, "Удалить выбранную номенклатуру");
 			this.buttonNomenclatureDelete.UseVisualStyleBackColor = true;
 			this.buttonNomenclatureDelete.Click += new System.EventHandler(this.ButtonNomenclatureDeleteClick);
 			// 
@@ -806,8 +989,19 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonNomenclatureAdd.Name = "buttonNomenclatureAdd";
 			this.buttonNomenclatureAdd.Size = new System.Drawing.Size(25, 23);
 			this.buttonNomenclatureAdd.TabIndex = 3;
+			this.toolTip1.SetToolTip(this.buttonNomenclatureAdd, "Добавить номенклатуру");
 			this.buttonNomenclatureAdd.UseVisualStyleBackColor = true;
 			this.buttonNomenclatureAdd.Click += new System.EventHandler(this.ButtonNomenclatureAddClick);
+			// 
+			// printDocument1
+			// 
+			this.printDocument1.OriginAtMargins = true;
+			this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument1PrintPage);
+			// 
+			// printDialog1
+			// 
+			this.printDialog1.Document = this.printDocument1;
+			this.printDialog1.UseEXDialog = true;
 			// 
 			// FormPurchasePlanDoc
 			// 
@@ -827,8 +1021,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel2.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
 			this.tabPage2.ResumeLayout(false);
+			this.contextMenuStrip2.ResumeLayout(false);
 			this.panel7.ResumeLayout(false);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);

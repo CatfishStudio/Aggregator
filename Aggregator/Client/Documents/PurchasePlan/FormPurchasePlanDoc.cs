@@ -616,6 +616,120 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			searchNomenclatureOleDb.setPrices(listViewPrices);
 			searchNomenclatureOleDb.autoFindNomenclature(listViewNomenclature);
 		}
+		void ButtonPrintPreviewClick(object sender, EventArgs e)
+		{
+			PrintPreviewDialog ppd = new PrintPreviewDialog();
+			ppd.Document = printDocument1;
+			ppd.MdiParent = DataForms.FClient;
+			ppd.Show();	
+		}
+		void ButtonPrintClick(object sender, EventArgs e)
+		{
+			if(printDialog1.ShowDialog() == DialogResult.OK)
+			{
+				printDocument1.PrinterSettings = printDialog1.PrinterSettings;
+				printDocument1.Print();
+			}	
+		}
+		void PrintDocument1PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+		{
+			// Заголовок документа
+			e.Graphics.DrawString("ПЛАН ЗАКУПОК № " + docNumberTextBox.Text + "   дата: " + dateTimePicker1.Text, new Font("Microsoft Sans Serif", 14, FontStyle.Regular), Brushes.Black, 20, 20);
+			
+		}
+		void ДобавитьПрайслистToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataForms.FCounteragents != null) DataForms.FCounteragents.Close();
+			if(DataForms.FCounteragents == null) {
+				DataForms.FCounteragents = new FormCounteragents();
+				DataForms.FCounteragents.MdiParent = DataForms.FClient;
+				DataForms.FCounteragents.ListViewReturnValue = listViewPrices;
+				DataForms.FCounteragents.TypeReturnValue = "name&price";
+				DataForms.FCounteragents.ShowMenuReturnValue();
+				DataForms.FCounteragents.Show();
+			}
+		}
+		void УдалитьПрайслистToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(listViewPrices.SelectedItems.Count > 0) listViewPrices.Items[listViewPrices.SelectedItems[0].Index].Remove();
+		}
+		void ПросмотретьПрайслистToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editPrice();
+		}
+		void ДобавитьНоменклатуруToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataForms.FNomenclature != null) DataForms.FNomenclature.Close();
+			if(DataForms.FNomenclature == null) {
+				DataForms.FNomenclature = new FormNomenclature();
+				DataForms.FNomenclature.MdiParent = DataForms.FClient;
+				DataForms.FNomenclature.ListViewReturnValue = listViewNomenclature;
+				DataForms.FNomenclature.TypeReturnValue = "file";
+				DataForms.FNomenclature.ShowMenuReturnValue();
+				DataForms.FNomenclature.Show();
+			}
+		}
+		void ДобавитьМножествоНоменклатурыToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataForms.FNomenclature != null) DataForms.FNomenclature.Close();
+			if(DataForms.FNomenclature == null) {
+				DataForms.FNomenclature = new FormNomenclature();
+				DataForms.FNomenclature.MdiParent = DataForms.FClient;
+				DataForms.FNomenclature.ListViewReturnValue = listViewNomenclature;
+				DataForms.FNomenclature.TypeReturnValue = "folder";
+				DataForms.FNomenclature.ShowMenuReturnValue();
+				DataForms.FNomenclature.Show();
+			}
+		}
+		void УдалитьВыбраннуюНоменклатуруToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(listViewNomenclature.SelectedItems.Count > 0) listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].Remove();
+			selectTableLine = -1;
+			textBox1.Clear();
+			textBox3.Clear();
+			textBox2.Text = "0,00";
+		}
+		void УдалитьВесьПереченьНоменклатурыToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			while(listViewNomenclature.Items.Count > 0){
+				listViewNomenclature.Items[0].Remove();
+			}
+			selectTableLine = -1;
+			textBox1.Clear();
+			textBox3.Clear();
+			textBox2.Text = "0,00";
+		}
+		void ПодобратьНоменклатуруToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(listViewPrices.Items.Count == 0){
+				MessageBox.Show("Вы не добавили не одного прайса.", "Сообщение");
+				return;
+			}
+			
+			if(listViewNomenclature.SelectedItems.Count > 0){
+				List<Nomenclature> nomenclatureList;
+				
+				String nID = listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].SubItems[1].Text;
+				searchNomenclatureOleDb = new SearchNomenclatureOleDb();
+				searchNomenclatureOleDb.setPrices(listViewPrices);
+				nomenclatureList = searchNomenclatureOleDb.getFindNomenclature(nID);
+				if(nomenclatureList.Count > 0){
+					
+					FormPurchasePlanNomenclature FPurchasePlanNomenclature = new FormPurchasePlanNomenclature();
+					FPurchasePlanNomenclature.MdiParent = DataForms.FClient;
+					FPurchasePlanNomenclature.ListViewReturnValue = listViewNomenclature;
+					FPurchasePlanNomenclature.SelectTableLine = selectTableLine;
+					FPurchasePlanNomenclature.LoadNomenclature(nomenclatureList);
+					FPurchasePlanNomenclature.Show();
+				}
+			}
+		}
+		void АвтоподборНоменклатурыToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			searchNomenclatureOleDb = new SearchNomenclatureOleDb();
+			searchNomenclatureOleDb.setPrices(listViewPrices);
+			searchNomenclatureOleDb.autoFindNomenclature(listViewNomenclature);
+		}
 		
 		
 	}

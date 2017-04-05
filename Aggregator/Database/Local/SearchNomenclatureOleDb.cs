@@ -210,6 +210,7 @@ namespace Aggregator.Database.Local
 			String criteriasSearch;
 			String nomenclatureID;
 			int count = sourceListView.Items.Count;
+			bool result = false;
 			
 			for(int i = 0; i < count; i++) {
 				// получаем сформированный запрос по критериям выбранной номенклатуры
@@ -221,23 +222,25 @@ namespace Aggregator.Database.Local
 					oleDbConnection.Open();
 					oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " " + criteriasSearch, oleDbConnection);
 					oleDbDataReader = oleDbCommand.ExecuteReader();
-					oleDbDataReader.Read();
+					result = oleDbDataReader.Read();
 			        
-					sourceListView.Items[i].SubItems[6].Text = oleDbDataReader["name"].ToString();
-		        	sourceListView.Items[i].SubItems[7].Text = oleDbDataReader["price"].ToString();
-		        	sourceListView.Items[i].SubItems[8].Text = oleDbDataReader["manufacturer"].ToString();
-		        	sourceListView.Items[i].SubItems[9].Text = oleDbDataReader["remainder"].ToString();
-		        	sourceListView.Items[i].SubItems[10].Text = oleDbDataReader["term"].ToString();
-		        	sourceListView.Items[i].SubItems[11].Text = oleDbDataReader["discount1"].ToString();
-		        	sourceListView.Items[i].SubItems[12].Text = oleDbDataReader["discount2"].ToString();
-		        	sourceListView.Items[i].SubItems[13].Text = oleDbDataReader["discount3"].ToString();
-		        	sourceListView.Items[i].SubItems[14].Text = oleDbDataReader["discount4"].ToString();
-		        	sourceListView.Items[i].SubItems[15].Text = oleDbDataReader["code"].ToString();
-		        	sourceListView.Items[i].SubItems[16].Text = oleDbDataReader["series"].ToString();
-		        	sourceListView.Items[i].SubItems[17].Text = oleDbDataReader["article"].ToString();
-		        	sourceListView.Items[i].SubItems[18].Text = price.counteragentName;
-		        	sourceListView.Items[i].SubItems[19].Text = price.priceName;
-		        	
+					if(result){
+						sourceListView.Items[i].StateImageIndex = 1;
+						sourceListView.Items[i].SubItems[6].Text = oleDbDataReader["name"].ToString();
+			        	sourceListView.Items[i].SubItems[7].Text = oleDbDataReader["price"].ToString();
+			        	sourceListView.Items[i].SubItems[8].Text = oleDbDataReader["manufacturer"].ToString();
+			        	sourceListView.Items[i].SubItems[9].Text = oleDbDataReader["remainder"].ToString();
+			        	sourceListView.Items[i].SubItems[10].Text = oleDbDataReader["term"].ToString();
+			        	sourceListView.Items[i].SubItems[11].Text = oleDbDataReader["discount1"].ToString();
+			        	sourceListView.Items[i].SubItems[12].Text = oleDbDataReader["discount2"].ToString();
+			        	sourceListView.Items[i].SubItems[13].Text = oleDbDataReader["discount3"].ToString();
+			        	sourceListView.Items[i].SubItems[14].Text = oleDbDataReader["discount4"].ToString();
+			        	sourceListView.Items[i].SubItems[15].Text = oleDbDataReader["code"].ToString();
+			        	sourceListView.Items[i].SubItems[16].Text = oleDbDataReader["series"].ToString();
+			        	sourceListView.Items[i].SubItems[17].Text = oleDbDataReader["article"].ToString();
+			        	sourceListView.Items[i].SubItems[18].Text = price.counteragentName;
+			        	sourceListView.Items[i].SubItems[19].Text = price.priceName;
+					}
 			        oleDbDataReader.Close();
 			        oleDbConnection.Close();
 				}
