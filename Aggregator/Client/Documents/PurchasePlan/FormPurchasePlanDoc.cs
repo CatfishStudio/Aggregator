@@ -610,6 +610,12 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			Calc.MdiParent = DataForms.FClient;
 			Calc.Show();
 		}
+		void Button1Click(object sender, EventArgs e)
+		{
+			searchNomenclatureOleDb = new SearchNomenclatureOleDb();
+			searchNomenclatureOleDb.setPrices(listViewPrices);
+			searchNomenclatureOleDb.autoFindNomenclature(listViewNomenclature);
+		}
 		
 		
 	}

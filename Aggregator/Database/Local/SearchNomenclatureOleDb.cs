@@ -9,11 +9,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Timers;
 using System.Windows.Forms;
-using System.Data;
 using System.Data.OleDb;
-using System.Data.Sql;
-using System.Data.SqlClient;
 using Aggregator.Data;
 
 namespace Aggregator.Database.Local
@@ -79,11 +77,11 @@ namespace Aggregator.Database.Local
 		{
 			nomenclatureList = new List<Nomenclature>();
 			
-			String selectionCriteria = getSelectionCriteria(nomenclatureID);
+			String criteriasSearch = getCriteriasSearch(nomenclatureID);
 			
 			oleDbConnection.Open();
 			foreach(Price price in priceList){
-				oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " " + selectionCriteria, oleDbConnection);
+				oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " " + criteriasSearch, oleDbConnection);
 				
 				Utilits.Console.Log("[getFindNomenclature] ЗАПРОС: " + oleDbCommand.CommandText);
 				
@@ -117,7 +115,7 @@ namespace Aggregator.Database.Local
 			return nomenclatureList;
 		}
 		
-		String getSelectionCriteria(String nomenclatureID)
+		String getCriteriasSearch(String nomenclatureID)
 		{
 			oleDbConnection.Open();
 			Nomenclature templeteNomenclature;
@@ -153,7 +151,16 @@ namespace Aggregator.Database.Local
 			}
 			
 			str = str.Replace(".", "").Replace(",", "");
-			stringQuery += str;
+			//stringQuery += str;
+			if(str != "") {
+				stringQuery += str;
+				stringQuery += " OR ";
+			}
+			
+			// По Коду, Серии, Артиклу
+			stringQuery += "(code = '" + templeteNomenclature.Code + "' AND code <> '')"+
+						" OR (series = '" + templeteNomenclature.Series + "' AND series <> '')"+
+						" OR (article = '" + templeteNomenclature.Article + "' AND article <> '')";
 			
 			// По Наименованию - частичное совпадение
 			str = "";
@@ -167,13 +174,8 @@ namespace Aggregator.Database.Local
 				if(i == (count-1)) str += ")";
 			}
 			
-			str = str.Replace(".", "").Replace(",", "");			
-			stringQuery += " OR " + str;
-			
-			// По Коду, Серии, Артиклу
-			stringQuery += " OR (code = '" + templeteNomenclature.Code + "' AND code <> '')"+
-						" OR (series = '" + templeteNomenclature.Series + "' AND series <> '')"+
-						" OR (article = '" + templeteNomenclature.Article + "' AND article <> '')";
+			str = str.Replace(".", "").Replace(",", "");	
+			if(str != "" && str != "()") stringQuery += " OR " + str;
 			
 			// Упорядочить
 			stringQuery += " ORDER BY price ASC";
@@ -188,6 +190,115 @@ namespace Aggregator.Database.Local
 			rgx = new Regex(@"[/,№,\\]");
 			if(rgx.IsMatch(str)) return true;
 			return false;
+		}
+		
+		bool ignoreNumber(String str)
+		{
+			Regex rgx = new Regex(@"[0-9]");
+			return rgx.IsMatch(str);
+		}
+		
+		bool ignoreSymbol(String str)
+		{
+			Regex rgx = new Regex(@"[/,№,\\]");
+			return rgx.IsMatch(str);
+		}
+		
+		/* AUTOMATION ======================================================================= */
+		public void autoFindNomenclature(ListView sourceListView)
+		{
+			String criteriasSearch;
+			String nomenclatureID;
+			int count = sourceListView.Items.Count;
+			
+			for(int i = 0; i < count; i++) {
+				// получаем сформированный запрос по критериям выбранной номенклатуры
+				nomenclatureID = sourceListView.Items[i].SubItems[1].Text;
+				criteriasSearch = getAutoCriteriasSearch(nomenclatureID);
+				
+				// обработка прайс листов по выбранной номенклатуре
+				foreach(Price price in priceList){
+					oleDbConnection.Open();
+					oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " " + criteriasSearch, oleDbConnection);
+					oleDbDataReader = oleDbCommand.ExecuteReader();
+					oleDbDataReader.Read();
+			        
+					sourceListView.Items[i].SubItems[6].Text = oleDbDataReader["name"].ToString();
+		        	sourceListView.Items[i].SubItems[7].Text = oleDbDataReader["price"].ToString();
+		        	sourceListView.Items[i].SubItems[8].Text = oleDbDataReader["manufacturer"].ToString();
+		        	sourceListView.Items[i].SubItems[9].Text = oleDbDataReader["remainder"].ToString();
+		        	sourceListView.Items[i].SubItems[10].Text = oleDbDataReader["term"].ToString();
+		        	sourceListView.Items[i].SubItems[11].Text = oleDbDataReader["discount1"].ToString();
+		        	sourceListView.Items[i].SubItems[12].Text = oleDbDataReader["discount2"].ToString();
+		        	sourceListView.Items[i].SubItems[13].Text = oleDbDataReader["discount3"].ToString();
+		        	sourceListView.Items[i].SubItems[14].Text = oleDbDataReader["discount4"].ToString();
+		        	sourceListView.Items[i].SubItems[15].Text = oleDbDataReader["code"].ToString();
+		        	sourceListView.Items[i].SubItems[16].Text = oleDbDataReader["series"].ToString();
+		        	sourceListView.Items[i].SubItems[17].Text = oleDbDataReader["article"].ToString();
+		        	sourceListView.Items[i].SubItems[18].Text = price.counteragentName;
+		        	sourceListView.Items[i].SubItems[19].Text = price.priceName;
+		        	
+			        oleDbDataReader.Close();
+			        oleDbConnection.Close();
+				}
+				
+				DataForms.FClient.messageInStatus("Пожалуйста подождите идет процесс обработки списка номенклатуры " + (i+1).ToString() + "/" + count.ToString());
+				DataForms.FClient.Update();
+				System.Threading.Thread.Sleep(50);
+			}
+			MessageBox.Show("Обработка списка номенклатуры - завершена!", "Сообщение");
+		}
+		
+		String getAutoCriteriasSearch(String nomenclatureID)
+		{
+			// получаем данные выбранной номенклатуры
+			oleDbConnection.Open();
+			Nomenclature templeteNomenclature;
+			oleDbCommand = new OleDbCommand("SELECT * FROM Nomenclature WHERE (id = " + nomenclatureID + ")", oleDbConnection);
+			oleDbDataReader = oleDbCommand.ExecuteReader();
+			oleDbDataReader.Read();
+			templeteNomenclature.Name = oleDbDataReader["name"].ToString();
+			templeteNomenclature.Code = oleDbDataReader["code"].ToString();
+			templeteNomenclature.Series = oleDbDataReader["series"].ToString();
+			templeteNomenclature.Article = oleDbDataReader["article"].ToString();
+			templeteNomenclature.Manufacturer = oleDbDataReader["manufacturer"].ToString();
+			templeteNomenclature.Price = (Double)oleDbDataReader["price"];
+			templeteNomenclature.Units = oleDbDataReader["units"].ToString();
+			oleDbDataReader.Close();
+			oleDbConnection.Close();
+			
+			// формируем запрос
+			String stringQuery = "WHERE ";
+			
+			String str = "";
+			String[] words =  templeteNomenclature.Name.Split();
+			int count = words.Length;
+			int i = 0;
+			for(i = 0; i < count; i++){
+				if(i == 0) str += "(";
+				if(words[i].Length > 2 && checkIgnore(words[i]) == false){
+					if( i > 0) str += " AND ";
+					str += "name LIKE '%" + words[i] + "%'";
+				}
+				if(ignoreNumber(words[i])){
+					if( i > 0) str += " AND ";
+					str += "name LIKE '%" + words[i] + "%'";
+				}
+				if(i == (count-1)) str += ")";
+			}
+			
+			str = str.Replace(".", "%").Replace(",", "%");
+			if(str != "") {
+				stringQuery += str;
+				stringQuery += " OR ";
+			}
+			
+			stringQuery += "(code = '" + templeteNomenclature.Code + "' AND code <> '')"+
+						" OR (series = '" + templeteNomenclature.Series + "' AND series <> '')"+
+						" OR (article = '" + templeteNomenclature.Article + "' AND article <> '')";
+			stringQuery += " ORDER BY price ASC";
+			
+			return stringQuery;
 		}
 	}
 }

@@ -779,6 +779,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.button1.Text = "Автоподбор номенклатуры";
 			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
 			// panel6
 			// 
