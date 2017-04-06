@@ -60,6 +60,31 @@ namespace Aggregator.Database.Base
 			query.Dispose();
 		}
 		
+		public static void TableConstants()
+		{
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.localDatabase);
+			
+			sqlCommand = "CREATE TABLE Constants (" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[name] VARCHAR DEFAULT '', " +
+				"[email] VARCHAR DEFAULT '', " +
+				"[address] VARCHAR DEFAULT '', " +
+				"[vat] FLOAT DEFAULT 0" +
+				")";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Константы.", false, true);
+			
+			sqlCommand = "INSERT INTO Constants (" +
+				"[name], [email], [address], [vat]) " +
+				"VALUES ('Фирма', 'myfirm@mail.ru', 'Страна, Город, Улица, Дом', 20)";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Константы.", false, true);
+			
+			query.Dispose();
+		}
+		
 		public static void TableCounteragents()
 		{
 			String sqlCommand;

@@ -28,5 +28,11 @@ namespace Aggregator.Data
 		public const String WEEK = "week";
 		public const String MONTH = "month";
 		public const String YEAR = "year";
+		
+		/* Константы из базы данных */
+		public static String ConstFirmName = "";
+		public static String ConstFirmEmail = "";
+		public static String ConstFirmAddress = "";
+		public static Double ConstFirmVAT = 0;
 	}
 }

@@ -136,6 +136,8 @@
     <Compile Include="Database\Config\CreateConfigTables.cs" />
     <Compile Include="Database\Config\ReadingConfig.cs" />
     <Compile Include="Database\Config\SavingConfig.cs" />
+    <Compile Include="Database\Constants\ReadingConstants.cs" />
+    <Compile Include="Database\Constants\SavingConstants.cs" />
     <Compile Include="Database\CreateDatabase.cs" />
     <Compile Include="Database\Local\HistoryRefreshOleDb.cs" />
     <Compile Include="Database\Local\OleDb.cs" />
@@ -267,6 +269,7 @@
     <Folder Include="Database\Local" />
     <Folder Include="Database\Base" />
     <Folder Include="Database\Server" />
+    <Folder Include="Database\Constants" />
     <Folder Include="Utilits" />
     <Folder Include="User" />
   </ItemGroup>

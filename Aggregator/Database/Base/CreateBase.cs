@@ -30,6 +30,7 @@ namespace Aggregator.Database.Base
 			}
 			/* Создание таблиц */
 			CreateBaseTables.TableUsers();
+			CreateBaseTables.TableConstants();
 			CreateBaseTables.TableCounteragents();
 			CreateBaseTables.TableNomenclature();
 			CreateBaseTables.TableUnits();
@@ -37,6 +38,8 @@ namespace Aggregator.Database.Base
 			CreateBaseTables.TablePurchasePlanPriceLists();
 			CreateBaseTables.TableOrderNomenclature();
 			CreateBaseTables.TableOrders();
+			
+			
 			CreateBaseTables.TableHistory();
 		}
 	}

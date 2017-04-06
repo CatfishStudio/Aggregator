@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Client.OpenFiles;
 using Aggregator.Data;
+using Aggregator.Database.Constants;
 using Aggregator.Database.Local;
 using Aggregator.Admin;
 using Aggregator.Database.Server;
@@ -224,7 +225,6 @@ namespace Aggregator.Client
 			}else{	// MSSQL
 				//..
 			}
-			
 		}
 		
 		/* =================================================================================================
@@ -235,6 +235,11 @@ namespace Aggregator.Client
 		void FormClientLoad(object sender, EventArgs e)
 		{
 			statusStrip1.ImageList = imageList1;
+			
+			ReadingConstants readingConstants = new ReadingConstants();
+			readingConstants.read();
+			readingConstants.Dispose();
+			
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){ // OLEDB
 				historyRefreshOleDb = new HistoryRefreshOleDb();
 				if(DataConfig.autoUpdate) autoUpdateOn();

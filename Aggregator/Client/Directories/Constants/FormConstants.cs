@@ -10,6 +10,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Data;
+using Aggregator.Database.Constants;
 
 namespace Aggregator.Client.Directories
 {
@@ -38,7 +39,10 @@ namespace Aggregator.Client.Directories
 		
 		void FormConstantsLoad(object sender, EventArgs e)
 		{
-	
+			nameTextBox.Text = DataConstants.ConstFirmName;
+			emailTextBox.Text = DataConstants.ConstFirmEmail;
+			addressTextBox.Text = DataConstants.ConstFirmAddress;
+			vatTextBox.Text = DataConstants.ConstFirmVAT.ToString();
 		}
 		void FormConstantsFormClosed(object sender, FormClosedEventArgs e)
 		{
@@ -51,10 +55,35 @@ namespace Aggregator.Client.Directories
 				MessageBox.Show("У вас недостаточно прав чтобы выполнить эту операцию.", "Сообщение");
 				return;
 			}
+			DataConstants.ConstFirmName = nameTextBox.Text;
+			DataConstants.ConstFirmEmail = emailTextBox.Text;
+			DataConstants.ConstFirmAddress = addressTextBox.Text;
+			DataConstants.ConstFirmVAT = Convert.ToDouble(vatTextBox.Text);
+			
+			SavingConstants savingConstants = new SavingConstants();
+			savingConstants.save();
+			savingConstants.Dispose();
+			Close();
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
 		{
 			Close();
+		}
+		void Button3Click(object sender, EventArgs e)
+		{
+			nameTextBox.Clear();
+		}
+		void Button4Click(object sender, EventArgs e)
+		{
+			emailTextBox.Clear();
+		}
+		void Button5Click(object sender, EventArgs e)
+		{
+			addressTextBox.Clear();
+		}
+		void Button1Click(object sender, EventArgs e)
+		{
+			vatTextBox.Text = "0";
 		}
 	}
 }
