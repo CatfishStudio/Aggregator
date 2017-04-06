@@ -13,6 +13,7 @@ using System.Data.OleDb;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
@@ -406,6 +407,22 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			return false;
 		}
 		
+		void search()
+		{
+			String str;
+			for(int i = 0; i < listViewNomenclature.Items.Count; i++){
+				str = listViewNomenclature.Items[i].SubItems[2].Text;
+				if(str.Contains(comboBox1.Text)){
+					listViewNomenclature.FocusedItem = listViewNomenclature.Items[i];
+					listViewNomenclature.Items[i].Selected = true;
+					listViewNomenclature.Select();
+					listViewNomenclature.EnsureVisible(i);
+					Utilits.Console.Log(str);
+					break;
+				}
+			}
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -612,6 +629,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
+			if(listViewPrices.Items.Count == 0){
+				MessageBox.Show("Вы не добавили не одного прайса.", "Сообщение");
+				return;
+			}
 			searchNomenclatureOleDb = new SearchNomenclatureOleDb();
 			searchNomenclatureOleDb.setPrices(listViewPrices);
 			searchNomenclatureOleDb.autoFindNomenclature(listViewNomenclature);
@@ -726,10 +747,122 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void АвтоподборНоменклатурыToolStripMenuItemClick(object sender, EventArgs e)
 		{
+			if(listViewPrices.Items.Count == 0){
+				MessageBox.Show("Вы не добавили не одного прайса.", "Сообщение");
+				return;
+			}
 			searchNomenclatureOleDb = new SearchNomenclatureOleDb();
 			searchNomenclatureOleDb.setPrices(listViewPrices);
 			searchNomenclatureOleDb.autoFindNomenclature(listViewNomenclature);
 		}
+		void FindButtonClick(object sender, EventArgs e)
+		{
+			if(comboBox1.Text != "") comboBox1.Items.Add(comboBox1.Text);
+			search();
+		}
+		void ComboBox1KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				if(comboBox1.Text != "") comboBox1.Items.Add(comboBox1.Text);
+				search();
+			}
+		}
+		void Button3Click(object sender, EventArgs e)
+		{
+			textBox4.Text = "0,00";
+		}
+		void Button2Click(object sender, EventArgs e)
+		{
+			Calculator Calc = new Calculator();
+			Calc.TextBoxReturnValue = textBox4;
+			Calc.MdiParent = DataForms.FClient;
+			Calc.Show();
+		}
+		void TextBox4TextLostFocus(object sender, EventArgs e)
+		{
+			String Value = textBox4.Text;
+			textBox4.Clear();
+			textBox4.Text = Conversion.StringToMoney(Math.Round(Conversion.StringToDouble(Value), 2).ToString());
+			if(textBox4.Text == "" || Conversion.checkString(textBox4.Text) == false) textBox4.Text = "0,00";
+		}
+		void TextBox4KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab){
+				String Value = textBox4.Text;
+				textBox4.Clear();
+				textBox4.Text = Conversion.StringToMoney(Math.Round(Conversion.StringToDouble(Value), 2).ToString());
+				if(textBox4.Text == "" || Conversion.checkString(textBox4.Text) == false) textBox4.Text = "0,00";
+			}
+		}
+		void TextBox4TextChanged(object sender, EventArgs e)
+		{
+			if(textBox4.Text == "" || Conversion.checkString(textBox4.Text) == false) textBox4.Text = "0,00";
+		}
+		void Button10Click(object sender, EventArgs e)
+		{
+			textBox5.Text = "0,00";
+		}
+		void Button5Click(object sender, EventArgs e)
+		{
+			Calculator Calc = new Calculator();
+			Calc.TextBoxReturnValue = textBox5;
+			Calc.MdiParent = DataForms.FClient;
+			Calc.Show();
+		}
+		void TextBox5TextLostFocus(object sender, EventArgs e)
+		{
+			String Value = textBox5.Text;
+			textBox5.Clear();
+			textBox5.Text = Conversion.StringToMoney(Math.Round(Conversion.StringToDouble(Value), 2).ToString());
+			if(textBox5.Text == "" || Conversion.checkString(textBox5.Text) == false) textBox5.Text = "0,00";
+		}
+		void TextBox5TextChanged(object sender, EventArgs e)
+		{
+			if(textBox5.Text == "" || Conversion.checkString(textBox5.Text) == false) textBox5.Text = "0,00";
+		}
+		void TextBox5KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab){
+				String Value = textBox5.Text;
+				textBox5.Clear();
+				textBox5.Text = Conversion.StringToMoney(Math.Round(Conversion.StringToDouble(Value), 2).ToString());
+				if(textBox5.Text == "" || Conversion.checkString(textBox5.Text) == false) textBox5.Text = "0,00";
+			}
+		}
+		void Button12Click(object sender, EventArgs e)
+		{
+			textBox6.Text = "0,00";
+		}
+		void Button11Click(object sender, EventArgs e)
+		{
+			Calculator Calc = new Calculator();
+			Calc.TextBoxReturnValue = textBox6;
+			Calc.MdiParent = DataForms.FClient;
+			Calc.Show();
+		}
+		void TextBox6TextLostFocus(object sender, EventArgs e)
+		{
+			String Value = textBox6.Text;
+			textBox6.Clear();
+			textBox6.Text = Conversion.StringToMoney(Math.Round(Conversion.StringToDouble(Value), 2).ToString());
+			if(textBox6.Text == "" || Conversion.checkString(textBox6.Text) == false) textBox6.Text = "0,00";
+		}
+		void TextBox6TextChanged(object sender, EventArgs e)
+		{
+			if(textBox6.Text == "" || Conversion.checkString(textBox6.Text) == false) textBox6.Text = "0,00";
+		}
+		void TextBox6KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab){
+				String Value = textBox6.Text;
+				textBox6.Clear();
+				textBox6.Text = Conversion.StringToMoney(Math.Round(Conversion.StringToDouble(Value), 2).ToString());
+				if(textBox6.Text == "" || Conversion.checkString(textBox6.Text) == false) textBox6.Text = "0,00";
+			}
+		}
+		
+		
+		
 		
 		
 	}

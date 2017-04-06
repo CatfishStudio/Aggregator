@@ -98,6 +98,21 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.ToolStripMenuItem подобратьНоменклатуруToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem автоподборНоменклатурыToolStripMenuItem;
+		private System.Windows.Forms.Panel panel8;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Button findButton;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.TextBox textBox6;
+		private System.Windows.Forms.Button button11;
+		private System.Windows.Forms.Button button12;
+		private System.Windows.Forms.TextBox textBox5;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button button10;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -195,7 +210,22 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.label5 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.button11 = new System.Windows.Forms.Button();
+			this.button12 = new System.Windows.Forms.Button();
+			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.button5 = new System.Windows.Forms.Button();
+			this.button10 = new System.Windows.Forms.Button();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
+			this.findButton = new System.Windows.Forms.Button();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.panel8 = new System.Windows.Forms.Panel();
 			this.buttonNomenclaturesDelete = new System.Windows.Forms.Button();
 			this.buttonNomenclaturesAdd = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
@@ -219,6 +249,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
 			this.panel5.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -671,7 +702,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.подобратьНоменклатуруToolStripMenuItem,
 			this.автоподборНоменклатурыToolStripMenuItem});
 			this.contextMenuStrip2.Name = "contextMenuStrip2";
-			this.contextMenuStrip2.Size = new System.Drawing.Size(286, 164);
+			this.contextMenuStrip2.Size = new System.Drawing.Size(286, 142);
 			// 
 			// добавитьНоменклатуруToolStripMenuItem
 			// 
@@ -890,6 +921,18 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.textBox6);
+			this.groupBox2.Controls.Add(this.button11);
+			this.groupBox2.Controls.Add(this.button12);
+			this.groupBox2.Controls.Add(this.textBox5);
+			this.groupBox2.Controls.Add(this.button5);
+			this.groupBox2.Controls.Add(this.button10);
+			this.groupBox2.Controls.Add(this.textBox4);
+			this.groupBox2.Controls.Add(this.button2);
+			this.groupBox2.Controls.Add(this.button3);
+			this.groupBox2.Controls.Add(this.label8);
+			this.groupBox2.Controls.Add(this.label7);
+			this.groupBox2.Controls.Add(this.label6);
 			this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox2.Location = new System.Drawing.Point(0, 0);
 			this.groupBox2.Name = "groupBox2";
@@ -898,8 +941,149 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Итоги:";
 			// 
+			// textBox6
+			// 
+			this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox6.Location = new System.Drawing.Point(64, 66);
+			this.textBox6.Name = "textBox6";
+			this.textBox6.Size = new System.Drawing.Size(288, 20);
+			this.textBox6.TabIndex = 27;
+			this.textBox6.Text = "0,00";
+			this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.textBox6.TextChanged += new System.EventHandler(this.TextBox6TextChanged);
+			this.textBox6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox6KeyDown);
+			this.textBox6.LostFocus += new System.EventHandler(this.TextBox6TextLostFocus);
+			// 
+			// button11
+			// 
+			this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
+			this.button11.Location = new System.Drawing.Point(354, 66);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(26, 20);
+			this.button11.TabIndex = 29;
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.Button11Click);
+			// 
+			// button12
+			// 
+			this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button12.Location = new System.Drawing.Point(382, 66);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(20, 20);
+			this.button12.TabIndex = 28;
+			this.button12.Text = "X";
+			this.button12.UseVisualStyleBackColor = true;
+			this.button12.Click += new System.EventHandler(this.Button12Click);
+			// 
+			// textBox5
+			// 
+			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox5.Location = new System.Drawing.Point(64, 43);
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(288, 20);
+			this.textBox5.TabIndex = 24;
+			this.textBox5.Text = "0,00";
+			this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.textBox5.TextChanged += new System.EventHandler(this.TextBox5TextChanged);
+			this.textBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox5KeyDown);
+			this.textBox5.LostFocus += new System.EventHandler(this.TextBox5TextLostFocus);
+			// 
+			// button5
+			// 
+			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+			this.button5.Location = new System.Drawing.Point(354, 43);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(26, 20);
+			this.button5.TabIndex = 26;
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.Button5Click);
+			// 
+			// button10
+			// 
+			this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button10.Location = new System.Drawing.Point(382, 43);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(20, 20);
+			this.button10.TabIndex = 25;
+			this.button10.Text = "X";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.Button10Click);
+			// 
+			// textBox4
+			// 
+			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox4.Location = new System.Drawing.Point(64, 19);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(288, 20);
+			this.textBox4.TabIndex = 21;
+			this.textBox4.Text = "0,00";
+			this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.textBox4.TextChanged += new System.EventHandler(this.TextBox4TextChanged);
+			this.textBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox4KeyDown);
+			this.textBox4.LostFocus += new System.EventHandler(this.TextBox4TextLostFocus);
+			// 
+			// button2
+			// 
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+			this.button2.Location = new System.Drawing.Point(354, 19);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(26, 20);
+			this.button2.TabIndex = 23;
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.Button2Click);
+			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button3.Location = new System.Drawing.Point(382, 19);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(20, 20);
+			this.button3.TabIndex = 22;
+			this.button3.Text = "X";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.Button3Click);
+			// 
+			// label8
+			// 
+			this.label8.Location = new System.Drawing.Point(6, 69);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(100, 23);
+			this.label8.TabIndex = 2;
+			this.label8.Text = "Всего:";
+			// 
+			// label7
+			// 
+			this.label7.Location = new System.Drawing.Point(6, 46);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(100, 23);
+			this.label7.TabIndex = 1;
+			this.label7.Text = "НДС:";
+			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(6, 22);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(100, 23);
+			this.label6.TabIndex = 0;
+			this.label6.Text = "Сумма:";
+			// 
 			// panel5
 			// 
+			this.panel5.Controls.Add(this.findButton);
+			this.panel5.Controls.Add(this.comboBox1);
+			this.panel5.Controls.Add(this.panel8);
 			this.panel5.Controls.Add(this.buttonNomenclaturesDelete);
 			this.panel5.Controls.Add(this.buttonNomenclaturesAdd);
 			this.panel5.Controls.Add(this.button4);
@@ -912,6 +1096,34 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(713, 29);
 			this.panel5.TabIndex = 1;
+			// 
+			// findButton
+			// 
+			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
+			this.findButton.Location = new System.Drawing.Point(683, 3);
+			this.findButton.Name = "findButton";
+			this.findButton.Size = new System.Drawing.Size(25, 23);
+			this.findButton.TabIndex = 17;
+			this.toolTip1.SetToolTip(this.findButton, "Поиск");
+			this.findButton.UseVisualStyleBackColor = true;
+			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(485, 4);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(196, 21);
+			this.comboBox1.TabIndex = 16;
+			this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComboBox1KeyDown);
+			// 
+			// panel8
+			// 
+			this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panel8.Location = new System.Drawing.Point(475, 3);
+			this.panel8.Name = "panel8";
+			this.panel8.Size = new System.Drawing.Size(4, 23);
+			this.panel8.TabIndex = 15;
 			// 
 			// buttonNomenclaturesDelete
 			// 
@@ -1031,6 +1243,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.splitContainer1.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
 			this.panel5.ResumeLayout(false);
 			this.ResumeLayout(false);
 
