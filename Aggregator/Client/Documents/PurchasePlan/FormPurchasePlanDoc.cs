@@ -422,6 +422,38 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			}
 		}
 		
+		void calculate()
+		{
+			if(listViewNomenclature.Items.Count > 0){
+				double sum = 0;
+				double amount = 0;
+				double price = 0;
+				double vat = 0;
+				double total = 0;
+				int count = listViewNomenclature.Items.Count;
+				for(int i = 0; i < count; i++){
+					if(listViewNomenclature.Items[i].SubItems[4].Text != "") amount = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
+					else amount = 0;
+					if(listViewNomenclature.Items[i].SubItems[7].Text != "") price = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[7].Text);
+					else price = 0;
+					sum += (price * amount);
+				}
+				sum = Math.Round(sum, 2);
+				vat = sum * DataConstants.ConstFirmVAT / 100;
+				vat = Math.Round(vat, 2);
+				total = sum + vat;
+				total = Math.Round(total, 2);
+				
+				textBox4.Text = Conversion.StringToMoney(Conversion.StringToDouble(sum.ToString()).ToString());
+				textBox5.Text = Conversion.StringToMoney(Conversion.StringToDouble(vat.ToString()).ToString());
+				textBox6.Text = Conversion.StringToMoney(Conversion.StringToDouble(total.ToString()).ToString());
+			}else{
+				textBox4.Text = "0,00";
+				textBox5.Text = "0,00";
+				textBox6.Text = "0,00";
+			}
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -615,6 +647,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			if(listViewNomenclature.Items.Count > 0 && selectTableLine > -1){
 				listViewNomenclature.Items[selectTableLine].SubItems[4].Text = textBox2.Text;
 			}
+			calculate();
 		}
 		void Button6Click(object sender, EventArgs e)
 		{
@@ -860,7 +893,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				if(textBox6.Text == "" || Conversion.checkString(textBox6.Text) == false) textBox6.Text = "0,00";
 			}
 		}
-		
+			
 		
 		
 		
