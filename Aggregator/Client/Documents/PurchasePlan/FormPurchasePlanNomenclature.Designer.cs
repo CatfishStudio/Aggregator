@@ -36,6 +36,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem выбратьНоменклатуруToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem показатьВесьПереченьToolStripMenuItem;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Button findButton;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -61,6 +64,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPurchasePlanNomenclature));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.findButton = new System.Windows.Forms.Button();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.listView1 = new System.Windows.Forms.ListView();
@@ -79,15 +84,18 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader15 = new System.Windows.Forms.ColumnHeader();
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.выбратьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.показатьВесьПереченьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.panel1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.findButton);
+			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonCancel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -95,6 +103,26 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(457, 45);
 			this.panel1.TabIndex = 4;
+			// 
+			// findButton
+			// 
+			this.findButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
+			this.findButton.Location = new System.Drawing.Point(139, 10);
+			this.findButton.Name = "findButton";
+			this.findButton.Size = new System.Drawing.Size(25, 23);
+			this.findButton.TabIndex = 18;
+			this.findButton.UseVisualStyleBackColor = true;
+			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
+			// 
+			// textBox1
+			// 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox1.Location = new System.Drawing.Point(12, 12);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(125, 20);
+			this.textBox1.TabIndex = 2;
+			this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyDown);
 			// 
 			// buttonSave
 			// 
@@ -230,26 +258,35 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader15.Text = "Прайс-лист";
 			this.columnHeader15.Width = 100;
 			// 
-			// imageList1
-			// 
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "page.png");
-			// 
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.выбратьНоменклатуруToolStripMenuItem});
+			this.выбратьНоменклатуруToolStripMenuItem,
+			this.показатьВесьПереченьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(204, 48);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(207, 48);
 			// 
 			// выбратьНоменклатуруToolStripMenuItem
 			// 
 			this.выбратьНоменклатуруToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выбратьНоменклатуруToolStripMenuItem.Image")));
 			this.выбратьНоменклатуруToolStripMenuItem.Name = "выбратьНоменклатуруToolStripMenuItem";
-			this.выбратьНоменклатуруToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+			this.выбратьНоменклатуруToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
 			this.выбратьНоменклатуруToolStripMenuItem.Text = "Выбрать номенклатуру";
 			this.выбратьНоменклатуруToolStripMenuItem.Click += new System.EventHandler(this.ВыбратьНоменклатуруToolStripMenuItemClick);
+			// 
+			// показатьВесьПереченьToolStripMenuItem
+			// 
+			this.показатьВесьПереченьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("показатьВесьПереченьToolStripMenuItem.Image")));
+			this.показатьВесьПереченьToolStripMenuItem.Name = "показатьВесьПереченьToolStripMenuItem";
+			this.показатьВесьПереченьToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+			this.показатьВесьПереченьToolStripMenuItem.Text = "Показать весь перечень";
+			this.показатьВесьПереченьToolStripMenuItem.Click += new System.EventHandler(this.ПоказатьВесьПереченьToolStripMenuItemClick);
+			// 
+			// imageList1
+			// 
+			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList1.Images.SetKeyName(0, "page.png");
 			// 
 			// FormPurchasePlanNomenclature
 			// 
@@ -264,6 +301,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPurchasePlanNomenclatureFormClosed);
 			this.Load += new System.EventHandler(this.FormPurchasePlanNomenclatureLoad);
 			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 

@@ -417,7 +417,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					listViewNomenclature.Items[i].Selected = true;
 					listViewNomenclature.Select();
 					listViewNomenclature.EnsureVisible(i);
-					Utilits.Console.Log(str);
 					break;
 				}
 			}
@@ -556,6 +555,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					
 					FormPurchasePlanNomenclature FPurchasePlanNomenclature = new FormPurchasePlanNomenclature();
 					FPurchasePlanNomenclature.MdiParent = DataForms.FClient;
+					FPurchasePlanNomenclature.ListViewPrices = listViewPrices;
 					FPurchasePlanNomenclature.ListViewReturnValue = listViewNomenclature;
 					FPurchasePlanNomenclature.SelectTableLine = selectTableLine;
 					FPurchasePlanNomenclature.LoadNomenclature(nomenclatureList);

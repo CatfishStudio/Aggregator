@@ -83,8 +83,6 @@ namespace Aggregator.Database.Local
 			foreach(Price price in priceList){
 				oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " " + criteriasSearch, oleDbConnection);
 				
-				Utilits.Console.Log("[getFindNomenclature] ЗАПРОС: " + oleDbCommand.CommandText);
-				
 				oleDbDataReader = oleDbCommand.ExecuteReader();
 				Nomenclature nomenclature;
 		        while (oleDbDataReader.Read())
@@ -302,6 +300,45 @@ namespace Aggregator.Database.Local
 			stringQuery += " ORDER BY price ASC";
 			
 			return stringQuery;
+		}
+		/*====================================================================================*/
+		
+		public List<Nomenclature> getAllNomenclature()
+		{
+			nomenclatureList = new List<Nomenclature>();
+			
+			oleDbConnection.Open();
+			foreach(Price price in priceList){
+				oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " ORDER BY name ASC", oleDbConnection);
+				
+				oleDbDataReader = oleDbCommand.ExecuteReader();
+				Nomenclature nomenclature;
+		        while (oleDbDataReader.Read())
+		        {
+		        	nomenclature = new Nomenclature();
+		        	nomenclature.Name = oleDbDataReader["name"].ToString();
+		        	nomenclature.Code = oleDbDataReader["code"].ToString();
+		        	nomenclature.Series = oleDbDataReader["series"].ToString();
+		        	nomenclature.Article = oleDbDataReader["article"].ToString();
+		        	nomenclature.Manufacturer = oleDbDataReader["manufacturer"].ToString();
+		        	//nomenclature.Units = oleDbDataReader["units"].ToString();
+		        	nomenclature.Remainder = (Double)oleDbDataReader["remainder"];
+		        	nomenclature.Price = (Double)oleDbDataReader["price"];
+		        	nomenclature.Discount1 = (Double)oleDbDataReader["discount1"];
+		        	nomenclature.Discount2 = (Double)oleDbDataReader["discount2"];
+		        	nomenclature.Discount3 = (Double)oleDbDataReader["discount3"];
+		        	nomenclature.Discount4 = (Double)oleDbDataReader["discount4"];
+		        	nomenclature.Term = (DateTime)oleDbDataReader["term"];
+		        	nomenclature.CounteragentName = price.counteragentName;
+		        	nomenclature.CounteragentPrice = price.priceName;
+		        	nomenclatureList.Add(nomenclature);
+		        }
+		        oleDbDataReader.Close();
+			}
+
+			oleDbConnection.Close();
+			
+			return nomenclatureList;
 		}
 	}
 }
