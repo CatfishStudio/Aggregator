@@ -82,6 +82,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				ListViewReturnValue.Items[SelectTableLine].SubItems[17].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[12].Text;
 				ListViewReturnValue.Items[SelectTableLine].SubItems[18].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[13].Text;
 				ListViewReturnValue.Items[SelectTableLine].SubItems[19].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[14].Text;
+				ListViewReturnValue.Items[SelectTableLine].SubItems[20].Text = "";
 				return true;
 			}
 			return false;

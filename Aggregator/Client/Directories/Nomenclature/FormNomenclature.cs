@@ -483,6 +483,7 @@ namespace Aggregator.Client.Directories
 					ListViewItem_add.SubItems.Add("");
 					ListViewItem_add.SubItems.Add("");
 					ListViewItem_add.SubItems.Add("");
+					ListViewItem_add.SubItems.Add("");
 					ListViewReturnValue.Items.Add(ListViewItem_add);
 				}
 				Close();
@@ -502,6 +503,7 @@ namespace Aggregator.Client.Directories
 							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text);
 							ListViewItem_add.SubItems.Add("0,00");
 							ListViewItem_add.SubItems.Add("-->");
+							ListViewItem_add.SubItems.Add("");
 							ListViewItem_add.SubItems.Add("");
 							ListViewItem_add.SubItems.Add("");
 							ListViewItem_add.SubItems.Add("");

@@ -217,6 +217,7 @@ namespace Aggregator.Database.Server
 			        	sourceListView.Items[i].SubItems[17].Text = sqlDataReader["article"].ToString();
 			        	sourceListView.Items[i].SubItems[18].Text = price.counteragentName;
 			        	sourceListView.Items[i].SubItems[19].Text = price.priceName;
+			        	sourceListView.Items[i].SubItems[20].Text = "";
 					}
 			        sqlDataReader.Close();
 			        sqlConnection.Close();

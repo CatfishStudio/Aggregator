@@ -240,6 +240,7 @@ namespace Aggregator.Database.Local
 			        	sourceListView.Items[i].SubItems[17].Text = oleDbDataReader["article"].ToString();
 			        	sourceListView.Items[i].SubItems[18].Text = price.counteragentName;
 			        	sourceListView.Items[i].SubItems[19].Text = price.priceName;
+			        	sourceListView.Items[i].SubItems[20].Text = "";
 					}
 			        oleDbDataReader.Close();
 			        oleDbConnection.Close();

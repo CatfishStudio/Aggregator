@@ -113,6 +113,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.TextBox textBox5;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button10;
+		private System.Windows.Forms.ColumnHeader columnHeader24;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -187,6 +188,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader21 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader22 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader23 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader24 = new System.Windows.Forms.ColumnHeader();
 			this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.добавитьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.добавитьМножествоНоменклатурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -576,7 +578,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader20,
 			this.columnHeader21,
 			this.columnHeader22,
-			this.columnHeader23});
+			this.columnHeader23,
+			this.columnHeader24});
 			this.listViewNomenclature.ContextMenuStrip = this.contextMenuStrip2;
 			this.listViewNomenclature.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listViewNomenclature.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -689,6 +692,11 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.columnHeader23.Text = "Прайс-лист";
 			this.columnHeader23.Width = 100;
+			// 
+			// columnHeader24
+			// 
+			this.columnHeader24.Text = "№";
+			this.columnHeader24.Width = 0;
 			// 
 			// contextMenuStrip2
 			// 
