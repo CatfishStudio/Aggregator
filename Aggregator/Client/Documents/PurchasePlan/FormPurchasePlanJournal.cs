@@ -287,6 +287,31 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			}
 			deleteFile();
 		}
+		void СоздатьПланЗакупокToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			addFile();
+		}
+		void ИзменитьПланЗакупокToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editFile();
+		}
+		void УдалитьПланЗакупокToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			deleteFile();
+		}
+		void ОбновитьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			comboBox1.Text = "";
+			TableRefresh();
+		}
 		
 	}
 }

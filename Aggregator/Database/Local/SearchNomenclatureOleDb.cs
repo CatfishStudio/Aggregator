@@ -208,6 +208,7 @@ namespace Aggregator.Database.Local
 			String nomenclatureID;
 			int count = sourceListView.Items.Count;
 			bool result = false;
+			DateTime dt;
 			
 			for(int i = 0; i < count; i++) {
 				// получаем сформированный запрос по критериям выбранной номенклатуры
@@ -227,7 +228,9 @@ namespace Aggregator.Database.Local
 			        	sourceListView.Items[i].SubItems[7].Text = oleDbDataReader["price"].ToString();
 			        	sourceListView.Items[i].SubItems[8].Text = oleDbDataReader["manufacturer"].ToString();
 			        	sourceListView.Items[i].SubItems[9].Text = oleDbDataReader["remainder"].ToString();
-			        	sourceListView.Items[i].SubItems[10].Text = oleDbDataReader["term"].ToString();
+			        	dt = new DateTime();
+						DateTime.TryParse(oleDbDataReader["term"].ToString(), out dt);
+						sourceListView.Items[i].SubItems[10].Text = dt.ToString("dd.MM.yyyy");
 			        	sourceListView.Items[i].SubItems[11].Text = oleDbDataReader["discount1"].ToString();
 			        	sourceListView.Items[i].SubItems[12].Text = oleDbDataReader["discount2"].ToString();
 			        	sourceListView.Items[i].SubItems[13].Text = oleDbDataReader["discount3"].ToString();

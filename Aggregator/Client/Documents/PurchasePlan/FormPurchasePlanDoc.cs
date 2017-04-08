@@ -43,8 +43,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		public String ID;
 		OleDb oleDb;
 		SearchNomenclatureOleDb searchNomenclatureOleDb;
-		SearchNomenclatureSqlServer searchNomenclatureSql;
 		SqlServer sqlServer;
+		SearchNomenclatureSqlServer searchNomenclatureSql;
 		String docNumber;
 		int selectTableLine = -1;		// выбранная строка в таблице
 		
@@ -423,6 +423,26 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			}
 		}
 		
+		bool check()
+		{
+			if(listViewPrices.Items.Count == 0){
+				MessageBox.Show("Вы не добавили прайс-лист контрагента.", "Сообщение");
+				return false;
+			}
+			if(listViewNomenclature.Items.Count == 0){
+				MessageBox.Show("Вы не добавили номенклатуру.", "Сообщение");
+				return false;
+			}
+			int count = listViewNomenclature.Items.Count;
+			for(int i = 0; i < count; i++){
+				if(listViewNomenclature.Items[i].StateImageIndex == 0){
+					MessageBox.Show("Номенклатуре " + listViewNomenclature.Items[i].SubItems[2].Text + " нет соответствия из прайс-листа контрагента.", "Сообщение");
+					return false;
+				}
+			}
+			return true;
+		}
+		
 		void calculate()
 		{
 			if(listViewNomenclature.Items.Count > 0){
@@ -455,6 +475,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			}
 		}
 		
+		
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -462,11 +484,11 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		void FormPurchasePlanDocLoad(object sender, EventArgs e)
 		{
 			if(ID == null){
-				Text = "Создать";
+				Text = "План закупок: Создать";
 				dateTimePicker1.Value = DateTime.Today.Date;
 				autorLabel.Text = "Автор: " + DataConfig.userName;
 			}else{
-				Text = "Изменить";
+				Text = "План закупок: Изменить";
 				open();
 			}
 		}
@@ -507,8 +529,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				return;
 			}
 			if(ID == null){
-				saveNew();
+				if(check()) saveNew();
 			}else{
+				if(check() == false) return;
 				if(saveEdit() && saveEditPrices()){
 					DataForms.FClient.updateHistory("PurchasePlan");
 					Utilits.Console.Log("Документ План закупок №" + docNumber + ": успешно изменён и сохранён.");
@@ -517,15 +540,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Документ План закупок №" + docNumber + ": не удалось сохранить изменения.", false, true);
 				}
 			}
-			
-			/*
-			if(check()){
-				if(ID == null) saveNew();
-				else saveEdit();
-			}else{
-				MessageBox.Show("Некорректно заполнены поля формы.", "Сообщение:");
-			}
-			*/
 		}
 		void ButtonNomenclatureAddClick(object sender, EventArgs e)
 		{

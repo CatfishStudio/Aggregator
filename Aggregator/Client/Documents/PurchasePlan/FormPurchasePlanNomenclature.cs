@@ -38,6 +38,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		
 		public void LoadNomenclature(List<Nomenclature> nomenclatureList)
 		{
+			DateTime dt;
 			ListViewItem ListViewItem_add;
 			foreach(Nomenclature nomenclature in nomenclatureList){
 				ListViewItem_add = new ListViewItem();
@@ -46,7 +47,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				ListViewItem_add.SubItems.Add(nomenclature.Price.ToString());
 				ListViewItem_add.SubItems.Add(nomenclature.Manufacturer);
 				ListViewItem_add.SubItems.Add(nomenclature.Remainder.ToString());
-				ListViewItem_add.SubItems.Add(nomenclature.Term.ToString());
+				dt = new DateTime();
+				DateTime.TryParse(nomenclature.Term.ToString(), out dt);
+				ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
 				ListViewItem_add.SubItems.Add(nomenclature.Discount1.ToString());
 				ListViewItem_add.SubItems.Add(nomenclature.Discount2.ToString());
 				ListViewItem_add.SubItems.Add(nomenclature.Discount3.ToString());

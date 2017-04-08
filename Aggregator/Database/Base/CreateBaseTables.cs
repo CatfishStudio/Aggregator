@@ -211,6 +211,7 @@ namespace Aggregator.Database.Base
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Единицы измерения.", false, true);
 		}
 		
+		/* Документ: План закупок */
 		public static void TablePurchasePlan()
 		{
 			String sqlCommand;
@@ -249,9 +250,41 @@ namespace Aggregator.Database.Base
 		
 		public static void TableOrderNomenclature()
 		{
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.localDatabase);
 			
+			sqlCommand = "CREATE TABLE OrderNomenclature (" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[nomenclatureID] INTEGER DEFAULT 0, " +
+				"[nomenclatureName] VARCHAR DEFAULT '', " +
+				"[units] VARCHAR DEFAULT '', " +
+				"[amount] FLOAT DEFAULT 0, " +
+				
+				"[name] VARCHAR DEFAULT '', " +
+				"[price] FLOAT DEFAULT 0, " +
+				"[manufacturer] VARCHAR DEFAULT '', " +
+				"[remainder] FLOAT DEFAULT 0, " +
+				"[term] DATETIME, " +
+				"[discount1] FLOAT DEFAULT 0, " +
+				"[discount2] FLOAT DEFAULT 0, " +
+				"[discount3] FLOAT DEFAULT 0, " +
+				"[discount4] FLOAT DEFAULT 0, " +
+				"[code] VARCHAR DEFAULT '', " +
+				"[series] VARCHAR DEFAULT '', " +
+				"[article] VARCHAR DEFAULT '', " +
+				
+				"[counteragentName] VARCHAR DEFAULT '', " +
+				"[counteragentPricelist] VARCHAR DEFAULT '', " +
+				
+				"[docPurchasePlan] VARCHAR DEFAULT '' " +
+				"[docOrder] VARCHAR DEFAULT '' " +
+				")";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Заказ номенклатуры.", false, true);
 		}
 		
+		/* Документ: Заказ */
 		public static void TableOrders()
 		{
 			

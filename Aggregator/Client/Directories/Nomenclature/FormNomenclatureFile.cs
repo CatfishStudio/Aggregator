@@ -316,9 +316,9 @@ namespace Aggregator.Client.Directories
 			getFolders();
 			foldersComboBox.Text = ParentFolder;
 			if(ID == null){
-				Text = "Создать";
+				Text = "Номенклатура: Создать";
 			}else{
-				Text = "Изменить";
+				Text = "Номенклатура: Изменить";
 				open();
 			}
 		}

@@ -148,9 +148,9 @@ namespace Aggregator.Client.Directories
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) oleDb = new OleDb(DataConfig.localDatabase);
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER) sqlServer = new SqlServer();
 			if(ID == null){
-				Text = "Создать";
+				Text = "Единица измерения: Создать";
 			}else{
-				Text = "Изменить";
+				Text = "Единица измерения: Изменить";
 				open();
 			}
 		}

@@ -1097,9 +1097,9 @@ namespace Aggregator.Client.Directories
 			getFolders();
 			foldersComboBox.Text = ParentFolder;
 			if(ID == null){
-				Text = "Создать";
+				Text = "Контрагент: Создать";
 			}else{
-				Text = "Изменить";
+				Text = "Контрагент: Изменить";
 				firstColumnNumber = true;
 				open();
 			}
