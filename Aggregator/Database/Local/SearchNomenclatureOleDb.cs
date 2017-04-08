@@ -9,7 +9,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Timers;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using Aggregator.Data;

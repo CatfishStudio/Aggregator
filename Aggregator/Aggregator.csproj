@@ -145,6 +145,7 @@
     <Compile Include="Database\Local\SearchNomenclatureOleDb.cs" />
     <Compile Include="Database\Server\HistoryRefreshSqlServer.cs" />
     <Compile Include="Database\Server\QuerySqlServer.cs" />
+    <Compile Include="Database\Server\SearchNomenclatureSqlServer.cs" />
     <Compile Include="Database\Server\SqlServer.cs" />
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />

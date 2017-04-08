@@ -381,7 +381,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -395,10 +394,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.tabPage1.Controls.Add(this.listViewPrices);
 			this.tabPage1.Controls.Add(this.panel3);
-			this.tabPage1.Location = new System.Drawing.Point(4, 25);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(719, 334);
+			this.tabPage1.Size = new System.Drawing.Size(719, 337);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Прайс-листы";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -418,7 +417,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listViewPrices.Location = new System.Drawing.Point(3, 32);
 			this.listViewPrices.MultiSelect = false;
 			this.listViewPrices.Name = "listViewPrices";
-			this.listViewPrices.Size = new System.Drawing.Size(713, 299);
+			this.listViewPrices.Size = new System.Drawing.Size(713, 302);
 			this.listViewPrices.SmallImageList = this.imageList1;
 			this.listViewPrices.StateImageList = this.imageList1;
 			this.listViewPrices.TabIndex = 7;
@@ -546,10 +545,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.tabPage2.Controls.Add(this.listViewNomenclature);
 			this.tabPage2.Controls.Add(this.panel7);
 			this.tabPage2.Controls.Add(this.panel5);
-			this.tabPage2.Location = new System.Drawing.Point(4, 25);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(719, 334);
+			this.tabPage2.Size = new System.Drawing.Size(719, 337);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Номенклатура";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -586,7 +585,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listViewNomenclature.Location = new System.Drawing.Point(3, 32);
 			this.listViewNomenclature.MultiSelect = false;
 			this.listViewNomenclature.Name = "listViewNomenclature";
-			this.listViewNomenclature.Size = new System.Drawing.Size(713, 203);
+			this.listViewNomenclature.Size = new System.Drawing.Size(713, 206);
 			this.listViewNomenclature.SmallImageList = this.imageList2;
 			this.listViewNomenclature.StateImageList = this.imageList2;
 			this.listViewNomenclature.TabIndex = 8;
@@ -769,7 +768,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.panel7.Controls.Add(this.splitContainer1);
 			this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel7.Location = new System.Drawing.Point(3, 235);
+			this.panel7.Location = new System.Drawing.Point(3, 238);
 			this.panel7.Name = "panel7";
 			this.panel7.Size = new System.Drawing.Size(713, 96);
 			this.panel7.TabIndex = 9;

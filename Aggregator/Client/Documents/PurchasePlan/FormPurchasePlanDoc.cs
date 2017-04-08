@@ -43,6 +43,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		public String ID;
 		OleDb oleDb;
 		SearchNomenclatureOleDb searchNomenclatureOleDb;
+		SearchNomenclatureSqlServer searchNomenclatureSql;
 		SqlServer sqlServer;
 		String docNumber;
 		int selectTableLine = -1;		// выбранная строка в таблице
@@ -578,13 +579,24 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			
 			if(listViewNomenclature.SelectedItems.Count > 0){
 				List<Nomenclature> nomenclatureList;
+				nomenclatureList = new List<Nomenclature>();
 				
 				String nID = listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].SubItems[1].Text;
-				searchNomenclatureOleDb = new SearchNomenclatureOleDb();
-				searchNomenclatureOleDb.setPrices(listViewPrices);
-				nomenclatureList = searchNomenclatureOleDb.getFindNomenclature(nID);
+				
+				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+					// OLEDB
+					searchNomenclatureOleDb = new SearchNomenclatureOleDb();
+					searchNomenclatureOleDb.setPrices(listViewPrices);
+					nomenclatureList = searchNomenclatureOleDb.getFindNomenclature(nID);
+				} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+					// MSSQL SERVER
+					searchNomenclatureSql = new SearchNomenclatureSqlServer();
+					searchNomenclatureSql.setPrices(listViewPrices);
+					nomenclatureList = searchNomenclatureSql.getFindNomenclature(nID);
+				}
+							
+				
 				if(nomenclatureList.Count > 0){
-					
 					FormPurchasePlanNomenclature FPurchasePlanNomenclature = new FormPurchasePlanNomenclature();
 					FPurchasePlanNomenclature.MdiParent = DataForms.FClient;
 					FPurchasePlanNomenclature.ListViewPrices = listViewPrices;
@@ -666,9 +678,19 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				MessageBox.Show("Вы не добавили не одного прайса.", "Сообщение");
 				return;
 			}
-			searchNomenclatureOleDb = new SearchNomenclatureOleDb();
-			searchNomenclatureOleDb.setPrices(listViewPrices);
-			searchNomenclatureOleDb.autoFindNomenclature(listViewNomenclature);
+			
+			
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+				// OLEDB
+				searchNomenclatureOleDb = new SearchNomenclatureOleDb();
+				searchNomenclatureOleDb.setPrices(listViewPrices);
+				searchNomenclatureOleDb.autoFindNomenclature(listViewNomenclature);
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				searchNomenclatureSql = new SearchNomenclatureSqlServer();
+				searchNomenclatureSql.setPrices(listViewPrices);
+				searchNomenclatureSql.autoFindNomenclature(listViewNomenclature);
+			}
 		}
 		void ButtonPrintPreviewClick(object sender, EventArgs e)
 		{
