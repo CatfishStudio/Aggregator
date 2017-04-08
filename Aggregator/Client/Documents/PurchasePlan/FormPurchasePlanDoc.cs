@@ -304,7 +304,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					"@counteragentName, @counteragentPricelist, " +
 					"@docPurchasePlan, @docOrder " + 
 					")";
-				Utilits.Console.Log(oleDb.oleDbCommandInsert.CommandText);
 				oleDb.oleDbCommandInsert.Parameters.Add("@nomenclatureID", OleDbType.Integer, 10, "nomenclatureID");
 				oleDb.oleDbCommandInsert.Parameters.Add("@nomenclatureName", OleDbType.VarChar, 255, "nomenclatureName");
 				oleDb.oleDbCommandInsert.Parameters.Add("@units", OleDbType.VarChar, 255, "units");
@@ -351,6 +350,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					dateTimePicker1.Value = (DateTime)oleDb.dataSet.Tables["PurchasePlan"].Rows[0]["docDate"];
 					autorLabel.Text = "Автор: " + oleDb.dataSet.Tables["PurchasePlan"].Rows[0]["docAutor"].ToString();
 					openPrices();
+					openOrderNomenclature();
+					calculate();
 				}else{
 					Utilits.Console.Log("[ОШИБКА] программа не смогла открыть документ план закупок.", false, true);
 				}
@@ -364,6 +365,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					dateTimePicker1.Value = (DateTime)sqlServer.dataSet.Tables["PurchasePlan"].Rows[0]["docDate"];
 					autorLabel.Text = "Автор: " + sqlServer.dataSet.Tables["PurchasePlan"].Rows[0]["docAutor"].ToString();
 					openPrices();
+					openOrderNomenclature();
+					calculate();
 				}else{
 					Utilits.Console.Log("[ОШИБКА] программа не смогла открыть документ план закупок.", false, true);
 				}
@@ -403,6 +406,94 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					}
 				}else{
 					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] программа не смогла загрузить прайс листы документа план закупок №" + docNumber, false, true);
+				}
+			}
+		}
+		
+		void openOrderNomenclature()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT " +
+					"id, nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " +
+					"FROM OrderNomenclature WHERE (docPurchasePlan = '" + docNumber + "')";
+				if(oleDb.ExecuteFill("OrderNomenclature")){
+					DateTime dt;
+					ListViewItem ListViewItem_add;
+					foreach(DataRow row in oleDb.dataSet.Tables["OrderNomenclature"].Rows){
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(row["nomenclatureID"].ToString());
+						ListViewItem_add.StateImageIndex = 1;
+						ListViewItem_add.SubItems.Add(row["nomenclatureName"].ToString());
+						ListViewItem_add.SubItems.Add(row["units"].ToString());
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["amount"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add("-->");
+						ListViewItem_add.SubItems.Add(row["name"].ToString());
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["price"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add(row["manufacturer"].ToString());
+						ListViewItem_add.SubItems.Add(row["remainder"].ToString());
+						dt = new DateTime();
+						DateTime.TryParse(row["term"].ToString(), out dt);
+						ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
+						ListViewItem_add.SubItems.Add(row["discount1"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount2"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount3"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount4"].ToString());
+						ListViewItem_add.SubItems.Add(row["code"].ToString());
+						ListViewItem_add.SubItems.Add(row["series"].ToString());
+						ListViewItem_add.SubItems.Add(row["article"].ToString());
+						ListViewItem_add.SubItems.Add(row["counteragentName"].ToString());
+						ListViewItem_add.SubItems.Add(row["counteragentPricelist"].ToString());
+						listViewNomenclature.Items.Add(ListViewItem_add);
+					}
+				}else{
+					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] программа не смогла загрузить перечень номенклатуры из документа план закупок №" + docNumber, false, true);
+				}
+				
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT " +
+					"id, nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " +
+					"FROM OrderNomenclature WHERE (docPurchasePlan = '" + docNumber + "')";
+				if(sqlServer.ExecuteFill("OrderNomenclature")){
+					DateTime dt;
+					ListViewItem ListViewItem_add;
+					foreach(DataRow row in sqlServer.dataSet.Tables["OrderNomenclature"].Rows){
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(row["nomenclatureID"].ToString());
+						ListViewItem_add.StateImageIndex = 1;
+						ListViewItem_add.SubItems.Add(row["nomenclatureName"].ToString());
+						ListViewItem_add.SubItems.Add(row["units"].ToString());
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["amount"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add("-->");
+						ListViewItem_add.SubItems.Add(row["name"].ToString());
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["price"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add(row["manufacturer"].ToString());
+						ListViewItem_add.SubItems.Add(row["remainder"].ToString());
+						dt = new DateTime();
+						DateTime.TryParse(row["term"].ToString(), out dt);
+						ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
+						ListViewItem_add.SubItems.Add(row["discount1"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount2"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount3"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount4"].ToString());
+						ListViewItem_add.SubItems.Add(row["code"].ToString());
+						ListViewItem_add.SubItems.Add(row["series"].ToString());
+						ListViewItem_add.SubItems.Add(row["article"].ToString());
+						ListViewItem_add.SubItems.Add(row["counteragentName"].ToString());
+						ListViewItem_add.SubItems.Add(row["counteragentPricelist"].ToString());
+						listViewNomenclature.Items.Add(ListViewItem_add);
+					}
+				}else{
+					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] программа не смогла загрузить перечень номенклатуры из документа план закупок №" + docNumber, false, true);
 				}
 			}
 		}
@@ -752,6 +843,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				textBox2.Clear();
 				textBox2.Text = Conversion.StringToMoney(Conversion.StringToDouble(Value).ToString());
 				if(textBox2.Text == "" || Conversion.checkString(textBox2.Text) == false) textBox2.Text = "0,00";
+				calculate();
 			}
 		}
 		void TextBox2TextLostFocus(object sender, EventArgs e)
@@ -760,6 +852,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			textBox2.Clear();
 			textBox2.Text = Conversion.StringToMoney(Conversion.StringToDouble(Value).ToString());
 			if(textBox2.Text == "" || Conversion.checkString(textBox2.Text) == false) textBox2.Text = "0,00";
+			calculate();
 		}
 		void TextBox2TextChanged(object sender, EventArgs e)
 		{
@@ -767,7 +860,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			if(listViewNomenclature.Items.Count > 0 && selectTableLine > -1){
 				listViewNomenclature.Items[selectTableLine].SubItems[4].Text = textBox2.Text;
 			}
-			calculate();
 		}
 		void Button6Click(object sender, EventArgs e)
 		{

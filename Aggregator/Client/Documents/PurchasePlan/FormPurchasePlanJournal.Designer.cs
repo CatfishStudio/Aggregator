@@ -49,6 +49,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.ColumnHeader columnHeader9;
+		private System.Windows.Forms.ToolStripMenuItem вводНаОснованииToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem заказToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -108,6 +110,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.вводНаОснованииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.заказToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -371,9 +375,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.изменитьПланЗакупокToolStripMenuItem,
 			this.удалитьПланЗакупокToolStripMenuItem,
 			this.toolStripSeparator1,
+			this.вводНаОснованииToolStripMenuItem,
 			this.обновитьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 98);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 142);
 			// 
 			// создатьПланЗакупокToolStripMenuItem
 			// 
@@ -417,6 +422,20 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "application.png");
+			// 
+			// вводНаОснованииToolStripMenuItem
+			// 
+			this.вводНаОснованииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.заказToolStripMenuItem});
+			this.вводНаОснованииToolStripMenuItem.Name = "вводНаОснованииToolStripMenuItem";
+			this.вводНаОснованииToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+			this.вводНаОснованииToolStripMenuItem.Text = "Ввод на основании";
+			// 
+			// заказToolStripMenuItem
+			// 
+			this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
+			this.заказToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.заказToolStripMenuItem.Text = "Заказ";
 			// 
 			// FormPurchasePlanJournal
 			// 
