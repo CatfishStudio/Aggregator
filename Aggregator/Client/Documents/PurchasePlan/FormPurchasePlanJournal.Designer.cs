@@ -47,6 +47,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ToolStripMenuItem удалитьПланЗакупокToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
+		private System.Windows.Forms.ColumnHeader columnHeader8;
+		private System.Windows.Forms.ColumnHeader columnHeader9;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -96,6 +98,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.создатьПланЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.изменитьПланЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -297,7 +301,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader4,
 			this.columnHeader5,
 			this.columnHeader6,
-			this.columnHeader7});
+			this.columnHeader7,
+			this.columnHeader8,
+			this.columnHeader9});
 			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -335,17 +341,28 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// columnHeader5
 			// 
-			this.columnHeader5.Text = "Всего:";
-			this.columnHeader5.Width = 150;
+			this.columnHeader5.Text = "Сумма:";
+			this.columnHeader5.Width = 100;
 			// 
 			// columnHeader6
 			// 
-			this.columnHeader6.Text = "Автор";
-			this.columnHeader6.Width = 150;
+			this.columnHeader6.Text = "НДС:";
+			this.columnHeader6.Width = 100;
 			// 
 			// columnHeader7
 			// 
-			this.columnHeader7.Text = "№";
+			this.columnHeader7.Text = "Всего";
+			this.columnHeader7.Width = 100;
+			// 
+			// columnHeader8
+			// 
+			this.columnHeader8.Text = "Автор";
+			this.columnHeader8.Width = 150;
+			// 
+			// columnHeader9
+			// 
+			this.columnHeader9.Text = "№";
+			this.columnHeader9.Width = 0;
 			// 
 			// contextMenuStrip1
 			// 
@@ -356,7 +373,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.toolStripSeparator1,
 			this.обновитьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 120);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 98);
 			// 
 			// создатьПланЗакупокToolStripMenuItem
 			// 

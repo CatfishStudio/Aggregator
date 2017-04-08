@@ -260,7 +260,6 @@ namespace Aggregator.Database.Base
 				"[nomenclatureName] VARCHAR DEFAULT '', " +
 				"[units] VARCHAR DEFAULT '', " +
 				"[amount] FLOAT DEFAULT 0, " +
-				
 				"[name] VARCHAR DEFAULT '', " +
 				"[price] FLOAT DEFAULT 0, " +
 				"[manufacturer] VARCHAR DEFAULT '', " +
@@ -273,11 +272,9 @@ namespace Aggregator.Database.Base
 				"[code] VARCHAR DEFAULT '', " +
 				"[series] VARCHAR DEFAULT '', " +
 				"[article] VARCHAR DEFAULT '', " +
-				
 				"[counteragentName] VARCHAR DEFAULT '', " +
 				"[counteragentPricelist] VARCHAR DEFAULT '', " +
-				
-				"[docPurchasePlan] VARCHAR DEFAULT '' " +
+				"[docPurchasePlan] VARCHAR DEFAULT '', " +
 				"[docOrder] VARCHAR DEFAULT '' " +
 				")";
 			query.SetCommand(sqlCommand);

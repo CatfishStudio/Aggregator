@@ -957,6 +957,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// button11
 			// 
 			this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button11.Enabled = false;
 			this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
 			this.button11.Location = new System.Drawing.Point(354, 66);
@@ -969,6 +970,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// button12
 			// 
 			this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button12.Enabled = false;
 			this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button12.Location = new System.Drawing.Point(382, 66);
 			this.button12.Name = "button12";
@@ -995,6 +997,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// button5
 			// 
 			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button5.Enabled = false;
 			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
 			this.button5.Location = new System.Drawing.Point(354, 43);
@@ -1007,6 +1010,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// button10
 			// 
 			this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button10.Enabled = false;
 			this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button10.Location = new System.Drawing.Point(382, 43);
 			this.button10.Name = "button10";
@@ -1033,6 +1037,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// button2
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.Enabled = false;
 			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
 			this.button2.Location = new System.Drawing.Point(354, 19);
@@ -1045,6 +1050,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// button3
 			// 
 			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.Enabled = false;
 			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button3.Location = new System.Drawing.Point(382, 19);
 			this.button3.Name = "button3";

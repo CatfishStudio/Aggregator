@@ -112,6 +112,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					ListViewItem_add.StateImageIndex = 0;
 					ListViewItem_add.SubItems.Add(rowElement["docNumber"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docName"].ToString());
+					ListViewItem_add.SubItems.Add(rowElement["docSum"].ToString());
+					ListViewItem_add.SubItems.Add(rowElement["docVat"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docTotal"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docAutor"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
@@ -145,6 +147,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					ListViewItem_add.StateImageIndex = 0;
 					ListViewItem_add.SubItems.Add(rowElement["docNumber"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docName"].ToString());
+					ListViewItem_add.SubItems.Add(rowElement["docSum"].ToString());
+					ListViewItem_add.SubItems.Add(rowElement["docVat"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docTotal"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docAutor"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
@@ -196,7 +200,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			if(listView1.SelectedIndices.Count > 0){
 				FormPurchasePlanDoc FPurchasePlanDoc = new FormPurchasePlanDoc();
 				FPurchasePlanDoc.MdiParent = DataForms.FClient;
-				FPurchasePlanDoc.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[6].Text.ToString();
+				FPurchasePlanDoc.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[8].Text;
 				FPurchasePlanDoc.Show();
 			}
 		}
@@ -204,8 +208,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		void deleteFile()
 		{
 			if(listView1.SelectedIndices.Count > 0){
-				String docID = listView1.Items[listView1.SelectedIndices[0]].SubItems[6].Text.ToString();
-				String docName = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text.ToString();
+				String docID = listView1.Items[listView1.SelectedIndices[0]].SubItems[8].Text;
+				String docName = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text;
 				
 				if(MessageBox.Show("Удалить безвозвратно документ план закупок №" + docName + " ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
 					if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {

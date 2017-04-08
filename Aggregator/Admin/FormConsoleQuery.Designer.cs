@@ -118,6 +118,8 @@ namespace Aggregator.Admin
 			"Units",
 			"PurchasePlan",
 			"PurchasePlanPriceLists",
+			"OrderNomenclature",
+			"Orders",
 			"History"});
 			this.comboBox2.Location = new System.Drawing.Point(91, 46);
 			this.comboBox2.Name = "comboBox2";
