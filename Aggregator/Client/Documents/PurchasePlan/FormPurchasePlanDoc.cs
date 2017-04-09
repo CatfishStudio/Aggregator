@@ -809,7 +809,139 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT " +
+					"id, nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " +
+					"FROM OrderNomenclature WHERE (docPurchasePlan = '" + docNumber + "')";
+				sqlServer.ExecuteFill("OrderNomenclature");
 				
+				sqlServer.sqlCommandInsert.CommandText = "INSERT INTO OrderNomenclature (" +
+					"nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " + 
+					") VALUES (" +
+					"@nomenclatureID, @nomenclatureName, @units, @amount, " +
+					"@name, @price, @manufacturer, @remainder, @term, @discount1, @discount2, @discount3, @discount4, @code, @series, @article, " +
+					"@counteragentName, @counteragentPricelist, " +
+					"@docPurchasePlan, @docOrder " + 
+					")";
+				sqlServer.sqlCommandInsert.Parameters.Add("@nomenclatureID", SqlDbType.Int, 10, "nomenclatureID");
+				sqlServer.sqlCommandInsert.Parameters.Add("@nomenclatureName", SqlDbType.VarChar, 255, "nomenclatureName");
+				sqlServer.sqlCommandInsert.Parameters.Add("@units", SqlDbType.VarChar, 255, "units");
+				sqlServer.sqlCommandInsert.Parameters.Add("@amount", SqlDbType.Float, 15, "amount");
+				sqlServer.sqlCommandInsert.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
+				sqlServer.sqlCommandInsert.Parameters.Add("@price", SqlDbType.Float, 15, "price");
+				sqlServer.sqlCommandInsert.Parameters.Add("@manufacturer", SqlDbType.VarChar, 255, "manufacturer");
+				sqlServer.sqlCommandInsert.Parameters.Add("@remainder", SqlDbType.Float, 15, "remainder");
+				sqlServer.sqlCommandInsert.Parameters.Add("@term", SqlDbType.Date, 15, "term");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount1", SqlDbType.Float, 15, "discount1");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount2", SqlDbType.Float, 15, "discount2");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount3", SqlDbType.Float, 15, "discount3");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount4", SqlDbType.Float, 15, "discount4");
+				sqlServer.sqlCommandInsert.Parameters.Add("@code", SqlDbType.VarChar, 255, "code");
+				sqlServer.sqlCommandInsert.Parameters.Add("@series", SqlDbType.VarChar, 255, "series");
+				sqlServer.sqlCommandInsert.Parameters.Add("@article", SqlDbType.VarChar, 255, "article");
+				sqlServer.sqlCommandInsert.Parameters.Add("@counteragentName", SqlDbType.VarChar, 255, "counteragentName");
+				sqlServer.sqlCommandInsert.Parameters.Add("@counteragentPricelist", SqlDbType.VarChar, 255, "counteragentPricelist");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docPurchasePlan", SqlDbType.VarChar, 255, "docPurchasePlan");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docOrder", SqlDbType.VarChar, 255, "docOrder");
+				
+				sqlServer.sqlCommandUpdate.CommandText = "UPDATE OrderNomenclature SET " +
+					"nomenclatureID = @nomenclatureID, nomenclatureName = @nomenclatureName, units = @units, amount = @amount, " +
+					"name = @name, price = @price, manufacturer = @manufacturer, remainder = @remainder, term = @term, " +
+					"discount1 = @discount1, discount2 = @discount2, discount3 = @discount3, discount4 = @discount4, " +
+					"code = @code, series = @series, article = @article, " +
+					"counteragentName = @counteragentName, counteragentPricelist = @counteragentPricelist, " +
+					"docPurchasePlan = @docPurchasePlan, docOrder = @docOrder " +
+					"WHERE ([id] = @id)";
+				sqlServer.sqlCommandUpdate.Parameters.Add("@nomenclatureID", SqlDbType.Int, 10, "nomenclatureID");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@nomenclatureName", SqlDbType.VarChar, 255, "nomenclatureName");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@units", SqlDbType.VarChar, 255, "units");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@amount", SqlDbType.Float, 15, "amount");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@price", SqlDbType.Float, 15, "price");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@manufacturer", SqlDbType.VarChar, 255, "manufacturer");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@remainder", SqlDbType.Float, 15, "remainder");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@term", SqlDbType.Date, 15, "term");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@discount1", SqlDbType.Float, 15, "discount1");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@discount2", SqlDbType.Float, 15, "discount2");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@discount3", SqlDbType.Float, 15, "discount3");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@discount4", SqlDbType.Float, 15, "discount4");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@code", SqlDbType.VarChar, 255, "code");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@series", SqlDbType.VarChar, 255, "series");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@article", SqlDbType.VarChar, 255, "article");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@counteragentName", SqlDbType.VarChar, 255, "counteragentName");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@counteragentPricelist", SqlDbType.VarChar, 255, "counteragentPricelist");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@docPurchasePlan", SqlDbType.VarChar, 255, "docPurchasePlan");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@docOrder", SqlDbType.VarChar, 255, "docOrder");
+				sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
+				
+				ListViewItem item;
+				foreach(DataRow row in sqlServer.dataSet.Tables["OrderNomenclature"].Rows){
+					item = checkRemoveRow(row["id"].ToString());
+					if(item == null){
+						row.Delete();
+					}else{
+						row["nomenclatureID"] = item.SubItems[1].Text;
+						row["nomenclatureName"] = item.SubItems[2].Text;
+						row["units"] = item.SubItems[3].Text;
+						row["amount"] = Convert.ToDouble(item.SubItems[4].Text);
+						row["name"] = item.SubItems[6].Text;
+						row["price"] = Convert.ToDouble(item.SubItems[7].Text);
+						row["manufacturer"] = item.SubItems[8].Text;
+						row["remainder"] = Convert.ToDouble(item.SubItems[9].Text);
+						row["term"] = item.SubItems[10].Text;
+						row["discount1"] = Convert.ToDouble(item.SubItems[11].Text);
+						row["discount2"] = Convert.ToDouble(item.SubItems[12].Text);
+						row["discount3"] = Convert.ToDouble(item.SubItems[13].Text);
+						row["discount4"] = Convert.ToDouble(item.SubItems[14].Text);
+						row["code"] = item.SubItems[15].Text;
+						row["series"] = item.SubItems[16].Text;
+						row["article"] = item.SubItems[17].Text;
+						row["counteragentName"] = item.SubItems[18].Text;
+						row["counteragentPricelist"] = item.SubItems[19].Text;
+						row["docPurchasePlan"] = docNumberTextBox.Text;
+						row["docOrder"] = "";
+					}
+				}
+				
+				DataRow newRow;
+				foreach(ListViewItem itemLV in listViewNomenclature.Items){
+					if(itemLV.SubItems[20].Text == ""){
+						newRow = sqlServer.dataSet.Tables["OrderNomenclature"].NewRow();
+						newRow["nomenclatureID"] = Convert.ToInt32(itemLV.SubItems[1].Text);
+						newRow["nomenclatureName"] = itemLV.SubItems[2].Text;
+						newRow["units"] = itemLV.SubItems[3].Text;
+						newRow["amount"] = Convert.ToDouble(itemLV.SubItems[4].Text);
+						newRow["name"] = itemLV.SubItems[6].Text;
+						newRow["price"] = Convert.ToDouble(itemLV.SubItems[7].Text);
+						newRow["manufacturer"] = itemLV.SubItems[8].Text;
+						newRow["remainder"] = Convert.ToDouble(itemLV.SubItems[9].Text);
+						newRow["term"] = itemLV.SubItems[10].Text;
+						newRow["discount1"] = Convert.ToDouble(itemLV.SubItems[11].Text);
+						newRow["discount2"] = Convert.ToDouble(itemLV.SubItems[12].Text);
+						newRow["discount3"] = Convert.ToDouble(itemLV.SubItems[13].Text);
+						newRow["discount4"] = Convert.ToDouble(itemLV.SubItems[14].Text);
+						newRow["code"] = itemLV.SubItems[15].Text;
+						newRow["series"] = itemLV.SubItems[16].Text;
+						newRow["article"] = itemLV.SubItems[17].Text;
+						newRow["counteragentName"] = itemLV.SubItems[18].Text;
+						newRow["counteragentPricelist"] = itemLV.SubItems[19].Text;
+						newRow["docPurchasePlan"] = docNumber;
+						newRow["docOrder"] = "";
+						sqlServer.dataSet.Tables["OrderNomenclature"].Rows.Add(newRow);
+					}
+				}
+				
+				if(sqlServer.ExecuteUpdate("OrderNomenclature")){
+					return true;
+				}else{
+					return false;
+				}
 			}
 			
 			return false;
