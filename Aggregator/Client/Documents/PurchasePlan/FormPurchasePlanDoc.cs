@@ -10,10 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
@@ -1517,6 +1515,22 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				textBox6.Clear();
 				textBox6.Text = Conversion.StringToMoney(Math.Round(Conversion.StringToDouble(Value), 2).ToString());
 				if(textBox6.Text == "" || Conversion.checkString(textBox6.Text) == false) textBox6.Text = "0,00";
+			}
+		}
+		void ButtonSaveExcelClick(object sender, EventArgs e)
+		{
+			if(ID == null){
+				MessageBox.Show("Пока документ не сохранён вы не можите выгрузить данные в Excel", "Сообщение");
+				return;
+			}
+			if(saveFileDialog1.ShowDialog() == DialogResult.OK){
+				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+					// OLEDB
+					ExportExcel.CreateWorkbook(saveFileDialog1.FileName, oleDb.dataSet);
+				} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+					// MSSQL SERVER
+					ExportExcel.CreateWorkbook(saveFileDialog1.FileName, sqlServer.dataSet);
+				}
 			}
 		}
 			

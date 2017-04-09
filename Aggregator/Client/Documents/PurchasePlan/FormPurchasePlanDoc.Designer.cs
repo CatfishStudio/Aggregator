@@ -114,6 +114,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.ColumnHeader columnHeader24;
+		private System.Windows.Forms.Button buttonSaveExcel;
+		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -139,6 +141,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPurchasePlanDoc));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.buttonSaveExcel = new System.Windows.Forms.Button();
 			this.buttonPrintPreview = new System.Windows.Forms.Button();
 			this.buttonPrint = new System.Windows.Forms.Button();
 			this.buttonSave = new System.Windows.Forms.Button();
@@ -238,6 +241,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
 			this.printDialog1 = new System.Windows.Forms.PrintDialog();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -257,6 +261,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.buttonSaveExcel);
 			this.panel1.Controls.Add(this.buttonPrintPreview);
 			this.panel1.Controls.Add(this.buttonPrint);
 			this.panel1.Controls.Add(this.buttonSave);
@@ -266,6 +271,20 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(727, 45);
 			this.panel1.TabIndex = 3;
+			// 
+			// buttonSaveExcel
+			// 
+			this.buttonSaveExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonSaveExcel.Image = ((System.Drawing.Image)(resources.GetObject("buttonSaveExcel.Image")));
+			this.buttonSaveExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.buttonSaveExcel.Location = new System.Drawing.Point(414, 10);
+			this.buttonSaveExcel.Name = "buttonSaveExcel";
+			this.buttonSaveExcel.Size = new System.Drawing.Size(123, 23);
+			this.buttonSaveExcel.TabIndex = 41;
+			this.buttonSaveExcel.Text = "Сохранить в Excel";
+			this.buttonSaveExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.buttonSaveExcel.UseVisualStyleBackColor = true;
+			this.buttonSaveExcel.Click += new System.EventHandler(this.ButtonSaveExcelClick);
 			// 
 			// buttonPrintPreview
 			// 
@@ -1227,6 +1246,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.printDialog1.Document = this.printDocument1;
 			this.printDialog1.UseEXDialog = true;
+			// 
+			// saveFileDialog1
+			// 
+			this.saveFileDialog1.Filter = "Microsoft Excel 97/2000/XP (.xls)|*.xls";
 			// 
 			// FormPurchasePlanDoc
 			// 
