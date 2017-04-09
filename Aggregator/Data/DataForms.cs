@@ -10,6 +10,7 @@ using System;
 using Aggregator.Admin;
 using Aggregator.Client;
 using Aggregator.Client.Directories;
+using Aggregator.Client.Documents.Order;
 using Aggregator.Client.Documents.PurchasePlan;
 using Aggregator.Client.Settings;
 using Aggregator.User;
@@ -31,6 +32,7 @@ namespace Aggregator.Data
 		public static FormNomenclature FNomenclature;
 		public static FormUnits FUnits;
 		public static FormPurchasePlanJournal FPurchasePlanJournal;
+		public static FormOrderJournal FOrderJournal;
 		/*Администратор*/
 		public static FormSettingsDatabase FSettingsDatabase;
 		public static FormConsoleQuery FConsoleQuery;

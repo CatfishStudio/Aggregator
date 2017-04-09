@@ -1,14 +1,14 @@
 ﻿/*
  * Создано в SharpDevelop.
  * Пользователь: Cartish
- * Дата: 19.03.2017
- * Время: 10:27
+ * Дата: 09.04.2017
+ * Время: 13:43
  * 
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
-namespace Aggregator.Client.Documents.PurchasePlan
+namespace Aggregator.Client.Documents.Order
 {
-	partial class FormPurchasePlanJournal
+	partial class FormOrderJournal
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -17,6 +17,19 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Button buttonClose;
 		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.Button refreshButton;
+		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.Button findButton;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Panel panel5;
+		private System.Windows.Forms.Button dateButton;
+		private System.Windows.Forms.DateTimePicker dateTimePicker2;
+		private System.Windows.Forms.DateTimePicker dateTimePicker1;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Panel panel4;
+		private System.Windows.Forms.Button deleteButton;
+		private System.Windows.Forms.Button editButton;
+		private System.Windows.Forms.Button addButton;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -24,33 +37,18 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
-		private System.Windows.Forms.ImageList imageList1;
-		private System.Windows.Forms.ToolTip toolTip1;
-		private System.Windows.Forms.Button addButton;
-		private System.Windows.Forms.Panel panel4;
-		private System.Windows.Forms.Button deleteButton;
-		private System.Windows.Forms.Button editButton;
-		private System.Windows.Forms.Button dateButton;
-		private System.Windows.Forms.DateTimePicker dateTimePicker2;
-		private System.Windows.Forms.DateTimePicker dateTimePicker1;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Panel panel5;
-		private System.Windows.Forms.Button findButton;
-		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.Panel panel6;
-		private System.Windows.Forms.Button refreshButton;
 		private System.Windows.Forms.ColumnHeader columnHeader6;
 		private System.Windows.Forms.ColumnHeader columnHeader7;
+		private System.Windows.Forms.ColumnHeader columnHeader8;
+		private System.Windows.Forms.ColumnHeader columnHeader9;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem создатьПланЗакупокToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem изменитьПланЗакупокToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem удалитьПланЗакупокToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
-		private System.Windows.Forms.ColumnHeader columnHeader8;
-		private System.Windows.Forms.ColumnHeader columnHeader9;
-		private System.Windows.Forms.ToolStripMenuItem вводНаОснованииToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem заказToolStripMenuItem;
+		private System.Windows.Forms.ImageList imageList1;
+		private System.Windows.Forms.ToolTip toolTip1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -74,7 +72,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPurchasePlanJournal));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrderJournal));
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.buttonClose = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -107,11 +105,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.изменитьПланЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.удалитьПланЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.вводНаОснованииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.заказToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -125,7 +121,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel1.Location = new System.Drawing.Point(0, 403);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(729, 45);
-			this.panel1.TabIndex = 1;
+			this.panel1.TabIndex = 2;
 			// 
 			// buttonClose
 			// 
@@ -156,7 +152,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(729, 45);
-			this.panel2.TabIndex = 2;
+			this.panel2.TabIndex = 3;
 			// 
 			// refreshButton
 			// 
@@ -170,7 +166,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.toolTip1.SetToolTip(this.refreshButton, "Обновить данные");
 			this.refreshButton.UseVisualStyleBackColor = true;
-			this.refreshButton.Click += new System.EventHandler(this.RefreshButtonClick);
 			// 
 			// panel6
 			// 
@@ -189,7 +184,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.findButton.TabIndex = 22;
 			this.toolTip1.SetToolTip(this.findButton, "Поиск");
 			this.findButton.UseVisualStyleBackColor = true;
-			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
 			// 
 			// comboBox1
 			// 
@@ -217,7 +211,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.dateButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.toolTip1.SetToolTip(this.dateButton, "Применить период.");
 			this.dateButton.UseVisualStyleBackColor = true;
-			this.dateButton.Click += new System.EventHandler(this.DateButtonClick);
 			// 
 			// dateTimePicker2
 			// 
@@ -260,9 +253,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.deleteButton.Name = "deleteButton";
 			this.deleteButton.Size = new System.Drawing.Size(25, 23);
 			this.deleteButton.TabIndex = 6;
-			this.toolTip1.SetToolTip(this.deleteButton, "Удалить план закупок");
+			this.toolTip1.SetToolTip(this.deleteButton, "Удалить заказ");
 			this.deleteButton.UseVisualStyleBackColor = true;
-			this.deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
 			// 
 			// editButton
 			// 
@@ -271,9 +263,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.editButton.Name = "editButton";
 			this.editButton.Size = new System.Drawing.Size(25, 23);
 			this.editButton.TabIndex = 5;
-			this.toolTip1.SetToolTip(this.editButton, "Изменить план закупок");
+			this.toolTip1.SetToolTip(this.editButton, "Изменить заказ");
 			this.editButton.UseVisualStyleBackColor = true;
-			this.editButton.Click += new System.EventHandler(this.EditButtonClick);
 			// 
 			// addButton
 			// 
@@ -282,9 +273,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.addButton.Name = "addButton";
 			this.addButton.Size = new System.Drawing.Size(25, 23);
 			this.addButton.TabIndex = 1;
-			this.toolTip1.SetToolTip(this.addButton, "Создать план закупок");
+			this.toolTip1.SetToolTip(this.addButton, "Создать заказ");
 			this.addButton.UseVisualStyleBackColor = true;
-			this.addButton.Click += new System.EventHandler(this.AddButtonClick);
 			// 
 			// panel3
 			// 
@@ -293,7 +283,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel3.Location = new System.Drawing.Point(0, 45);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(729, 358);
-			this.panel3.TabIndex = 3;
+			this.panel3.TabIndex = 4;
 			// 
 			// listView1
 			// 
@@ -375,61 +365,42 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.изменитьПланЗакупокToolStripMenuItem,
 			this.удалитьПланЗакупокToolStripMenuItem,
 			this.toolStripSeparator1,
-			this.вводНаОснованииToolStripMenuItem,
 			this.обновитьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 120);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(160, 98);
 			// 
 			// создатьПланЗакупокToolStripMenuItem
 			// 
 			this.создатьПланЗакупокToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("создатьПланЗакупокToolStripMenuItem.Image")));
 			this.создатьПланЗакупокToolStripMenuItem.Name = "создатьПланЗакупокToolStripMenuItem";
-			this.создатьПланЗакупокToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-			this.создатьПланЗакупокToolStripMenuItem.Text = "Создать план закупок";
-			this.создатьПланЗакупокToolStripMenuItem.Click += new System.EventHandler(this.СоздатьПланЗакупокToolStripMenuItemClick);
+			this.создатьПланЗакупокToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+			this.создатьПланЗакупокToolStripMenuItem.Text = "Создать заказ";
 			// 
 			// изменитьПланЗакупокToolStripMenuItem
 			// 
 			this.изменитьПланЗакупокToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("изменитьПланЗакупокToolStripMenuItem.Image")));
 			this.изменитьПланЗакупокToolStripMenuItem.Name = "изменитьПланЗакупокToolStripMenuItem";
-			this.изменитьПланЗакупокToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-			this.изменитьПланЗакупокToolStripMenuItem.Text = "Изменить план закупок";
-			this.изменитьПланЗакупокToolStripMenuItem.Click += new System.EventHandler(this.ИзменитьПланЗакупокToolStripMenuItemClick);
+			this.изменитьПланЗакупокToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+			this.изменитьПланЗакупокToolStripMenuItem.Text = "Изменить заказ";
 			// 
 			// удалитьПланЗакупокToolStripMenuItem
 			// 
 			this.удалитьПланЗакупокToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("удалитьПланЗакупокToolStripMenuItem.Image")));
 			this.удалитьПланЗакупокToolStripMenuItem.Name = "удалитьПланЗакупокToolStripMenuItem";
-			this.удалитьПланЗакупокToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-			this.удалитьПланЗакупокToolStripMenuItem.Text = "Удалить план закупок";
-			this.удалитьПланЗакупокToolStripMenuItem.Click += new System.EventHandler(this.УдалитьПланЗакупокToolStripMenuItemClick);
+			this.удалитьПланЗакупокToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+			this.удалитьПланЗакупокToolStripMenuItem.Text = "Удалить заказ";
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(201, 6);
-			// 
-			// вводНаОснованииToolStripMenuItem
-			// 
-			this.вводНаОснованииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.заказToolStripMenuItem});
-			this.вводНаОснованииToolStripMenuItem.Name = "вводНаОснованииToolStripMenuItem";
-			this.вводНаОснованииToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-			this.вводНаОснованииToolStripMenuItem.Text = "Ввод на основании";
-			// 
-			// заказToolStripMenuItem
-			// 
-			this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
-			this.заказToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-			this.заказToolStripMenuItem.Text = "Заказ";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(156, 6);
 			// 
 			// обновитьToolStripMenuItem
 			// 
 			this.обновитьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("обновитьToolStripMenuItem.Image")));
 			this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-			this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+			this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
 			this.обновитьToolStripMenuItem.Text = "Обновить";
-			this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.ОбновитьToolStripMenuItemClick);
 			// 
 			// imageList1
 			// 
@@ -437,7 +408,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "application.png");
 			// 
-			// FormPurchasePlanJournal
+			// FormOrderJournal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -446,10 +417,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "FormPurchasePlanJournal";
-			this.Text = "Журнал закупок";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPurchasePlanJournalFormClosed);
-			this.Load += new System.EventHandler(this.FormPurchasePlanJournalLoad);
+			this.Name = "FormOrderJournal";
+			this.Text = "Журнал заказов";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormOrderJournalFormClosed);
+			this.Load += new System.EventHandler(this.FormOrderJournalLoad);
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);

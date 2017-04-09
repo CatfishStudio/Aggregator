@@ -19,6 +19,7 @@ using Aggregator.User;
 using Aggregator.Client.Settings;
 using Aggregator.Client.Directories;
 using Aggregator.Client.Documents.PurchasePlan;
+using Aggregator.Client.Documents.Order;
 
 namespace Aggregator.Client
 {
@@ -184,6 +185,15 @@ namespace Aggregator.Client
 			FPurchasePlanDoc.MdiParent = DataForms.FClient;
 			FPurchasePlanDoc.ID = null;
 			FPurchasePlanDoc.Show();
+		}
+		
+		void orderJournalShow()
+		{
+			if(DataForms.FOrderJournal == null){
+				DataForms.FOrderJournal = new FormOrderJournal();
+				DataForms.FOrderJournal.MdiParent = DataForms.FClient;
+				DataForms.FOrderJournal.Show();
+			}
 		}
 		
 		/* Сообщение в статусе */
@@ -394,6 +404,14 @@ namespace Aggregator.Client
 		void ToolStripButton6Click(object sender, EventArgs e)
 		{
 			purchasePlanDoclShow();
+		}
+		void ЖурналЗаказовToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			orderJournalShow();
+		}
+		void ToolStripButton9Click(object sender, EventArgs e)
+		{
+			orderJournalShow();
 		}
 		
 	}
