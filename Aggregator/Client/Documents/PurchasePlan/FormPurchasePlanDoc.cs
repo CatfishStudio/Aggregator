@@ -1278,6 +1278,40 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		{
 			// Заголовок документа
 			e.Graphics.DrawString("ПЛАН ЗАКУПОК № " + docNumberTextBox.Text + "   дата: " + dateTimePicker1.Text, new Font("Microsoft Sans Serif", 14, FontStyle.Regular), Brushes.Black, 20, 20);
+			// ТАБЛИЧНАЯ ЧАСТЬ: Загрузка данных из таблицы
+			int PosY = 60;
+			e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 400, 25));
+			e.Graphics.DrawString("Наименование:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 5, PosY);
+			e.Graphics.FillRectangle(Brushes.White, new Rectangle(405, PosY, 65, 25));
+			e.Graphics.DrawString("Ед. изм:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 410, PosY);
+			e.Graphics.FillRectangle(Brushes.White, new Rectangle(475, PosY, 65, 25));
+			e.Graphics.DrawString("Кол-во:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 480, PosY);
+			e.Graphics.FillRectangle(Brushes.White, new Rectangle(545, PosY, 100, 25));
+			e.Graphics.DrawString("Цена:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 550, PosY);
+			PosY += 30;
+			e.Graphics.DrawLine(new Pen(Color.Black), 0, PosY, 650, PosY);	
+			String textName;
+			foreach(ListViewItem item in listViewNomenclature.Items){
+				PosY += 30;
+				//    Наименование
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 400, 25));
+				textName = item.SubItems[2].Text;
+				if(textName.Length > 50) textName = textName.Substring(0, 50);
+				e.Graphics.DrawString(textName, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 5, PosY);
+				//    Ед. изм.
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(405, PosY, 65, 25));
+				e.Graphics.DrawString(item.SubItems[3].Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 410, PosY);
+				//    Количество.
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(475, PosY, 65, 25));
+				e.Graphics.DrawString(item.SubItems[4].Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 480, PosY);
+				//    Цена.
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(545, PosY, 100, 25));
+				e.Graphics.DrawString(item.SubItems[7].Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 550, PosY);
+				
+				
+			}
+			PosY += 30;
+			e.Graphics.DrawLine(new Pen(Color.Black), 0, PosY, 650, PosY);
 			
 		}
 		void ДобавитьПрайслистToolStripMenuItemClick(object sender, EventArgs e)
