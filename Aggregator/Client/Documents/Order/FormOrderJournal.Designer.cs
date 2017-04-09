@@ -49,6 +49,7 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.ColumnHeader columnHeader10;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -106,8 +107,9 @@ namespace Aggregator.Client.Documents.Order
 			this.удалитьПланЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -296,8 +298,9 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader5,
 			this.columnHeader6,
 			this.columnHeader7,
+			this.columnHeader9,
 			this.columnHeader8,
-			this.columnHeader9});
+			this.columnHeader10});
 			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -355,8 +358,8 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			// columnHeader9
 			// 
-			this.columnHeader9.Text = "№";
-			this.columnHeader9.Width = 0;
+			this.columnHeader9.Text = "Контрагент";
+			this.columnHeader9.Width = 150;
 			// 
 			// contextMenuStrip1
 			// 
@@ -407,6 +410,11 @@ namespace Aggregator.Client.Documents.Order
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "application.png");
+			// 
+			// columnHeader10
+			// 
+			this.columnHeader10.Text = "№";
+			this.columnHeader10.Width = 0;
 			// 
 			// FormOrderJournal
 			// 

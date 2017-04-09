@@ -102,10 +102,11 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			
 			if(oleDb.ExecuteFill("PurchasePlan")){
 				listView1.Items.Clear();
+				DateTime dt;
 				foreach(DataRow rowElement in oleDb.dataSet.Tables[0].Rows)
 	    		{
 					ListViewItem ListViewItem_add = new ListViewItem();
-					DateTime dt = new DateTime();
+					dt = new DateTime();
 					DateTime.TryParse(rowElement["docDate"].ToString(), out dt);
 					ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
 					ListViewItem_add.StateImageIndex = 0;
@@ -139,10 +140,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			
 			if(sqlServer.ExecuteFill("PurchasePlan")){
 				listView1.Items.Clear();
+				DateTime dt;
 				foreach(DataRow rowElement in sqlServer.dataSet.Tables[0].Rows)
 	    		{
 					ListViewItem ListViewItem_add = new ListViewItem();
-					ListViewItem_add.SubItems.Add(rowElement["docDate"].ToString());
+					dt = new DateTime();
+					DateTime.TryParse(rowElement["docDate"].ToString(), out dt);
+					ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
 					ListViewItem_add.StateImageIndex = 0;
 					ListViewItem_add.SubItems.Add(rowElement["docNumber"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docName"].ToString());

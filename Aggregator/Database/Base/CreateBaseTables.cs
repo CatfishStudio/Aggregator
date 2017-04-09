@@ -284,7 +284,23 @@ namespace Aggregator.Database.Base
 		/* Документ: Заказ */
 		public static void TableOrders()
 		{
+			String sqlCommand;
+			QueryOleDb query;
+			query = new QueryOleDb(DataConfig.localDatabase);
 			
+			sqlCommand = "CREATE TABLE Orders (" +
+				"[id] COUNTER PRIMARY KEY, " +
+				"[docDate] DATETIME, " +
+				"[docNumber] VARCHAR DEFAULT '' UNIQUE, " +
+				"[docName] VARCHAR DEFAULT '', " +
+				"[docCounteragent] VARCHAR DEFAULT '', " +
+				"[docAutor] VARCHAR DEFAULT '', " +
+				"[docSum] FLOAT DEFAULT 0, " +
+				"[docVat] FLOAT DEFAULT 0, " +
+				"[docTotal] FLOAT DEFAULT 0" +
+				")";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Заказы.", false, true);
 		}
 		
 		public static void TableHistory()
@@ -331,6 +347,12 @@ namespace Aggregator.Database.Base
 			sqlCommand = "INSERT INTO History (" +
 				"[name], [represent], [datetime], [error], [user]) " +
 				"VALUES ('PurchasePlan', 'План закупок', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
+			query.SetCommand(sqlCommand);
+			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу История.", false, true);
+			
+			sqlCommand = "INSERT INTO History (" +
+				"[name], [represent], [datetime], [error], [user]) " +
+				"VALUES ('Orders', 'Заказы', '" + DateTime.Now.ToString() + "', '', '" + DataConfig.userName + "')";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу История.", false, true);
 		}

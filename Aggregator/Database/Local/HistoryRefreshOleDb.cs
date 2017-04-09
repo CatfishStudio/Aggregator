@@ -127,6 +127,7 @@ namespace Aggregator.Database.Local
 				if(tableName == "Nomenclature" && DataForms.FNomenclature != null) DataForms.FNomenclature.TableRefresh();
 				if(tableName == "Units" && DataForms.FUnits != null) DataForms.FUnits.TableRefresh();
 				if(tableName == "PurchasePlan" && DataForms.FPurchasePlanJournal != null) DataForms.FPurchasePlanJournal.TableRefresh();
+				if(tableName == "Orders" && DataForms.FOrderJournal != null) DataForms.FOrderJournal.TableRefresh();
 				
 				Utilits.Console.Log("[ИСТОРИЯ] Таблица " + tableRepresent + " была успешно обновлена.");
 			}catch(Exception ex){
@@ -141,7 +142,8 @@ namespace Aggregator.Database.Local
 			if(tableName == "Counteragents") return 1;
 			if(tableName == "Nomenclature") return 2;
 			if(tableName == "Units") return 3;
-			if(tableName == "PurchasePlan") return 3;
+			if(tableName == "PurchasePlan") return 4;
+			if(tableName == "Orders") return 5;
 			return -1;
 		}
 		
