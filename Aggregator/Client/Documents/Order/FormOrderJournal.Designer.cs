@@ -99,8 +99,9 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.создатьПланЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.изменитьПланЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,7 +110,6 @@ namespace Aggregator.Client.Documents.Order
 			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -257,6 +257,7 @@ namespace Aggregator.Client.Documents.Order
 			this.deleteButton.TabIndex = 6;
 			this.toolTip1.SetToolTip(this.deleteButton, "Удалить заказ");
 			this.deleteButton.UseVisualStyleBackColor = true;
+			this.deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
 			// 
 			// editButton
 			// 
@@ -267,6 +268,7 @@ namespace Aggregator.Client.Documents.Order
 			this.editButton.TabIndex = 5;
 			this.toolTip1.SetToolTip(this.editButton, "Изменить заказ");
 			this.editButton.UseVisualStyleBackColor = true;
+			this.editButton.Click += new System.EventHandler(this.EditButtonClick);
 			// 
 			// addButton
 			// 
@@ -277,6 +279,7 @@ namespace Aggregator.Client.Documents.Order
 			this.addButton.TabIndex = 1;
 			this.toolTip1.SetToolTip(this.addButton, "Создать заказ");
 			this.addButton.UseVisualStyleBackColor = true;
+			this.addButton.Click += new System.EventHandler(this.AddButtonClick);
 			// 
 			// panel3
 			// 
@@ -351,15 +354,20 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader7.Text = "Всего";
 			this.columnHeader7.Width = 100;
 			// 
+			// columnHeader9
+			// 
+			this.columnHeader9.Text = "Контрагент";
+			this.columnHeader9.Width = 150;
+			// 
 			// columnHeader8
 			// 
 			this.columnHeader8.Text = "Автор";
 			this.columnHeader8.Width = 150;
 			// 
-			// columnHeader9
+			// columnHeader10
 			// 
-			this.columnHeader9.Text = "Контрагент";
-			this.columnHeader9.Width = 150;
+			this.columnHeader10.Text = "№";
+			this.columnHeader10.Width = 0;
 			// 
 			// contextMenuStrip1
 			// 
@@ -409,12 +417,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "application.png");
-			// 
-			// columnHeader10
-			// 
-			this.columnHeader10.Text = "№";
-			this.columnHeader10.Width = 0;
+			this.imageList1.Images.SetKeyName(0, "page_white_text.png");
 			// 
 			// FormOrderJournal
 			// 

@@ -239,5 +239,17 @@ namespace Aggregator.Client.Documents.Order
 			DataForms.FClient.messageInStatus("...");
 			Utilits.Console.Log("Журнал заказов: закрыт.");
 		}
+		void AddButtonClick(object sender, EventArgs e)
+		{
+			addFile();
+		}
+		void EditButtonClick(object sender, EventArgs e)
+		{
+			editFile();
+		}
+		void DeleteButtonClick(object sender, EventArgs e)
+		{
+	
+		}
 	}
 }
