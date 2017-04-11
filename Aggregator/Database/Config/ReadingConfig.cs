@@ -20,6 +20,10 @@ namespace Aggregator.Database.Config
 	{
 		public static void ReadDatabaseSettings()
 		{
+			DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+			DataConfig.oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
+			DataConfig.oledbConnectPass = "12345";
+			
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
@@ -37,10 +41,18 @@ namespace Aggregator.Database.Config
 				MessageBox.Show("[ReadDatabaseSettings]: " + ex.ToString(), "Ошибка");
 				Application.Exit();
 			}
+			
+			DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+			DataConfig.oledbConnectLineEnd = "";
+			DataConfig.oledbConnectPass = "";
 		}
 		
 		public static void ReadSettings()
 		{
+			DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+			DataConfig.oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
+			DataConfig.oledbConnectPass = "12345";
+			
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
@@ -57,6 +69,10 @@ namespace Aggregator.Database.Config
 				MessageBox.Show("[Настройки]: " + ex.ToString(), "Ошибка");
 				Application.Exit();
 			}
+			
+			DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+			DataConfig.oledbConnectLineEnd = "";
+			DataConfig.oledbConnectPass = "";
 		}
 	}
 }

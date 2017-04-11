@@ -23,6 +23,9 @@ namespace Aggregator.Database.Base
 			/* Создание файла базы данных */
 			CreateDatabase createDataBase;
 			try{
+				DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+				DataConfig.oledbConnectLineEnd = "";
+				DataConfig.oledbConnectPass = "";
 				createDataBase = new CreateDatabase(DataConfig.localDatabase, DataConstants.TYPE_OLEDB);
 			}catch(Exception ex){
 				MessageBox.Show(ex.ToString(), "Ошибка:");

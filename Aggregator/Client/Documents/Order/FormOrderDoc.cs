@@ -63,7 +63,6 @@ namespace Aggregator.Client.Documents.Order
 					return numStr;
 				}catch(Exception ex){
 					oleDbConnection.Close();
-					//Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
 				}
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){

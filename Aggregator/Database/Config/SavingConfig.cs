@@ -20,6 +20,10 @@ namespace Aggregator.Database.Config
 	{
 		public static bool SaveDatabaseSettings()
 		{
+			DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+			DataConfig.oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
+			DataConfig.oledbConnectPass = "12345";
+			
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
@@ -47,16 +51,30 @@ namespace Aggregator.Database.Config
 				
 				oleDb.Dispose();
 				Utilits.Console.Log("Сохранение настроек соединения с базой данных прошло успешно.");
+				
+				DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+				DataConfig.oledbConnectLineEnd = "";
+				DataConfig.oledbConnectPass = "";
+				
 				return true;
 			}catch(Exception ex){
 				oleDb.Error();
 				Utilits.Console.Log("[ОШИБКА] Сохранение настроек соединения с базой данных. " + ex.Message.ToString(), false, true);
+				
+				DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+				DataConfig.oledbConnectLineEnd = "";
+				DataConfig.oledbConnectPass = "";
+				
 				return false;
 			}
 		}
 		
 		public static bool SaveSettings()
 		{
+			DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+			DataConfig.oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
+			DataConfig.oledbConnectPass = "12345";
+			
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
@@ -75,15 +93,30 @@ namespace Aggregator.Database.Config
 				if(oleDb.ExecuteUpdate("Settings")){
 					oleDb.Dispose();
 					Utilits.Console.Log("Сохранение настроек программы прошло успешно.");
+					
+					DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+					DataConfig.oledbConnectLineEnd = "";
+					DataConfig.oledbConnectPass = "";
+					
 					return true;
 				}else{
 					oleDb.Error();
 					Utilits.Console.Log("[ОШИБКА] Настройки программы не сохранены.", false, true);
+					
+					DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+					DataConfig.oledbConnectLineEnd = "";
+					DataConfig.oledbConnectPass = "";
+					
 					return false;
 				}
 			}catch(Exception ex){
 				oleDb.Error();
 				Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
+				
+				DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+				DataConfig.oledbConnectLineEnd = "";
+				DataConfig.oledbConnectPass = "";
+				
 				return false;
 			}
 		}

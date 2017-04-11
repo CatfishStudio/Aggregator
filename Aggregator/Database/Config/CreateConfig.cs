@@ -8,9 +8,7 @@
  */
 using System;
 using System.Windows.Forms;
-using System.Data.OleDb;
 using Aggregator.Data;
-using Aggregator.Database.Local;
 
 namespace Aggregator.Database.Config
 {
@@ -24,7 +22,11 @@ namespace Aggregator.Database.Config
 			/* Создание файла базы данных */
 			CreateDatabase createDataBase;
 			try{
+				DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+				DataConfig.oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
+				DataConfig.oledbConnectPass = "12345";
 				createDataBase = new CreateDatabase(DataConfig.configFile, DataConstants.TYPE_OLEDB);
+			
 			}catch(Exception ex){
 				MessageBox.Show(ex.ToString(), "Ошибка:");
 				Application.Exit();
