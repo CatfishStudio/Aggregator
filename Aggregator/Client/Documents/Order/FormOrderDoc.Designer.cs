@@ -32,27 +32,9 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox counteragentTextBox3;
+		private System.Windows.Forms.TextBox counteragentTextBox;
 		private System.Windows.Forms.Panel panel5;
 		private System.Windows.Forms.ListView listViewNomenclature;
-		private System.Windows.Forms.ColumnHeader columnHeader4;
-		private System.Windows.Forms.ColumnHeader columnHeader5;
-		private System.Windows.Forms.ColumnHeader columnHeader7;
-		private System.Windows.Forms.ColumnHeader columnHeader8;
-		private System.Windows.Forms.ColumnHeader columnHeader11;
-		private System.Windows.Forms.ColumnHeader columnHeader12;
-		private System.Windows.Forms.ColumnHeader columnHeader13;
-		private System.Windows.Forms.ColumnHeader columnHeader14;
-		private System.Windows.Forms.ColumnHeader columnHeader15;
-		private System.Windows.Forms.ColumnHeader columnHeader16;
-		private System.Windows.Forms.ColumnHeader columnHeader17;
-		private System.Windows.Forms.ColumnHeader columnHeader18;
-		private System.Windows.Forms.ColumnHeader columnHeader19;
-		private System.Windows.Forms.ColumnHeader columnHeader20;
-		private System.Windows.Forms.ColumnHeader columnHeader21;
-		private System.Windows.Forms.ColumnHeader columnHeader22;
-		private System.Windows.Forms.ColumnHeader columnHeader23;
-		private System.Windows.Forms.ColumnHeader columnHeader24;
 		private System.Windows.Forms.Button buttonNomenclaturesDelete;
 		private System.Windows.Forms.Button buttonNomenclaturesAdd;
 		private System.Windows.Forms.Panel panel6;
@@ -86,6 +68,24 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Button findButton;
 		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.ColumnHeader columnHeader6;
+		private System.Windows.Forms.ColumnHeader columnHeader7;
+		private System.Windows.Forms.ColumnHeader columnHeader8;
+		private System.Windows.Forms.ColumnHeader columnHeader9;
+		private System.Windows.Forms.ColumnHeader columnHeader10;
+		private System.Windows.Forms.ColumnHeader columnHeader11;
+		private System.Windows.Forms.ColumnHeader columnHeader12;
+		private System.Windows.Forms.ColumnHeader columnHeader13;
+		private System.Windows.Forms.ColumnHeader columnHeader14;
+		private System.Windows.Forms.ColumnHeader columnHeader15;
+		private System.Windows.Forms.ColumnHeader columnHeader16;
+		private System.Windows.Forms.ColumnHeader columnHeader17;
+		private System.Windows.Forms.ColumnHeader columnHeader18;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -118,7 +118,7 @@ namespace Aggregator.Client.Documents.Order
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
-			this.counteragentTextBox3 = new System.Windows.Forms.TextBox();
+			this.counteragentTextBox = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.autorLabel = new System.Windows.Forms.Label();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -127,13 +127,17 @@ namespace Aggregator.Client.Documents.Order
 			this.label1 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.panel5 = new System.Windows.Forms.Panel();
 			this.listViewNomenclature = new System.Windows.Forms.ListView();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
@@ -142,17 +146,6 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader16 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader17 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader18 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader19 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader20 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader21 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader22 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader23 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader24 = new System.Windows.Forms.ColumnHeader();
-			this.buttonNomenclaturesDelete = new System.Windows.Forms.Button();
-			this.buttonNomenclaturesAdd = new System.Windows.Forms.Button();
-			this.panel6 = new System.Windows.Forms.Panel();
-			this.buttonNomenclatureDelete = new System.Windows.Forms.Button();
-			this.buttonNomenclatureAdd = new System.Windows.Forms.Button();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -179,19 +172,26 @@ namespace Aggregator.Client.Documents.Order
 			this.label8 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
+			this.panel5 = new System.Windows.Forms.Panel();
 			this.findButton = new System.Windows.Forms.Button();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.buttonNomenclaturesDelete = new System.Windows.Forms.Button();
+			this.buttonNomenclaturesAdd = new System.Windows.Forms.Button();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.buttonNomenclatureDelete = new System.Windows.Forms.Button();
+			this.buttonNomenclatureAdd = new System.Windows.Forms.Button();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
-			this.panel5.SuspendLayout();
 			this.panel7.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.panel5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -276,7 +276,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.panel2.Controls.Add(this.button2);
 			this.panel2.Controls.Add(this.button1);
-			this.panel2.Controls.Add(this.counteragentTextBox3);
+			this.panel2.Controls.Add(this.counteragentTextBox);
 			this.panel2.Controls.Add(this.label3);
 			this.panel2.Controls.Add(this.autorLabel);
 			this.panel2.Controls.Add(this.dateTimePicker1);
@@ -298,6 +298,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button2.TabIndex = 27;
 			this.button2.Text = "X";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.Button2Click);
 			// 
 			// button1
 			// 
@@ -308,13 +309,15 @@ namespace Aggregator.Client.Documents.Order
 			this.button1.Size = new System.Drawing.Size(26, 20);
 			this.button1.TabIndex = 26;
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
-			// counteragentTextBox3
+			// counteragentTextBox
 			// 
-			this.counteragentTextBox3.Location = new System.Drawing.Point(98, 39);
-			this.counteragentTextBox3.Name = "counteragentTextBox3";
-			this.counteragentTextBox3.Size = new System.Drawing.Size(252, 20);
-			this.counteragentTextBox3.TabIndex = 25;
+			this.counteragentTextBox.Location = new System.Drawing.Point(98, 39);
+			this.counteragentTextBox.Name = "counteragentTextBox";
+			this.counteragentTextBox.Size = new System.Drawing.Size(252, 20);
+			this.counteragentTextBox.TabIndex = 25;
+			this.counteragentTextBox.TextChanged += new System.EventHandler(this.CounteragentTextBoxTextChanged);
 			// 
 			// label3
 			// 
@@ -393,39 +396,20 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage1.Text = "Номенклатура";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
-			// tabPage2
-			// 
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(731, 316);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "tabPage2";
-			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// panel5
-			// 
-			this.panel5.Controls.Add(this.findButton);
-			this.panel5.Controls.Add(this.comboBox1);
-			this.panel5.Controls.Add(this.buttonNomenclaturesDelete);
-			this.panel5.Controls.Add(this.buttonNomenclaturesAdd);
-			this.panel5.Controls.Add(this.panel6);
-			this.panel5.Controls.Add(this.buttonNomenclatureDelete);
-			this.panel5.Controls.Add(this.buttonNomenclatureAdd);
-			this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel5.Location = new System.Drawing.Point(3, 3);
-			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(725, 29);
-			this.panel5.TabIndex = 2;
-			// 
 			// listViewNomenclature
 			// 
 			this.listViewNomenclature.Activation = System.Windows.Forms.ItemActivation.OneClick;
 			this.listViewNomenclature.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.columnHeader1,
+			this.columnHeader2,
+			this.columnHeader3,
 			this.columnHeader4,
 			this.columnHeader5,
+			this.columnHeader6,
 			this.columnHeader7,
 			this.columnHeader8,
+			this.columnHeader9,
+			this.columnHeader10,
 			this.columnHeader11,
 			this.columnHeader12,
 			this.columnHeader13,
@@ -433,13 +417,7 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader15,
 			this.columnHeader16,
 			this.columnHeader17,
-			this.columnHeader18,
-			this.columnHeader19,
-			this.columnHeader20,
-			this.columnHeader21,
-			this.columnHeader22,
-			this.columnHeader23,
-			this.columnHeader24});
+			this.columnHeader18});
 			this.listViewNomenclature.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listViewNomenclature.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewNomenclature.FullRowSelect = true;
@@ -451,137 +429,99 @@ namespace Aggregator.Client.Documents.Order
 			this.listViewNomenclature.UseCompatibleStateImageBehavior = false;
 			this.listViewNomenclature.View = System.Windows.Forms.View.Details;
 			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = "...";
+			this.columnHeader1.Width = 40;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "Наименование:";
+			this.columnHeader2.Width = 400;
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "Ед.изм:";
+			// 
 			// columnHeader4
 			// 
-			this.columnHeader4.Text = "...";
-			this.columnHeader4.Width = 40;
+			this.columnHeader4.Text = "Кол-во:";
+			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader4.Width = 100;
 			// 
 			// columnHeader5
 			// 
-			this.columnHeader5.Text = "Номенклатура";
-			this.columnHeader5.Width = 250;
+			this.columnHeader5.Text = "Цена:";
+			this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader5.Width = 100;
+			// 
+			// columnHeader6
+			// 
+			this.columnHeader6.Text = "НДС:";
+			this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader6.Width = 100;
 			// 
 			// columnHeader7
 			// 
-			this.columnHeader7.Text = "Ед. изм.";
-			this.columnHeader7.Width = 40;
+			this.columnHeader7.Text = "Сумма:";
+			this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader7.Width = 100;
 			// 
 			// columnHeader8
 			// 
-			this.columnHeader8.Text = "Кол-во";
-			this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader8.Width = 100;
+			this.columnHeader8.Text = "Производитель:";
+			this.columnHeader8.Width = 0;
+			// 
+			// columnHeader9
+			// 
+			this.columnHeader9.Text = "Остаток";
+			this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader9.Width = 0;
+			// 
+			// columnHeader10
+			// 
+			this.columnHeader10.Text = "Срок годности";
+			this.columnHeader10.Width = 0;
 			// 
 			// columnHeader11
 			// 
-			this.columnHeader11.Text = "Цена";
-			this.columnHeader11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader11.Width = 100;
+			this.columnHeader11.Text = "Скидка №1";
+			this.columnHeader11.Width = 0;
 			// 
 			// columnHeader12
 			// 
-			this.columnHeader12.Text = "Производитель";
-			this.columnHeader12.Width = 250;
+			this.columnHeader12.Text = "Скидка №2";
+			this.columnHeader12.Width = 0;
 			// 
 			// columnHeader13
 			// 
-			this.columnHeader13.Text = "Остаток";
-			this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader13.Text = "Скидка №3";
+			this.columnHeader13.Width = 0;
 			// 
 			// columnHeader14
 			// 
-			this.columnHeader14.Text = "Срок годности";
+			this.columnHeader14.Text = "Скидка №4";
+			this.columnHeader14.Width = 0;
 			// 
 			// columnHeader15
 			// 
-			this.columnHeader15.Text = "Скидка №1";
-			this.columnHeader15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader15.Text = "Код";
+			this.columnHeader15.Width = 0;
 			// 
 			// columnHeader16
 			// 
-			this.columnHeader16.Text = "Скидка №2";
-			this.columnHeader16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader16.Text = "Серия";
+			this.columnHeader16.Width = 0;
 			// 
 			// columnHeader17
 			// 
-			this.columnHeader17.Text = "Скидка №3";
-			this.columnHeader17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader17.Text = "Артикул";
+			this.columnHeader17.Width = 0;
 			// 
 			// columnHeader18
 			// 
-			this.columnHeader18.Text = "Скидка №4";
-			this.columnHeader18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// columnHeader19
-			// 
-			this.columnHeader19.Text = "Код товара";
-			// 
-			// columnHeader20
-			// 
-			this.columnHeader20.Text = "Серия";
-			// 
-			// columnHeader21
-			// 
-			this.columnHeader21.Text = "Артикул";
-			// 
-			// columnHeader22
-			// 
-			this.columnHeader22.Text = "Контрагент";
-			this.columnHeader22.Width = 250;
-			// 
-			// columnHeader23
-			// 
-			this.columnHeader23.Text = "Прайс-лист";
-			this.columnHeader23.Width = 100;
-			// 
-			// columnHeader24
-			// 
-			this.columnHeader24.Text = "№";
-			this.columnHeader24.Width = 0;
-			// 
-			// buttonNomenclaturesDelete
-			// 
-			this.buttonNomenclaturesDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonNomenclaturesDelete.Image")));
-			this.buttonNomenclaturesDelete.Location = new System.Drawing.Point(100, 3);
-			this.buttonNomenclaturesDelete.Name = "buttonNomenclaturesDelete";
-			this.buttonNomenclaturesDelete.Size = new System.Drawing.Size(25, 23);
-			this.buttonNomenclaturesDelete.TabIndex = 14;
-			this.buttonNomenclaturesDelete.UseVisualStyleBackColor = true;
-			// 
-			// buttonNomenclaturesAdd
-			// 
-			this.buttonNomenclaturesAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonNomenclaturesAdd.Image")));
-			this.buttonNomenclaturesAdd.Location = new System.Drawing.Point(38, 3);
-			this.buttonNomenclaturesAdd.Name = "buttonNomenclaturesAdd";
-			this.buttonNomenclaturesAdd.Size = new System.Drawing.Size(25, 23);
-			this.buttonNomenclaturesAdd.TabIndex = 13;
-			this.buttonNomenclaturesAdd.UseVisualStyleBackColor = true;
-			// 
-			// panel6
-			// 
-			this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel6.Location = new System.Drawing.Point(131, 3);
-			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(4, 23);
-			this.panel6.TabIndex = 12;
-			// 
-			// buttonNomenclatureDelete
-			// 
-			this.buttonNomenclatureDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonNomenclatureDelete.Image")));
-			this.buttonNomenclatureDelete.Location = new System.Drawing.Point(69, 3);
-			this.buttonNomenclatureDelete.Name = "buttonNomenclatureDelete";
-			this.buttonNomenclatureDelete.Size = new System.Drawing.Size(25, 23);
-			this.buttonNomenclatureDelete.TabIndex = 11;
-			this.buttonNomenclatureDelete.UseVisualStyleBackColor = true;
-			// 
-			// buttonNomenclatureAdd
-			// 
-			this.buttonNomenclatureAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonNomenclatureAdd.Image")));
-			this.buttonNomenclatureAdd.Location = new System.Drawing.Point(7, 3);
-			this.buttonNomenclatureAdd.Name = "buttonNomenclatureAdd";
-			this.buttonNomenclatureAdd.Size = new System.Drawing.Size(25, 23);
-			this.buttonNomenclatureAdd.TabIndex = 10;
-			this.buttonNomenclatureAdd.UseVisualStyleBackColor = true;
+			this.columnHeader18.Text = "№";
+			this.columnHeader18.Width = 0;
 			// 
 			// panel7
 			// 
@@ -880,6 +820,21 @@ namespace Aggregator.Client.Documents.Order
 			this.label9.TabIndex = 0;
 			this.label9.Text = "Сумма:";
 			// 
+			// panel5
+			// 
+			this.panel5.Controls.Add(this.findButton);
+			this.panel5.Controls.Add(this.comboBox1);
+			this.panel5.Controls.Add(this.buttonNomenclaturesDelete);
+			this.panel5.Controls.Add(this.buttonNomenclaturesAdd);
+			this.panel5.Controls.Add(this.panel6);
+			this.panel5.Controls.Add(this.buttonNomenclatureDelete);
+			this.panel5.Controls.Add(this.buttonNomenclatureAdd);
+			this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel5.Location = new System.Drawing.Point(3, 3);
+			this.panel5.Name = "panel5";
+			this.panel5.Size = new System.Drawing.Size(725, 29);
+			this.panel5.TabIndex = 2;
+			// 
 			// findButton
 			// 
 			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
@@ -897,6 +852,60 @@ namespace Aggregator.Client.Documents.Order
 			this.comboBox1.Size = new System.Drawing.Size(196, 21);
 			this.comboBox1.TabIndex = 18;
 			// 
+			// buttonNomenclaturesDelete
+			// 
+			this.buttonNomenclaturesDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonNomenclaturesDelete.Image")));
+			this.buttonNomenclaturesDelete.Location = new System.Drawing.Point(100, 3);
+			this.buttonNomenclaturesDelete.Name = "buttonNomenclaturesDelete";
+			this.buttonNomenclaturesDelete.Size = new System.Drawing.Size(25, 23);
+			this.buttonNomenclaturesDelete.TabIndex = 14;
+			this.buttonNomenclaturesDelete.UseVisualStyleBackColor = true;
+			// 
+			// buttonNomenclaturesAdd
+			// 
+			this.buttonNomenclaturesAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonNomenclaturesAdd.Image")));
+			this.buttonNomenclaturesAdd.Location = new System.Drawing.Point(38, 3);
+			this.buttonNomenclaturesAdd.Name = "buttonNomenclaturesAdd";
+			this.buttonNomenclaturesAdd.Size = new System.Drawing.Size(25, 23);
+			this.buttonNomenclaturesAdd.TabIndex = 13;
+			this.buttonNomenclaturesAdd.UseVisualStyleBackColor = true;
+			// 
+			// panel6
+			// 
+			this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panel6.Location = new System.Drawing.Point(131, 3);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(4, 23);
+			this.panel6.TabIndex = 12;
+			// 
+			// buttonNomenclatureDelete
+			// 
+			this.buttonNomenclatureDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonNomenclatureDelete.Image")));
+			this.buttonNomenclatureDelete.Location = new System.Drawing.Point(69, 3);
+			this.buttonNomenclatureDelete.Name = "buttonNomenclatureDelete";
+			this.buttonNomenclatureDelete.Size = new System.Drawing.Size(25, 23);
+			this.buttonNomenclatureDelete.TabIndex = 11;
+			this.buttonNomenclatureDelete.UseVisualStyleBackColor = true;
+			// 
+			// buttonNomenclatureAdd
+			// 
+			this.buttonNomenclatureAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonNomenclatureAdd.Image")));
+			this.buttonNomenclatureAdd.Location = new System.Drawing.Point(7, 3);
+			this.buttonNomenclatureAdd.Name = "buttonNomenclatureAdd";
+			this.buttonNomenclatureAdd.Size = new System.Drawing.Size(25, 23);
+			this.buttonNomenclatureAdd.TabIndex = 10;
+			this.buttonNomenclatureAdd.UseVisualStyleBackColor = true;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(731, 316);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "tabPage2";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
 			// FormOrderDoc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -908,13 +917,13 @@ namespace Aggregator.Client.Documents.Order
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormOrderDoc";
 			this.Text = "Заказ";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormOrderDocFormClosed);
 			this.Load += new System.EventHandler(this.FormOrderDocLoad);
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
-			this.panel5.ResumeLayout(false);
 			this.panel7.ResumeLayout(false);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
@@ -923,6 +932,7 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
+			this.panel5.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

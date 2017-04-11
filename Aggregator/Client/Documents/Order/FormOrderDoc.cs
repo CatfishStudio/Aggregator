@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
+using Aggregator.Client.Directories;
 
 namespace Aggregator.Client.Documents.Order
 {
@@ -39,6 +40,7 @@ namespace Aggregator.Client.Documents.Order
 		SqlServer sqlServer;
 		String docNumber;
 		int selectTableLine = -1;		// выбранная строка в таблице
+		String counteragent = "";
 		
 		String getDocNumber()
 		{
@@ -98,5 +100,35 @@ namespace Aggregator.Client.Documents.Order
 		{
 	
 		}
+		void FormOrderDocFormClosed(object sender, FormClosedEventArgs e)
+		{
+			
+		}
+		void Button1Click(object sender, EventArgs e)
+		{
+			if(DataForms.FCounteragents != null) DataForms.FCounteragents.Close();
+			if(DataForms.FCounteragents == null) {
+				DataForms.FCounteragents = new FormCounteragents();
+				DataForms.FCounteragents.MdiParent = DataForms.FClient;
+				DataForms.FCounteragents.TextBoxReturnValue = counteragentTextBox;
+				DataForms.FCounteragents.TypeReturnValue = "name";
+				DataForms.FCounteragents.ShowMenuReturnValue();
+				DataForms.FCounteragents.Show();
+			}
+		}
+		void Button2Click(object sender, EventArgs e)
+		{
+			counteragent = "";
+			counteragentTextBox.Clear();
+		}
+		void CounteragentTextBoxTextChanged(object sender, EventArgs e)
+		{
+			if(counteragent == "") counteragent = counteragentTextBox.Text;
+			if(counteragent.Length == 1) counteragent = "";
+			counteragentTextBox.Text = counteragent;
+		}
+		
+		
+		
 	}
 }
