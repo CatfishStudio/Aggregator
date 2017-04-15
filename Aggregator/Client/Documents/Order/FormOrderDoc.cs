@@ -15,6 +15,7 @@ using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
 using Aggregator.Client.Directories;
+using Aggregator.Utilits;
 
 namespace Aggregator.Client.Documents.Order
 {
@@ -99,6 +100,38 @@ namespace Aggregator.Client.Documents.Order
 			selectTableLine = -1;
 		}
 		
+		void calculate()
+		{
+			if(listViewNomenclature.Items.Count > 0){
+				double sum = 0;
+				double amount = 0;
+				double price = 0;
+				double vat = 0;
+				double total = 0;
+				int count = listViewNomenclature.Items.Count;
+				for(int i = 0; i < count; i++){
+					if(listViewNomenclature.Items[i].SubItems[4].Text != "") amount = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[3].Text);
+					else amount = 0;
+					if(listViewNomenclature.Items[i].SubItems[7].Text != "") price = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
+					else price = 0;
+					sum += (price * amount);
+				}
+				sum = Math.Round(sum, 2);
+				vat = sum * DataConstants.ConstFirmVAT / 100;
+				vat = Math.Round(vat, 2);
+				total = sum + vat;
+				total = Math.Round(total, 2);
+				
+				sumTextBox.Text = Conversion.StringToMoney(Conversion.StringToDouble(sum.ToString()).ToString());
+				vatTextBox.Text = Conversion.StringToMoney(Conversion.StringToDouble(vat.ToString()).ToString());
+				totalTextBox.Text = Conversion.StringToMoney(Conversion.StringToDouble(total.ToString()).ToString());
+			}else{
+				sumTextBox.Text = "0,00";
+				vatTextBox.Text = "0,00";
+				totalTextBox.Text = "0,00";
+			}
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -140,6 +173,38 @@ namespace Aggregator.Client.Documents.Order
 			FOrderNomenclature.Counteragent = counteragentTextBox.Text;
 			FOrderNomenclature.loadNomenclature();
 			FOrderNomenclature.Show();
+		}
+		void ListViewNomenclatureSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(listViewNomenclature.SelectedItems.Count > 0){
+				selectTableLine = listViewNomenclature.SelectedItems[0].Index;
+				groupBox1.Text = listViewNomenclature.Items[selectTableLine].SubItems[1].Text;
+				if(groupBox1.Text.Length > 40) groupBox1.Text = groupBox1.Text.Remove(40) + "...";
+				unitsTextBox.Text = listViewNomenclature.Items[selectTableLine].SubItems[2].Text;
+				amountRextBox.Text = listViewNomenclature.Items[selectTableLine].SubItems[3].Text;
+				priceTextBox.Text = listViewNomenclature.Items[selectTableLine].SubItems[4].Text;
+			}
+		}
+		void UnitsTextBoxTextChanged(object sender, EventArgs e)
+		{
+			if(listViewNomenclature.Items.Count > 0 && selectTableLine > -1){
+				listViewNomenclature.Items[selectTableLine].SubItems[2].Text = unitsTextBox.Text;
+			}
+		}
+		void Button8Click(object sender, EventArgs e)
+		{
+			if(DataForms.FUnits != null) DataForms.FUnits.Close();
+			if(DataForms.FUnits == null) {
+				DataForms.FUnits = new FormUnits();
+				DataForms.FUnits.MdiParent = DataForms.FClient;
+				DataForms.FUnits.TextBoxReturnValue = unitsTextBox;
+				DataForms.FUnits.ShowMenuReturnValue();
+				DataForms.FUnits.Show();
+			}
+		}
+		void Button9Click(object sender, EventArgs e)
+		{
+			unitsTextBox.Clear();
 		}
 		
 		

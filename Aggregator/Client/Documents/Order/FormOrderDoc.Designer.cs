@@ -449,6 +449,7 @@ namespace Aggregator.Client.Documents.Order
 			this.listViewNomenclature.TabIndex = 9;
 			this.listViewNomenclature.UseCompatibleStateImageBehavior = false;
 			this.listViewNomenclature.View = System.Windows.Forms.View.Details;
+			this.listViewNomenclature.SelectedIndexChanged += new System.EventHandler(this.ListViewNomenclatureSelectedIndexChanged);
 			// 
 			// columnHeader1
 			// 
@@ -678,6 +679,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button9.TabIndex = 24;
 			this.button9.Text = "X";
 			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Click += new System.EventHandler(this.Button9Click);
 			// 
 			// button7
 			// 
@@ -700,6 +702,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button8.Size = new System.Drawing.Size(26, 20);
 			this.button8.TabIndex = 23;
 			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.Button8Click);
 			// 
 			// button6
 			// 
@@ -720,6 +723,7 @@ namespace Aggregator.Client.Documents.Order
 			this.unitsTextBox.Name = "unitsTextBox";
 			this.unitsTextBox.Size = new System.Drawing.Size(144, 20);
 			this.unitsTextBox.TabIndex = 5;
+			this.unitsTextBox.TextChanged += new System.EventHandler(this.UnitsTextBoxTextChanged);
 			// 
 			// label5
 			// 
