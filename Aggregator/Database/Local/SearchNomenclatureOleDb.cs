@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using Aggregator.Data;
+using Aggregator.Utilits;
 
 namespace Aggregator.Database.Local
 {
@@ -209,6 +210,7 @@ namespace Aggregator.Database.Local
 			int count = sourceListView.Items.Count;
 			bool result = false;
 			DateTime dt;
+			String value;
 			
 			for(int i = 0; i < count; i++) {
 				// получаем сформированный запрос по критериям выбранной номенклатуры
@@ -225,16 +227,21 @@ namespace Aggregator.Database.Local
 					if(result){
 						sourceListView.Items[i].StateImageIndex = 1;
 						sourceListView.Items[i].SubItems[6].Text = oleDbDataReader["name"].ToString();
-			        	sourceListView.Items[i].SubItems[7].Text = oleDbDataReader["price"].ToString();
+						value = Conversion.StringToMoney(Conversion.StringToDouble(oleDbDataReader["price"].ToString()).ToString());
+			        	sourceListView.Items[i].SubItems[7].Text = value;
 			        	sourceListView.Items[i].SubItems[8].Text = oleDbDataReader["manufacturer"].ToString();
 			        	sourceListView.Items[i].SubItems[9].Text = oleDbDataReader["remainder"].ToString();
 			        	dt = new DateTime();
 						DateTime.TryParse(oleDbDataReader["term"].ToString(), out dt);
 						sourceListView.Items[i].SubItems[10].Text = dt.ToString("dd.MM.yyyy");
-			        	sourceListView.Items[i].SubItems[11].Text = oleDbDataReader["discount1"].ToString();
-			        	sourceListView.Items[i].SubItems[12].Text = oleDbDataReader["discount2"].ToString();
-			        	sourceListView.Items[i].SubItems[13].Text = oleDbDataReader["discount3"].ToString();
-			        	sourceListView.Items[i].SubItems[14].Text = oleDbDataReader["discount4"].ToString();
+						value = Conversion.StringToMoney(Conversion.StringToDouble(oleDbDataReader["discount1"].ToString()).ToString());
+			        	sourceListView.Items[i].SubItems[11].Text = value;
+			        	value = Conversion.StringToMoney(Conversion.StringToDouble(oleDbDataReader["discount2"].ToString()).ToString());
+			        	sourceListView.Items[i].SubItems[12].Text = value;
+			        	value = Conversion.StringToMoney(Conversion.StringToDouble(oleDbDataReader["discount3"].ToString()).ToString());
+			        	sourceListView.Items[i].SubItems[13].Text = value;
+			        	value = Conversion.StringToMoney(Conversion.StringToDouble(oleDbDataReader["discount4"].ToString()).ToString());
+			        	sourceListView.Items[i].SubItems[14].Text = value;
 			        	sourceListView.Items[i].SubItems[15].Text = oleDbDataReader["code"].ToString();
 			        	sourceListView.Items[i].SubItems[16].Text = oleDbDataReader["series"].ToString();
 			        	sourceListView.Items[i].SubItems[17].Text = oleDbDataReader["article"].ToString();

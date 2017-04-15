@@ -40,7 +40,6 @@ namespace Aggregator.Client.Documents.Order
 		SqlServer sqlServer;
 		String docNumber;
 		int selectTableLine = -1;		// выбранная строка в таблице
-		String counteragent = "";
 		
 		String getDocNumber()
 		{
@@ -92,6 +91,14 @@ namespace Aggregator.Client.Documents.Order
 			return null;
 		}
 		
+		void listViewClear()
+		{
+			while(listViewNomenclature.Items.Count > 0){
+				listViewNomenclature.Items[0].Remove();
+			}
+			selectTableLine = -1;
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -118,14 +125,21 @@ namespace Aggregator.Client.Documents.Order
 		}
 		void Button2Click(object sender, EventArgs e)
 		{
-			counteragent = "";
 			counteragentTextBox.Clear();
+			listViewClear();
 		}
 		void CounteragentTextBoxTextChanged(object sender, EventArgs e)
 		{
-			if(counteragent == "") counteragent = counteragentTextBox.Text;
-			if(counteragent.Length == 1) counteragent = "";
-			counteragentTextBox.Text = counteragent;
+			listViewClear();
+		}
+		void ButtonNomenclatureAddClick(object sender, EventArgs e)
+		{
+			FormOrderNomenclature FOrderNomenclature = new FormOrderNomenclature();
+			FOrderNomenclature.MdiParent = DataForms.FClient;
+			FOrderNomenclature.ListViewReturnValue = listViewNomenclature;
+			FOrderNomenclature.Counteragent = counteragentTextBox.Text;
+			FOrderNomenclature.loadNomenclature();
+			FOrderNomenclature.Show();
 		}
 		
 		

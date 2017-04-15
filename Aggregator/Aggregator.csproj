@@ -117,6 +117,10 @@
     <Compile Include="Client\Documents\Order\FormOrderJournal.Designer.cs">
       <DependentUpon>FormOrderJournal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Documents\Order\FormOrderNomenclature.cs" />
+    <Compile Include="Client\Documents\Order\FormOrderNomenclature.Designer.cs">
+      <DependentUpon>FormOrderNomenclature.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanDoc.cs" />
     <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanDoc.Designer.cs">
       <DependentUpon>FormPurchasePlanDoc.cs</DependentUpon>
@@ -235,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Documents\Order\FormOrderJournal.resx">
       <DependentUpon>FormOrderJournal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Documents\Order\FormOrderNomenclature.resx">
+      <DependentUpon>FormOrderNomenclature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Documents\PurchasePlan\FormPurchasePlanDoc.resx">
       <DependentUpon>FormPurchasePlanDoc.cs</DependentUpon>

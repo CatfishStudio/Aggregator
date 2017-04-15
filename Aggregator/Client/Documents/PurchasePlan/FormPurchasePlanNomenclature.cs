@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Database.Local;
+using Aggregator.Utilits;
 
 namespace Aggregator.Client.Documents.PurchasePlan
 {
@@ -66,17 +67,23 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		
 		bool returnValue()
 		{
+			String value;
 			if(listView1.SelectedIndices.Count > 0){
 				ListViewReturnValue.Items[SelectTableLine].StateImageIndex = 1;
 				ListViewReturnValue.Items[SelectTableLine].SubItems[6].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[1].Text;
-				ListViewReturnValue.Items[SelectTableLine].SubItems[7].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[2].Text;
+				value = Conversion.StringToMoney(Conversion.StringToDouble(listView1.Items[listView1.SelectedItems[0].Index].SubItems[2].Text).ToString());
+				ListViewReturnValue.Items[SelectTableLine].SubItems[7].Text= value;
 				ListViewReturnValue.Items[SelectTableLine].SubItems[8].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[3].Text;
 				ListViewReturnValue.Items[SelectTableLine].SubItems[9].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[4].Text;
 				ListViewReturnValue.Items[SelectTableLine].SubItems[10].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[5].Text;
-				ListViewReturnValue.Items[SelectTableLine].SubItems[11].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[6].Text;
-				ListViewReturnValue.Items[SelectTableLine].SubItems[12].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[7].Text;
-				ListViewReturnValue.Items[SelectTableLine].SubItems[13].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[8].Text;
-				ListViewReturnValue.Items[SelectTableLine].SubItems[14].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[9].Text;
+				value = Conversion.StringToMoney(Conversion.StringToDouble(listView1.Items[listView1.SelectedItems[0].Index].SubItems[6].Text).ToString());
+				ListViewReturnValue.Items[SelectTableLine].SubItems[11].Text = value;
+				value = Conversion.StringToMoney(Conversion.StringToDouble(listView1.Items[listView1.SelectedItems[0].Index].SubItems[7].Text).ToString());
+				ListViewReturnValue.Items[SelectTableLine].SubItems[12].Text = value;
+				value = Conversion.StringToMoney(Conversion.StringToDouble(listView1.Items[listView1.SelectedItems[0].Index].SubItems[8].Text).ToString());
+				ListViewReturnValue.Items[SelectTableLine].SubItems[13].Text = value;
+				value = Conversion.StringToMoney(Conversion.StringToDouble(listView1.Items[listView1.SelectedItems[0].Index].SubItems[9].Text).ToString());
+				ListViewReturnValue.Items[SelectTableLine].SubItems[14].Text = value;
 				ListViewReturnValue.Items[SelectTableLine].SubItems[15].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[10].Text;
 				ListViewReturnValue.Items[SelectTableLine].SubItems[16].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[11].Text;
 				ListViewReturnValue.Items[SelectTableLine].SubItems[17].Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[12].Text;
@@ -152,6 +159,12 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		{
 			if(e.KeyData == Keys.Enter){
 				search();
+			}
+		}
+		void ListView1SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(listView1.SelectedItems.Count > 0){
+				label1.Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[1].Text;
 			}
 		}
 

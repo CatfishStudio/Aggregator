@@ -43,24 +43,24 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.Panel panel7;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox amountRextBox;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button button9;
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.Button button6;
-		private System.Windows.Forms.TextBox textBox3;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox unitsTextBox;
+		private System.Windows.Forms.TextBox priceTextBox;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.TextBox textBox6;
+		private System.Windows.Forms.TextBox totalTextBox;
 		private System.Windows.Forms.Button button11;
 		private System.Windows.Forms.Button button12;
-		private System.Windows.Forms.TextBox textBox5;
+		private System.Windows.Forms.TextBox vatTextBox;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button10;
-		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.TextBox sumTextBox;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Label label8;
@@ -86,6 +86,13 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.ColumnHeader columnHeader16;
 		private System.Windows.Forms.ColumnHeader columnHeader17;
 		private System.Windows.Forms.ColumnHeader columnHeader18;
+		private System.Windows.Forms.Button button13;
+		private System.Windows.Forms.Button button14;
+		private System.Windows.Forms.ColumnHeader columnHeader19;
+		private System.Windows.Forms.ColumnHeader columnHeader20;
+		private System.Windows.Forms.ImageList imageList1;
+		private System.Drawing.Printing.PrintDocument printDocument1;
+		private System.Windows.Forms.PrintDialog printDialog1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -108,6 +115,7 @@ namespace Aggregator.Client.Documents.Order
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrderDoc));
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.buttonSaveExcel = new System.Windows.Forms.Button();
@@ -146,27 +154,32 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader16 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader17 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader18 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader19 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader20 = new System.Windows.Forms.ColumnHeader();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.priceTextBox = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.button13 = new System.Windows.Forms.Button();
+			this.button14 = new System.Windows.Forms.Button();
+			this.amountRextBox = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.button9 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.unitsTextBox = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.totalTextBox = new System.Windows.Forms.TextBox();
 			this.button11 = new System.Windows.Forms.Button();
 			this.button12 = new System.Windows.Forms.Button();
-			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.vatTextBox = new System.Windows.Forms.TextBox();
 			this.button5 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.sumTextBox = new System.Windows.Forms.TextBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.label8 = new System.Windows.Forms.Label();
@@ -181,6 +194,8 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonNomenclatureDelete = new System.Windows.Forms.Button();
 			this.buttonNomenclatureAdd = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+			this.printDialog1 = new System.Windows.Forms.PrintDialog();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -315,6 +330,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.counteragentTextBox.Location = new System.Drawing.Point(98, 39);
 			this.counteragentTextBox.Name = "counteragentTextBox";
+			this.counteragentTextBox.ReadOnly = true;
 			this.counteragentTextBox.Size = new System.Drawing.Size(252, 20);
 			this.counteragentTextBox.TabIndex = 25;
 			this.counteragentTextBox.TextChanged += new System.EventHandler(this.CounteragentTextBoxTextChanged);
@@ -417,14 +433,19 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader15,
 			this.columnHeader16,
 			this.columnHeader17,
-			this.columnHeader18});
+			this.columnHeader18,
+			this.columnHeader19,
+			this.columnHeader20});
 			this.listViewNomenclature.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listViewNomenclature.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewNomenclature.FullRowSelect = true;
+			this.listViewNomenclature.LargeImageList = this.imageList1;
 			this.listViewNomenclature.Location = new System.Drawing.Point(3, 32);
 			this.listViewNomenclature.MultiSelect = false;
 			this.listViewNomenclature.Name = "listViewNomenclature";
 			this.listViewNomenclature.Size = new System.Drawing.Size(725, 185);
+			this.listViewNomenclature.SmallImageList = this.imageList1;
+			this.listViewNomenclature.StateImageList = this.imageList1;
 			this.listViewNomenclature.TabIndex = 9;
 			this.listViewNomenclature.UseCompatibleStateImageBehavior = false;
 			this.listViewNomenclature.View = System.Windows.Forms.View.Details;
@@ -470,58 +491,74 @@ namespace Aggregator.Client.Documents.Order
 			// columnHeader8
 			// 
 			this.columnHeader8.Text = "Производитель:";
-			this.columnHeader8.Width = 0;
+			this.columnHeader8.Width = 25;
 			// 
 			// columnHeader9
 			// 
 			this.columnHeader9.Text = "Остаток";
 			this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader9.Width = 0;
+			this.columnHeader9.Width = 25;
 			// 
 			// columnHeader10
 			// 
 			this.columnHeader10.Text = "Срок годности";
-			this.columnHeader10.Width = 0;
+			this.columnHeader10.Width = 25;
 			// 
 			// columnHeader11
 			// 
 			this.columnHeader11.Text = "Скидка №1";
-			this.columnHeader11.Width = 0;
+			this.columnHeader11.Width = 25;
 			// 
 			// columnHeader12
 			// 
 			this.columnHeader12.Text = "Скидка №2";
-			this.columnHeader12.Width = 0;
+			this.columnHeader12.Width = 25;
 			// 
 			// columnHeader13
 			// 
 			this.columnHeader13.Text = "Скидка №3";
-			this.columnHeader13.Width = 0;
+			this.columnHeader13.Width = 25;
 			// 
 			// columnHeader14
 			// 
 			this.columnHeader14.Text = "Скидка №4";
-			this.columnHeader14.Width = 0;
+			this.columnHeader14.Width = 25;
 			// 
 			// columnHeader15
 			// 
 			this.columnHeader15.Text = "Код";
-			this.columnHeader15.Width = 0;
+			this.columnHeader15.Width = 25;
 			// 
 			// columnHeader16
 			// 
 			this.columnHeader16.Text = "Серия";
-			this.columnHeader16.Width = 0;
+			this.columnHeader16.Width = 25;
 			// 
 			// columnHeader17
 			// 
 			this.columnHeader17.Text = "Артикул";
-			this.columnHeader17.Width = 0;
+			this.columnHeader17.Width = 25;
 			// 
 			// columnHeader18
 			// 
-			this.columnHeader18.Text = "№";
-			this.columnHeader18.Width = 0;
+			this.columnHeader18.Text = "Контрагент";
+			this.columnHeader18.Width = 25;
+			// 
+			// columnHeader19
+			// 
+			this.columnHeader19.Text = "Прайс-лист";
+			this.columnHeader19.Width = 25;
+			// 
+			// columnHeader20
+			// 
+			this.columnHeader20.Text = "№";
+			this.columnHeader20.Width = 0;
+			// 
+			// imageList1
+			// 
+			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList1.Images.SetKeyName(0, "basket.png");
 			// 
 			// panel7
 			// 
@@ -551,38 +588,81 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.textBox2);
+			this.groupBox1.Controls.Add(this.priceTextBox);
+			this.groupBox1.Controls.Add(this.label6);
+			this.groupBox1.Controls.Add(this.button13);
+			this.groupBox1.Controls.Add(this.button14);
+			this.groupBox1.Controls.Add(this.amountRextBox);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.button9);
 			this.groupBox1.Controls.Add(this.button7);
 			this.groupBox1.Controls.Add(this.button8);
 			this.groupBox1.Controls.Add(this.button6);
-			this.groupBox1.Controls.Add(this.textBox3);
-			this.groupBox1.Controls.Add(this.textBox1);
+			this.groupBox1.Controls.Add(this.unitsTextBox);
 			this.groupBox1.Controls.Add(this.label5);
-			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(301, 96);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Свойства:";
+			this.groupBox1.Text = "...";
 			// 
-			// textBox2
+			// priceTextBox
 			// 
-			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.priceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox2.Location = new System.Drawing.Point(98, 66);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(144, 20);
-			this.textBox2.TabIndex = 4;
-			this.textBox2.Text = "0,00";
-			this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.priceTextBox.Location = new System.Drawing.Point(102, 65);
+			this.priceTextBox.Name = "priceTextBox";
+			this.priceTextBox.Size = new System.Drawing.Size(144, 20);
+			this.priceTextBox.TabIndex = 26;
+			this.priceTextBox.Text = "0,00";
+			this.priceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(10, 68);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(100, 17);
+			this.label6.TabIndex = 25;
+			this.label6.Text = "Цена:";
+			// 
+			// button13
+			// 
+			this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button13.Image = ((System.Drawing.Image)(resources.GetObject("button13.Image")));
+			this.button13.Location = new System.Drawing.Point(247, 65);
+			this.button13.Name = "button13";
+			this.button13.Size = new System.Drawing.Size(26, 20);
+			this.button13.TabIndex = 28;
+			this.button13.UseVisualStyleBackColor = true;
+			// 
+			// button14
+			// 
+			this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button14.Location = new System.Drawing.Point(275, 65);
+			this.button14.Name = "button14";
+			this.button14.Size = new System.Drawing.Size(20, 20);
+			this.button14.TabIndex = 27;
+			this.button14.Text = "X";
+			this.button14.UseVisualStyleBackColor = true;
+			// 
+			// amountRextBox
+			// 
+			this.amountRextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.amountRextBox.Location = new System.Drawing.Point(102, 42);
+			this.amountRextBox.Name = "amountRextBox";
+			this.amountRextBox.Size = new System.Drawing.Size(144, 20);
+			this.amountRextBox.TabIndex = 4;
+			this.amountRextBox.Text = "0,00";
+			this.amountRextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(6, 69);
+			this.label4.Location = new System.Drawing.Point(10, 45);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(100, 17);
 			this.label4.TabIndex = 1;
@@ -592,7 +672,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button9.Location = new System.Drawing.Point(271, 43);
+			this.button9.Location = new System.Drawing.Point(275, 19);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(20, 20);
 			this.button9.TabIndex = 24;
@@ -604,7 +684,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-			this.button7.Location = new System.Drawing.Point(243, 66);
+			this.button7.Location = new System.Drawing.Point(247, 42);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(26, 20);
 			this.button7.TabIndex = 20;
@@ -615,7 +695,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-			this.button8.Location = new System.Drawing.Point(243, 43);
+			this.button8.Location = new System.Drawing.Point(247, 19);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(26, 20);
 			this.button8.TabIndex = 23;
@@ -625,59 +705,39 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button6.Location = new System.Drawing.Point(271, 66);
+			this.button6.Location = new System.Drawing.Point(275, 42);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(20, 20);
 			this.button6.TabIndex = 19;
 			this.button6.Text = "X";
 			this.button6.UseVisualStyleBackColor = true;
 			// 
-			// textBox3
+			// unitsTextBox
 			// 
-			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.unitsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox3.Location = new System.Drawing.Point(98, 43);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(144, 20);
-			this.textBox3.TabIndex = 5;
-			// 
-			// textBox1
-			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(98, 19);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(193, 20);
-			this.textBox1.TabIndex = 3;
+			this.unitsTextBox.Location = new System.Drawing.Point(102, 19);
+			this.unitsTextBox.Name = "unitsTextBox";
+			this.unitsTextBox.Size = new System.Drawing.Size(144, 20);
+			this.unitsTextBox.TabIndex = 5;
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(6, 46);
+			this.label5.Location = new System.Drawing.Point(10, 22);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(100, 17);
 			this.label5.TabIndex = 2;
 			this.label5.Text = "Ед. измерения:";
 			// 
-			// label6
-			// 
-			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
-			this.label6.Location = new System.Drawing.Point(6, 22);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(107, 18);
-			this.label6.TabIndex = 0;
-			this.label6.Text = "Наименование:";
-			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.textBox6);
+			this.groupBox2.Controls.Add(this.totalTextBox);
 			this.groupBox2.Controls.Add(this.button11);
 			this.groupBox2.Controls.Add(this.button12);
-			this.groupBox2.Controls.Add(this.textBox5);
+			this.groupBox2.Controls.Add(this.vatTextBox);
 			this.groupBox2.Controls.Add(this.button5);
 			this.groupBox2.Controls.Add(this.button10);
-			this.groupBox2.Controls.Add(this.textBox4);
+			this.groupBox2.Controls.Add(this.sumTextBox);
 			this.groupBox2.Controls.Add(this.button3);
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.label8);
@@ -691,16 +751,16 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Итоги:";
 			// 
-			// textBox6
+			// totalTextBox
 			// 
-			this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.totalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox6.Location = new System.Drawing.Point(64, 66);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(296, 20);
-			this.textBox6.TabIndex = 27;
-			this.textBox6.Text = "0,00";
-			this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.totalTextBox.Location = new System.Drawing.Point(64, 66);
+			this.totalTextBox.Name = "totalTextBox";
+			this.totalTextBox.Size = new System.Drawing.Size(296, 20);
+			this.totalTextBox.TabIndex = 27;
+			this.totalTextBox.Text = "0,00";
+			this.totalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// button11
 			// 
@@ -726,16 +786,16 @@ namespace Aggregator.Client.Documents.Order
 			this.button12.Text = "X";
 			this.button12.UseVisualStyleBackColor = true;
 			// 
-			// textBox5
+			// vatTextBox
 			// 
-			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.vatTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox5.Location = new System.Drawing.Point(64, 43);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(296, 20);
-			this.textBox5.TabIndex = 24;
-			this.textBox5.Text = "0,00";
-			this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.vatTextBox.Location = new System.Drawing.Point(64, 43);
+			this.vatTextBox.Name = "vatTextBox";
+			this.vatTextBox.Size = new System.Drawing.Size(296, 20);
+			this.vatTextBox.TabIndex = 24;
+			this.vatTextBox.Text = "0,00";
+			this.vatTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// button5
 			// 
@@ -761,16 +821,16 @@ namespace Aggregator.Client.Documents.Order
 			this.button10.Text = "X";
 			this.button10.UseVisualStyleBackColor = true;
 			// 
-			// textBox4
+			// sumTextBox
 			// 
-			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.sumTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox4.Location = new System.Drawing.Point(64, 19);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(296, 20);
-			this.textBox4.TabIndex = 21;
-			this.textBox4.Text = "0,00";
-			this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.sumTextBox.Location = new System.Drawing.Point(64, 19);
+			this.sumTextBox.Name = "sumTextBox";
+			this.sumTextBox.Size = new System.Drawing.Size(296, 20);
+			this.sumTextBox.TabIndex = 21;
+			this.sumTextBox.Text = "0,00";
+			this.sumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// button3
 			// 
@@ -895,6 +955,7 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonNomenclatureAdd.Size = new System.Drawing.Size(25, 23);
 			this.buttonNomenclatureAdd.TabIndex = 10;
 			this.buttonNomenclatureAdd.UseVisualStyleBackColor = true;
+			this.buttonNomenclatureAdd.Click += new System.EventHandler(this.ButtonNomenclatureAddClick);
 			// 
 			// tabPage2
 			// 
@@ -903,8 +964,17 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage2.Size = new System.Drawing.Size(731, 316);
 			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "tabPage2";
+			this.tabPage2.Text = "Отправить заказ";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// printDocument1
+			// 
+			this.printDocument1.OriginAtMargins = true;
+			// 
+			// printDialog1
+			// 
+			this.printDialog1.Document = this.printDocument1;
+			this.printDialog1.UseEXDialog = true;
 			// 
 			// FormOrderDoc
 			// 

@@ -1,22 +1,27 @@
 ﻿/*
  * Создано в SharpDevelop.
  * Пользователь: Cartish
- * Дата: 01.04.2017
- * Время: 12:40
+ * Дата: 14.04.2017
+ * Время: 7:09
  * 
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
-namespace Aggregator.Client.Documents.PurchasePlan
+namespace Aggregator.Client.Documents.Order
 {
-	partial class FormPurchasePlanNomenclature
+	partial class FormOrderNomenclature
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Button findButton;
+		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button buttonSave;
 		private System.Windows.Forms.Button buttonCancel;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem выбратьНоменклатуруToolStripMenuItem;
+		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -33,12 +38,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ColumnHeader columnHeader13;
 		private System.Windows.Forms.ColumnHeader columnHeader14;
 		private System.Windows.Forms.ColumnHeader columnHeader15;
-		private System.Windows.Forms.ImageList imageList1;
-		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem выбратьНоменклатуруToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem показатьВесьПереченьToolStripMenuItem;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Button findButton;
 		private System.Windows.Forms.Label label1;
 		
 		/// <summary>
@@ -63,12 +62,16 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPurchasePlanNomenclature));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrderNomenclature));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.findButton = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.выбратьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
@@ -85,11 +88,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader15 = new System.Windows.Forms.ColumnHeader();
-			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.выбратьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.показатьВесьПереченьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -102,16 +100,27 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonCancel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 355);
+			this.panel1.Location = new System.Drawing.Point(0, 241);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(457, 72);
-			this.panel1.TabIndex = 4;
+			this.panel1.Size = new System.Drawing.Size(407, 72);
+			this.panel1.TabIndex = 5;
+			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.Location = new System.Drawing.Point(12, 3);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(383, 31);
+			this.label1.TabIndex = 19;
+			this.label1.Text = "...";
 			// 
 			// findButton
 			// 
 			this.findButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
-			this.findButton.Location = new System.Drawing.Point(258, 37);
+			this.findButton.Location = new System.Drawing.Point(208, 37);
 			this.findButton.Name = "findButton";
 			this.findButton.Size = new System.Drawing.Size(25, 23);
 			this.findButton.TabIndex = 18;
@@ -123,7 +132,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.textBox1.Location = new System.Drawing.Point(12, 39);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(245, 20);
+			this.textBox1.Size = new System.Drawing.Size(195, 20);
 			this.textBox1.TabIndex = 2;
 			this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyDown);
 			// 
@@ -132,7 +141,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
 			this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSave.Location = new System.Drawing.Point(289, 37);
+			this.buttonSave.Location = new System.Drawing.Point(239, 37);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(75, 23);
 			this.buttonSave.TabIndex = 1;
@@ -146,7 +155,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonCancel.Image = ((System.Drawing.Image)(resources.GetObject("buttonCancel.Image")));
 			this.buttonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonCancel.Location = new System.Drawing.Point(370, 37);
+			this.buttonCancel.Location = new System.Drawing.Point(320, 37);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(75, 23);
 			this.buttonCancel.TabIndex = 0;
@@ -154,6 +163,26 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonCancel.UseVisualStyleBackColor = true;
 			this.buttonCancel.Click += new System.EventHandler(this.ButtonCancelClick);
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.выбратьНоменклатуруToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(204, 26);
+			// 
+			// выбратьНоменклатуруToolStripMenuItem
+			// 
+			this.выбратьНоменклатуруToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выбратьНоменклатуруToolStripMenuItem.Image")));
+			this.выбратьНоменклатуруToolStripMenuItem.Name = "выбратьНоменклатуруToolStripMenuItem";
+			this.выбратьНоменклатуруToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+			this.выбратьНоменклатуруToolStripMenuItem.Text = "Выбрать номенклатуру";
+			// 
+			// imageList1
+			// 
+			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList1.Images.SetKeyName(0, "page.png");
 			// 
 			// listView1
 			// 
@@ -182,10 +211,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(457, 355);
+			this.listView1.Size = new System.Drawing.Size(407, 241);
 			this.listView1.SmallImageList = this.imageList1;
 			this.listView1.StateImageList = this.imageList1;
-			this.listView1.TabIndex = 7;
+			this.listView1.TabIndex = 8;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1SelectedIndexChanged);
@@ -262,59 +291,18 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader15.Text = "Прайс-лист";
 			this.columnHeader15.Width = 100;
 			// 
-			// contextMenuStrip1
-			// 
-			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.выбратьНоменклатуруToolStripMenuItem,
-			this.показатьВесьПереченьToolStripMenuItem});
-			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(207, 48);
-			// 
-			// выбратьНоменклатуруToolStripMenuItem
-			// 
-			this.выбратьНоменклатуруToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выбратьНоменклатуруToolStripMenuItem.Image")));
-			this.выбратьНоменклатуруToolStripMenuItem.Name = "выбратьНоменклатуруToolStripMenuItem";
-			this.выбратьНоменклатуруToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-			this.выбратьНоменклатуруToolStripMenuItem.Text = "Выбрать номенклатуру";
-			this.выбратьНоменклатуруToolStripMenuItem.Click += new System.EventHandler(this.ВыбратьНоменклатуруToolStripMenuItemClick);
-			// 
-			// показатьВесьПереченьToolStripMenuItem
-			// 
-			this.показатьВесьПереченьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("показатьВесьПереченьToolStripMenuItem.Image")));
-			this.показатьВесьПереченьToolStripMenuItem.Name = "показатьВесьПереченьToolStripMenuItem";
-			this.показатьВесьПереченьToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-			this.показатьВесьПереченьToolStripMenuItem.Text = "Показать весь перечень";
-			this.показатьВесьПереченьToolStripMenuItem.Click += new System.EventHandler(this.ПоказатьВесьПереченьToolStripMenuItemClick);
-			// 
-			// imageList1
-			// 
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "page.png");
-			// 
-			// label1
-			// 
-			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
-			this.label1.Location = new System.Drawing.Point(12, 5);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(433, 31);
-			this.label1.TabIndex = 20;
-			this.label1.Text = "...";
-			// 
-			// FormPurchasePlanNomenclature
+			// FormOrderNomenclature
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(457, 427);
+			this.ClientSize = new System.Drawing.Size(407, 313);
 			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "FormPurchasePlanNomenclature";
-			this.Text = "Номенклатура из прайс-листов";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPurchasePlanNomenclatureFormClosed);
-			this.Load += new System.EventHandler(this.FormPurchasePlanNomenclatureLoad);
+			this.Name = "FormOrderNomenclature";
+			this.Text = "Прайс-лист конрагента";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormOrderNomenclatureFormClosed);
+			this.Load += new System.EventHandler(this.FormOrderNomenclatureLoad);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.contextMenuStrip1.ResumeLayout(false);
