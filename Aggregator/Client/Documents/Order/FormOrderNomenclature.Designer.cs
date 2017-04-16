@@ -169,7 +169,7 @@ namespace Aggregator.Client.Documents.Order
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.выбратьНоменклатуруToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(204, 26);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(204, 48);
 			// 
 			// выбратьНоменклатуруToolStripMenuItem
 			// 
@@ -177,6 +177,7 @@ namespace Aggregator.Client.Documents.Order
 			this.выбратьНоменклатуруToolStripMenuItem.Name = "выбратьНоменклатуруToolStripMenuItem";
 			this.выбратьНоменклатуруToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
 			this.выбратьНоменклатуруToolStripMenuItem.Text = "Выбрать номенклатуру";
+			this.выбратьНоменклатуруToolStripMenuItem.Click += new System.EventHandler(this.ВыбратьНоменклатуруToolStripMenuItemClick);
 			// 
 			// imageList1
 			// 

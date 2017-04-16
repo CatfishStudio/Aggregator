@@ -43,7 +43,7 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.Panel panel7;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.TextBox amountRextBox;
+		private System.Windows.Forms.TextBox amountTextBox;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button button9;
 		private System.Windows.Forms.Button button7;
@@ -164,7 +164,7 @@ namespace Aggregator.Client.Documents.Order
 			this.label6 = new System.Windows.Forms.Label();
 			this.button13 = new System.Windows.Forms.Button();
 			this.button14 = new System.Windows.Forms.Button();
-			this.amountRextBox = new System.Windows.Forms.TextBox();
+			this.amountTextBox = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.button9 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
@@ -593,7 +593,7 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Controls.Add(this.button13);
 			this.groupBox1.Controls.Add(this.button14);
-			this.groupBox1.Controls.Add(this.amountRextBox);
+			this.groupBox1.Controls.Add(this.amountTextBox);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.button9);
 			this.groupBox1.Controls.Add(this.button7);
@@ -619,6 +619,9 @@ namespace Aggregator.Client.Documents.Order
 			this.priceTextBox.TabIndex = 26;
 			this.priceTextBox.Text = "0,00";
 			this.priceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.priceTextBox.TextChanged += new System.EventHandler(this.PriceTextBoxTextChanged);
+			this.priceTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PriceTextBoxKeyDown);
+			this.priceTextBox.LostFocus += new System.EventHandler(this.PriceTextBoxLostFocus);
 			// 
 			// label6
 			// 
@@ -650,16 +653,19 @@ namespace Aggregator.Client.Documents.Order
 			this.button14.Text = "X";
 			this.button14.UseVisualStyleBackColor = true;
 			// 
-			// amountRextBox
+			// amountTextBox
 			// 
-			this.amountRextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.amountTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.amountRextBox.Location = new System.Drawing.Point(102, 42);
-			this.amountRextBox.Name = "amountRextBox";
-			this.amountRextBox.Size = new System.Drawing.Size(144, 20);
-			this.amountRextBox.TabIndex = 4;
-			this.amountRextBox.Text = "0,00";
-			this.amountRextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.amountTextBox.Location = new System.Drawing.Point(102, 42);
+			this.amountTextBox.Name = "amountTextBox";
+			this.amountTextBox.Size = new System.Drawing.Size(144, 20);
+			this.amountTextBox.TabIndex = 4;
+			this.amountTextBox.Text = "0,00";
+			this.amountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.amountTextBox.TextChanged += new System.EventHandler(this.AmountTextBoxTextChanged);
+			this.amountTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AmountTextBoxKeyDown);
+			this.amountTextBox.LostFocus += new System.EventHandler(this.AmountTextBoxLostFocus);
 			// 
 			// label4
 			// 
@@ -691,6 +697,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button7.Size = new System.Drawing.Size(26, 20);
 			this.button7.TabIndex = 20;
 			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.Button7Click);
 			// 
 			// button8
 			// 
@@ -714,6 +721,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button6.TabIndex = 19;
 			this.button6.Text = "X";
 			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.Button6Click);
 			// 
 			// unitsTextBox
 			// 
@@ -761,6 +769,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.totalTextBox.Location = new System.Drawing.Point(64, 66);
 			this.totalTextBox.Name = "totalTextBox";
+			this.totalTextBox.ReadOnly = true;
 			this.totalTextBox.Size = new System.Drawing.Size(296, 20);
 			this.totalTextBox.TabIndex = 27;
 			this.totalTextBox.Text = "0,00";
@@ -796,6 +805,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.vatTextBox.Location = new System.Drawing.Point(64, 43);
 			this.vatTextBox.Name = "vatTextBox";
+			this.vatTextBox.ReadOnly = true;
 			this.vatTextBox.Size = new System.Drawing.Size(296, 20);
 			this.vatTextBox.TabIndex = 24;
 			this.vatTextBox.Text = "0,00";
@@ -831,6 +841,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.sumTextBox.Location = new System.Drawing.Point(64, 19);
 			this.sumTextBox.Name = "sumTextBox";
+			this.sumTextBox.ReadOnly = true;
 			this.sumTextBox.Size = new System.Drawing.Size(296, 20);
 			this.sumTextBox.TabIndex = 21;
 			this.sumTextBox.Text = "0,00";
@@ -907,6 +918,7 @@ namespace Aggregator.Client.Documents.Order
 			this.findButton.Size = new System.Drawing.Size(25, 23);
 			this.findButton.TabIndex = 19;
 			this.findButton.UseVisualStyleBackColor = true;
+			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
 			// 
 			// comboBox1
 			// 
@@ -915,6 +927,7 @@ namespace Aggregator.Client.Documents.Order
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(196, 21);
 			this.comboBox1.TabIndex = 18;
+			this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComboBox1KeyDown);
 			// 
 			// buttonNomenclaturesDelete
 			// 
@@ -924,6 +937,7 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonNomenclaturesDelete.Size = new System.Drawing.Size(25, 23);
 			this.buttonNomenclaturesDelete.TabIndex = 14;
 			this.buttonNomenclaturesDelete.UseVisualStyleBackColor = true;
+			this.buttonNomenclaturesDelete.Click += new System.EventHandler(this.ButtonNomenclaturesDeleteClick);
 			// 
 			// buttonNomenclaturesAdd
 			// 
@@ -933,6 +947,7 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonNomenclaturesAdd.Size = new System.Drawing.Size(25, 23);
 			this.buttonNomenclaturesAdd.TabIndex = 13;
 			this.buttonNomenclaturesAdd.UseVisualStyleBackColor = true;
+			this.buttonNomenclaturesAdd.Click += new System.EventHandler(this.ButtonNomenclaturesAddClick);
 			// 
 			// panel6
 			// 
@@ -950,6 +965,7 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonNomenclatureDelete.Size = new System.Drawing.Size(25, 23);
 			this.buttonNomenclatureDelete.TabIndex = 11;
 			this.buttonNomenclatureDelete.UseVisualStyleBackColor = true;
+			this.buttonNomenclatureDelete.Click += new System.EventHandler(this.ButtonNomenclatureDeleteClick);
 			// 
 			// buttonNomenclatureAdd
 			// 

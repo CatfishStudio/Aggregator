@@ -1224,11 +1224,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			if(textBox2.Text == "" || Conversion.checkString(textBox2.Text) == false) textBox2.Text = "0,00";
 			if(listViewNomenclature.Items.Count > 0 && selectTableLine > -1){
 				listViewNomenclature.Items[selectTableLine].SubItems[4].Text = textBox2.Text;
+				calculate();
 			}
 		}
 		void Button6Click(object sender, EventArgs e)
 		{
 			textBox2.Text = "0,00";
+			calculate();
 		}
 		void Button7Click(object sender, EventArgs e)
 		{

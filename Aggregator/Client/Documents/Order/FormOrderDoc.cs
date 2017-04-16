@@ -98,6 +98,7 @@ namespace Aggregator.Client.Documents.Order
 				listViewNomenclature.Items[0].Remove();
 			}
 			selectTableLine = -1;
+			calculate();
 		}
 		
 		void calculate()
@@ -110,11 +111,17 @@ namespace Aggregator.Client.Documents.Order
 				double total = 0;
 				int count = listViewNomenclature.Items.Count;
 				for(int i = 0; i < count; i++){
-					if(listViewNomenclature.Items[i].SubItems[4].Text != "") amount = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[3].Text);
+					if(listViewNomenclature.Items[i].SubItems[3].Text != "") amount = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[3].Text);
 					else amount = 0;
-					if(listViewNomenclature.Items[i].SubItems[7].Text != "") price = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
+					if(listViewNomenclature.Items[i].SubItems[4].Text != "") price = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
 					else price = 0;
 					sum += (price * amount);
+					
+					vat = Math.Round(price * amount, 2) * DataConstants.ConstFirmVAT / 100;
+					vat = Math.Round(vat, 2);
+					listViewNomenclature.Items[i].SubItems[5].Text = Conversion.StringToMoney(Conversion.StringToDouble(vat.ToString()).ToString());
+					total = Math.Round(price * amount, 2) + vat;
+					listViewNomenclature.Items[i].SubItems[6].Text = Conversion.StringToMoney(Conversion.StringToDouble(total.ToString()).ToString());
 				}
 				sum = Math.Round(sum, 2);
 				vat = sum * DataConstants.ConstFirmVAT / 100;
@@ -129,6 +136,81 @@ namespace Aggregator.Client.Documents.Order
 				sumTextBox.Text = "0,00";
 				vatTextBox.Text = "0,00";
 				totalTextBox.Text = "0,00";
+			}
+		}
+		
+		void search()
+		{
+			String str;
+			for(int i = 0; i < listViewNomenclature.Items.Count; i++){
+				str = listViewNomenclature.Items[i].SubItems[1].Text;
+				if(str.Contains(comboBox1.Text)){
+					listViewNomenclature.FocusedItem = listViewNomenclature.Items[i];
+					listViewNomenclature.Items[i].Selected = true;
+					listViewNomenclature.Select();
+					listViewNomenclature.EnsureVisible(i);
+					break;
+				}
+			}
+		}
+		
+		void addAllNomenclatures()
+		{
+			DateTime dt;
+			ListViewItem ListViewItem_add;
+			String priceName = "";
+			
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+				// OLEDB
+				OleDbConnection oleDbConnection = new OleDbConnection();
+				oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + 
+													DataConfig.localDatabase + 
+													DataConfig.oledbConnectLineEnd + 
+													DataConfig.oledbConnectPass;
+				oleDbConnection.Open();
+				OleDbCommand oleDbCommand = new OleDbCommand("SELECT * FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", oleDbConnection);
+				OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+				if(oleDbDataReader.Read()){
+					priceName = oleDbDataReader["excel_table_id"].ToString();
+				}else{
+					MessageBox.Show("Контрагент " + "\"" + counteragentTextBox.Text + "\"" + " не существует в справочнике контрагентов.", "Сообщение");
+				}
+				oleDbDataReader.Close();
+				
+				if(priceName != ""){
+					oleDbCommand = new OleDbCommand("SELECT * FROM " + priceName + " ", oleDbConnection);
+					oleDbDataReader = oleDbCommand.ExecuteReader();
+					while (oleDbDataReader.Read())
+		        	{
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(oleDbDataReader["name"].ToString());
+						ListViewItem_add.StateImageIndex = 0;
+						ListViewItem_add.SubItems.Add(oleDbDataReader["price"].ToString());
+						ListViewItem_add.SubItems.Add(oleDbDataReader["manufacturer"].ToString());
+						ListViewItem_add.SubItems.Add(oleDbDataReader["remainder"].ToString());
+						dt = new DateTime();
+						DateTime.TryParse(oleDbDataReader["term"].ToString(), out dt);
+						ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
+						ListViewItem_add.SubItems.Add(oleDbDataReader["discount1"].ToString());
+						ListViewItem_add.SubItems.Add(oleDbDataReader["discount2"].ToString());
+						ListViewItem_add.SubItems.Add(oleDbDataReader["discount3"].ToString());
+						ListViewItem_add.SubItems.Add(oleDbDataReader["discount4"].ToString());
+						ListViewItem_add.SubItems.Add(oleDbDataReader["code"].ToString());
+						ListViewItem_add.SubItems.Add(oleDbDataReader["series"].ToString());
+						ListViewItem_add.SubItems.Add(oleDbDataReader["article"].ToString());
+						ListViewItem_add.SubItems.Add(counteragentTextBox.Text);
+						ListViewItem_add.SubItems.Add(priceName);
+						listViewNomenclature.Items.Add(ListViewItem_add);
+					}
+					oleDbDataReader.Close();
+				}else{
+					MessageBox.Show("Контрагент " + counteragentTextBox.Text + " не содержит прайс-листа.", "Сообщение");
+				}
+				oleDbConnection.Close();
+				
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				
 			}
 		}
 		
@@ -174,6 +256,42 @@ namespace Aggregator.Client.Documents.Order
 			FOrderNomenclature.loadNomenclature();
 			FOrderNomenclature.Show();
 		}
+		void ButtonNomenclaturesAddClick(object sender, EventArgs e)
+		{
+			addAllNomenclatures();
+		}
+		void ButtonNomenclatureDeleteClick(object sender, EventArgs e)
+		{
+			if(listViewNomenclature.SelectedItems.Count > 0) listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].Remove();
+			selectTableLine = -1;
+			groupBox1.Text = "...";
+			unitsTextBox.Clear();
+			amountTextBox.Text = "0,00";
+			priceTextBox.Text = "0,00";
+			calculate();
+		}
+		void ButtonNomenclaturesDeleteClick(object sender, EventArgs e)
+		{
+			listViewClear();
+			selectTableLine = -1;
+			groupBox1.Text = "...";
+			unitsTextBox.Clear();
+			amountTextBox.Text = "0,00";
+			priceTextBox.Text = "0,00";
+			calculate();
+		}
+		void ComboBox1KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				if(comboBox1.Text != "") comboBox1.Items.Add(comboBox1.Text);
+				search();
+			}
+		}
+		void FindButtonClick(object sender, EventArgs e)
+		{
+			if(comboBox1.Text != "") comboBox1.Items.Add(comboBox1.Text);
+			search();
+		}
 		void ListViewNomenclatureSelectedIndexChanged(object sender, EventArgs e)
 		{
 			if(listViewNomenclature.SelectedItems.Count > 0){
@@ -181,7 +299,7 @@ namespace Aggregator.Client.Documents.Order
 				groupBox1.Text = listViewNomenclature.Items[selectTableLine].SubItems[1].Text;
 				if(groupBox1.Text.Length > 40) groupBox1.Text = groupBox1.Text.Remove(40) + "...";
 				unitsTextBox.Text = listViewNomenclature.Items[selectTableLine].SubItems[2].Text;
-				amountRextBox.Text = listViewNomenclature.Items[selectTableLine].SubItems[3].Text;
+				amountTextBox.Text = listViewNomenclature.Items[selectTableLine].SubItems[3].Text;
 				priceTextBox.Text = listViewNomenclature.Items[selectTableLine].SubItems[4].Text;
 			}
 		}
@@ -206,8 +324,70 @@ namespace Aggregator.Client.Documents.Order
 		{
 			unitsTextBox.Clear();
 		}
-		
-		
+		void AmountTextBoxKeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab){
+				String Value = amountTextBox.Text;
+				amountTextBox.Clear();
+				amountTextBox.Text = Conversion.StringToMoney(Conversion.StringToDouble(Value).ToString());
+				if(amountTextBox.Text == "" || Conversion.checkString(amountTextBox.Text) == false) amountTextBox.Text = "0,00";
+				calculate();
+			}
+		}
+		void AmountTextBoxTextChanged(object sender, EventArgs e)
+		{
+			if(amountTextBox.Text == "" || Conversion.checkString(amountTextBox.Text) == false) amountTextBox.Text = "0,00";
+			if(listViewNomenclature.Items.Count > 0 && selectTableLine > -1){
+				listViewNomenclature.Items[selectTableLine].SubItems[3].Text = amountTextBox.Text;
+				calculate();
+			}
+		}
+		void AmountTextBoxLostFocus(object sender, EventArgs e)
+		{
+			String Value = amountTextBox.Text;
+			amountTextBox.Clear();
+			amountTextBox.Text = Conversion.StringToMoney(Conversion.StringToDouble(Value).ToString());
+			if(amountTextBox.Text == "" || Conversion.checkString(amountTextBox.Text) == false) amountTextBox.Text = "0,00";
+			calculate();
+		}
+		void Button7Click(object sender, EventArgs e)
+		{
+			Calculator Calc = new Calculator();
+			Calc.TextBoxReturnValue = amountTextBox;
+			Calc.MdiParent = DataForms.FClient;
+			Calc.Show();
+		}
+		void Button6Click(object sender, EventArgs e)
+		{
+			amountTextBox.Text = "0,00";
+			calculate();
+		}
+		void PriceTextBoxKeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab){
+				String Value = priceTextBox.Text;
+				priceTextBox.Clear();
+				priceTextBox.Text = Conversion.StringToMoney(Conversion.StringToDouble(Value).ToString());
+				if(priceTextBox.Text == "" || Conversion.checkString(priceTextBox.Text) == false) priceTextBox.Text = "0,00";
+				calculate();
+			}
+		}
+		void PriceTextBoxTextChanged(object sender, EventArgs e)
+		{
+			if(priceTextBox.Text == "" || Conversion.checkString(priceTextBox.Text) == false) priceTextBox.Text = "0,00";
+			if(listViewNomenclature.Items.Count > 0 && selectTableLine > -1){
+				listViewNomenclature.Items[selectTableLine].SubItems[4].Text = priceTextBox.Text;
+				calculate();
+			}
+		}
+		void PriceTextBoxLostFocus(object sender, EventArgs e)
+		{
+			String Value = priceTextBox.Text;
+			priceTextBox.Clear();
+			priceTextBox.Text = Conversion.StringToMoney(Conversion.StringToDouble(Value).ToString());
+			if(priceTextBox.Text == "" || Conversion.checkString(priceTextBox.Text) == false) priceTextBox.Text = "0,00";
+			calculate();
+		}
 		
 	}
 }

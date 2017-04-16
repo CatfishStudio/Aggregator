@@ -156,6 +156,8 @@ namespace Aggregator.Client.Documents.Order
 		
 		bool returnValue()
 		{
+			if(listView1.Items.Count == 0) return false;
+			
 			DateTime dt;
 			ListViewItem ListViewItem_add;
 			int selectLineIndex = listView1.SelectedItems[0].Index;
@@ -166,7 +168,7 @@ namespace Aggregator.Client.Documents.Order
 				/*Наимен. */ ListViewItem_add.SubItems.Add(listView1.Items[selectLineIndex].SubItems[1].Text);
 				/*Картинка*/ ListViewItem_add.StateImageIndex = 0;
 				/*Ед.изм. */ ListViewItem_add.SubItems.Add("");
-				/*Кол-во  */ ListViewItem_add.SubItems.Add("0");
+				/*Кол-во  */ ListViewItem_add.SubItems.Add("0,00");
 				/*Цена    */ ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(listView1.Items[selectLineIndex].SubItems[2].Text).ToString()));
 				/*НДС     */ ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble("0").ToString()));
 				/*Сумма   */ ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble("0").ToString()));
@@ -239,6 +241,10 @@ namespace Aggregator.Client.Documents.Order
 			Close();
 		}
 		void ButtonSaveClick(object sender, EventArgs e)
+		{
+			if(returnValue()) Close();
+		}
+		void ВыбратьНоменклатуруToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if(returnValue()) Close();
 		}

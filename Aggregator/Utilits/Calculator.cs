@@ -174,7 +174,9 @@ namespace Aggregator.Utilits
 		
 		void Button18Click(object sender, EventArgs e)
 		{
-			if(valuePaste) TextBoxReturnValue.Text = Conversion.StringToMoney(Math.Round(Conversion.StringToDouble(textBox1.Text), 2).ToString());
+			if(valuePaste){
+				TextBoxReturnValue.Text = Conversion.StringToMoney(Math.Round(Conversion.StringToDouble(textBox1.Text), 2).ToString());
+			}
 			Close();
 		}
 		void TextBox1KeyDown(object sender, KeyEventArgs e)

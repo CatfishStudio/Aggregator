@@ -973,6 +973,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox6.Location = new System.Drawing.Point(64, 66);
 			this.textBox6.Name = "textBox6";
+			this.textBox6.ReadOnly = true;
 			this.textBox6.Size = new System.Drawing.Size(288, 20);
 			this.textBox6.TabIndex = 27;
 			this.textBox6.Text = "0,00";
@@ -1013,6 +1014,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox5.Location = new System.Drawing.Point(64, 43);
 			this.textBox5.Name = "textBox5";
+			this.textBox5.ReadOnly = true;
 			this.textBox5.Size = new System.Drawing.Size(288, 20);
 			this.textBox5.TabIndex = 24;
 			this.textBox5.Text = "0,00";
@@ -1053,6 +1055,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(64, 19);
 			this.textBox4.Name = "textBox4";
+			this.textBox4.ReadOnly = true;
 			this.textBox4.Size = new System.Drawing.Size(288, 20);
 			this.textBox4.TabIndex = 21;
 			this.textBox4.Text = "0,00";
