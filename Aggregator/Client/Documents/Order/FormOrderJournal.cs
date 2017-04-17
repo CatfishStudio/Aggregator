@@ -120,6 +120,7 @@ namespace Aggregator.Client.Documents.Order
 					ListViewItem_add.SubItems.Add(rowElement["docTotal"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docCounteragent"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docAutor"].ToString());
+					ListViewItem_add.SubItems.Add(rowElement["docPurchasePlan"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
 					listView1.Items.Add(ListViewItem_add);
 				}
@@ -165,6 +166,7 @@ namespace Aggregator.Client.Documents.Order
 					ListViewItem_add.SubItems.Add(rowElement["docTotal"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docCounteragent"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docAutor"].ToString());
+					ListViewItem_add.SubItems.Add(rowElement["docPurchasePlan"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
 					listView1.Items.Add(ListViewItem_add);
 				}

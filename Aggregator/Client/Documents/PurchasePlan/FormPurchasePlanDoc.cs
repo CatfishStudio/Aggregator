@@ -111,7 +111,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		{
 			docNumber = getDocNumber();
 			if(docNumber == null) {
-				Utilits.Console.Log("[ОШИБКА] автонумерация не смогла назначить номер для документа.");
+				Utilits.Console.Log("[ОШИБКА] автонумерация не смогла назначить номер для документа.", false, true);
 				return;
 			}
 			

@@ -267,6 +267,29 @@ namespace Aggregator.Client.Documents.Order
 			}
 		}
 		
+		bool check()
+		{
+			if(counteragentTextBox.Text == ""){
+				MessageBox.Show("Вы не выбрали контрагента.", "Сообщение");
+				return false;
+			}
+			if(listViewNomenclature.Items.Count == 0){
+				MessageBox.Show("Вы не добавили номенклатуру.", "Сообщение");
+				return false;
+			}
+			return true;
+		}
+		
+		void saveNew()
+		{
+			docNumber = getDocNumber();
+			if(docNumber == null) {
+				Utilits.Console.Log("[ОШИБКА] автонумерация не смогла назначить номер для документа.", false, true);
+				return;
+			}
+		}
+		
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -440,6 +463,23 @@ namespace Aggregator.Client.Documents.Order
 			priceTextBox.Text = Conversion.StringToMoney(Conversion.StringToDouble(Value).ToString());
 			if(priceTextBox.Text == "" || Conversion.checkString(priceTextBox.Text) == false) priceTextBox.Text = "0,00";
 			calculate();
+		}
+		void ButtonCancelClick(object sender, EventArgs e)
+		{
+			Close();
+		}
+		void ButtonSaveClick(object sender, EventArgs e)
+		{
+			calculate();
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			if(ID == null){
+				if(check()) saveNew();
+			}else{
+				
+			}
 		}
 		
 	}

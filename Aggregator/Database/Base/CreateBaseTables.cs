@@ -298,7 +298,8 @@ namespace Aggregator.Database.Base
 				"[docAutor] VARCHAR DEFAULT '', " +
 				"[docSum] FLOAT DEFAULT 0, " +
 				"[docVat] FLOAT DEFAULT 0, " +
-				"[docTotal] FLOAT DEFAULT 0" +
+				"[docTotal] FLOAT DEFAULT 0, " +
+				"[docPurchasePlan] VARCHAR DEFAULT ''" +
 				")";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Заказы.", false, true);

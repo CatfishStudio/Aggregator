@@ -50,6 +50,7 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolTip toolTip1;
 		private System.Windows.Forms.ColumnHeader columnHeader10;
+		private System.Windows.Forms.ColumnHeader columnHeader11;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -110,6 +111,7 @@ namespace Aggregator.Client.Documents.Order
 			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -303,7 +305,8 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader7,
 			this.columnHeader9,
 			this.columnHeader8,
-			this.columnHeader10});
+			this.columnHeader10,
+			this.columnHeader11});
 			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -366,8 +369,8 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			// columnHeader10
 			// 
-			this.columnHeader10.Text = "№";
-			this.columnHeader10.Width = 0;
+			this.columnHeader10.Text = "План закупок";
+			this.columnHeader10.Width = 100;
 			// 
 			// contextMenuStrip1
 			// 
@@ -418,6 +421,11 @@ namespace Aggregator.Client.Documents.Order
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "page_white_text.png");
+			// 
+			// columnHeader11
+			// 
+			this.columnHeader11.Text = "#";
+			this.columnHeader11.Width = 0;
 			// 
 			// FormOrderJournal
 			// 
