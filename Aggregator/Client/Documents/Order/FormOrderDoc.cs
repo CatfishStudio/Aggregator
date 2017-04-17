@@ -185,7 +185,11 @@ namespace Aggregator.Client.Documents.Order
 						ListViewItem_add = new ListViewItem();
 						ListViewItem_add.SubItems.Add(oleDbDataReader["name"].ToString());
 						ListViewItem_add.StateImageIndex = 0;
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("0,00");
 						ListViewItem_add.SubItems.Add(oleDbDataReader["price"].ToString());
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add("0,00");
 						ListViewItem_add.SubItems.Add(oleDbDataReader["manufacturer"].ToString());
 						ListViewItem_add.SubItems.Add(oleDbDataReader["remainder"].ToString());
 						dt = new DateTime();
@@ -210,7 +214,56 @@ namespace Aggregator.Client.Documents.Order
 				
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
+				SqlConnection sqlConnection;
+				SqlCommand sqlCommand;
+				SqlDataReader sqlDataReader;
 				
+				sqlConnection = new SqlConnection(DataConfig.serverConnection);
+				sqlConnection.Open();
+				
+				SqlCommand = new SqlCommand("SELECT * FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", sqlConnection);
+				sqlDataReader = sqlCommand.ExecuteReader();
+				if(sqlDataReader.Read()){
+					priceName = sqlDataReader["excel_table_id"].ToString();
+				}else{
+					MessageBox.Show("Контрагент " + "\"" + counteragentTextBox.Text + "\"" + " не существует в справочнике контрагентов.", "Сообщение");
+				}
+				sqlDataReader.Close();
+				
+				if(priceName != ""){
+					sqlCommand = new SqlCommand("SELECT * FROM " + priceName + " ", sqlConnection);
+					sqlDataReader = sqlCommand.ExecuteReader();
+					while (sqlDataReader.Read())
+		        	{
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(sqlDataReader["name"].ToString());
+						ListViewItem_add.StateImageIndex = 0;
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add(sqlDataReader["price"].ToString());
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add(sqlDataReader["manufacturer"].ToString());
+						ListViewItem_add.SubItems.Add(sqlDataReader["remainder"].ToString());
+						dt = new DateTime();
+						DateTime.TryParse(sqlDataReader["term"].ToString(), out dt);
+						ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
+						ListViewItem_add.SubItems.Add(sqlDataReader["discount1"].ToString());
+						ListViewItem_add.SubItems.Add(sqlDataReader["discount2"].ToString());
+						ListViewItem_add.SubItems.Add(sqlDataReader["discount3"].ToString());
+						ListViewItem_add.SubItems.Add(sqlDataReader["discount4"].ToString());
+						ListViewItem_add.SubItems.Add(sqlDataReader["code"].ToString());
+						ListViewItem_add.SubItems.Add(sqlDataReader["series"].ToString());
+						ListViewItem_add.SubItems.Add(sqlDataReader["article"].ToString());
+						ListViewItem_add.SubItems.Add(counteragentTextBox.Text);
+						ListViewItem_add.SubItems.Add(priceName);
+						listViewNomenclature.Items.Add(ListViewItem_add);
+					}
+					sqlDataReader.Close();
+				}else{
+					MessageBox.Show("Контрагент " + counteragentTextBox.Text + " не содержит прайс-листа.", "Сообщение");
+				}				
+				sqlConnection.Close();
 			}
 		}
 		
