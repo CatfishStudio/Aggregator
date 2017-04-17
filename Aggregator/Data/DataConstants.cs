@@ -34,5 +34,6 @@ namespace Aggregator.Data
 		public static String ConstFirmEmail = "";
 		public static String ConstFirmAddress = "";
 		public static Double ConstFirmVAT = 0;
+		public static String ConstFirmUnits = "";
 	}
 }

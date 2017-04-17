@@ -44,34 +44,34 @@ namespace Aggregator.Database.Constants
 				// OLEDB
 				try{
 					oleDbConnection.Open();
-					oleDbCommand = new OleDbCommand("SELECT [id], [name], [email], [address], [vat] FROM Constants", oleDbConnection);
+					oleDbCommand = new OleDbCommand("SELECT [id], [name], [email], [address], [vat], [units] FROM Constants", oleDbConnection);
 					oleDbDataReader = oleDbCommand.ExecuteReader();
 					oleDbDataReader.Read();
 					DataConstants.ConstFirmName = oleDbDataReader["name"].ToString();
 					DataConstants.ConstFirmEmail = oleDbDataReader["email"].ToString();
 					DataConstants.ConstFirmAddress = oleDbDataReader["address"].ToString();
 					DataConstants.ConstFirmVAT = (Double)oleDbDataReader["vat"];
+					DataConstants.ConstFirmUnits = oleDbDataReader["units"].ToString();
 					oleDbDataReader.Close();
 					oleDbConnection.Close();
 				}catch(Exception ex){
-					oleDbDataReader.Close();
 					oleDbConnection.Close();
 					Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
 				}
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				try{
-					sqlCommand = new SqlCommand("SELECT [id], [name], [email], [address], [vat] FROM Constants", sqlConnection);
+					sqlCommand = new SqlCommand("SELECT [id], [name], [email], [address], [vat], [units] FROM Constants", sqlConnection);
 					sqlDataReader = sqlCommand.ExecuteReader();
 					sqlDataReader.Read();
 					DataConstants.ConstFirmName = sqlDataReader["name"].ToString();
 					DataConstants.ConstFirmEmail = sqlDataReader["email"].ToString();
 					DataConstants.ConstFirmAddress = sqlDataReader["address"].ToString();
 					DataConstants.ConstFirmVAT = (Double)sqlDataReader["vat"];
+					DataConstants.ConstFirmUnits = oleDbDataReader["units"].ToString();
 					sqlDataReader.Close();
 					sqlConnection.Close();
 				}catch(Exception ex){
-					sqlDataReader.Close();
 					sqlConnection.Close();
 					Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
 				}
@@ -81,13 +81,13 @@ namespace Aggregator.Database.Constants
 		public void Dispose()
 		{
 			if(oleDbConnection != null){
-				oleDbDataReader.Close();
+				if(oleDbDataReader != null) oleDbDataReader.Close();
 				oleDbConnection.Close();
 				oleDbCommand.Dispose();
 				oleDbConnection.Dispose();
 			}
 			if(sqlConnection != null){
-				sqlDataReader.Close();
+				if(sqlDataReader != null) sqlDataReader.Close();
 				sqlConnection.Close();
 				sqlCommand.Dispose();
 				sqlConnection.Dispose();

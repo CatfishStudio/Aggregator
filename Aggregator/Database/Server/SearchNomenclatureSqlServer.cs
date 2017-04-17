@@ -70,7 +70,7 @@ namespace Aggregator.Database.Server
 		        	nomenclature.Series = sqlDataReader["series"].ToString();
 		        	nomenclature.Article = sqlDataReader["article"].ToString();
 		        	nomenclature.Manufacturer = sqlDataReader["manufacturer"].ToString();
-		        	//nomenclature.Units = oleDbDataReader["units"].ToString();
+		        	nomenclature.Units = DataConstants.ConstFirmUnits;
 		        	nomenclature.Remainder = (Double)sqlDataReader["remainder"];
 		        	nomenclature.Price = (Double)sqlDataReader["price"];
 		        	nomenclature.Discount1 = (Double)sqlDataReader["discount1"];
@@ -308,7 +308,7 @@ namespace Aggregator.Database.Server
 		        	nomenclature.Series = sqlDataReader["series"].ToString();
 		        	nomenclature.Article = sqlDataReader["article"].ToString();
 		        	nomenclature.Manufacturer = sqlDataReader["manufacturer"].ToString();
-		        	//nomenclature.Units = sqlDataReader["units"].ToString();
+		        	nomenclature.Units = DataConstants.ConstFirmUnits;
 		        	nomenclature.Remainder = (Double)sqlDataReader["remainder"];
 		        	nomenclature.Price = (Double)sqlDataReader["price"];
 		        	nomenclature.Discount1 = (Double)sqlDataReader["discount1"];

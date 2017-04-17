@@ -43,6 +43,7 @@ namespace Aggregator.Client.Directories
 			emailTextBox.Text = DataConstants.ConstFirmEmail;
 			addressTextBox.Text = DataConstants.ConstFirmAddress;
 			vatTextBox.Text = DataConstants.ConstFirmVAT.ToString();
+			unitsTextBox.Text = DataConstants.ConstFirmUnits;
 		}
 		void FormConstantsFormClosed(object sender, FormClosedEventArgs e)
 		{
@@ -59,6 +60,7 @@ namespace Aggregator.Client.Directories
 			DataConstants.ConstFirmEmail = emailTextBox.Text;
 			DataConstants.ConstFirmAddress = addressTextBox.Text;
 			DataConstants.ConstFirmVAT = Convert.ToDouble(vatTextBox.Text);
+			DataConstants.ConstFirmUnits = unitsTextBox.Text;
 			
 			SavingConstants savingConstants = new SavingConstants();
 			savingConstants.save();
@@ -84,6 +86,21 @@ namespace Aggregator.Client.Directories
 		void Button1Click(object sender, EventArgs e)
 		{
 			vatTextBox.Text = "0";
+		}
+		void Button8Click(object sender, EventArgs e)
+		{
+			if(DataForms.FUnits != null) DataForms.FUnits.Close();
+			if(DataForms.FUnits == null) {
+				DataForms.FUnits = new FormUnits();
+				DataForms.FUnits.MdiParent = DataForms.FClient;
+				DataForms.FUnits.TextBoxReturnValue = unitsTextBox;
+				DataForms.FUnits.ShowMenuReturnValue();
+				DataForms.FUnits.Show();
+			}
+		}
+		void Button9Click(object sender, EventArgs e)
+		{
+			unitsTextBox.Clear();
 		}
 	}
 }

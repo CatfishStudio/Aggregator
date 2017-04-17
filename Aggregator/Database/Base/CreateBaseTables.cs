@@ -71,14 +71,15 @@ namespace Aggregator.Database.Base
 				"[name] VARCHAR DEFAULT '', " +
 				"[email] VARCHAR DEFAULT '', " +
 				"[address] VARCHAR DEFAULT '', " +
-				"[vat] FLOAT DEFAULT 0" +
+				"[vat] FLOAT DEFAULT 0, " +
+				"[units] VARCHAR DEFAULT '' " +
 				")";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Константы.", false, true);
 			
 			sqlCommand = "INSERT INTO Constants (" +
-				"[name], [email], [address], [vat]) " +
-				"VALUES ('Фирма', 'myfirm@mail.ru', 'Страна, Город, Улица, Дом', 20)";
+				"[name], [email], [address], [vat], [units]) " +
+				"VALUES ('Фирма', 'myfirm@mail.ru', 'Страна, Город, Улица, Дом', 20, 'шт.')";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Константы.", false, true);
 			

@@ -317,6 +317,7 @@ namespace Aggregator.Client.Directories
 			foldersComboBox.Text = ParentFolder;
 			if(ID == null){
 				Text = "Номенклатура: Создать";
+				unitsTextBox.Text = DataConstants.ConstFirmUnits;
 			}else{
 				Text = "Номенклатура: Изменить";
 				open();

@@ -108,7 +108,7 @@ namespace Aggregator.User
 						}
 					}
 				}catch{
-					MessageBox.Show("Ошибка ввода логина и пароля.","Сообщение:");
+					MessageBox.Show("Призошла ошибка при загрузке клиента.","Сообщение:");
 				}
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
 				try{
@@ -132,7 +132,7 @@ namespace Aggregator.User
 						}
 					}
 				}catch{
-					MessageBox.Show("Ошибка ввода логина и пароля.","Сообщение:");
+					MessageBox.Show("Призошла ошибка при загрузке клиента.","Сообщение:");
 				}
 			}
 		}

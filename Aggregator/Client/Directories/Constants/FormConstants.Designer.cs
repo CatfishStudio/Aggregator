@@ -32,6 +32,10 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.TextBox vatTextBox;
+		private System.Windows.Forms.Button button9;
+		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.TextBox unitsTextBox;
+		private System.Windows.Forms.Label label5;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -60,6 +64,10 @@ namespace Aggregator.Client.Directories
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.button9 = new System.Windows.Forms.Button();
+			this.button8 = new System.Windows.Forms.Button();
+			this.unitsTextBox = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.vatTextBox = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -84,7 +92,7 @@ namespace Aggregator.Client.Directories
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonCancel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 175);
+			this.panel1.Location = new System.Drawing.Point(0, 203);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(428, 54);
 			this.panel1.TabIndex = 0;
@@ -118,20 +126,61 @@ namespace Aggregator.Client.Directories
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(428, 175);
+			this.panel2.Size = new System.Drawing.Size(428, 203);
 			this.panel2.TabIndex = 1;
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.button9);
+			this.groupBox3.Controls.Add(this.button8);
+			this.groupBox3.Controls.Add(this.unitsTextBox);
+			this.groupBox3.Controls.Add(this.label5);
 			this.groupBox3.Controls.Add(this.button1);
 			this.groupBox3.Controls.Add(this.vatTextBox);
 			this.groupBox3.Controls.Add(this.label7);
 			this.groupBox3.Location = new System.Drawing.Point(5, 109);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(420, 51);
+			this.groupBox3.Size = new System.Drawing.Size(420, 82);
 			this.groupBox3.TabIndex = 4;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Данные:";
+			// 
+			// button9
+			// 
+			this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button9.Location = new System.Drawing.Point(392, 48);
+			this.button9.Name = "button9";
+			this.button9.Size = new System.Drawing.Size(20, 20);
+			this.button9.TabIndex = 28;
+			this.button9.Text = "X";
+			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Click += new System.EventHandler(this.Button9Click);
+			// 
+			// button8
+			// 
+			this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+			this.button8.Location = new System.Drawing.Point(360, 48);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(26, 20);
+			this.button8.TabIndex = 27;
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.Button8Click);
+			// 
+			// unitsTextBox
+			// 
+			this.unitsTextBox.Location = new System.Drawing.Point(165, 48);
+			this.unitsTextBox.Name = "unitsTextBox";
+			this.unitsTextBox.Size = new System.Drawing.Size(189, 20);
+			this.unitsTextBox.TabIndex = 26;
+			// 
+			// label5
+			// 
+			this.label5.Location = new System.Drawing.Point(9, 51);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(150, 17);
+			this.label5.TabIndex = 25;
+			this.label5.Text = "Ед. изм. (по умолчанию)";
 			// 
 			// button1
 			// 
@@ -148,7 +197,7 @@ namespace Aggregator.Client.Directories
 			// 
 			this.vatTextBox.Location = new System.Drawing.Point(165, 22);
 			this.vatTextBox.Name = "vatTextBox";
-			this.vatTextBox.Size = new System.Drawing.Size(223, 20);
+			this.vatTextBox.Size = new System.Drawing.Size(221, 20);
 			this.vatTextBox.TabIndex = 10;
 			// 
 			// label7
@@ -259,7 +308,7 @@ namespace Aggregator.Client.Directories
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(428, 229);
+			this.ClientSize = new System.Drawing.Size(428, 257);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

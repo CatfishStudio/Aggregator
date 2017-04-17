@@ -167,7 +167,7 @@ namespace Aggregator.Client.Documents.Order
 				ListViewItem_add = new ListViewItem();
 				/*Наимен. */ ListViewItem_add.SubItems.Add(listView1.Items[selectLineIndex].SubItems[1].Text);
 				/*Картинка*/ ListViewItem_add.StateImageIndex = 0;
-				/*Ед.изм. */ ListViewItem_add.SubItems.Add("");
+				/*Ед.изм. */ ListViewItem_add.SubItems.Add(DataConstants.ConstFirmUnits);
 				/*Кол-во  */ ListViewItem_add.SubItems.Add("0,00");
 				/*Цена    */ ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(listView1.Items[selectLineIndex].SubItems[2].Text).ToString()));
 				/*НДС     */ ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble("0").ToString()));

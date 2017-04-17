@@ -41,7 +41,8 @@ namespace Aggregator.Database.Constants
 					"[name] = '" + DataConstants.ConstFirmName + "', " +
 					"[email] = '" + DataConstants.ConstFirmEmail + "', " +
 					"[address] = '" + DataConstants.ConstFirmAddress + "', " +
-					"[vat] = " + DataConstants.ConstFirmVAT.ToString() + " " +
+					"[vat] = " + DataConstants.ConstFirmVAT.ToString() + ", " +
+					"[units] = '" + DataConstants.ConstFirmUnits + "' " +
 					"WHERE (id = 1)";
 				oleDbQuery.SetCommand(sqlCommand);
 				if(!oleDbQuery.Execute()) Utilits.Console.Log("[ОШИБКА] Не удалось сохранить константы.", false, true);
@@ -52,7 +53,8 @@ namespace Aggregator.Database.Constants
 					"[name] = '" + DataConstants.ConstFirmName + "', " +
 					"[email] = '" + DataConstants.ConstFirmEmail + "', " +
 					"[address] = '" + DataConstants.ConstFirmAddress + "', " +
-					"[vat] = " + DataConstants.ConstFirmVAT.ToString() + " " +
+					"[vat] = " + DataConstants.ConstFirmVAT.ToString() + ", " +
+					"[units] = '" + DataConstants.ConstFirmUnits + "' " +
 					"WHERE (id = 1)";
 				sqlQuery.SetCommand(sqlCommand);
 				if(!sqlQuery.Execute()) Utilits.Console.Log("[ОШИБКА] Не удалось сохранить константы.", false, true);

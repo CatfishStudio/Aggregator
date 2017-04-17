@@ -185,7 +185,7 @@ namespace Aggregator.Client.Documents.Order
 						ListViewItem_add = new ListViewItem();
 						ListViewItem_add.SubItems.Add(oleDbDataReader["name"].ToString());
 						ListViewItem_add.StateImageIndex = 0;
-						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add(DataConstants.ConstFirmUnits);
 						ListViewItem_add.SubItems.Add("0,00");
 						ListViewItem_add.SubItems.Add(oleDbDataReader["price"].ToString());
 						ListViewItem_add.SubItems.Add("0,00");
@@ -221,7 +221,7 @@ namespace Aggregator.Client.Documents.Order
 				sqlConnection = new SqlConnection(DataConfig.serverConnection);
 				sqlConnection.Open();
 				
-				SqlCommand = new SqlCommand("SELECT * FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", sqlConnection);
+				sqlCommand = new SqlCommand("SELECT * FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", sqlConnection);
 				sqlDataReader = sqlCommand.ExecuteReader();
 				if(sqlDataReader.Read()){
 					priceName = sqlDataReader["excel_table_id"].ToString();
@@ -238,7 +238,7 @@ namespace Aggregator.Client.Documents.Order
 						ListViewItem_add = new ListViewItem();
 						ListViewItem_add.SubItems.Add(sqlDataReader["name"].ToString());
 						ListViewItem_add.StateImageIndex = 0;
-						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add(DataConstants.ConstFirmUnits);
 						ListViewItem_add.SubItems.Add("0,00");
 						ListViewItem_add.SubItems.Add(sqlDataReader["price"].ToString());
 						ListViewItem_add.SubItems.Add("0,00");

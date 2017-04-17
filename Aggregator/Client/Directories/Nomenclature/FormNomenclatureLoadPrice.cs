@@ -100,7 +100,7 @@ namespace Aggregator.Client.Directories
 					newRow["article"] = row[4];
 					newRow["manufacturer"] = row[6];
 					newRow["price"] = row[7];
-					newRow["units"] = "";	
+					newRow["units"] = DataConstants.ConstFirmUnits;	
 					newRow["type"] = DataConstants.FILE;					
 					newRow["parent"] = ParentFolder;
 					oleDb.dataSet.Tables["Nomenclature"].Rows.Add(newRow);
@@ -144,7 +144,7 @@ namespace Aggregator.Client.Directories
 					newRow["article"] = row[4];
 					newRow["manufacturer"] = row[6];
 					newRow["price"] = row[7];
-					newRow["units"] = "";	
+					newRow["units"] = DataConstants.ConstFirmUnits;	
 					newRow["type"] = DataConstants.FILE;					
 					newRow["parent"] = ParentFolder;
 					sqlServer.dataSet.Tables["Nomenclature"].Rows.Add(newRow);
