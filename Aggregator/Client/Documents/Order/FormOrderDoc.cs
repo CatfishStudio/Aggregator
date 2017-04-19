@@ -7,6 +7,7 @@
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
 using System;
+using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -287,6 +288,47 @@ namespace Aggregator.Client.Documents.Order
 				Utilits.Console.Log("[ОШИБКА] автонумерация не смогла назначить номер для документа.", false, true);
 				return;
 			}
+			
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docCounteragent, docAutor, docSum, docVat, docTotal, docPurchasePlan FROM Orders WHERE (id = 0)";
+				oleDb.ExecuteFill("Orders");
+				
+				DataRow newRow = oleDb.dataSet.Tables["Orders"].NewRow();
+				newRow["docDate"] = dateTimePicker1.Value;
+				newRow["docNumber"] = docNumber;
+				newRow["docName"] = "Заказ";
+				newRow["docCounteragent"] = counteragentTextBox.Text;
+				newRow["docAutor"] = DataConfig.userName;
+				newRow["docSum"] = sumTextBox.Text;
+				newRow["docVat"] = vatTextBox.Text;
+				newRow["docTotal"] = totalTextBox.Text;
+				newRow["docPurchasePlan"] = "";
+				oleDb.dataSet.Tables["Orders"].Rows.Add(newRow);
+				
+				oleDb.oleDbCommandInsert.CommandText = "INSERT INTO Orders (docDate, docNumber, docName, docCounteragent, docAutor, docSum, docVat, docTotal, docPurchasePlan) " +
+					"VALUES (@docDate, @docNumber, @docName, @docCounteragent, @docAutor, @docSum, @docVat, @docTotal, @docPurchasePlan)";
+				oleDb.oleDbCommandInsert.Parameters.Add("@docDate", OleDbType.Date, 255, "docDate");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docNumber", OleDbType.VarChar, 255, "docNumber");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docName", OleDbType.VarChar, 255, "docName");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docCounteragent", OleDbType.VarChar, 255, "docCounteragent");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docAutor", OleDbType.VarChar, 255, "docAutor");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docSum", OleDbType.Double, 15, "docSum");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docVat", OleDbType.Double, 15, "docVat");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docTotal", OleDbType.Double, 15, "docTotal");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docPurchasePlan", OleDbType.VarChar, 255, "docPurchasePlan");
+				if(oleDb.ExecuteUpdate("Orders")){
+					DataForms.FClient.updateHistory("Orders");
+					
+					Utilits.Console.Log("Документ Заказ №" + docNumber + ": успешно создан.");
+					Close();
+				}
+				
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				
+			}
 		}
 		
 		
@@ -304,6 +346,11 @@ namespace Aggregator.Client.Documents.Order
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
+			if(listViewNomenclature.Items.Count > 0){
+				MessageBox.Show("Вы не можите сменить контрагента пока не очистите таблицу номенклатуры.", "Сообщение");
+				return;
+			}
+			
 			if(DataForms.FCounteragents != null) DataForms.FCounteragents.Close();
 			if(DataForms.FCounteragents == null) {
 				DataForms.FCounteragents = new FormCounteragents();
