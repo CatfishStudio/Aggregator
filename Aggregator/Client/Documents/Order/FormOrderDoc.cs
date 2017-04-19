@@ -320,7 +320,10 @@ namespace Aggregator.Client.Documents.Order
 				oleDb.oleDbCommandInsert.Parameters.Add("@docPurchasePlan", OleDbType.VarChar, 255, "docPurchasePlan");
 				if(oleDb.ExecuteUpdate("Orders")){
 					DataForms.FClient.updateHistory("Orders");
-					
+					if(saveNewOrderNomenclature() == false){
+						Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Документ Заказ №" + docNumber + ": не удалось сохранить список выбранной номенклатуры.", false, true);
+						return;
+					}
 					Utilits.Console.Log("Документ Заказ №" + docNumber + ": успешно создан.");
 					Close();
 				}
@@ -329,6 +332,89 @@ namespace Aggregator.Client.Documents.Order
 				// MSSQL SERVER
 				
 			}
+		}
+		
+		bool saveNewOrderNomenclature()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, " +
+					"nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " + 
+					"FROM OrderNomenclature WHERE (id = 0)";
+				oleDb.ExecuteFill("OrderNomenclature");
+				
+				DataRow newRow = null;
+				for(int i = 0; i < listViewNomenclature.Items.Count; i++){
+					newRow = oleDb.dataSet.Tables["OrderNomenclature"].NewRow();
+					newRow["nomenclatureID"] = 0;
+					newRow["nomenclatureName"] = "";
+					newRow["name"] = listViewNomenclature.Items[i].SubItems[1].Text;
+					newRow["units"] = listViewNomenclature.Items[i].SubItems[2].Text;
+					newRow["amount"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[3].Text);
+					newRow["price"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
+					newRow["manufacturer"] = listViewNomenclature.Items[i].SubItems[7].Text;
+					newRow["remainder"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[8].Text);
+					newRow["term"] = listViewNomenclature.Items[i].SubItems[9].Text;
+					newRow["discount1"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[10].Text);
+					newRow["discount2"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[11].Text);
+					newRow["discount3"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[12].Text);
+					newRow["discount4"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[13].Text);
+					newRow["code"] = listViewNomenclature.Items[i].SubItems[14].Text;
+					newRow["series"] = listViewNomenclature.Items[i].SubItems[15].Text;
+					newRow["article"] = listViewNomenclature.Items[i].SubItems[16].Text;
+					newRow["counteragentName"] = listViewNomenclature.Items[i].SubItems[17].Text;
+					newRow["counteragentPricelist"] = listViewNomenclature.Items[i].SubItems[18].Text;
+					newRow["docPurchasePlan"] = "";
+					newRow["docOrder"] = docNumber;
+					oleDb.dataSet.Tables["OrderNomenclature"].Rows.Add(newRow);
+				}
+				
+				oleDb.oleDbCommandInsert.CommandText = "INSERT INTO OrderNomenclature (" +
+					"nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " + 
+					") VALUES (" +
+					"@nomenclatureID, @nomenclatureName, @units, @amount, " +
+					"@name, @price, @manufacturer, @remainder, @term, @discount1, @discount2, @discount3, @discount4, @code, @series, @article, " +
+					"@counteragentName, @counteragentPricelist, " +
+					"@docPurchasePlan, @docOrder " + 
+					")";
+				oleDb.oleDbCommandInsert.Parameters.Add("@nomenclatureID", OleDbType.Integer, 10, "nomenclatureID");
+				oleDb.oleDbCommandInsert.Parameters.Add("@nomenclatureName", OleDbType.VarChar, 255, "nomenclatureName");
+				oleDb.oleDbCommandInsert.Parameters.Add("@units", OleDbType.VarChar, 255, "units");
+				oleDb.oleDbCommandInsert.Parameters.Add("@amount", OleDbType.Double, 15, "amount");
+				oleDb.oleDbCommandInsert.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
+				oleDb.oleDbCommandInsert.Parameters.Add("@price", OleDbType.Double, 15, "price");
+				oleDb.oleDbCommandInsert.Parameters.Add("@manufacturer", OleDbType.VarChar, 255, "manufacturer");
+				oleDb.oleDbCommandInsert.Parameters.Add("@remainder", OleDbType.Double, 15, "remainder");
+				oleDb.oleDbCommandInsert.Parameters.Add("@term", OleDbType.Date, 15, "term");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount1", OleDbType.Double, 15, "discount1");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount2", OleDbType.Double, 15, "discount2");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount3", OleDbType.Double, 15, "discount3");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount4", OleDbType.Double, 15, "discount4");
+				oleDb.oleDbCommandInsert.Parameters.Add("@code", OleDbType.VarChar, 255, "code");
+				oleDb.oleDbCommandInsert.Parameters.Add("@series", OleDbType.VarChar, 255, "series");
+				oleDb.oleDbCommandInsert.Parameters.Add("@article", OleDbType.VarChar, 255, "article");
+				oleDb.oleDbCommandInsert.Parameters.Add("@counteragentName", OleDbType.VarChar, 255, "counteragentName");
+				oleDb.oleDbCommandInsert.Parameters.Add("@counteragentPricelist", OleDbType.VarChar, 255, "counteragentPricelist");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docPurchasePlan", OleDbType.VarChar, 255, "docPurchasePlan");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docOrder", OleDbType.VarChar, 255, "docOrder");
+				if(oleDb.ExecuteUpdate("OrderNomenclature")){
+					return true;
+				}else{
+					return false;
+				}
+				
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				
+			}
+			return false;
 		}
 		
 		
@@ -511,6 +597,18 @@ namespace Aggregator.Client.Documents.Order
 			if(priceTextBox.Text == "" || Conversion.checkString(priceTextBox.Text) == false) priceTextBox.Text = "0,00";
 			calculate();
 		}
+		void Button13Click(object sender, EventArgs e)
+		{
+			Calculator Calc = new Calculator();
+			Calc.TextBoxReturnValue = priceTextBox;
+			Calc.MdiParent = DataForms.FClient;
+			Calc.Show();
+		}
+		void Button14Click(object sender, EventArgs e)
+		{
+			priceTextBox.Text = "0,00";
+			calculate();
+		}
 		void ButtonCancelClick(object sender, EventArgs e)
 		{
 			Close();
@@ -528,6 +626,7 @@ namespace Aggregator.Client.Documents.Order
 				
 			}
 		}
+		
 		
 	}
 }

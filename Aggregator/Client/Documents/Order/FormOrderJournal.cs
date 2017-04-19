@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
+using Aggregator.Utilits;
 
 namespace Aggregator.Client.Documents.Order
 {
@@ -115,9 +116,9 @@ namespace Aggregator.Client.Documents.Order
 					ListViewItem_add.StateImageIndex = 0;
 					ListViewItem_add.SubItems.Add(rowElement["docNumber"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docName"].ToString());
-					ListViewItem_add.SubItems.Add(rowElement["docSum"].ToString());
-					ListViewItem_add.SubItems.Add(rowElement["docVat"].ToString());
-					ListViewItem_add.SubItems.Add(rowElement["docTotal"].ToString());
+					ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(rowElement["docSum"].ToString()).ToString()));
+					ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(rowElement["docVat"].ToString()).ToString()));
+					ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(rowElement["docTotal"].ToString()).ToString()));
 					ListViewItem_add.SubItems.Add(rowElement["docCounteragent"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docAutor"].ToString());
 					ListViewItem_add.SubItems.Add(rowElement["docPurchasePlan"].ToString());

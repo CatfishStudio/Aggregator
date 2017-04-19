@@ -643,6 +643,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button13.Size = new System.Drawing.Size(26, 20);
 			this.button13.TabIndex = 28;
 			this.button13.UseVisualStyleBackColor = true;
+			this.button13.Click += new System.EventHandler(this.Button13Click);
 			// 
 			// button14
 			// 
@@ -654,6 +655,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button14.TabIndex = 27;
 			this.button14.Text = "X";
 			this.button14.UseVisualStyleBackColor = true;
+			this.button14.Click += new System.EventHandler(this.Button14Click);
 			// 
 			// amountTextBox
 			// 

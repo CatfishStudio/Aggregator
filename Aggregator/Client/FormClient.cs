@@ -230,11 +230,13 @@ namespace Aggregator.Client
 		/* Обновть данные в Истории */
 		public void updateHistory(String tableName)
 		{
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){	// OLEDB
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){	
+				// OLEDB
 				if(DataConfig.autoUpdate && historyRefreshOleDb != null) historyRefreshOleDb.update(tableName);
 				if(!DataConfig.autoUpdate && historyRefreshOleDb != null) historyRefreshOleDb.refresh(tableName, tableName);
-			}else{	// MSSQL
-				//..
+			}else{	
+				// MSSQL
+
 			}
 		}
 		
