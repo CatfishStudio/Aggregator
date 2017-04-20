@@ -1001,9 +1001,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				double total = 0;
 				int count = listViewNomenclature.Items.Count;
 				for(int i = 0; i < count; i++){
-					if(listViewNomenclature.Items[i].SubItems[4].Text != "") amount = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
+					if(listViewNomenclature.Items[i].SubItems[4].Text != "") amount = Conversion.StringToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
 					else amount = 0;
-					if(listViewNomenclature.Items[i].SubItems[7].Text != "") price = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[7].Text);
+					if(listViewNomenclature.Items[i].SubItems[7].Text != "") price = Conversion.StringToDouble(listViewNomenclature.Items[i].SubItems[7].Text);
 					else price = 0;
 					sum += (price * amount);
 				}
@@ -1097,7 +1097,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				DataForms.FNomenclature = new FormNomenclature();
 				DataForms.FNomenclature.MdiParent = DataForms.FClient;
 				DataForms.FNomenclature.ListViewReturnValue = listViewNomenclature;
-				DataForms.FNomenclature.TypeReturnValue = "file";
+				DataForms.FNomenclature.TypeReturnValue = "file&PurchasePlan";
 				DataForms.FNomenclature.ShowMenuReturnValue();
 				DataForms.FNomenclature.Show();
 			}
@@ -1118,7 +1118,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				DataForms.FNomenclature = new FormNomenclature();
 				DataForms.FNomenclature.MdiParent = DataForms.FClient;
 				DataForms.FNomenclature.ListViewReturnValue = listViewNomenclature;
-				DataForms.FNomenclature.TypeReturnValue = "folder";
+				DataForms.FNomenclature.TypeReturnValue = "folder&PurchasePlan";
 				DataForms.FNomenclature.ShowMenuReturnValue();
 				DataForms.FNomenclature.Show();
 			}
@@ -1370,7 +1370,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				DataForms.FNomenclature = new FormNomenclature();
 				DataForms.FNomenclature.MdiParent = DataForms.FClient;
 				DataForms.FNomenclature.ListViewReturnValue = listViewNomenclature;
-				DataForms.FNomenclature.TypeReturnValue = "file";
+				DataForms.FNomenclature.TypeReturnValue = "file&PurchasePlan";
 				DataForms.FNomenclature.ShowMenuReturnValue();
 				DataForms.FNomenclature.Show();
 			}
@@ -1382,7 +1382,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				DataForms.FNomenclature = new FormNomenclature();
 				DataForms.FNomenclature.MdiParent = DataForms.FClient;
 				DataForms.FNomenclature.ListViewReturnValue = listViewNomenclature;
-				DataForms.FNomenclature.TypeReturnValue = "folder";
+				DataForms.FNomenclature.TypeReturnValue = "folder&PurchasePlan";
 				DataForms.FNomenclature.ShowMenuReturnValue();
 				DataForms.FNomenclature.Show();
 			}

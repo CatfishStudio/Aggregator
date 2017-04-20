@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
+using Aggregator.Utilits;
 
 namespace Aggregator.Client.Directories
 {
@@ -115,6 +116,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.SubItems.Add("Папка");
 				ListViewItem_add.SubItems.Add(rowFolder["id"].ToString());
 				ListViewItem_add.SubItems.Add(rowFolder["units"].ToString());
+				ListViewItem_add.SubItems.Add(rowFolder["price"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ОТОБРАЖЕНИЕ "Файлов"
@@ -126,6 +128,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.SubItems.Add("");
 				ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
 				ListViewItem_add.SubItems.Add(rowElement["units"].ToString());
+				ListViewItem_add.SubItems.Add(rowElement["price"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ВЫБОР: выдиляем ранее выбранный элемент.
@@ -178,6 +181,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.SubItems.Add("Папка");
 				ListViewItem_add.SubItems.Add(rowFolder["id"].ToString());
 				ListViewItem_add.SubItems.Add(rowFolder["units"].ToString());
+				ListViewItem_add.SubItems.Add(rowFolder["price"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ОТОБРАЖЕНИЕ "Файлов"
@@ -189,6 +193,7 @@ namespace Aggregator.Client.Directories
 				ListViewItem_add.SubItems.Add("");
 				ListViewItem_add.SubItems.Add(rowElement["id"].ToString());
 				ListViewItem_add.SubItems.Add(rowElement["units"].ToString());
+				ListViewItem_add.SubItems.Add(rowElement["price"].ToString());
 				listView1.Items.Add(ListViewItem_add);
 			}
 			// ВЫБОР: выдиляем ранее выбранный элемент.
@@ -454,48 +459,63 @@ namespace Aggregator.Client.Directories
 		
 		void returnValue()
 		{
-			if(TypeReturnValue == "folder" && openFolder != ""){
+			if(TypeReturnValue.Remove(6) == "folder" && openFolder != ""){
 				int count = listView1.Items.Count;
 				if(count <= 1){
 					MessageBox.Show("Папка пустая.", "Сообщение");
 					return;
 				}
-				ListViewItem ListViewItem_add;
-				for(int i = 1; i < count; i++){
-					ListViewItem_add = new ListViewItem();
-					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[3].Text);
-					ListViewItem_add.StateImageIndex = 0;
-					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[1].Text);
-					ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[4].Text);
-					ListViewItem_add.SubItems.Add("0,00");
-					ListViewItem_add.SubItems.Add("-->");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewItem_add.SubItems.Add("");
-					ListViewReturnValue.Items.Add(ListViewItem_add);
+				if(TypeReturnValue == "folder&PurchasePlan"){
+					ListViewItem ListViewItem_add;
+					for(int i = 1; i < count; i++){
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[3].Text);
+						ListViewItem_add.StateImageIndex = 0;
+						ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[1].Text);
+						ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[4].Text);
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add("-->");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewItem_add.SubItems.Add("");
+						ListViewReturnValue.Items.Add(ListViewItem_add);
+					}
+				}
+				if(TypeReturnValue == "folder&CalcCostRealization"){
+					ListViewItem ListViewItem_add;
+					for(int i = 1; i < count; i++){
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[1].Text);
+						ListViewItem_add.StateImageIndex = 0;
+						ListViewItem_add.SubItems.Add(listView1.Items[i].SubItems[4].Text);
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(listView1.Items[i].SubItems[5].Text).ToString()));
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewReturnValue.Items.Add(ListViewItem_add);
+					}
 				}
 				Close();
-			}else if(TypeReturnValue == "folder" && openFolder == ""){
+			}else if(TypeReturnValue.Remove(6) == "folder" && openFolder == ""){
 				MessageBox.Show("Вы не открыли папку с номенклатурой.", "Сообщение");
 				
-			}else if(TypeReturnValue != "folder"){
+			}else if(TypeReturnValue.Remove(6) != "folder"){
 				if(listView1.SelectedIndices.Count > 0){
 					if(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text != "Папка" && listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text != ".."){
 						if(TypeReturnValue == "id") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text;
 						if(TypeReturnValue == "name") TextBoxReturnValue.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text;
-						if(TypeReturnValue == "file"){
+						if(TypeReturnValue == "file&PurchasePlan"){
 							ListViewItem ListViewItem_add = new ListViewItem();
 							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[3].Text);
 							ListViewItem_add.StateImageIndex = 0;
@@ -518,6 +538,16 @@ namespace Aggregator.Client.Directories
 							ListViewItem_add.SubItems.Add("");
 							ListViewItem_add.SubItems.Add("");
 							ListViewItem_add.SubItems.Add("");
+							ListViewReturnValue.Items.Add(ListViewItem_add);
+						}
+						if(TypeReturnValue == "name&units&amount&price&sum"){
+							ListViewItem ListViewItem_add = new ListViewItem();
+							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text);
+							ListViewItem_add.StateImageIndex = 0;
+							ListViewItem_add.SubItems.Add(listView1.Items[listView1.SelectedIndices[0]].SubItems[4].Text);
+							ListViewItem_add.SubItems.Add("0,00");
+							ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(listView1.Items[listView1.SelectedIndices[0]].SubItems[5].Text).ToString()));
+							ListViewItem_add.SubItems.Add("0,00");
 							ListViewReturnValue.Items.Add(ListViewItem_add);
 						}
 						Close();

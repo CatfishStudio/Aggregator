@@ -112,9 +112,9 @@ namespace Aggregator.Client.Documents.Order
 				double total = 0;
 				int count = listViewNomenclature.Items.Count;
 				for(int i = 0; i < count; i++){
-					if(listViewNomenclature.Items[i].SubItems[3].Text != "") amount = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[3].Text);
+					if(listViewNomenclature.Items[i].SubItems[3].Text != "") amount = Conversion.StringToDouble(listViewNomenclature.Items[i].SubItems[3].Text);
 					else amount = 0;
-					if(listViewNomenclature.Items[i].SubItems[4].Text != "") price = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
+					if(listViewNomenclature.Items[i].SubItems[4].Text != "") price = Conversion.StringToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
 					else price = 0;
 					sum += (price * amount);
 					

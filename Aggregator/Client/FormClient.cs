@@ -197,6 +197,13 @@ namespace Aggregator.Client
 			}
 		}
 		
+		void calcCostRealizationShow()
+		{
+			FormCalculationCostRealization FCalculationCostRealization = new FormCalculationCostRealization();
+			FCalculationCostRealization.MdiParent = DataForms.FClient;
+			FCalculationCostRealization.Show();
+		}
+		
 		/* Сообщение в статусе */
 		public void messageInStatus(String message) {
 			toolStripStatusLabel2.Text = message;
@@ -416,6 +423,14 @@ namespace Aggregator.Client
 		{
 			orderJournalShow();
 		}
-		
+		void ЗаказToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			
+		}
+		void СтоимостьРеализацииToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			calcCostRealizationShow();
+		}
+				
 	}
 }

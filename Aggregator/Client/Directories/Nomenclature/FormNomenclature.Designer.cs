@@ -60,6 +60,7 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.ToolStripMenuItem изПрайслистовКонтрагентовToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem изТабличногоФайлаExcelToolStripMenuItem;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.ColumnHeader columnHeader6;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -109,6 +110,7 @@ namespace Aggregator.Client.Directories
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.папкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.создатьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,7 +131,7 @@ namespace Aggregator.Client.Directories
 			this.panelLoading = new System.Windows.Forms.Panel();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
-			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -368,7 +370,8 @@ namespace Aggregator.Client.Directories
 			this.columnHeader2,
 			this.columnHeader3,
 			this.columnHeader4,
-			this.columnHeader5});
+			this.columnHeader5,
+			this.columnHeader6});
 			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -404,6 +407,11 @@ namespace Aggregator.Client.Directories
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "№";
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Ед. изм.";
+			this.columnHeader5.Width = 0;
 			// 
 			// contextMenuStrip1
 			// 
@@ -570,10 +578,10 @@ namespace Aggregator.Client.Directories
 			this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(this.Button3Click);
 			// 
-			// columnHeader5
+			// columnHeader6
 			// 
-			this.columnHeader5.Text = "Ед. изм.";
-			this.columnHeader5.Width = 0;
+			this.columnHeader6.Text = "Цена:";
+			this.columnHeader6.Width = 0;
 			// 
 			// FormNomenclature
 			// 
