@@ -320,7 +320,7 @@ namespace Aggregator.User
 		}
 		void ButtonSaveExcelClick(object sender, EventArgs e)
 		{
-			if(listViewNomenclature.SelectedItems.Count == 0) {
+			if(listViewNomenclature.Items.Count == 0) {
 				MessageBox.Show("Таблица номенклатуры пустая, добавьте номенклатуру!", "Сообщение");
 				return;
 			}
@@ -462,8 +462,8 @@ namespace Aggregator.User
 			//    Себестоимость
 			e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 250, 25));
 			e.Graphics.DrawString("Себестоимость:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 5, PosY);
-			e.Graphics.FillRectangle(Brushes.White, new Rectangle(430, PosY, 100, 25));
-			e.Graphics.DrawString(costPriceTextBox.Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 435, PosY);
+			e.Graphics.FillRectangle(Brushes.White, new Rectangle(535, PosY, 100, 25));
+			e.Graphics.DrawString(costPriceTextBox.Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 540, PosY);
 			
 			PosY += 30;
 			//    Торговая наценка
@@ -478,8 +478,8 @@ namespace Aggregator.User
 			//    Стоимость реализации
 			e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 250, 25));
 			e.Graphics.DrawString("Стоимость реализации:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 5, PosY);
-			e.Graphics.FillRectangle(Brushes.White, new Rectangle(430, PosY, 100, 25));
-			e.Graphics.DrawString(resultTextBox.Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 435, PosY);
+			e.Graphics.FillRectangle(Brushes.White, new Rectangle(535, PosY, 100, 25));
+			e.Graphics.DrawString(resultTextBox.Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 540, PosY);
 				
 		}
 		void ButtonPrintPreviewClick(object sender, EventArgs e)
