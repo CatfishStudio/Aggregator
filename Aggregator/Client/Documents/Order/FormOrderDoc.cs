@@ -330,6 +330,42 @@ namespace Aggregator.Client.Documents.Order
 				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docCounteragent, docAutor, docSum, docVat, docTotal, docPurchasePlan FROM Orders WHERE (id = 0)";
+				sqlServer.ExecuteFill("Orders");
+				
+				DataRow newRow = sqlServer.dataSet.Tables["Orders"].NewRow();
+				newRow["docDate"] = dateTimePicker1.Value;
+				newRow["docNumber"] = docNumber;
+				newRow["docName"] = "Заказ";
+				newRow["docCounteragent"] = counteragentTextBox.Text;
+				newRow["docAutor"] = DataConfig.userName;
+				newRow["docSum"] = sumTextBox.Text;
+				newRow["docVat"] = vatTextBox.Text;
+				newRow["docTotal"] = totalTextBox.Text;
+				newRow["docPurchasePlan"] = "";
+				sqlServer.dataSet.Tables["Orders"].Rows.Add(newRow);
+				
+				sqlServer.sqlCommandInsert.CommandText = "INSERT INTO Orders (docDate, docNumber, docName, docCounteragent, docAutor, docSum, docVat, docTotal, docPurchasePlan) " +
+					"VALUES (@docDate, @docNumber, @docName, @docCounteragent, @docAutor, @docSum, @docVat, @docTotal, @docPurchasePlan)";
+				sqlServer.sqlCommandInsert.Parameters.Add("@docDate", SqlDbType.Date, 255, "docDate");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docNumber", SqlDbType.VarChar, 255, "docNumber");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docName", SqlDbType.VarChar, 255, "docName");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docCounteragent", SqlDbType.VarChar, 255, "docCounteragent");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docAutor", SqlDbType.VarChar, 255, "docAutor");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docSum", SqlDbType.Float, 15, "docSum");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docVat", SqlDbType.Float, 15, "docVat");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docTotal", SqlDbType.Float, 15, "docTotal");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docPurchasePlan", SqlDbType.VarChar, 255, "docPurchasePlan");
+				if(sqlServer.ExecuteUpdate("Orders")){
+					DataForms.FClient.updateHistory("Orders");
+					if(saveNewOrderNomenclature() == false){
+						Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Документ Заказ №" + docNumber + ": не удалось сохранить список выбранной номенклатуры.", false, true);
+						return;
+					}
+					Utilits.Console.Log("Документ Заказ №" + docNumber + ": успешно создан.");
+					Close();
+				}
 				
 			}
 		}
@@ -417,6 +453,31 @@ namespace Aggregator.Client.Documents.Order
 			return false;
 		}
 		
+		void open()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docCounteragent, docAutor, docSum, docVat, docTotal, docPurchasePlan FROM Orders WHERE (id = " + ID + ")";
+				if(oleDb.ExecuteFill("Orders")){
+					docNumber = oleDb.dataSet.Tables["Orders"].Rows[0]["docNumber"].ToString();
+					docNumberTextBox.Text = docNumber;
+					dateTimePicker1.Value = (DateTime)oleDb.dataSet.Tables["Orders"].Rows[0]["docDate"];
+					autorLabel.Text = "Автор: " + oleDb.dataSet.Tables["Orders"].Rows[0]["docAutor"].ToString();
+					counteragentTextBox.Text = oleDb.dataSet.Tables["Orders"].Rows[0]["docCounteragent"].ToString();
+					sumTextBox.Text = oleDb.dataSet.Tables["Orders"].Rows[0]["docSum"].ToString();
+					vatTextBox.Text = oleDb.dataSet.Tables["Orders"].Rows[0]["docVat"].ToString();
+					totalTextBox.Text = oleDb.dataSet.Tables["Orders"].Rows[0]["docTotal"].ToString();
+					
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла открыть документ заказ.", false, true);
+				}
+				
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				
+			}
+		}
 		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
@@ -424,7 +485,14 @@ namespace Aggregator.Client.Documents.Order
 		 */	
 		void FormOrderDocLoad(object sender, EventArgs e)
 		{
-	
+			if(ID == null){
+				Text = "Заказ: Создать";
+				dateTimePicker1.Value = DateTime.Today.Date;
+				autorLabel.Text = "Автор: " + DataConfig.userName;
+			}else{
+				Text = "Заказ: Изменить";
+				open();
+			}
 		}
 		void FormOrderDocFormClosed(object sender, FormClosedEventArgs e)
 		{

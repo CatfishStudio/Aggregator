@@ -197,6 +197,14 @@ namespace Aggregator.Client
 			}
 		}
 		
+		void orderDocShow()
+		{
+			FormOrderDoc FOrderDoc = new FormOrderDoc();
+			FOrderDoc.MdiParent = DataForms.FClient;
+			FOrderDoc.ID = null;
+			FOrderDoc.Show();
+		}
+		
 		void calcCostRealizationShow()
 		{
 			FormCalculationCostRealization FCalculationCostRealization = new FormCalculationCostRealization();
@@ -425,12 +433,33 @@ namespace Aggregator.Client
 		}
 		void ЗаказToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			
+			orderDocShow();
+		}
+		void ToolStripButton7Click(object sender, EventArgs e)
+		{
+			orderDocShow();
 		}
 		void СтоимостьРеализацииToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			calcCostRealizationShow();
 		}
+		void ВыходToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			Close();
+		}
+		void ТекстовыйФайлToolStripMenuItem2Click(object sender, EventArgs e)
+		{
+	
+		}
+		void ТекстовыйФайлToolStripMenuItem3Click(object sender, EventArgs e)
+		{
+	
+		}
+		void ExcelФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			openFileExcel();
+		}
+		
 				
 	}
 }

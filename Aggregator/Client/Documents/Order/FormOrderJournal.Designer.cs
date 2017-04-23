@@ -103,6 +103,7 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.создатьПланЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.изменитьПланЗакупокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +112,6 @@ namespace Aggregator.Client.Documents.Order
 			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -372,6 +372,11 @@ namespace Aggregator.Client.Documents.Order
 			this.columnHeader10.Text = "План закупок";
 			this.columnHeader10.Width = 100;
 			// 
+			// columnHeader11
+			// 
+			this.columnHeader11.Text = "№";
+			this.columnHeader11.Width = 0;
+			// 
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -421,11 +426,6 @@ namespace Aggregator.Client.Documents.Order
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "page_white_text.png");
-			// 
-			// columnHeader11
-			// 
-			this.columnHeader11.Text = "#";
-			this.columnHeader11.Width = 0;
 			// 
 			// FormOrderJournal
 			// 
