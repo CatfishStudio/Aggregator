@@ -448,6 +448,77 @@ namespace Aggregator.Client.Documents.Order
 				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, " +
+					"nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " + 
+					"FROM OrderNomenclature WHERE (id = 0)";
+				sqlServer.ExecuteFill("OrderNomenclature");
+				
+				DataRow newRow = null;
+				for(int i = 0; i < listViewNomenclature.Items.Count; i++){
+					newRow = sqlServer.dataSet.Tables["OrderNomenclature"].NewRow();
+					newRow["nomenclatureID"] = 0;
+					newRow["nomenclatureName"] = "";
+					newRow["name"] = listViewNomenclature.Items[i].SubItems[1].Text;
+					newRow["units"] = listViewNomenclature.Items[i].SubItems[2].Text;
+					newRow["amount"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[3].Text);
+					newRow["price"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[4].Text);
+					newRow["manufacturer"] = listViewNomenclature.Items[i].SubItems[7].Text;
+					newRow["remainder"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[8].Text);
+					newRow["term"] = listViewNomenclature.Items[i].SubItems[9].Text;
+					newRow["discount1"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[10].Text);
+					newRow["discount2"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[11].Text);
+					newRow["discount3"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[12].Text);
+					newRow["discount4"] = Convert.ToDouble(listViewNomenclature.Items[i].SubItems[13].Text);
+					newRow["code"] = listViewNomenclature.Items[i].SubItems[14].Text;
+					newRow["series"] = listViewNomenclature.Items[i].SubItems[15].Text;
+					newRow["article"] = listViewNomenclature.Items[i].SubItems[16].Text;
+					newRow["counteragentName"] = listViewNomenclature.Items[i].SubItems[17].Text;
+					newRow["counteragentPricelist"] = listViewNomenclature.Items[i].SubItems[18].Text;
+					newRow["docPurchasePlan"] = "";
+					newRow["docOrder"] = docNumber;
+					sqlServer.dataSet.Tables["OrderNomenclature"].Rows.Add(newRow);
+				}
+				
+				sqlServer.sqlCommandInsert.CommandText = "INSERT INTO OrderNomenclature (" +
+					"nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " + 
+					") VALUES (" +
+					"@nomenclatureID, @nomenclatureName, @units, @amount, " +
+					"@name, @price, @manufacturer, @remainder, @term, @discount1, @discount2, @discount3, @discount4, @code, @series, @article, " +
+					"@counteragentName, @counteragentPricelist, " +
+					"@docPurchasePlan, @docOrder " + 
+					")";
+				sqlServer.sqlCommandInsert.Parameters.Add("@nomenclatureID", SqlDbType.Int, 10, "nomenclatureID");
+				sqlServer.sqlCommandInsert.Parameters.Add("@nomenclatureName", SqlDbType.VarChar, 255, "nomenclatureName");
+				sqlServer.sqlCommandInsert.Parameters.Add("@units", SqlDbType.VarChar, 255, "units");
+				sqlServer.sqlCommandInsert.Parameters.Add("@amount", SqlDbType.Float, 15, "amount");
+				sqlServer.sqlCommandInsert.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
+				sqlServer.sqlCommandInsert.Parameters.Add("@price", SqlDbType.Float, 15, "price");
+				sqlServer.sqlCommandInsert.Parameters.Add("@manufacturer", SqlDbType.VarChar, 255, "manufacturer");
+				sqlServer.sqlCommandInsert.Parameters.Add("@remainder", SqlDbType.Float, 15, "remainder");
+				sqlServer.sqlCommandInsert.Parameters.Add("@term", SqlDbType.Date, 15, "term");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount1", SqlDbType.Float, 15, "discount1");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount2", SqlDbType.Float, 15, "discount2");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount3", SqlDbType.Float, 15, "discount3");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount4", SqlDbType.Float, 15, "discount4");
+				sqlServer.sqlCommandInsert.Parameters.Add("@code", SqlDbType.VarChar, 255, "code");
+				sqlServer.sqlCommandInsert.Parameters.Add("@series", SqlDbType.VarChar, 255, "series");
+				sqlServer.sqlCommandInsert.Parameters.Add("@article", SqlDbType.VarChar, 255, "article");
+				sqlServer.sqlCommandInsert.Parameters.Add("@counteragentName", SqlDbType.VarChar, 255, "counteragentName");
+				sqlServer.sqlCommandInsert.Parameters.Add("@counteragentPricelist", SqlDbType.VarChar, 255, "counteragentPricelist");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docPurchasePlan", SqlDbType.VarChar, 255, "docPurchasePlan");
+				sqlServer.sqlCommandInsert.Parameters.Add("@docOrder", SqlDbType.VarChar, 255, "docOrder");
+				if(oleDb.ExecuteUpdate("OrderNomenclature")){
+					return true;
+				}else{
+					return false;
+				}
 				
 			}
 			return false;
@@ -468,14 +539,118 @@ namespace Aggregator.Client.Documents.Order
 					sumTextBox.Text = oleDb.dataSet.Tables["Orders"].Rows[0]["docSum"].ToString();
 					vatTextBox.Text = oleDb.dataSet.Tables["Orders"].Rows[0]["docVat"].ToString();
 					totalTextBox.Text = oleDb.dataSet.Tables["Orders"].Rows[0]["docTotal"].ToString();
-					
+					openOrderNomenclature();
+					calculate();
 				}else{
 					Utilits.Console.Log("[ОШИБКА] программа не смогла открыть документ заказ.", false, true);
 				}
 				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
+				sqlServer= new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docCounteragent, docAutor, docSum, docVat, docTotal, docPurchasePlan FROM Orders WHERE (id = " + ID + ")";
+				if(sqlServer.ExecuteFill("Orders")){
+					docNumber = sqlServer.dataSet.Tables["Orders"].Rows[0]["docNumber"].ToString();
+					docNumberTextBox.Text = docNumber;
+					dateTimePicker1.Value = (DateTime)sqlServer.dataSet.Tables["Orders"].Rows[0]["docDate"];
+					autorLabel.Text = "Автор: " + sqlServer.dataSet.Tables["Orders"].Rows[0]["docAutor"].ToString();
+					counteragentTextBox.Text = sqlServer.dataSet.Tables["Orders"].Rows[0]["docCounteragent"].ToString();
+					sumTextBox.Text = sqlServer.dataSet.Tables["Orders"].Rows[0]["docSum"].ToString();
+					vatTextBox.Text = sqlServer.dataSet.Tables["Orders"].Rows[0]["docVat"].ToString();
+					totalTextBox.Text = sqlServer.dataSet.Tables["Orders"].Rows[0]["docTotal"].ToString();
+					openOrderNomenclature();
+					calculate();
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла открыть документ заказ.", false, true);
+				}
+			}
+		}
+		
+		void openOrderNomenclature()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT " +
+					"id, nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " +
+					"FROM OrderNomenclature WHERE (docOrder = '" + docNumber + "')";
+				if(oleDb.ExecuteFill("OrderNomenclature")){
+					DateTime dt;
+					ListViewItem ListViewItem_add;
+					foreach(DataRow row in oleDb.dataSet.Tables["OrderNomenclature"].Rows){
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(row["name"].ToString());
+						ListViewItem_add.StateImageIndex = 0;
+						ListViewItem_add.SubItems.Add(row["units"].ToString());
+						ListViewItem_add.SubItems.Add(row["amount"].ToString());
+						ListViewItem_add.SubItems.Add(row["price"].ToString());
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add(row["manufacturer"].ToString());
+						ListViewItem_add.SubItems.Add(row["remainder"].ToString());
+						dt = new DateTime();
+						DateTime.TryParse(row["term"].ToString(), out dt);
+						ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
+						ListViewItem_add.SubItems.Add(row["discount1"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount2"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount3"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount4"].ToString());
+						ListViewItem_add.SubItems.Add(row["code"].ToString());
+						ListViewItem_add.SubItems.Add(row["series"].ToString());
+						ListViewItem_add.SubItems.Add(row["article"].ToString());
+						ListViewItem_add.SubItems.Add(row["counteragentName"].ToString());
+						ListViewItem_add.SubItems.Add(row["counteragentPricelist"].ToString());
+						ListViewItem_add.SubItems.Add(row["id"].ToString());
+						listViewNomenclature.Items.Add(ListViewItem_add);
+					}
+				}else{
+					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] программа не смогла загрузить перечень номенклатуры из документа план закупок №" + docNumber, false, true);
+				}
 				
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT " +
+					"id, nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " +
+					"FROM OrderNomenclature WHERE (docOrder = '" + docNumber + "')";
+				if(sqlServer.ExecuteFill("OrderNomenclature")){
+					DateTime dt;
+					ListViewItem ListViewItem_add;
+					foreach(DataRow row in sqlServer.dataSet.Tables["OrderNomenclature"].Rows){
+						ListViewItem_add = new ListViewItem();
+						ListViewItem_add.SubItems.Add(row["name"].ToString());
+						ListViewItem_add.StateImageIndex = 0;
+						ListViewItem_add.SubItems.Add(row["units"].ToString());
+						ListViewItem_add.SubItems.Add(row["amount"].ToString());
+						ListViewItem_add.SubItems.Add(row["price"].ToString());
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add("0,00");
+						ListViewItem_add.SubItems.Add(row["manufacturer"].ToString());
+						ListViewItem_add.SubItems.Add(row["remainder"].ToString());
+						dt = new DateTime();
+						DateTime.TryParse(row["term"].ToString(), out dt);
+						ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
+						ListViewItem_add.SubItems.Add(row["discount1"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount2"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount3"].ToString());
+						ListViewItem_add.SubItems.Add(row["discount4"].ToString());
+						ListViewItem_add.SubItems.Add(row["code"].ToString());
+						ListViewItem_add.SubItems.Add(row["series"].ToString());
+						ListViewItem_add.SubItems.Add(row["article"].ToString());
+						ListViewItem_add.SubItems.Add(row["counteragentName"].ToString());
+						ListViewItem_add.SubItems.Add(row["counteragentPricelist"].ToString());
+						ListViewItem_add.SubItems.Add(row["id"].ToString());
+						listViewNomenclature.Items.Add(ListViewItem_add);
+					}
+				}else{
+					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] программа не смогла загрузить перечень номенклатуры из документа план закупок №" + docNumber, false, true);
+				}
 			}
 		}
 		
