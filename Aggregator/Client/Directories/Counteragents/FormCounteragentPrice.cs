@@ -160,6 +160,26 @@ namespace Aggregator.Client.Directories
 			returnNameColumn();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 				// OLEDB
+				oleDb.oleDbCommandInsert.CommandText = "INSERT INTO " + PriceName + " ("+
+					"name, code, series, article, remainder, manufacturer, price, " +
+					"discount1, discount2, discount3, discount4, term" + 
+					") VALUES (" +
+					"@name, @code, @series, @article, @remainder, @manufacturer, @price, " +
+					"@discount1, @discount2, @discount3, @discount4, @term" + 
+					")";
+				oleDb.oleDbCommandInsert.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
+				oleDb.oleDbCommandInsert.Parameters.Add("@code", OleDbType.VarChar, 255, "code");
+				oleDb.oleDbCommandInsert.Parameters.Add("@series", OleDbType.VarChar, 255, "series");
+				oleDb.oleDbCommandInsert.Parameters.Add("@article", OleDbType.VarChar, 255, "article");
+				oleDb.oleDbCommandInsert.Parameters.Add("@remainder", OleDbType.Double, 15, "remainder");
+				oleDb.oleDbCommandInsert.Parameters.Add("@manufacturer", OleDbType.VarChar, 255, "manufacturer");
+				oleDb.oleDbCommandInsert.Parameters.Add("@price", OleDbType.Double, 15, "price");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount1", OleDbType.Double, 15, "discount1");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount2", OleDbType.Double, 15, "discount2");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount3", OleDbType.Double, 15, "discount3");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount4", OleDbType.Double, 15, "discount4");
+				oleDb.oleDbCommandInsert.Parameters.Add("@term", OleDbType.Date, 15, "term");
+				
 				oleDb.oleDbCommandUpdate.CommandText = "UPDATE " + PriceName + " SET " +
 					"[name] = @name, " +
 					"[code] = @code, " +
@@ -187,6 +207,10 @@ namespace Aggregator.Client.Directories
 				oleDb.oleDbCommandUpdate.Parameters.Add("@discount4", OleDbType.Double, 15, "discount4");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@term", OleDbType.Date, 15, "term");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
+				
+				oleDb.oleDbCommandDelete.CommandText = "DELETE * FROM " + PriceName + " WHERE ([id] = ?)";
+				oleDb.oleDbCommandDelete.Parameters.Add("id", OleDbType.Integer, 10, "id").SourceVersion = DataRowVersion.Original;
+								
 				if(oleDb.ExecuteUpdate(PriceName)){
 					Utilits.Console.Log("Прайс " + PriceName + " был успешно сохранён.");
 					Close();
@@ -196,6 +220,26 @@ namespace Aggregator.Client.Directories
 				}
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
+				sqlServer.sqlCommandInsert.CommandText = "INSERT INTO " + PriceName + " ("+
+					"name, code, series, article, remainder, manufacturer, price, " +
+					"discount1, discount2, discount3, discount4, term" + 
+					") VALUES (" +
+					"@name, @code, @series, @article, @remainder, @manufacturer, @price, " +
+					"@discount1, @discount2, @discount3, @discount4, @term" + 
+					")";
+				sqlServer.sqlCommandInsert.Parameters.Add("@name", SqlDbType.VarChar, 255, "name");
+				sqlServer.sqlCommandInsert.Parameters.Add("@code", SqlDbType.VarChar, 255, "code");
+				sqlServer.sqlCommandInsert.Parameters.Add("@series", SqlDbType.VarChar, 255, "series");
+				sqlServer.sqlCommandInsert.Parameters.Add("@article", SqlDbType.VarChar, 255, "article");
+				sqlServer.sqlCommandInsert.Parameters.Add("@remainder", SqlDbType.Float, 15, "remainder");
+				sqlServer.sqlCommandInsert.Parameters.Add("@manufacturer", SqlDbType.VarChar, 255, "manufacturer");
+				sqlServer.sqlCommandInsert.Parameters.Add("@price", SqlDbType.Float, 15, "price");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount1", SqlDbType.Float, 15, "discount1");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount2", SqlDbType.Float, 15, "discount2");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount3", SqlDbType.Float, 15, "discount3");
+				sqlServer.sqlCommandInsert.Parameters.Add("@discount4", SqlDbType.Float, 15, "discount4");
+				sqlServer.sqlCommandInsert.Parameters.Add("@term", SqlDbType.Date, 15, "term");
+				
 				sqlServer.sqlCommandUpdate.CommandText = "UPDATE " + PriceName + " SET " +
 					"[name] = @name, " +
 					"[code] = @code, " +
@@ -223,6 +267,10 @@ namespace Aggregator.Client.Directories
 				sqlServer.sqlCommandUpdate.Parameters.Add("@discount4", SqlDbType.Float, 15, "discount4");
 				sqlServer.sqlCommandUpdate.Parameters.Add("@term", SqlDbType.Date, 15, "term");
 				sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
+				
+				sqlServer.sqlCommandDelete.CommandText = "DELETE * FROM " + PriceName + " WHERE ([id] = @id)";
+				sqlServer.sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int, 10, "id").SourceVersion = DataRowVersion.Original;
+				
 				if(sqlServer.ExecuteUpdate(PriceName)){
 					Utilits.Console.Log("Прайс " + PriceName + " был успешно сохранён.");
 					Close();

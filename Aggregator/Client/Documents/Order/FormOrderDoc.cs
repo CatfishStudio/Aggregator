@@ -38,11 +38,12 @@ namespace Aggregator.Client.Documents.Order
 		}
 		
 		public String ID;
+		public String Parent;
 		OleDb oleDb;
 		SqlServer sqlServer;
 		String docNumber;
 		int selectTableLine = -1;		// выбранная строка в таблице
-		
+				
 		String getDocNumber()
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
@@ -654,6 +655,254 @@ namespace Aggregator.Client.Documents.Order
 			}
 		}
 		
+		bool saveEdit()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docCounteragent, docAutor, docSum, docVat, docTotal, docPurchasePlan FROM Orders WHERE (id = " + ID + ")";
+				if(oleDb.ExecuteFill("Orders")){
+					
+					oleDb.dataSet.Tables["Orders"].Rows[0]["docDate"] = dateTimePicker1.Value;
+					oleDb.dataSet.Tables["Orders"].Rows[0]["docCounteragent"] = counteragentTextBox.Text;
+					oleDb.dataSet.Tables["Orders"].Rows[0]["docAutor"] = DataConfig.userName;
+					oleDb.dataSet.Tables["Orders"].Rows[0]["docSum"] = sumTextBox.Text;
+					oleDb.dataSet.Tables["Orders"].Rows[0]["docVat"] = vatTextBox.Text;
+					oleDb.dataSet.Tables["Orders"].Rows[0]["docTotal"] = totalTextBox.Text;
+					
+					oleDb.oleDbCommandUpdate.CommandText = "UPDATE Orders SET " +
+						"[docDate] = @docDate, [docNumber] = @docNumber, [docName] = @docName, " +
+						"[docCounteragent] = @docCounteragent, [docAutor] = @docAutor, " +
+						"[docSum] = @docSum, [docVat] = @docVat, [docTotal] = @docTotal, " +
+						"[docPurchasePlan] = @docPurchasePlan " +
+						"WHERE ([id] = @id)";
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docDate", OleDbType.Date, 255, "docDate");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docNumber", OleDbType.VarChar, 255, "docNumber");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docName", OleDbType.VarChar, 255, "docName");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docCounteragent", OleDbType.VarChar, 255, "docCounteragent");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docAutor", OleDbType.VarChar, 255, "docAutor");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docSum", OleDbType.Double, 15, "docSum");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docVat", OleDbType.Double, 15, "docVat");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docTotal", OleDbType.Double, 15, "docTotal");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@docPurchasePlan", OleDbType.VarChar, 255, "docPurchasePlan");
+					oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
+					
+					if(oleDb.ExecuteUpdate("Orders")){
+						return true;
+					}else{
+						Utilits.Console.Log("[ОШИБКА] программа не смогла сохранить основные данные документа Заказ №" + docNumber, false, true);
+					}
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла загрузить данные документа Заказ №" + docNumber, false, true);
+				}	
+								
+			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				sqlServer = new SqlServer();
+				sqlServer.sqlCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docCounteragent, docAutor, docSum, docVat, docTotal, docPurchasePlan FROM Orders WHERE (id = " + ID + ")";
+				if(sqlServer.ExecuteFill("Orders")){
+					
+					sqlServer.dataSet.Tables["Orders"].Rows[0]["docDate"] = dateTimePicker1.Value;
+					sqlServer.dataSet.Tables["Orders"].Rows[0]["docCounteragent"] = counteragentTextBox.Text;
+					sqlServer.dataSet.Tables["Orders"].Rows[0]["docAutor"] = DataConfig.userName;
+					sqlServer.dataSet.Tables["Orders"].Rows[0]["docSum"] = sumTextBox.Text;
+					sqlServer.dataSet.Tables["Orders"].Rows[0]["docVat"] = vatTextBox.Text;
+					sqlServer.dataSet.Tables["Orders"].Rows[0]["docTotal"] = totalTextBox.Text;
+					
+					sqlServer.sqlCommandUpdate.CommandText = "UPDATE Orders SET " +
+						"[docDate] = @docDate, [docNumber] = @docNumber, [docName] = @docName, " +
+						"[docCounteragent] = @docCounteragent, [docAutor] = @docAutor, " +
+						"[docSum] = @docSum, [docVat] = @docVat, [docTotal] = @docTotal, " +
+						"[docPurchasePlan] = @docPurchasePlan " +
+						"WHERE ([id] = @id)";
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docDate", SqlDbType.Date, 255, "docDate");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docNumber", SqlDbType.VarChar, 255, "docNumber");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docName", SqlDbType.VarChar, 255, "docName");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docCounteragent", SqlDbType.VarChar, 255, "docCounteragent");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docAutor", SqlDbType.VarChar, 255, "docAutor");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docSum", SqlDbType.Float, 15, "docSum");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docVat", SqlDbType.Float, 15, "docVat");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docTotal", SqlDbType.Float, 15, "docTotal");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@docPurchasePlan", SqlDbType.VarChar, 255, "docPurchasePlan");
+					sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
+					
+					if(sqlServer.ExecuteUpdate("Orders")){
+						return true;
+					}else{
+						Utilits.Console.Log("[ОШИБКА] программа не смогла сохранить основные данные документа Заказ №" + docNumber, false, true);
+					}
+				}else{
+					Utilits.Console.Log("[ОШИБКА] программа не смогла загрузить данные документа Заказ №" + docNumber, false, true);
+				}
+				
+			}
+			return false;
+		}
+		
+		bool saveEditOrderNomenclature()
+		{
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+				// OLEDB
+				oleDb = new OleDb(DataConfig.localDatabase);
+				oleDb.oleDbCommandSelect.CommandText = "SELECT " +
+					"id, nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " +
+					"FROM OrderNomenclature WHERE (docOrder = '" + docNumber + "')";
+				oleDb.ExecuteFill("OrderNomenclature");
+				
+				oleDb.oleDbCommandInsert.CommandText = "INSERT INTO OrderNomenclature (" +
+					"nomenclatureID, nomenclatureName, units, amount, " +
+					"name, price, manufacturer, remainder, term, discount1, discount2, discount3, discount4, code, series, article, " +
+					"counteragentName, counteragentPricelist, " +
+					"docPurchasePlan, docOrder " + 
+					") VALUES (" +
+					"@nomenclatureID, @nomenclatureName, @units, @amount, " +
+					"@name, @price, @manufacturer, @remainder, @term, @discount1, @discount2, @discount3, @discount4, @code, @series, @article, " +
+					"@counteragentName, @counteragentPricelist, " +
+					"@docPurchasePlan, @docOrder " + 
+					")";
+				oleDb.oleDbCommandInsert.Parameters.Add("@nomenclatureID", OleDbType.Integer, 10, "nomenclatureID");
+				oleDb.oleDbCommandInsert.Parameters.Add("@nomenclatureName", OleDbType.VarChar, 255, "nomenclatureName");
+				oleDb.oleDbCommandInsert.Parameters.Add("@units", OleDbType.VarChar, 255, "units");
+				oleDb.oleDbCommandInsert.Parameters.Add("@amount", OleDbType.Double, 15, "amount");
+				oleDb.oleDbCommandInsert.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
+				oleDb.oleDbCommandInsert.Parameters.Add("@price", OleDbType.Double, 15, "price");
+				oleDb.oleDbCommandInsert.Parameters.Add("@manufacturer", OleDbType.VarChar, 255, "manufacturer");
+				oleDb.oleDbCommandInsert.Parameters.Add("@remainder", OleDbType.Double, 15, "remainder");
+				oleDb.oleDbCommandInsert.Parameters.Add("@term", OleDbType.Date, 15, "term");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount1", OleDbType.Double, 15, "discount1");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount2", OleDbType.Double, 15, "discount2");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount3", OleDbType.Double, 15, "discount3");
+				oleDb.oleDbCommandInsert.Parameters.Add("@discount4", OleDbType.Double, 15, "discount4");
+				oleDb.oleDbCommandInsert.Parameters.Add("@code", OleDbType.VarChar, 255, "code");
+				oleDb.oleDbCommandInsert.Parameters.Add("@series", OleDbType.VarChar, 255, "series");
+				oleDb.oleDbCommandInsert.Parameters.Add("@article", OleDbType.VarChar, 255, "article");
+				oleDb.oleDbCommandInsert.Parameters.Add("@counteragentName", OleDbType.VarChar, 255, "counteragentName");
+				oleDb.oleDbCommandInsert.Parameters.Add("@counteragentPricelist", OleDbType.VarChar, 255, "counteragentPricelist");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docPurchasePlan", OleDbType.VarChar, 255, "docPurchasePlan");
+				oleDb.oleDbCommandInsert.Parameters.Add("@docOrder", OleDbType.VarChar, 255, "docOrder");
+				
+				oleDb.oleDbCommandUpdate.CommandText = "UPDATE OrderNomenclature SET " +
+					"nomenclatureID = @nomenclatureID, nomenclatureName = @nomenclatureName, units = @units, amount = @amount, " +
+					"name = @name, price = @price, manufacturer = @manufacturer, remainder = @remainder, term = @term, " +
+					"discount1 = @discount1, discount2 = @discount2, discount3 = @discount3, discount4 = @discount4, " +
+					"code = @code, series = @series, article = @article, " +
+					"counteragentName = @counteragentName, counteragentPricelist = @counteragentPricelist, " +
+					"docPurchasePlan = @docPurchasePlan, docOrder = @docOrder " +
+					"WHERE ([id] = @id)";
+				oleDb.oleDbCommandUpdate.Parameters.Add("@nomenclatureID", OleDbType.Integer, 10, "nomenclatureID");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@nomenclatureName", OleDbType.VarChar, 255, "nomenclatureName");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@units", OleDbType.VarChar, 255, "units");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@amount", OleDbType.Double, 15, "amount");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@name", OleDbType.VarChar, 255, "name");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@price", OleDbType.Double, 15, "price");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@manufacturer", OleDbType.VarChar, 255, "manufacturer");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@remainder", OleDbType.Double, 15, "remainder");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@term", OleDbType.Date, 15, "term");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@discount1", OleDbType.Double, 15, "discount1");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@discount2", OleDbType.Double, 15, "discount2");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@discount3", OleDbType.Double, 15, "discount3");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@discount4", OleDbType.Double, 15, "discount4");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@code", OleDbType.VarChar, 255, "code");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@series", OleDbType.VarChar, 255, "series");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@article", OleDbType.VarChar, 255, "article");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@counteragentName", OleDbType.VarChar, 255, "counteragentName");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@counteragentPricelist", OleDbType.VarChar, 255, "counteragentPricelist");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@docPurchasePlan", OleDbType.VarChar, 255, "docPurchasePlan");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@docOrder", OleDbType.VarChar, 255, "docOrder");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
+				
+				oleDb.oleDbCommandDelete.CommandText = "DELETE * FROM OrderNomenclature WHERE ([id] = @id)";
+				oleDb.oleDbCommandDelete.Parameters.Add("@id", OleDbType.Integer, 10, "id").SourceVersion = DataRowVersion.Original;
+								
+				ListViewItem item;
+				foreach(DataRow row in oleDb.dataSet.Tables["OrderNomenclature"].Rows){
+					item = checkRemoveRow(row["id"].ToString());
+					if(item == null){
+						row.Delete();
+					}else{
+						row["nomenclatureID"] = 0;
+						row["nomenclatureName"] = "";
+						row["name"] = item.SubItems[1].Text;
+						row["units"] = item.SubItems[2].Text;
+						row["amount"] = Convert.ToDouble(item.SubItems[3].Text);
+						row["price"] = Convert.ToDouble(item.SubItems[4].Text);
+						row["manufacturer"] = item.SubItems[7].Text;
+						row["remainder"] = Convert.ToDouble(item.SubItems[8].Text);
+						row["term"] = item.SubItems[9].Text;
+						row["discount1"] = Convert.ToDouble(item.SubItems[10].Text);
+						row["discount2"] = Convert.ToDouble(item.SubItems[11].Text);
+						row["discount3"] = Convert.ToDouble(item.SubItems[12].Text);
+						row["discount4"] = Convert.ToDouble(item.SubItems[13].Text);
+						row["code"] = item.SubItems[14].Text;
+						row["series"] = item.SubItems[15].Text;
+						row["article"] = item.SubItems[16].Text;
+						row["counteragentName"] = item.SubItems[17].Text;
+						row["counteragentPricelist"] = item.SubItems[18].Text;
+						if(Parent == null) row["docPurchasePlan"] = "";
+						else row["docPurchasePlan"] = Parent;
+						row["docOrder"] = docNumber;
+					}
+				}
+				
+				DataRow newRow;
+				foreach(ListViewItem itemLV in listViewNomenclature.Items){
+					if(itemLV.SubItems[20].Text == ""){
+						/*
+						newRow = oleDb.dataSet.Tables["OrderNomenclature"].NewRow();
+						newRow["nomenclatureID"] = itemLV.SubItems[1].Text;
+						newRow["nomenclatureName"] = itemLV.SubItems[2].Text;
+						newRow["units"] = itemLV.SubItems[3].Text;
+						newRow["amount"] = Convert.ToDouble(itemLV.SubItems[4].Text);
+						newRow["name"] = itemLV.SubItems[6].Text;
+						newRow["price"] = Convert.ToDouble(itemLV.SubItems[7].Text);
+						newRow["manufacturer"] = itemLV.SubItems[8].Text;
+						newRow["remainder"] = Convert.ToDouble(itemLV.SubItems[9].Text);
+						newRow["term"] = itemLV.SubItems[10].Text;
+						newRow["discount1"] = Convert.ToDouble(itemLV.SubItems[11].Text);
+						newRow["discount2"] = Convert.ToDouble(itemLV.SubItems[12].Text);
+						newRow["discount3"] = Convert.ToDouble(itemLV.SubItems[13].Text);
+						newRow["discount4"] = Convert.ToDouble(itemLV.SubItems[14].Text);
+						newRow["code"] = itemLV.SubItems[15].Text;
+						newRow["series"] = itemLV.SubItems[16].Text;
+						newRow["article"] = itemLV.SubItems[17].Text;
+						newRow["counteragentName"] = itemLV.SubItems[18].Text;
+						newRow["counteragentPricelist"] = itemLV.SubItems[19].Text;
+						newRow["docPurchasePlan"] = docNumber;
+						newRow["docOrder"] = "";
+						oleDb.dataSet.Tables["OrderNomenclature"].Rows.Add(newRow);
+						*/
+					}
+				}
+				
+				if(oleDb.ExecuteUpdate("OrderNomenclature")){
+					return true;
+				}else{
+					return false;
+				}
+				
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				
+			}
+			
+			return false;
+		}
+		
+		ListViewItem checkRemoveRow(String id)
+		{
+			int i = 0;
+			int count = listViewNomenclature.Items.Count;
+			for(i = 0; i < count; i++){
+				if(id == listViewNomenclature.Items[i].SubItems[19].Text){
+					return listViewNomenclature.Items[i];
+				}
+			}
+			return null;
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -677,6 +926,12 @@ namespace Aggregator.Client.Documents.Order
 		{
 			if(listViewNomenclature.Items.Count > 0){
 				MessageBox.Show("Вы не можите сменить контрагента пока не очистите таблицу номенклатуры.", "Сообщение");
+				return;
+			}
+			
+			if(ID != null && Parent != null){
+				MessageBox.Show("Вы не можите сменить контрагента по скольку" + Environment.NewLine + 
+				                "данный Заказ привязан к документу План закупок №" + Parent, "Сообщение");
 				return;
 			}
 			
@@ -863,9 +1118,18 @@ namespace Aggregator.Client.Documents.Order
 				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
 				return;
 			}
-			if(ID == null){
+			if(ID == null && Parent == null){
 				if(check()) saveNew();
-			}else{
+			}else if(ID != null && Parent == null){
+				if(check() == false) return;
+				if(saveEdit() && saveEditOrderNomenclature()){
+					DataForms.FClient.updateHistory("Orders");
+					Utilits.Console.Log("Документ Заказ №" + docNumber + ": успешно изменён и сохранён.");
+					Close();
+				}else{
+					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Документ Заказ №" + docNumber + ": не удалось сохранить изменения.", false, true);
+				}
+			}else if(ID != null && Parent != null) {
 				
 			}
 		}

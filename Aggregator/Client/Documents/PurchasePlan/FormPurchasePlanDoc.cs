@@ -668,6 +668,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		
 		bool saveEditOrderNomenclature()
 		{
+			
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 				// OLEDB
 				oleDb = new OleDb(DataConfig.localDatabase);
@@ -741,6 +742,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				oleDb.oleDbCommandUpdate.Parameters.Add("@docOrder", OleDbType.VarChar, 255, "docOrder");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
 				
+				oleDb.oleDbCommandDelete.CommandText = "DELETE * FROM OrderNomenclature WHERE ([id] = @id)";
+				oleDb.oleDbCommandDelete.Parameters.Add("@id", OleDbType.Integer, 10, "id").SourceVersion = DataRowVersion.Original;
+				
+				
 				ListViewItem item;
 				foreach(DataRow row in oleDb.dataSet.Tables["OrderNomenclature"].Rows){
 					item = checkRemoveRow(row["id"].ToString());
@@ -774,7 +779,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				foreach(ListViewItem itemLV in listViewNomenclature.Items){
 					if(itemLV.SubItems[20].Text == ""){
 						newRow = oleDb.dataSet.Tables["OrderNomenclature"].NewRow();
-						newRow["nomenclatureID"] = Convert.ToInt32(itemLV.SubItems[1].Text);
+						newRow["nomenclatureID"] = itemLV.SubItems[1].Text;
 						newRow["nomenclatureName"] = itemLV.SubItems[2].Text;
 						newRow["units"] = itemLV.SubItems[3].Text;
 						newRow["amount"] = Convert.ToDouble(itemLV.SubItems[4].Text);
