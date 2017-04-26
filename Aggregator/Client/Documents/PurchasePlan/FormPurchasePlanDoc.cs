@@ -501,14 +501,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 						ListViewItem_add.SubItems.Add(row["name"].ToString());
 						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["price"].ToString()).ToString()));
 						ListViewItem_add.SubItems.Add(row["manufacturer"].ToString());
-						ListViewItem_add.SubItems.Add(row["remainder"].ToString());
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["remainder"].ToString()).ToString()));
 						dt = new DateTime();
 						DateTime.TryParse(row["term"].ToString(), out dt);
 						ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
-						ListViewItem_add.SubItems.Add(row["discount1"].ToString());
-						ListViewItem_add.SubItems.Add(row["discount2"].ToString());
-						ListViewItem_add.SubItems.Add(row["discount3"].ToString());
-						ListViewItem_add.SubItems.Add(row["discount4"].ToString());
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["discount1"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["discount2"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["discount3"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["discount4"].ToString()).ToString()));
 						ListViewItem_add.SubItems.Add(row["code"].ToString());
 						ListViewItem_add.SubItems.Add(row["series"].ToString());
 						ListViewItem_add.SubItems.Add(row["article"].ToString());
@@ -544,14 +544,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 						ListViewItem_add.SubItems.Add(row["name"].ToString());
 						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["price"].ToString()).ToString()));
 						ListViewItem_add.SubItems.Add(row["manufacturer"].ToString());
-						ListViewItem_add.SubItems.Add(row["remainder"].ToString());
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["remainder"].ToString()).ToString()));
 						dt = new DateTime();
 						DateTime.TryParse(row["term"].ToString(), out dt);
 						ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
-						ListViewItem_add.SubItems.Add(row["discount1"].ToString());
-						ListViewItem_add.SubItems.Add(row["discount2"].ToString());
-						ListViewItem_add.SubItems.Add(row["discount3"].ToString());
-						ListViewItem_add.SubItems.Add(row["discount4"].ToString());
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["discount1"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["discount2"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["discount3"].ToString()).ToString()));
+						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["discount4"].ToString()).ToString()));
 						ListViewItem_add.SubItems.Add(row["code"].ToString());
 						ListViewItem_add.SubItems.Add(row["series"].ToString());
 						ListViewItem_add.SubItems.Add(row["article"].ToString());
@@ -882,6 +882,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				sqlServer.sqlCommandUpdate.Parameters.Add("@docOrder", SqlDbType.VarChar, 255, "docOrder");
 				sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
 				
+				sqlServer.sqlCommandDelete.CommandText = "DELETE * FROM OrderNomenclature WHERE ([id] = @id)";
+				sqlServer.sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int, 10, "id").SourceVersion = DataRowVersion.Original;
+								
 				ListViewItem item;
 				foreach(DataRow row in sqlServer.dataSet.Tables["OrderNomenclature"].Rows){
 					item = checkRemoveRow(row["id"].ToString());
@@ -1165,15 +1168,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				}
 							
 				
-				if(nomenclatureList.Count > 0){
-					FormPurchasePlanNomenclature FPurchasePlanNomenclature = new FormPurchasePlanNomenclature();
-					FPurchasePlanNomenclature.MdiParent = DataForms.FClient;
-					FPurchasePlanNomenclature.ListViewPrices = listViewPrices;
-					FPurchasePlanNomenclature.ListViewReturnValue = listViewNomenclature;
-					FPurchasePlanNomenclature.SelectTableLine = selectTableLine;
-					FPurchasePlanNomenclature.LoadNomenclature(nomenclatureList);
-					FPurchasePlanNomenclature.Show();
-				}
+				if(nomenclatureList.Count == 0) MessageBox.Show("Программе не удалось найти выбанную номенклатуру в прайсах контрагентов.", "Сообщение");
+				FormPurchasePlanNomenclature FPurchasePlanNomenclature = new FormPurchasePlanNomenclature();
+				FPurchasePlanNomenclature.MdiParent = DataForms.FClient;
+				FPurchasePlanNomenclature.ListViewPrices = listViewPrices;
+				FPurchasePlanNomenclature.ListViewReturnValue = listViewNomenclature;
+				FPurchasePlanNomenclature.SelectTableLine = selectTableLine;
+				FPurchasePlanNomenclature.LoadNomenclature(nomenclatureList);
+				FPurchasePlanNomenclature.Show();
 			}
 		}
 		void ListViewNomenclatureSelectedIndexChanged(object sender, EventArgs e)

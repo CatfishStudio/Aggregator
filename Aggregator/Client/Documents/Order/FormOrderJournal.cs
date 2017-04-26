@@ -218,7 +218,7 @@ namespace Aggregator.Client.Documents.Order
 				FormOrderDoc FOrderDoc = new FormOrderDoc();
 				FOrderDoc.MdiParent = DataForms.FClient;
 				FOrderDoc.ID = listView1.Items[listView1.SelectedIndices[0]].SubItems[10].Text;
-				FOrderDoc.Parent = listView1.Items[listView1.SelectedIndices[0]].SubItems[9].Text;
+				FOrderDoc.ParentDoc = listView1.Items[listView1.SelectedIndices[0]].SubItems[9].Text;
 				FOrderDoc.Show();
 			}
 		}
