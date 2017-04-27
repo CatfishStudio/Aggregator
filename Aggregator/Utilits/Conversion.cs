@@ -74,7 +74,8 @@ namespace Aggregator.Utilits
 		}
 		
 		/* Перевод строки в дробное число */
-		public static double StringToDouble(String Str){
+		public static double StringToDouble(String Str)
+		{
 			String StrResult = "";
 			double DResult;
 			for(int i = 0; i < Str.Length; i++){
@@ -84,6 +85,18 @@ namespace Aggregator.Utilits
 			}
 			DResult = Convert.ToDouble(StrResult);
 			return DResult;
+		}
+		
+		public static String DoubleToString(Double value)
+		{
+			String Str = value.ToString();
+			String StrResult = "";
+			for(int i = 0; i < Str.Length; i++){
+				if(Str[i].ToString() == ",")
+					StrResult = StrResult + ".";
+				else StrResult = StrResult + Str[i].ToString();
+			}
+			return StrResult;
 		}
 	}
 }

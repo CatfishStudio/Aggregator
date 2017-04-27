@@ -12,6 +12,7 @@ using System.Data.OleDb;
 using System.Data.Sql;
 using System.Drawing;
 using System.Windows.Forms;
+using Aggregator.Client.Documents.Order;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
@@ -269,6 +270,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			}
 		}
 		
+				
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -345,6 +347,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		{
 			comboBox1.Text = "";
 			TableRefresh();
+		}
+		void ЗаказToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(listView1.SelectedIndices.Count > 0){
+				InputToOrder inputToOrder = new InputToOrder(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text);
+				inputToOrder.Execute();
+			}
 		}
 		
 	}

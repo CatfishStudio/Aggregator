@@ -378,7 +378,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.вводНаОснованииToolStripMenuItem,
 			this.обновитьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 120);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 142);
 			// 
 			// создатьПланЗакупокToolStripMenuItem
 			// 
@@ -420,8 +420,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// заказToolStripMenuItem
 			// 
 			this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
-			this.заказToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+			this.заказToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.заказToolStripMenuItem.Text = "Заказ";
+			this.заказToolStripMenuItem.Click += new System.EventHandler(this.ЗаказToolStripMenuItemClick);
 			// 
 			// обновитьToolStripMenuItem
 			// 

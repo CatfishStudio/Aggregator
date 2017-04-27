@@ -255,5 +255,10 @@ namespace Aggregator.Client.Documents.Order
 		{
 	
 		}
+		void RefreshButtonClick(object sender, EventArgs e)
+		{
+			comboBox1.Text = "";
+			TableRefresh();
+		}
 	}
 }

@@ -121,6 +121,7 @@
     <Compile Include="Client\Documents\Order\FormOrderNomenclature.Designer.cs">
       <DependentUpon>FormOrderNomenclature.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Documents\Order\InputToOrder.cs" />
     <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanDoc.cs" />
     <Compile Include="Client\Documents\PurchasePlan\FormPurchasePlanDoc.Designer.cs">
       <DependentUpon>FormPurchasePlanDoc.cs</DependentUpon>

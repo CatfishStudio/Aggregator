@@ -40,6 +40,7 @@ namespace Aggregator.Database.Local
 				return true;
 			}catch(Exception ex){
 				oleDbConnection.Close();
+				Utilits.Console.Log(oleDbCommand.CommandText);
 				Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
 				return false;
 			}
