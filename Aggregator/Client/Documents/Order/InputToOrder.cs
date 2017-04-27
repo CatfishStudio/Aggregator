@@ -219,7 +219,7 @@ namespace Aggregator.Client.Documents.Order
 									oleDbQuery.SetCommand("UPDATE Orders SET " +
 					                    "docSum = " + Conversion.DoubleToString(orderDoc.docSum) + ", " +
 										"docVat = " + Conversion.DoubleToString(orderDoc.docVat) + ", " +
-										"docTotal = " + Conversion.DoubleToString(orderDoc.docTotal) + ", " +
+										"docTotal = " + Conversion.DoubleToString(orderDoc.docTotal) + " " +
 										"WHERE ([docNumber] = '" + thisIsOrderUpdate + "')");
 									if(oleDbQuery.Execute()){
 										report += Environment.NewLine;
@@ -374,9 +374,7 @@ namespace Aggregator.Client.Documents.Order
 		String orderMustBeUpdated(DataSet dataSet)
 		{
 			foreach(DataRow row in dataSet.Tables["OrderNomenclature"].Rows){
-				Utilits.Console.Log("[ПРОВЕРКА] |" + row["docOrder"].ToString() + "|");
 				if(row["docOrder"].ToString() != ""){
-					Utilits.Console.Log("[ОБНОВЛЕНИЕ ЗАКАЗА]" + row["docOrder"].ToString());
 					return row["docOrder"].ToString();
 				}
 			}
