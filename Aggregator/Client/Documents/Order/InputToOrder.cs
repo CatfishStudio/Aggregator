@@ -41,26 +41,6 @@ namespace Aggregator.Client.Documents.Order
 			public String docPurchasePlan;
 		}
 		
-		/*
-		struct Nomenclature {
-			String Name;				// наименование номенклатуры
-			String Code;				// код номенклатуры
-			String Series;				// серия номенклатуры
-			String Article;				// артикул номенклатуры
-			String Manufacturer;		// производитель номенклатуры
-			String Units;				// единицы измерения номенклатуры
-			Double Remainder;			// остаток номенклатуры
-			Double Price;				// цена номенклатуры
-			Double Discount1;			// скидка 1 номенклатуры
-			Double Discount2;			// скидка 2 номенклатуры
-			Double Discount3;			// скидка 3 номенклатуры
-			Double Discount4;			// скидка 4 номенклатуры
-			DateTime Term;				// срок годности номенклатуры
-			String CounteragentName;	// наименование контрагента
-			String CounteragentPrice;	// идентификатор прайслиста
-		}
-		*/
-		
 		OleDbConnection oleDbConnection;
 		OleDbCommand oleDbCommand;
 		OleDbDataReader oleDbDataReader;
@@ -75,6 +55,7 @@ namespace Aggregator.Client.Documents.Order
 		
 		String docPPNumber;
 		List<Price> priceList;
+		
 		
 		String report;
 		
@@ -94,11 +75,12 @@ namespace Aggregator.Client.Documents.Order
 		public void Execute()
 		{
 			OrderDoc orderDoc;
-			double sum = 0;
-			double amount = 0;
-			double price = 0;
-			double vat = 0;
-			double total = 0;
+			String thisIsOrderUpdate;
+			Double sum = 0;
+			Double amount = 0;
+			Double price = 0;
+			Double vat = 0;
+			Double total = 0;
 			
 			if(loadPrices() == false){
 				MessageBox.Show("Докуммент План закупок №" + docPPNumber + " не содержитт прайсов." + Environment.NewLine + 
@@ -172,11 +154,14 @@ namespace Aggregator.Client.Documents.Order
 						oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
 						
 						if(oleDb.ExecuteFill("OrderNomenclature")){
-						
+							
+							thisIsOrderUpdate = orderMustBeUpdated(oleDb.dataSet);
+							
 							foreach(DataRow row in oleDb.dataSet.Tables["OrderNomenclature"].Rows){
 								/* Привязываем к документу */
-								row["docOrder"] = orderDoc.docNumber;
-								
+								if(thisIsOrderUpdate == "")	row["docOrder"] = orderDoc.docNumber;
+								else row["docOrder"] = thisIsOrderUpdate;
+																
 								/* Вычисления */
 								price = (Double)row["price"];
 								amount = (Double)row["amount"];
@@ -194,36 +179,62 @@ namespace Aggregator.Client.Documents.Order
 							orderDoc.docVat = vat;
 							orderDoc.docTotal = total;
 							
-							/* Сохранение основных данных документа Заказ */
-							oleDbQuery = new QueryOleDb(DataConfig.localDatabase);
-							oleDbQuery.SetCommand("INSERT INTO Orders " +
-								"(docDate, docNumber, docName, docCounteragent, " +
-								"docAutor, docSum, docVat, docTotal, docPurchasePlan) " +
-								"VALUES ('" + orderDoc.docDate + "', " +
-								"'" + orderDoc.docNumber + "', " +
-								"'" + orderDoc.docName + "', " +
-								"'" + orderDoc.docCounteragent + "', " +
-								"'" + orderDoc.docAutor + "', " +
-								"" + Conversion.DoubleToString(orderDoc.docSum) + ", " +
-								"" + Conversion.DoubleToString(orderDoc.docVat) + ", " +
-								"" + Conversion.DoubleToString(orderDoc.docTotal) + ", " +
-								"'" + orderDoc.docPurchasePlan + "')");
-							if(oleDbQuery.Execute()){
-								report += Environment.NewLine;
-								report += "Документ Заказ №" + orderDoc.docNumber + " - создан!";
-									
+							if(thisIsOrderUpdate == ""){ // Создаём новый заказ
+								/* Сохранение основных данных документа Заказ */
+								oleDbQuery = new QueryOleDb(DataConfig.localDatabase);
+								oleDbQuery.SetCommand("INSERT INTO Orders " +
+									"(docDate, docNumber, docName, docCounteragent, " +
+									"docAutor, docSum, docVat, docTotal, docPurchasePlan) " +
+									"VALUES ('" + orderDoc.docDate + "', " +
+									"'" + orderDoc.docNumber + "', " +
+									"'" + orderDoc.docName + "', " +
+									"'" + orderDoc.docCounteragent + "', " +
+									"'" + orderDoc.docAutor + "', " +
+									"" + Conversion.DoubleToString(orderDoc.docSum) + ", " +
+									"" + Conversion.DoubleToString(orderDoc.docVat) + ", " +
+									"" + Conversion.DoubleToString(orderDoc.docTotal) + ", " +
+									"'" + orderDoc.docPurchasePlan + "')");
+								if(oleDbQuery.Execute()){
+									report += Environment.NewLine;
+									report += "Документ Заказ №" + orderDoc.docNumber + " - создан!";
+										
+									if(oleDb.ExecuteUpdate("OrderNomenclature")){
+										report += Environment.NewLine;
+										report += "Документ План закупок №" + docPPNumber + " - обновлён!";
+									}else{
+										report += Environment.NewLine;
+										report += "Документ План закупок №" + docPPNumber + " - ошибка обновления!";
+									}
+								}else{
+									report += Environment.NewLine;
+									report += "Документ Заказ №" + orderDoc.docNumber + " - ошибка создания!";
+								}
+							}else{ // Обновляем данные в заказе
 								if(oleDb.ExecuteUpdate("OrderNomenclature")){
 									report += Environment.NewLine;
 									report += "Документ План закупок №" + docPPNumber + " - обновлён!";
+									
+									/* Перерасчет Заказа */
+									oleDbQuery = new QueryOleDb(DataConfig.localDatabase);
+									oleDbQuery.SetCommand("UPDATE Orders SET " +
+					                    "docSum = " + Conversion.DoubleToString(orderDoc.docSum) + ", " +
+										"docVat = " + Conversion.DoubleToString(orderDoc.docVat) + ", " +
+										"docTotal = " + Conversion.DoubleToString(orderDoc.docTotal) + ", " +
+										"WHERE ([docNumber] = '" + thisIsOrderUpdate + "')");
+									if(oleDbQuery.Execute()){
+										report += Environment.NewLine;
+										report += "Документ Заказ №" + thisIsOrderUpdate + " - обновлён!";
+									}else{
+										report += Environment.NewLine;
+										report += "Документ Заказ №" + thisIsOrderUpdate + " - ошибка обновления!";
+									}
+									
 								}else{
 									report += Environment.NewLine;
 									report += "Документ План закупок №" + docPPNumber + " - ошибка обновления!";
 								}
-								
-							}else{
-								report += Environment.NewLine;
-								report += "Документ Заказ №" + orderDoc.docNumber + " - ошибка создания!";
 							}
+							
 							
 						}else{
 							MessageBox.Show("Не удалось загрузить перечень номенклатуры из документа" + docPPNumber + "" + Environment.NewLine + 
@@ -246,8 +257,6 @@ namespace Aggregator.Client.Documents.Order
 					Dispose();
 					Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
 				}
-				
-				
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 
@@ -360,5 +369,18 @@ namespace Aggregator.Client.Documents.Order
 			return false;
 		}
 		
+		
+		/* Проверка обновления Заказов (возвращает имя уже созданного Заказа) */
+		String orderMustBeUpdated(DataSet dataSet)
+		{
+			foreach(DataRow row in dataSet.Tables["OrderNomenclature"].Rows){
+				Utilits.Console.Log("[ПРОВЕРКА] |" + row["docOrder"].ToString() + "|");
+				if(row["docOrder"].ToString() != ""){
+					Utilits.Console.Log("[ОБНОВЛЕНИЕ ЗАКАЗА]" + row["docOrder"].ToString());
+					return row["docOrder"].ToString();
+				}
+			}
+			return "";
+		}
 	}
 }
