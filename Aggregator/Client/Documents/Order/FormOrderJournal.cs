@@ -227,25 +227,45 @@ namespace Aggregator.Client.Documents.Order
 		{
 			if(listView1.SelectedIndices.Count > 0){
 				String docID = listView1.Items[listView1.SelectedIndices[0]].SubItems[10].Text;
-				String docName = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text;
+				String docNumber = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text;
 				String docPurchasePlan = listView1.Items[listView1.SelectedIndices[0]].SubItems[9].Text;
 				
 				if(docPurchasePlan != ""){
-					if(MessageBox.Show("Удалить документ Заказ №" + docName + Environment.NewLine + 
+					if(MessageBox.Show("Удалить документ Заказ №" + docNumber + Environment.NewLine + 
 								"который связан с докуметном План закупок №" + docPurchasePlan + " ?",
 								"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.No){
 						return;
 					}
 				}else{
-					if(MessageBox.Show("Удалить документ Заказ №" + docName + Environment.NewLine + 
+					if(MessageBox.Show("Удалить документ Заказ №" + docNumber + Environment.NewLine + 
 								"который не связан с докуметном план закупок ?",
 								"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.No){
 						return;
 					}
 				}
 				
-				
-				
+				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+					// OLEDB
+					QueryOleDb query;
+					query = new QueryOleDb(DataConfig.localDatabase);
+					query.SetCommand("UPDATE OrderNomenclature SET docOrder = '' WHERE (docOrder = '" + docNumber + "')");
+					if(query.Execute()){
+						query = new QueryOleDb(DataConfig.localDatabase);
+						query.SetCommand("DELETE FROM Orders WHERE (id = " + docID + ")");
+						if(query.Execute()){
+							DataForms.FClient.updateHistory("Orders");
+							Utilits.Console.Log("Документ Заказ №" + docNumber + " успешно удален.");
+						}else{
+							Utilits.Console.Log("[ОШИБКА] Документ Заказ №" + docNumber + " не удалось удалить!", false, true);
+						}
+					}else{
+						Utilits.Console.Log("[ОШИБКА] Документ План закупок №" + docPurchasePlan + " не удалось обновить!", false, true);
+					}					
+					
+				} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+					// MSSQL SERVER
+					
+				}
 			}
 		}
 		
