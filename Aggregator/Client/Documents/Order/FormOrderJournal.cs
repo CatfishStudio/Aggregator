@@ -223,6 +223,32 @@ namespace Aggregator.Client.Documents.Order
 			}
 		}
 		
+		void deleteFile()
+		{
+			if(listView1.SelectedIndices.Count > 0){
+				String docID = listView1.Items[listView1.SelectedIndices[0]].SubItems[10].Text;
+				String docName = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text;
+				String docPurchasePlan = listView1.Items[listView1.SelectedIndices[0]].SubItems[9].Text;
+				
+				if(docPurchasePlan != ""){
+					if(MessageBox.Show("Удалить документ Заказ №" + docName + Environment.NewLine + 
+								"который связан с докуметном План закупок №" + docPurchasePlan + " ?",
+								"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.No){
+						return;
+					}
+				}else{
+					if(MessageBox.Show("Удалить документ Заказ №" + docName + Environment.NewLine + 
+								"который не связан с докуметном план закупок ?",
+								"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.No){
+						return;
+					}
+				}
+				
+				
+				
+			}
+		}
+		
 		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
@@ -245,6 +271,10 @@ namespace Aggregator.Client.Documents.Order
 		}
 		void AddButtonClick(object sender, EventArgs e)
 		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
 			addFile();
 		}
 		void EditButtonClick(object sender, EventArgs e)
@@ -253,7 +283,11 @@ namespace Aggregator.Client.Documents.Order
 		}
 		void DeleteButtonClick(object sender, EventArgs e)
 		{
-	
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			deleteFile();
 		}
 		void RefreshButtonClick(object sender, EventArgs e)
 		{
@@ -272,6 +306,32 @@ namespace Aggregator.Client.Documents.Order
 		void FindButtonClick(object sender, EventArgs e)
 		{
 			search();
+		}
+		void СоздатьПланЗакупокToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			addFile();
+		}
+		void ИзменитьПланЗакупокToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editFile();
+		}
+		void УдалитьПланЗакупокToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			deleteFile();
+		}
+		void ButtonCloseClick(object sender, EventArgs e)
+		{
+			Close();
+		}
+		void ComboBox1KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				search(); // поиск
+			}
 		}
 	}
 }

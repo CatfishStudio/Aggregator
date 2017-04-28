@@ -216,7 +216,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				String docID = listView1.Items[listView1.SelectedIndices[0]].SubItems[8].Text;
 				String docName = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text;
 				
-				if(MessageBox.Show("Удалить безвозвратно документ план закупок №" + docName + " и связанные с ним Заказы ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+				if(MessageBox.Show("Удалить документ План закупок №" + docName + Environment.NewLine + " и связанные с ним Заказы ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
 					if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 						// OLEDB
 						QueryOleDb query;
@@ -350,9 +350,23 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void ЗаказToolStripMenuItemClick(object sender, EventArgs e)
 		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
 			if(listView1.SelectedIndices.Count > 0){
 				InputToOrder inputToOrder = new InputToOrder(listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text);
 				inputToOrder.Execute();
+			}
+		}
+		void ButtonCloseClick(object sender, EventArgs e)
+		{
+			Close();
+		}
+		void ComboBox1KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				search(); // поиск
 			}
 		}
 		

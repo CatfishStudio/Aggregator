@@ -92,6 +92,10 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripMenuItem текстовыйФайлToolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem текстовыйФайлToolStripMenuItem3;
 		private System.Windows.Forms.ToolStripMenuItem excelФайлToolStripMenuItem;
+		private System.Windows.Forms.ToolStripButton toolStripButton11;
+		private System.Windows.Forms.ToolStripButton toolStripButton12;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+		private System.Windows.Forms.ToolStripButton toolStripButton13;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -177,6 +181,10 @@ namespace Aggregator.Client
 			this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -592,15 +600,19 @@ namespace Aggregator.Client
 			this.toolStripButton7,
 			this.toolStripButton6,
 			this.toolStripSeparator7,
-			this.toolStripButton8,
 			this.toolStripButton9,
 			this.toolStripButton10,
-			this.toolStripSeparator8});
+			this.toolStripButton8,
+			this.toolStripSeparator8,
+			this.toolStripButton11,
+			this.toolStripButton12,
+			this.toolStripSeparator10,
+			this.toolStripButton13});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 24);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(912, 25);
 			this.toolStrip1.TabIndex = 1;
-			this.toolStrip1.Text = "toolStrip1";
+			this.toolStrip1.Text = "Панель инструментов";
 			// 
 			// toolStripButton1
 			// 
@@ -674,6 +686,7 @@ namespace Aggregator.Client
 			this.toolStripButton7.Name = "toolStripButton7";
 			this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton7.Text = "Заказ";
+			this.toolStripButton7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.toolStripButton7.Click += new System.EventHandler(this.ToolStripButton7Click);
 			// 
 			// toolStripButton6
@@ -724,6 +737,38 @@ namespace Aggregator.Client
 			// 
 			this.toolStripSeparator8.Name = "toolStripSeparator8";
 			this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
+			// 
+			// toolStripButton11
+			// 
+			this.toolStripButton11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton11.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton11.Image")));
+			this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton11.Name = "toolStripButton11";
+			this.toolStripButton11.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton11.Text = "toolStripButton11";
+			// 
+			// toolStripButton12
+			// 
+			this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
+			this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton12.Name = "toolStripButton12";
+			this.toolStripButton12.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton12.Text = "toolStripButton12";
+			// 
+			// toolStripSeparator10
+			// 
+			this.toolStripSeparator10.Name = "toolStripSeparator10";
+			this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
+			// 
+			// toolStripButton13
+			// 
+			this.toolStripButton13.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton13.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton13.Image")));
+			this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton13.Name = "toolStripButton13";
+			this.toolStripButton13.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton13.Text = "toolStripButton13";
 			// 
 			// statusStrip1
 			// 

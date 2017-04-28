@@ -51,6 +51,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ColumnHeader columnHeader9;
 		private System.Windows.Forms.ToolStripMenuItem вводНаОснованииToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem заказToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -112,6 +113,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -136,6 +138,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonClose.TabIndex = 0;
 			this.buttonClose.Text = "Закрыть";
 			this.buttonClose.UseVisualStyleBackColor = true;
+			this.buttonClose.Click += new System.EventHandler(this.ButtonCloseClick);
 			// 
 			// panel2
 			// 
@@ -198,6 +201,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(176, 21);
 			this.comboBox1.TabIndex = 21;
+			this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComboBox1KeyDown);
 			// 
 			// panel5
 			// 
@@ -376,9 +380,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.удалитьПланЗакупокToolStripMenuItem,
 			this.toolStripSeparator1,
 			this.вводНаОснованииToolStripMenuItem,
+			this.toolStripSeparator2,
 			this.обновитьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 142);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 148);
 			// 
 			// создатьПланЗакупокToolStripMenuItem
 			// 
@@ -419,6 +424,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// заказToolStripMenuItem
 			// 
+			this.заказToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("заказToolStripMenuItem.Image")));
 			this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
 			this.заказToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.заказToolStripMenuItem.Text = "Заказ";
@@ -436,7 +442,12 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "application.png");
+			this.imageList1.Images.SetKeyName(0, "plan2.png");
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(201, 6);
 			// 
 			// FormPurchasePlanJournal
 			// 

@@ -136,6 +136,7 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonClose.TabIndex = 0;
 			this.buttonClose.Text = "Закрыть";
 			this.buttonClose.UseVisualStyleBackColor = true;
+			this.buttonClose.Click += new System.EventHandler(this.ButtonCloseClick);
 			// 
 			// panel2
 			// 
@@ -198,6 +199,7 @@ namespace Aggregator.Client.Documents.Order
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(176, 21);
 			this.comboBox1.TabIndex = 21;
+			this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComboBox1KeyDown);
 			// 
 			// panel5
 			// 
@@ -397,6 +399,7 @@ namespace Aggregator.Client.Documents.Order
 			this.создатьПланЗакупокToolStripMenuItem.Name = "создатьПланЗакупокToolStripMenuItem";
 			this.создатьПланЗакупокToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
 			this.создатьПланЗакупокToolStripMenuItem.Text = "Создать заказ";
+			this.создатьПланЗакупокToolStripMenuItem.Click += new System.EventHandler(this.СоздатьПланЗакупокToolStripMenuItemClick);
 			// 
 			// изменитьПланЗакупокToolStripMenuItem
 			// 
@@ -404,6 +407,7 @@ namespace Aggregator.Client.Documents.Order
 			this.изменитьПланЗакупокToolStripMenuItem.Name = "изменитьПланЗакупокToolStripMenuItem";
 			this.изменитьПланЗакупокToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
 			this.изменитьПланЗакупокToolStripMenuItem.Text = "Изменить заказ";
+			this.изменитьПланЗакупокToolStripMenuItem.Click += new System.EventHandler(this.ИзменитьПланЗакупокToolStripMenuItemClick);
 			// 
 			// удалитьПланЗакупокToolStripMenuItem
 			// 
@@ -411,6 +415,7 @@ namespace Aggregator.Client.Documents.Order
 			this.удалитьПланЗакупокToolStripMenuItem.Name = "удалитьПланЗакупокToolStripMenuItem";
 			this.удалитьПланЗакупокToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
 			this.удалитьПланЗакупокToolStripMenuItem.Text = "Удалить заказ";
+			this.удалитьПланЗакупокToolStripMenuItem.Click += new System.EventHandler(this.УдалитьПланЗакупокToolStripMenuItemClick);
 			// 
 			// toolStripSeparator1
 			// 
