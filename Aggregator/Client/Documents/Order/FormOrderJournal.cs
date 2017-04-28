@@ -260,5 +260,18 @@ namespace Aggregator.Client.Documents.Order
 			comboBox1.Text = "";
 			TableRefresh();
 		}
+		void ОбновитьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			comboBox1.Text = "";
+			TableRefresh();
+		}
+		void DateButtonClick(object sender, EventArgs e)
+		{
+			TableRefresh();
+		}
+		void FindButtonClick(object sender, EventArgs e)
+		{
+			search();
+		}
 	}
 }

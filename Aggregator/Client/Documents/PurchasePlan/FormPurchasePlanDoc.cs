@@ -910,7 +910,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 						row["counteragentName"] = item.SubItems[18].Text;
 						row["counteragentPricelist"] = item.SubItems[19].Text;
 						row["docPurchasePlan"] = docNumberTextBox.Text;
-						row["docOrder"] = "";
+						//row["docOrder"] = "";
 					}
 				}
 				

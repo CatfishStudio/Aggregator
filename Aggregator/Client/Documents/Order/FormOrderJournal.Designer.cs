@@ -189,6 +189,7 @@ namespace Aggregator.Client.Documents.Order
 			this.findButton.TabIndex = 22;
 			this.toolTip1.SetToolTip(this.findButton, "Поиск");
 			this.findButton.UseVisualStyleBackColor = true;
+			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
 			// 
 			// comboBox1
 			// 
@@ -216,6 +217,7 @@ namespace Aggregator.Client.Documents.Order
 			this.dateButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.toolTip1.SetToolTip(this.dateButton, "Применить период.");
 			this.dateButton.UseVisualStyleBackColor = true;
+			this.dateButton.Click += new System.EventHandler(this.DateButtonClick);
 			// 
 			// dateTimePicker2
 			// 
@@ -421,6 +423,7 @@ namespace Aggregator.Client.Documents.Order
 			this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
 			this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
 			this.обновитьToolStripMenuItem.Text = "Обновить";
+			this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.ОбновитьToolStripMenuItemClick);
 			// 
 			// imageList1
 			// 
