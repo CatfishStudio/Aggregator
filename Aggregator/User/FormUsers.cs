@@ -158,6 +158,7 @@ namespace Aggregator.User
 			}
 			*/
 			TableRefresh();
+			Utilits.Console.Log(Text + ": открыт.");
 		}
 		void FormUsersFormClosed(object sender, FormClosedEventArgs e)
 		{
@@ -165,6 +166,8 @@ namespace Aggregator.User
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
 			DataForms.FUsers = null;
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 		}
 		void ButtonCloseClick(object sender, EventArgs e)
 		{
@@ -185,6 +188,10 @@ namespace Aggregator.User
 		void DeleteButtonClick(object sender, EventArgs e)
 		{
 			deleteUser();
+		}
+		void FormUsersActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 		
 		

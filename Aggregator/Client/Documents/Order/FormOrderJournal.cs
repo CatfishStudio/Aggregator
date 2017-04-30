@@ -293,7 +293,7 @@ namespace Aggregator.Client.Documents.Order
 		{
 			getPeriod();
 			TableRefresh(); // Загрузка данных из базы данных
-			Utilits.Console.Log("Журнал закупок: отркыт.");
+			Utilits.Console.Log("Журнал заказов: отркыт.");
 		}
 		void FormOrderJournalFormClosed(object sender, FormClosedEventArgs e)
 		{
@@ -367,6 +367,10 @@ namespace Aggregator.Client.Documents.Order
 			if(e.KeyData == Keys.Enter){
 				search(); // поиск
 			}
+		}
+		void FormOrderJournalActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 	}
 }

@@ -65,6 +65,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPurchasePlanNomenclature));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.findButton = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.buttonSave = new System.Windows.Forms.Button();
@@ -89,7 +90,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.выбратьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.показатьВесьПереченьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -106,6 +106,17 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(457, 72);
 			this.panel1.TabIndex = 4;
+			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.Location = new System.Drawing.Point(12, 5);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(433, 31);
+			this.label1.TabIndex = 20;
+			this.label1.Text = "...";
 			// 
 			// findButton
 			// 
@@ -292,17 +303,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "page.png");
 			// 
-			// label1
-			// 
-			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
-			this.label1.Location = new System.Drawing.Point(12, 5);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(433, 31);
-			this.label1.TabIndex = 20;
-			this.label1.Text = "...";
-			// 
 			// FormPurchasePlanNomenclature
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,6 +313,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormPurchasePlanNomenclature";
 			this.Text = "Номенклатура из прайс-листов";
+			this.Activated += new System.EventHandler(this.FormPurchasePlanNomenclatureActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPurchasePlanNomenclatureFormClosed);
 			this.Load += new System.EventHandler(this.FormPurchasePlanNomenclatureLoad);
 			this.panel1.ResumeLayout(false);

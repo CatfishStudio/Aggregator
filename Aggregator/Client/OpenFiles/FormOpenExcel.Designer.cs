@@ -66,6 +66,8 @@ namespace Aggregator.Client.OpenFiles
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormOpenExcel";
 			this.Text = "Файл Excel";
+			this.Activated += new System.EventHandler(this.FormOpenExcelActivated);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormOpenExcelFormClosed);
 			this.Load += new System.EventHandler(this.FormOpenXLSLoad);
 			((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).EndInit();
 			this.ResumeLayout(false);

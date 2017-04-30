@@ -44,10 +44,13 @@ namespace Aggregator.Client.Directories
 			addressTextBox.Text = DataConstants.ConstFirmAddress;
 			vatTextBox.Text = DataConstants.ConstFirmVAT.ToString();
 			unitsTextBox.Text = DataConstants.ConstFirmUnits;
+			Utilits.Console.Log("Константы: открыт.");
 		}
 		void FormConstantsFormClosed(object sender, FormClosedEventArgs e)
 		{
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log("Константы: закрыт.");
 			DataForms.FConstants = null;
 		}
 		void ButtonSaveClick(object sender, EventArgs e)
@@ -101,6 +104,10 @@ namespace Aggregator.Client.Directories
 		void Button9Click(object sender, EventArgs e)
 		{
 			unitsTextBox.Clear();
+		}
+		void FormConstantsActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 	}
 }

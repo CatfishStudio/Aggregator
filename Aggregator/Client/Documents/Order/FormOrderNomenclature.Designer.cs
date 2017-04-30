@@ -169,7 +169,7 @@ namespace Aggregator.Client.Documents.Order
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.выбратьНоменклатуруToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(204, 48);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(204, 26);
 			// 
 			// выбратьНоменклатуруToolStripMenuItem
 			// 
@@ -302,6 +302,7 @@ namespace Aggregator.Client.Documents.Order
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormOrderNomenclature";
 			this.Text = "Прайс-лист конрагента";
+			this.Activated += new System.EventHandler(this.FormOrderNomenclatureActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormOrderNomenclatureFormClosed);
 			this.Load += new System.EventHandler(this.FormOrderNomenclatureLoad);
 			this.panel1.ResumeLayout(false);

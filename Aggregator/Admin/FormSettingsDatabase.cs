@@ -42,6 +42,7 @@ namespace Aggregator.Admin
 			typeDatabaseTextBox.Text = DataConfig.typeDatabase;
 			localDatabaseTextBox.Text = DataConfig.localDatabase;
 			serverTextBox.Text = DataConfig.serverConnection;
+			Utilits.Console.Log("Настройки базы данных: открыт.");
 		}
 		void ButtonCloseClick(object sender, EventArgs e)
 		{
@@ -50,6 +51,8 @@ namespace Aggregator.Admin
 		void FormSettingsFormClosed(object sender, FormClosedEventArgs e)
 		{
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log("Настройки базы данных: закрыт.");
 			DataForms.FSettingsDatabase = null;
 		}
 		void TypeConnectionСomboBoxSelectedIndexChanged(object sender, EventArgs e)
@@ -99,6 +102,10 @@ namespace Aggregator.Admin
 				conn.Close();
 				MessageBox.Show(ex.ToString());
 			}
+		}
+		void FormSettingsDatabaseActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 	}
 }

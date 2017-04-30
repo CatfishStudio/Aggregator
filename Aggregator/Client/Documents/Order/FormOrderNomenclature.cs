@@ -202,7 +202,7 @@ namespace Aggregator.Client.Documents.Order
 		 */	
 		void FormOrderNomenclatureLoad(object sender, EventArgs e)
 		{
-
+			Utilits.Console.Log(Text);
 		}
 		void FormOrderNomenclatureFormClosed(object sender, FormClosedEventArgs e)
 		{
@@ -219,6 +219,8 @@ namespace Aggregator.Client.Documents.Order
 				sqlConnection.Dispose();
 			}
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 		}
 		void ListView1SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -247,6 +249,10 @@ namespace Aggregator.Client.Documents.Order
 		void ВыбратьНоменклатуруToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if(returnValue()) Close();
+		}
+		void FormOrderNomenclatureActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 	}
 }

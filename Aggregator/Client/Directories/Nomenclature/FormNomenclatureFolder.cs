@@ -170,12 +170,15 @@ namespace Aggregator.Client.Directories
 				Text = "Папка: Изменить";
 				open();
 			}
+			Utilits.Console.Log(Text);
 		}
 		void FormNomenclatureFolderFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log("Номенклатура папка: закрыт.");
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
 		{
@@ -197,6 +200,10 @@ namespace Aggregator.Client.Directories
 			}else{
 				MessageBox.Show("Некорректно заполнены поля формы.", "Сообщение:");
 			}
+		}
+		void FormNomenclatureFolderActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 	}
 }

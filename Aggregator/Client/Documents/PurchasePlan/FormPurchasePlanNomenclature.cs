@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Utilits;
 
@@ -129,11 +130,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		 */	
 		void FormPurchasePlanNomenclatureLoad(object sender, EventArgs e)
 		{
-	
+			Utilits.Console.Log(Text);
 		}
 		void FormPurchasePlanNomenclatureFormClosed(object sender, FormClosedEventArgs e)
 		{
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
 		{
@@ -166,6 +169,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			if(listView1.SelectedItems.Count > 0){
 				label1.Text = listView1.Items[listView1.SelectedItems[0].Index].SubItems[1].Text;
 			}
+		}
+		void FormPurchasePlanNomenclatureActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 
 	}

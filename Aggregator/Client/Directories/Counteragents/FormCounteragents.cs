@@ -689,7 +689,7 @@ namespace Aggregator.Client.Directories
 		}
 		void FormCounteragentsActivated(object sender, EventArgs e)
 		{
-			DataForms.FClient.messageInStatus("Контрагенты");
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 		void ВыбратьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
 		{

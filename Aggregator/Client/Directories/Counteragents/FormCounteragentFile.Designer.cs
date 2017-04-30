@@ -1059,6 +1059,7 @@ namespace Aggregator.Client.Directories
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormCounteragentFile";
 			this.Text = "Контрагент";
+			this.Activated += new System.EventHandler(this.FormCounteragentFileActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCounteragentFileFormClosed);
 			this.Load += new System.EventHandler(this.FormCounteragentFileLoad);
 			this.panel1.ResumeLayout(false);

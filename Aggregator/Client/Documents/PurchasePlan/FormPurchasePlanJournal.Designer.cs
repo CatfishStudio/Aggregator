@@ -110,10 +110,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.вводНаОснованииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.заказToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -383,7 +383,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.toolStripSeparator2,
 			this.обновитьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 148);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(205, 126);
 			// 
 			// создатьПланЗакупокToolStripMenuItem
 			// 
@@ -426,9 +426,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.заказToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("заказToolStripMenuItem.Image")));
 			this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
-			this.заказToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.заказToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
 			this.заказToolStripMenuItem.Text = "Заказ";
 			this.заказToolStripMenuItem.Click += new System.EventHandler(this.ЗаказToolStripMenuItemClick);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(201, 6);
 			// 
 			// обновитьToolStripMenuItem
 			// 
@@ -444,11 +449,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "plan2.png");
 			// 
-			// toolStripSeparator2
-			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(201, 6);
-			// 
 			// FormPurchasePlanJournal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -460,6 +460,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormPurchasePlanJournal";
 			this.Text = "Журнал закупок";
+			this.Activated += new System.EventHandler(this.FormPurchasePlanJournalActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPurchasePlanJournalFormClosed);
 			this.Load += new System.EventHandler(this.FormPurchasePlanJournalLoad);
 			this.panel1.ResumeLayout(false);

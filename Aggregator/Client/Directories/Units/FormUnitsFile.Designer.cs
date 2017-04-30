@@ -203,6 +203,7 @@ namespace Aggregator.Client.Directories
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormUnitsFile";
 			this.Text = "Единица измерения";
+			this.Activated += new System.EventHandler(this.FormUnitsFileActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormUnitsFileFormClosed);
 			this.Load += new System.EventHandler(this.FormUnitsFileLoad);
 			this.panel1.ResumeLayout(false);

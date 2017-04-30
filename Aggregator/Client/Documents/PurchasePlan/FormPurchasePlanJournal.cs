@@ -369,6 +369,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				search(); // поиск
 			}
 		}
+		void FormPurchasePlanJournalActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
+		}
 		
 	}
 }

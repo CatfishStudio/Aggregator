@@ -246,6 +246,7 @@ namespace Aggregator.User
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormUsers";
 			this.Text = "Пользователи";
+			this.Activated += new System.EventHandler(this.FormUsersActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormUsersFormClosed);
 			this.Load += new System.EventHandler(this.FormUsersLoad);
 			this.panel1.ResumeLayout(false);

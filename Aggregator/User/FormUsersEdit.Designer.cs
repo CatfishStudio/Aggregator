@@ -350,6 +350,7 @@ namespace Aggregator.User
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormUsersEdit";
 			this.Text = "Пользователь";
+			this.Activated += new System.EventHandler(this.FormUsersEditActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormUsersEditFormClosed);
 			this.Load += new System.EventHandler(this.FormUsersEditLoad);
 			this.groupBox1.ResumeLayout(false);

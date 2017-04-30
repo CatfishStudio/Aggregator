@@ -153,11 +153,14 @@ namespace Aggregator.Client.Directories
 				Text = "Единица измерения: Изменить";
 				open();
 			}
+			Utilits.Console.Log(Text);
 		}
 		void FormUnitsFileFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 			Dispose();
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
@@ -180,6 +183,10 @@ namespace Aggregator.Client.Directories
 			}else{
 				MessageBox.Show("Некорректно заполнены поля формы.", "Сообщение:");
 			}
+		}
+		void FormUnitsFileActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 		
 		

@@ -1052,10 +1052,13 @@ namespace Aggregator.Client.Documents.Order
 				Text = "Заказ: Изменить";
 				open();
 			}
+			Utilits.Console.Log(Text);
 		}
 		void FormOrderDocFormClosed(object sender, FormClosedEventArgs e)
 		{
-			
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
+			Dispose();
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
@@ -1270,6 +1273,10 @@ namespace Aggregator.Client.Documents.Order
 				                "Внесите изменения в План закуком и создайте Заказ на его основании.", "Сообщение");
 				return;
 			}
+		}
+		void FormOrderDocActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 		
 		

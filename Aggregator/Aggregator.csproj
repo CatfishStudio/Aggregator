@@ -172,10 +172,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User\FormCalculationCostRealization.cs" />
-    <Compile Include="User\FormCalculationCostRealization.Designer.cs">
-      <DependentUpon>FormCalculationCostRealization.cs</DependentUpon>
-    </Compile>
     <Compile Include="User\FormCheckUser.cs" />
     <Compile Include="User\FormCheckUser.Designer.cs">
       <DependentUpon>FormCheckUser.cs</DependentUpon>
@@ -195,6 +191,10 @@
     <Compile Include="Utilits\Console.cs" />
     <Compile Include="Utilits\Conversion.cs" />
     <Compile Include="Utilits\ExportExcel.cs" />
+    <Compile Include="Utilits\FormCalculationCostRealization.cs" />
+    <Compile Include="Utilits\FormCalculationCostRealization.Designer.cs">
+      <DependentUpon>FormCalculationCostRealization.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Admin\FormConsoleQuery.resx">
@@ -269,9 +269,6 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\FormCalculationCostRealization.resx">
-      <DependentUpon>FormCalculationCostRealization.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="User\FormCheckUser.resx">
       <DependentUpon>FormCheckUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilits\Calculator.resx">
       <DependentUpon>Calculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilits\FormCalculationCostRealization.resx">
+      <DependentUpon>FormCalculationCostRealization.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

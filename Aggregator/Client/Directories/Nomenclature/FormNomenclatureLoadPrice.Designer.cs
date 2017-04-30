@@ -153,6 +153,7 @@ namespace Aggregator.Client.Directories
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormNomenclatureLoadPrice";
 			this.Text = "Загрузка номенклатуры из прайс-листа контрагента";
+			this.Activated += new System.EventHandler(this.FormNomenclatureLoadPriceActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormNomenclatureLoadPriceFormClosed);
 			this.Load += new System.EventHandler(this.FormNomenclatureLoadPriceLoad);
 			this.panel1.ResumeLayout(false);

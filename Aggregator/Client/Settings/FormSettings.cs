@@ -42,9 +42,13 @@ namespace Aggregator.Client.Settings
 			if(DataConfig.period == "week") periodComboBox.Text = "Неделя";
 			if(DataConfig.period == "month") periodComboBox.Text = "Месяц";
 			if(DataConfig.period == "year") periodComboBox.Text = "Год";
+			
+			Utilits.Console.Log(Text);
 		}
 		void FormSettingsFormClosed(object sender, FormClosedEventArgs e)
 		{
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 			Dispose();
 			DataForms.FSettings = null;
 		}
@@ -70,6 +74,10 @@ namespace Aggregator.Client.Settings
 			if(periodComboBox.Text == "Год") DataConfig.period = "year";
 			SavingConfig.SaveSettings();
 			Close();
+		}
+		void FormSettingsActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 	}
 }

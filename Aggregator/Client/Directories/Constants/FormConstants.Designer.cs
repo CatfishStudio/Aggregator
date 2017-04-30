@@ -314,6 +314,7 @@ namespace Aggregator.Client.Directories
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormConstants";
 			this.Text = "Константы";
+			this.Activated += new System.EventHandler(this.FormConstantsActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormConstantsFormClosed);
 			this.Load += new System.EventHandler(this.FormConstantsLoad);
 			this.panel1.ResumeLayout(false);

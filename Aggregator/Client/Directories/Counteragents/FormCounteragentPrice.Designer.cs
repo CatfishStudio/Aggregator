@@ -124,6 +124,7 @@ namespace Aggregator.Client.Directories
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormCounteragentPrice";
 			this.Text = "Прайс";
+			this.Activated += new System.EventHandler(this.FormCounteragentPriceActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCounteragentPriceFormClosed);
 			this.Load += new System.EventHandler(this.FormCounteragentPriceLoad);
 			this.panel1.ResumeLayout(false);

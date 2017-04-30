@@ -1265,6 +1265,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormPurchasePlanDoc";
 			this.Text = "План закупок";
+			this.Activated += new System.EventHandler(this.FormPurchasePlanDocActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPurchasePlanDocFormClosed);
 			this.Load += new System.EventHandler(this.FormPurchasePlanDocLoad);
 			this.panel1.ResumeLayout(false);

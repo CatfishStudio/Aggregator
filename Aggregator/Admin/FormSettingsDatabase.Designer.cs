@@ -265,6 +265,7 @@ namespace Aggregator.Admin
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormSettingsDatabase";
 			this.Text = "Настройка базы данных";
+			this.Activated += new System.EventHandler(this.FormSettingsDatabaseActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSettingsFormClosed);
 			this.Load += new System.EventHandler(this.FormSettingsLoad);
 			this.panel1.ResumeLayout(false);

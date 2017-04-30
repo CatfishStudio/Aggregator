@@ -361,6 +361,7 @@ namespace Aggregator.Admin
 			this.Controls.Add(this.groupBox1);
 			this.Name = "FormConsoleQuery";
 			this.Text = "Консоль запросов";
+			this.Activated += new System.EventHandler(this.FormConsoleQueryActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormConsoleQueryFormClosed);
 			this.Load += new System.EventHandler(this.FormConsoleQueryLoad);
 			this.groupBox1.ResumeLayout(false);

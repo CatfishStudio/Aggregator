@@ -38,10 +38,13 @@ namespace Aggregator.Admin
 		{
 			comboBox1.Items.Add(DataConfig.configFile);
 			comboBox1.Items.Add(DataConfig.localDatabase);
+			Utilits.Console.Log("Консоль запросов: открыт.");
 		}
 		void FormConsoleQueryFormClosed(object sender, FormClosedEventArgs e)
 		{
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log("Консоль запросов: закрыт.");
 			DataForms.FConsoleQuery = null;
 		}
 		void Button1Click(object sender, EventArgs e)
@@ -113,6 +116,10 @@ namespace Aggregator.Admin
 			}else{
 				MessageBox.Show("Вы не выбрали файл базы данных или не указали имя таблицы!");
 			}
+		}
+		void FormConsoleQueryActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 	}
 }

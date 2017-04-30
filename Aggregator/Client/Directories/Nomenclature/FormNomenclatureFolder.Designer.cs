@@ -163,6 +163,7 @@ namespace Aggregator.Client.Directories
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormNomenclatureFolder";
 			this.Text = "Папка";
+			this.Activated += new System.EventHandler(this.FormNomenclatureFolderActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormNomenclatureFolderFormClosed);
 			this.Load += new System.EventHandler(this.FormNomenclatureFolderLoad);
 			this.panel1.ResumeLayout(false);

@@ -203,12 +203,15 @@ namespace Aggregator.User
 				Text = "Изменить";
 				open();
 			}
+			Utilits.Console.Log(Text);
 		}
 		void FormUsersEditFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
@@ -280,6 +283,10 @@ namespace Aggregator.User
 					break;
 			}
 			
+		}
+		void FormUsersEditActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 		
 	}

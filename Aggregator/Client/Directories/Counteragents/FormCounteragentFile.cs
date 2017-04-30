@@ -1103,12 +1103,15 @@ namespace Aggregator.Client.Directories
 				firstColumnNumber = true;
 				open();
 			}
+			Utilits.Console.Log(Text);
 		}
 		void FormCounteragentFileFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log("Контрагент: закрыт.");
 		}
 		void OpenExcelButtonClick(object sender, EventArgs e)
 		{
@@ -1190,6 +1193,10 @@ namespace Aggregator.Client.Directories
 			if(target.Name == "button9") textBox9.Clear();
 			if(target.Name == "button10") textBox10.Clear();
 			if(target.Name == "button11") foldersComboBox.Text = "";
+		}
+		void FormCounteragentFileActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 
 	}

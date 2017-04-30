@@ -14,7 +14,7 @@ using Aggregator.Client.Directories;
 using Aggregator.Utilits;
 using ExcelLibrary.SpreadSheet;
 
-namespace Aggregator.User
+namespace Aggregator.Utilits
 {
 	/// <summary>
 	/// Description of FormCalculationCostRealization.
@@ -111,7 +111,7 @@ namespace Aggregator.User
 		 */	
 		void FormCalculationCostRealizationLoad(object sender, EventArgs e)
 		{
-	
+			Utilits.Console.Log(Text + ": открыт.");
 		}
 		void ButtonNomenclatureAddClick(object sender, EventArgs e)
 		{
@@ -495,6 +495,15 @@ namespace Aggregator.User
 			if(printDialog1.ShowDialog() == DialogResult.OK){
 				printDialog1.Document.Print();
 			}
+		}
+		void FormCalculationCostRealizationActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
+		}
+		void FormCalculationCostRealizationFormClosed(object sender, FormClosedEventArgs e)
+		{
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 		}
 			
 

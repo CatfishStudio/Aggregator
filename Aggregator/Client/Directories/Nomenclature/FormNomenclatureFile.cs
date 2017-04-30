@@ -322,12 +322,15 @@ namespace Aggregator.Client.Directories
 				Text = "Номенклатура: Изменить";
 				open();
 			}
+			Utilits.Console.Log(Text);
 		}
 		void FormNomenclatureFileFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log("Номенклатура: закрыт.");
 		}
 		void PriceTextBoxKeyDown(object sender, KeyEventArgs e)
 		{
@@ -398,6 +401,10 @@ namespace Aggregator.Client.Directories
 				DataForms.FUnits.ShowMenuReturnValue();
 				DataForms.FUnits.Show();
 			}
+		}
+		void FormNomenclatureFileActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 	}
 }

@@ -275,7 +275,7 @@ namespace Aggregator.Client.Directories
 		}
 		void FormUnitsActivated(object sender, EventArgs e)
 		{
-			DataForms.FClient.messageInStatus("Единицы измерения");
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 		void ButtonCloseClick(object sender, EventArgs e)
 		{

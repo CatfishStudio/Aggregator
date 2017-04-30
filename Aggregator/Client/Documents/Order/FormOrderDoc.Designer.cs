@@ -1011,6 +1011,7 @@ namespace Aggregator.Client.Documents.Order
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormOrderDoc";
 			this.Text = "Заказ";
+			this.Activated += new System.EventHandler(this.FormOrderDocActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormOrderDocFormClosed);
 			this.Load += new System.EventHandler(this.FormOrderDocLoad);
 			this.panel1.ResumeLayout(false);

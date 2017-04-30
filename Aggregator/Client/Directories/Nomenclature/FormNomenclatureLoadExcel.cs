@@ -189,13 +189,15 @@ namespace Aggregator.Client.Directories
 		 */	
 		void FormNomenclatureLoadExcelLoad(object sender, EventArgs e)
 		{
-			
+			Utilits.Console.Log(Text + ": открыт.");
 		}
 		void FormNomenclatureLoadExcelFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
 			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
@@ -215,6 +217,10 @@ namespace Aggregator.Client.Directories
 				if(dataSet.Tables.Count > 0) saveNew();
 				else Utilits.Console.Log("Неудалось открыть и прочитать файл Excel. Данные не загружены." , false, true);
 			}
+		}
+		void FormNomenclatureLoadExcelActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 		
 		

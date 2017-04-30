@@ -163,6 +163,7 @@ namespace Aggregator.Client.Directories
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormCounteragentFolder";
 			this.Text = "Папка";
+			this.Activated += new System.EventHandler(this.FormCounteragentFolderActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCounteragentFolderFormClosed);
 			this.Load += new System.EventHandler(this.FormCounteragentFolderLoad);
 			this.panel1.ResumeLayout(false);

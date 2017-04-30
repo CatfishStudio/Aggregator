@@ -447,6 +447,7 @@ namespace Aggregator.Client.Documents.Order
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormOrderJournal";
 			this.Text = "Журнал заказов";
+			this.Activated += new System.EventHandler(this.FormOrderJournalActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormOrderJournalFormClosed);
 			this.Load += new System.EventHandler(this.FormOrderJournalLoad);
 			this.panel1.ResumeLayout(false);

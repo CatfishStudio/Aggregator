@@ -6,7 +6,7 @@
  * 
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
-namespace Aggregator.User
+namespace Aggregator.Utilits
 {
 	partial class FormCalculationCostRealization
 	{
@@ -780,6 +780,8 @@ namespace Aggregator.User
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormCalculationCostRealization";
 			this.Text = "Расчет: Стоимость реализации";
+			this.Activated += new System.EventHandler(this.FormCalculationCostRealizationActivated);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCalculationCostRealizationFormClosed);
 			this.Load += new System.EventHandler(this.FormCalculationCostRealizationLoad);
 			this.panel1.ResumeLayout(false);
 			this.panel5.ResumeLayout(false);

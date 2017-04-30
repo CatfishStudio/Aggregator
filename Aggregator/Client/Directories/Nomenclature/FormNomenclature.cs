@@ -595,11 +595,11 @@ namespace Aggregator.Client.Directories
 			Dispose();
 			DataForms.FNomenclature = null;
 			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Журнал Контрагенты: закрыт.");
+			Utilits.Console.Log("Журнал Номенклатуры: закрыт.");
 		}
 		void FormNomenclatureActivated(object sender, EventArgs e)
 		{
-			DataForms.FClient.messageInStatus("Номенклатура");
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 		void AddButtonClick(object sender, EventArgs e)
 		{

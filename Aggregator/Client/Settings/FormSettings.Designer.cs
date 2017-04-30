@@ -145,6 +145,7 @@ namespace Aggregator.Client.Settings
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormSettings";
 			this.Text = "Настройки";
+			this.Activated += new System.EventHandler(this.FormSettingsActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSettingsFormClosed);
 			this.Load += new System.EventHandler(this.FormSettingsLoad);
 			this.panel2.ResumeLayout(false);

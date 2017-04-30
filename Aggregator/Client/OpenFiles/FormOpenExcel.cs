@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using Aggregator.Data;
 using Excel;
 using System.Data;
 using System.Data.OleDb;
@@ -129,6 +130,16 @@ namespace Aggregator.Client.OpenFiles
 			}else{
 				readExcelFormat2007();
 			}
+			Utilits.Console.Log(Text);
+		}
+		void FormOpenExcelActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
+		}
+		void FormOpenExcelFormClosed(object sender, FormClosedEventArgs e)
+		{
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 		}
 		
 	}

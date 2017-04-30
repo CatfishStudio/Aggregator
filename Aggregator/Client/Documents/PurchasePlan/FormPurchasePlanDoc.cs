@@ -1047,11 +1047,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				Text = "План закупок: Изменить";
 				open();
 			}
+			Utilits.Console.Log(Text);
 		}
 		void FormPurchasePlanDocFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(Text + ": закрыт.");
 			Dispose();
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
@@ -1570,6 +1573,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					ExportExcel.CreateWorkbook(saveFileDialog1.FileName, sqlServer.dataSet);
 				}
 			}
+		}
+		void FormPurchasePlanDocActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 			
 		
