@@ -180,7 +180,7 @@ namespace Aggregator.Database.Server
 		}
 		
 		/* AUTOMATION ======================================================================= */
-		public void autoFindNomenclature(ListView sourceListView)
+		public void autoFindNomenclature(ListView sourceListView, NotificationSearchNomenclature notification)
 		{
 			String criteriasSearch;
 			String nomenclatureID;
@@ -230,10 +230,13 @@ namespace Aggregator.Database.Server
 			        sqlConnection.Close();
 				}
 				
+				notification.MessageText("Пожалуйста подождите идет процесс обработки списка номенклатуры " + (i+1).ToString() + "/" + count.ToString());
+				
 				DataForms.FClient.messageInStatus("Пожалуйста подождите идет процесс обработки списка номенклатуры " + (i+1).ToString() + "/" + count.ToString());
 				DataForms.FClient.Update();
 				System.Threading.Thread.Sleep(50);
 			}
+			notification.Close();
 			MessageBox.Show("Обработка списка номенклатуры - завершена!", "Сообщение");
 		}
 		

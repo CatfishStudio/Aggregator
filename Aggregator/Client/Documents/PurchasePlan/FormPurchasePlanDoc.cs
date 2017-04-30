@@ -1256,6 +1256,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				return;
 			}			
 			
+			/*
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 				// OLEDB
 				searchNomenclatureOleDb = new SearchNomenclatureOleDb();
@@ -1267,6 +1268,12 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				searchNomenclatureSql.setPrices(listViewPrices);
 				searchNomenclatureSql.autoFindNomenclature(listViewNomenclature);
 			}
+			*/
+			NotificationSearchNomenclature searchNomenclature = new NotificationSearchNomenclature();
+			searchNomenclature.ListViewPrices = listViewPrices;
+			searchNomenclature.ListViewNomenclature = listViewNomenclature;
+			searchNomenclature.ShowDialog();
+			
 		}
 		void ButtonPrintPreviewClick(object sender, EventArgs e)
 		{
@@ -1446,9 +1453,16 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				MessageBox.Show("Вы не добавили не одного прайса.", "Сообщение");
 				return;
 			}
+			/*
 			searchNomenclatureOleDb = new SearchNomenclatureOleDb();
 			searchNomenclatureOleDb.setPrices(listViewPrices);
 			searchNomenclatureOleDb.autoFindNomenclature(listViewNomenclature);
+			*/
+			
+			NotificationSearchNomenclature searchNomenclature = new NotificationSearchNomenclature();
+			searchNomenclature.ListViewPrices = listViewPrices;
+			searchNomenclature.ListViewNomenclature = listViewNomenclature;
+			searchNomenclature.ShowDialog();
 		}
 		void FindButtonClick(object sender, EventArgs e)
 		{

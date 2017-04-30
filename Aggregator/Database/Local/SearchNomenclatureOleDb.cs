@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Data.OleDb;
@@ -19,29 +20,6 @@ namespace Aggregator.Database.Local
 	/// <summary>
 	/// Description of SearchNomenclatureOleDb.
 	/// </summary>
-	
-	public struct Price {
-			public String counteragentName;		// наименование контрагента
-			public String priceName;			// идентификатор прайслиста
-	}
-	
-	public struct Nomenclature {
-			public String Name;					// наименование номенклатуры
-			public String Code;					// код номенклатуры
-			public String Series;				// серия номенклатуры
-			public String Article;				// артикул номенклатуры
-			public String Manufacturer;			// производитель номенклатуры
-			public String Units;				// единицы измерения номенклатуры
-			public Double Remainder;			// остаток номенклатуры
-			public Double Price;				// цена номенклатуры
-			public Double Discount1;			// скидка 1 номенклатуры
-			public Double Discount2;			// скидка 2 номенклатуры
-			public Double Discount3;			// скидка 3 номенклатуры
-			public Double Discount4;			// скидка 4 номенклатуры
-			public DateTime Term;				// срок годности номенклатуры
-			public String CounteragentName;		// наименование контрагента
-			public String CounteragentPrice;	// идентификатор прайслиста
-	}
 	
 	public class SearchNomenclatureOleDb
 	{
@@ -203,7 +181,7 @@ namespace Aggregator.Database.Local
 		}
 		
 		/* AUTOMATION ======================================================================= */
-		public void autoFindNomenclature(ListView sourceListView)
+		public void autoFindNomenclature(ListView sourceListView, NotificationSearchNomenclature notification)
 		{
 			String criteriasSearch;
 			String nomenclatureID;
@@ -253,10 +231,13 @@ namespace Aggregator.Database.Local
 			        oleDbConnection.Close();
 				}
 				
+				notification.MessageText("Пожалуйста подождите идет процесс обработки списка номенклатуры " + (i+1).ToString() + "/" + count.ToString());
+				
 				DataForms.FClient.messageInStatus("Пожалуйста подождите идет процесс обработки списка номенклатуры " + (i+1).ToString() + "/" + count.ToString());
 				DataForms.FClient.Update();
 				System.Threading.Thread.Sleep(50);
 			}
+			notification.Close();
 			MessageBox.Show("Обработка списка номенклатуры - завершена!", "Сообщение");
 		}
 		

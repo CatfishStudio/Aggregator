@@ -166,6 +166,7 @@
     <Compile Include="Data\DataConfig.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\DataForms.cs" />
+    <Compile Include="Data\DataStruct.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -194,6 +195,10 @@
     <Compile Include="Utilits\FormCalculationCostRealization.cs" />
     <Compile Include="Utilits\FormCalculationCostRealization.Designer.cs">
       <DependentUpon>FormCalculationCostRealization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilits\NotificationSearchNomenclature.cs" />
+    <Compile Include="Utilits\NotificationSearchNomenclature.Designer.cs">
+      <DependentUpon>NotificationSearchNomenclature.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilits\FormCalculationCostRealization.resx">
       <DependentUpon>FormCalculationCostRealization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilits\NotificationSearchNomenclature.resx">
+      <DependentUpon>NotificationSearchNomenclature.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
