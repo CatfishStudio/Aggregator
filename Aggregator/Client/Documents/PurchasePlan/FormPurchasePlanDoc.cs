@@ -964,20 +964,57 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			return null;
 		}
 		
-		void search()
+		int searchStep = 0;
+		struct SearchResult {
+			public String value;	// значение поиска
+			public int position;	// позиция найденного значения
+		}
+		List<SearchResult> searchResultList;
+		
+		void searchValues()
 		{
+			SearchResult searchResult;
 			String str;
+			searchResultList = new List<SearchResult>();
 			for(int i = 0; i < listViewNomenclature.Items.Count; i++){
 				str = listViewNomenclature.Items[i].SubItems[2].Text;
-				if(str.Contains(comboBox1.Text)){
-					listViewNomenclature.FocusedItem = listViewNomenclature.Items[i];
-					listViewNomenclature.Items[i].Selected = true;
-					listViewNomenclature.Select();
-					listViewNomenclature.EnsureVisible(i);
-					break;
+				if(str.Contains(searchTextBox.Text)){
+					searchResult = new SearchResult();
+					searchResult.value = searchTextBox.Text;
+					searchResult.position = i;
+					searchResultList.Add(searchResult);
 				}
 			}
+			searchStep = 0;
 		}
+		
+		void search()
+		{
+			if(searchTextBox.Text == "") return;
+			
+			if(searchResultList == null){
+				searchValues();
+			}else{
+				if(searchResultList[0].value != searchTextBox.Text){
+					searchValues();
+				}else{
+					searchStep++;
+					if(searchStep >= searchResultList.Count) searchStep = 0;
+				}
+			}
+			
+			if(searchResultList.Count == 0){
+				MessageBox.Show("Пойск ничего не нашел.", "Сообщение");
+				searchResultList = null;
+				return;
+			}
+			
+			listViewNomenclature.FocusedItem = listViewNomenclature.Items[searchResultList[searchStep].position];
+			listViewNomenclature.Items[searchResultList[searchStep].position].Selected = true;
+			listViewNomenclature.Select();
+			listViewNomenclature.EnsureVisible(searchResultList[searchStep].position);
+		}
+		
 		
 		bool check()
 		{
@@ -1170,7 +1207,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					nomenclatureList = searchNomenclatureSql.getFindNomenclature(nID);
 				}
 							
-				
+				if(nomenclatureList == null) return;
 				if(nomenclatureList.Count == 0) MessageBox.Show("Программе не удалось найти выбанную номенклатуру в прайсах контрагентов.", "Сообщение");
 				FormPurchasePlanNomenclature FPurchasePlanNomenclature = new FormPurchasePlanNomenclature();
 				FPurchasePlanNomenclature.MdiParent = DataForms.FClient;
@@ -1466,15 +1503,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void FindButtonClick(object sender, EventArgs e)
 		{
-			if(comboBox1.Text != "") comboBox1.Items.Add(comboBox1.Text);
 			search();
-		}
-		void ComboBox1KeyDown(object sender, KeyEventArgs e)
-		{
-			if(e.KeyData == Keys.Enter){
-				if(comboBox1.Text != "") comboBox1.Items.Add(comboBox1.Text);
-				search();
-			}
 		}
 		void Button3Click(object sender, EventArgs e)
 		{
@@ -1591,6 +1620,12 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		void FormPurchasePlanDocActivated(object sender, EventArgs e)
 		{
 			DataForms.FClient.messageInStatus(this.Text);
+		}
+		void SearchTextBoxKeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				search();
+			}
 		}
 			
 		

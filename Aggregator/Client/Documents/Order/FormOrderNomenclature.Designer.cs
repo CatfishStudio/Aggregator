@@ -16,7 +16,7 @@ namespace Aggregator.Client.Documents.Order
 		private System.ComponentModel.IContainer components = null;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Button findButton;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox searchTextBox;
 		private System.Windows.Forms.Button buttonSave;
 		private System.Windows.Forms.Button buttonCancel;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -66,7 +66,7 @@ namespace Aggregator.Client.Documents.Order
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.findButton = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.searchTextBox = new System.Windows.Forms.TextBox();
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -96,7 +96,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.findButton);
-			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.searchTextBox);
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonCancel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -127,14 +127,14 @@ namespace Aggregator.Client.Documents.Order
 			this.findButton.UseVisualStyleBackColor = true;
 			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
 			// 
-			// textBox1
+			// searchTextBox
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.textBox1.Location = new System.Drawing.Point(12, 39);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(195, 20);
-			this.textBox1.TabIndex = 2;
-			this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyDown);
+			this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.searchTextBox.Location = new System.Drawing.Point(12, 39);
+			this.searchTextBox.Name = "searchTextBox";
+			this.searchTextBox.Size = new System.Drawing.Size(195, 20);
+			this.searchTextBox.TabIndex = 2;
+			this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyDown);
 			// 
 			// buttonSave
 			// 

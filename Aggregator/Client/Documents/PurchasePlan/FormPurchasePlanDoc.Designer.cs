@@ -99,7 +99,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ToolStripMenuItem подобратьНоменклатуруToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem автоподборНоменклатурыToolStripMenuItem;
 		private System.Windows.Forms.Panel panel8;
-		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Button findButton;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label7;
@@ -116,6 +115,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.ColumnHeader columnHeader24;
 		private System.Windows.Forms.Button buttonSaveExcel;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+		private System.Windows.Forms.TextBox searchTextBox;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -228,8 +228,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
+			this.searchTextBox = new System.Windows.Forms.TextBox();
 			this.findButton = new System.Windows.Forms.Button();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.buttonNomenclaturesDelete = new System.Windows.Forms.Button();
 			this.buttonNomenclaturesAdd = new System.Windows.Forms.Button();
@@ -1116,8 +1116,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// panel5
 			// 
+			this.panel5.Controls.Add(this.searchTextBox);
 			this.panel5.Controls.Add(this.findButton);
-			this.panel5.Controls.Add(this.comboBox1);
 			this.panel5.Controls.Add(this.panel8);
 			this.panel5.Controls.Add(this.buttonNomenclaturesDelete);
 			this.panel5.Controls.Add(this.buttonNomenclaturesAdd);
@@ -1132,6 +1132,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel5.Size = new System.Drawing.Size(713, 29);
 			this.panel5.TabIndex = 1;
 			// 
+			// searchTextBox
+			// 
+			this.searchTextBox.Location = new System.Drawing.Point(485, 5);
+			this.searchTextBox.Name = "searchTextBox";
+			this.searchTextBox.Size = new System.Drawing.Size(196, 20);
+			this.searchTextBox.TabIndex = 18;
+			this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchTextBoxKeyDown);
+			// 
 			// findButton
 			// 
 			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
@@ -1142,15 +1150,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.toolTip1.SetToolTip(this.findButton, "Поиск");
 			this.findButton.UseVisualStyleBackColor = true;
 			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
-			// 
-			// comboBox1
-			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(485, 4);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(196, 21);
-			this.comboBox1.TabIndex = 16;
-			this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComboBox1KeyDown);
 			// 
 			// panel8
 			// 
@@ -1286,6 +1285,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.panel5.ResumeLayout(false);
+			this.panel5.PerformLayout();
 			this.ResumeLayout(false);
 
 		}

@@ -33,6 +33,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			//
 		}
 		
+		int searchStep = 0;
+		struct SearchResult {
+			public String value;	// значение поиска
+			public int position;	// позиция найденного значения
+		}
+		List<SearchResult> searchResultList;
+		
 		public ListView ListViewPrices;
 		public ListView ListViewReturnValue;
 		public int SelectTableLine;
@@ -109,6 +116,50 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			LoadNomenclature(nomenclatureList);
 		}
 		
+		void searchValues()
+		{
+			SearchResult searchResult;
+			String str;
+			searchResultList = new List<SearchResult>();
+			for(int i = 0; i < listView1.Items.Count; i++){
+				str = listView1.Items[i].SubItems[1].Text;
+				if(str.Contains(searchTextBox.Text)){
+					searchResult = new SearchResult();
+					searchResult.value = searchTextBox.Text;
+					searchResult.position = i;
+					searchResultList.Add(searchResult);
+				}
+			}
+			searchStep = 0;
+		}
+		
+		void search()
+		{
+			if(searchTextBox.Text == "") return;
+			
+			if(searchResultList == null){
+				searchValues();
+			}else{
+				if(searchResultList[0].value != searchTextBox.Text){
+					searchValues();
+				}else{
+					searchStep++;
+					if(searchStep >= searchResultList.Count) searchStep = 0;
+				}
+			}
+			
+			if(searchResultList.Count == 0){
+				MessageBox.Show("Пойск ничего не нашел.", "Сообщение");
+				searchResultList = null;
+				return;
+			}
+			
+			listView1.FocusedItem = listView1.Items[searchResultList[searchStep].position];
+			listView1.Items[searchResultList[searchStep].position].Selected = true;
+			listView1.Select();
+			listView1.EnsureVisible(searchResultList[searchStep].position);
+		}
+		/*
 		void search()
 		{
 			String str;
@@ -123,6 +174,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				}
 			}
 		}
+		*/
 		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ

@@ -7,6 +7,7 @@
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
 using System;
+using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -31,6 +32,14 @@ namespace Aggregator.Client.Documents.Order
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
+		int searchStep = 0;
+		struct SearchResult {
+			public String value;	// значение поиска
+			public int position;	// позиция найденного значения
+		}
+		List<SearchResult> searchResultList;
+		
 		public ListView ListViewReturnValue;
 		public String Counteragent;
 		String priceName = "";
@@ -139,19 +148,48 @@ namespace Aggregator.Client.Documents.Order
 			}
 		}
 		
-		void search()
+		void searchValues()
 		{
+			SearchResult searchResult;
 			String str;
+			searchResultList = new List<SearchResult>();
 			for(int i = 0; i < listView1.Items.Count; i++){
 				str = listView1.Items[i].SubItems[1].Text;
-				if(str.Contains(textBox1.Text)){
-					listView1.FocusedItem = listView1.Items[i];
-					listView1.Items[i].Selected = true;
-					listView1.Select();
-					listView1.EnsureVisible(i);
-					break;
+				if(str.Contains(searchTextBox.Text)){
+					searchResult = new SearchResult();
+					searchResult.value = searchTextBox.Text;
+					searchResult.position = i;
+					searchResultList.Add(searchResult);
 				}
 			}
+			searchStep = 0;
+		}
+		
+		void search()
+		{
+			if(searchTextBox.Text == "") return;
+			
+			if(searchResultList == null){
+				searchValues();
+			}else{
+				if(searchResultList[0].value != searchTextBox.Text){
+					searchValues();
+				}else{
+					searchStep++;
+					if(searchStep >= searchResultList.Count) searchStep = 0;
+				}
+			}
+			
+			if(searchResultList.Count == 0){
+				MessageBox.Show("Пойск ничего не нашел.", "Сообщение");
+				searchResultList = null;
+				return;
+			}
+			
+			listView1.FocusedItem = listView1.Items[searchResultList[searchStep].position];
+			listView1.Items[searchResultList[searchStep].position].Selected = true;
+			listView1.Select();
+			listView1.EnsureVisible(searchResultList[searchStep].position);
 		}
 		
 		bool returnValue()
@@ -160,9 +198,11 @@ namespace Aggregator.Client.Documents.Order
 			
 			DateTime dt;
 			ListViewItem ListViewItem_add;
-			int selectLineIndex = listView1.SelectedItems[0].Index;
+			int selectLineIndex;
 			
 			if(listView1.SelectedIndices.Count > 0){
+				
+				selectLineIndex = listView1.SelectedItems[0].Index;
 				
 				ListViewItem_add = new ListViewItem();
 				/*Наимен. */ ListViewItem_add.SubItems.Add(listView1.Items[selectLineIndex].SubItems[1].Text);
@@ -218,9 +258,9 @@ namespace Aggregator.Client.Documents.Order
 				sqlCommand.Dispose();
 				sqlConnection.Dispose();
 			}
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
 			Utilits.Console.Log(Text + ": закрыт.");
+			Dispose();
 		}
 		void ListView1SelectedIndexChanged(object sender, EventArgs e)
 		{

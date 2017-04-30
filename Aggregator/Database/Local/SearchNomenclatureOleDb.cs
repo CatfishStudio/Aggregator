@@ -60,7 +60,7 @@ namespace Aggregator.Database.Local
 			oleDbConnection.Open();
 			foreach(Price price in priceList){
 				oleDbCommand = new OleDbCommand("SELECT * FROM " + price.priceName + " " + criteriasSearch, oleDbConnection);
-				
+
 				oleDbDataReader = oleDbCommand.ExecuteReader();
 				Nomenclature nomenclature;
 		        while (oleDbDataReader.Read())
@@ -138,6 +138,10 @@ namespace Aggregator.Database.Local
 						" OR (series = '" + templeteNomenclature.Series + "' AND series <> '')"+
 						" OR (article = '" + templeteNomenclature.Article + "' AND article <> '')";
 			
+			
+			
+			/*
+			
 			// По Наименованию - частичное совпадение
 			str = "";
 			count = words.Length;
@@ -152,6 +156,13 @@ namespace Aggregator.Database.Local
 			
 			str = str.Replace(".", "").Replace(",", "");	
 			if(str != "" && str != "()") stringQuery += " OR " + str;
+			
+			ОШИБКА: System.Data.OleDb.OleDbException: Ошибка синтаксиса (пропущен оператор) в выражении запроса '(name LIKE '%5-Нок%' AND name LIKE '%(табл%' AND name LIKE '%005г%' AND name LIKE '%№50)%') OR (code = '2512' AND code <> '') OR (series = '' AND series <> '') OR (article = '211' AND article <> '') OR ( OR name LIKE '%(табл%')'.
+
+			Нименование: 5-Нок (табл. 0,05г  №50)
+			Запрос: SELECT * FROM Price27042017095105 WHERE (name LIKE '%5-Нок%' AND name LIKE '%(табл%' AND name LIKE '%005г%' AND name LIKE '%№50)%') OR (code = '2512' AND code <> '') OR (series = '' AND series <> '') OR (article = '211' AND article <> '') OR ( OR name LIKE '%(табл%') ORDER BY price ASC
+			
+			*/
 			
 			// Упорядочить
 			stringQuery += " ORDER BY price ASC";
