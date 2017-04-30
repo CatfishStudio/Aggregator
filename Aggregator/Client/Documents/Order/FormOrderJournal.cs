@@ -264,6 +264,21 @@ namespace Aggregator.Client.Documents.Order
 					
 				} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 					// MSSQL SERVER
+					QuerySqlServer query;
+					query = new QuerySqlServer();
+					query.SetCommand("UPDATE OrderNomenclature SET docOrder = '' WHERE (docOrder = '" + docNumber + "')");
+					if(query.Execute()){
+						query = new QuerySqlServer();
+						query.SetCommand("DELETE FROM Orders WHERE (id = " + docID + ")");
+						if(query.Execute()){
+							DataForms.FClient.updateHistory("Orders");
+							Utilits.Console.Log("Документ Заказ №" + docNumber + " успешно удален.");
+						}else{
+							Utilits.Console.Log("[ОШИБКА] Документ Заказ №" + docNumber + " не удалось удалить!", false, true);
+						}
+					}else{
+						Utilits.Console.Log("[ОШИБКА] Документ План закупок №" + docPurchasePlan + " не удалось обновить!", false, true);
+					}	
 					
 				}
 			}
