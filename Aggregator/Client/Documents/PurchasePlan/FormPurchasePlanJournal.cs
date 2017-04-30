@@ -99,7 +99,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM PurchasePlan WHERE (docDate BETWEEN #" + 
 				dateTimePicker1.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "# AND #" + 
 				dateTimePicker2.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "#) " +
-				"AND (docNumber LIKE '%" + comboBox1.Text + "%' OR docTotal LIKE '%" + comboBox1.Text + "%' OR docAutor LIKE '%" + comboBox1.Text +
+				"AND (docNumber LIKE '%" + comboBox1.Text + 
+				"%' OR docTotal LIKE '%" + comboBox1.Text + 
+				"%' OR docAutor LIKE '%" + comboBox1.Text +
 				"%') ORDER BY docDate DESC";
 			
 			if(oleDb.ExecuteFill("PurchasePlan")){

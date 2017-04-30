@@ -134,7 +134,7 @@ namespace Aggregator.Client.Documents.Order
 					
 					/* Создание основной информации документа заказ */
 					orderDoc = new OrderDoc();
-					orderDoc.docDate =  DateTime.Now;
+					orderDoc.docDate =  DateTime.Today.Date;
 					orderDoc.docNumber = createDocNumber();
 					orderDoc.docName = "Заказ";
 					orderDoc.docCounteragent = pl.counteragentName;
@@ -315,7 +315,7 @@ namespace Aggregator.Client.Documents.Order
 					
 					/* Создание основной информации документа заказ */
 					orderDoc = new OrderDoc();
-					orderDoc.docDate =  DateTime.Now;
+					orderDoc.docDate =  DateTime.Today.Date;
 					orderDoc.docNumber = createDocNumber();
 					orderDoc.docName = "Заказ";
 					orderDoc.docCounteragent = pl.counteragentName;

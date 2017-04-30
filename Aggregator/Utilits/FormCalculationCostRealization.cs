@@ -492,6 +492,7 @@ namespace Aggregator.Utilits
 		}
 		void ButtonPrintClick(object sender, EventArgs e)
 		{
+			printLine = 0;
 			if(printDialog1.ShowDialog() == DialogResult.OK){
 				printDialog1.Document.Print();
 			}

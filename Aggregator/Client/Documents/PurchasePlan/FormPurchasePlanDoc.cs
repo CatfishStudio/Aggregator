@@ -1285,10 +1285,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void ButtonPrintClick(object sender, EventArgs e)
 		{
-			if(printDialog1.ShowDialog() == DialogResult.OK)
-			{
-				printDocument1.PrinterSettings = printDialog1.PrinterSettings;
-				printDocument1.Print();
+			printLine = 0;
+			if(printDialog1.ShowDialog() == DialogResult.OK){
+				printDialog1.Document.Print();
 			}	
 		}
 		
@@ -1330,6 +1329,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				//    Цена.
 				e.Graphics.FillRectangle(Brushes.White, new Rectangle(545, PosY, 100, 25));
 				e.Graphics.DrawString(listViewNomenclature.Items[i].SubItems[7].Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 550, PosY);
+				
 				printLine++;
 				PosY += 30;
 				

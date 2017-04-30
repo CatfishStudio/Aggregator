@@ -1279,6 +1279,100 @@ namespace Aggregator.Client.Documents.Order
 			DataForms.FClient.messageInStatus(this.Text);
 		}
 		
+		int printLine = 0;
+		void PrintDocument1PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+		{
+			int PosY = 0;
+			if(printLine == 0){
+				// Заголовок документа
+				e.Graphics.DrawString("ЗАКАЗ № " + docNumberTextBox.Text + "   дата: " + dateTimePicker1.Text, new Font("Microsoft Sans Serif", 14, FontStyle.Regular), Brushes.Black, 20, PosY);
+				// ШАПКА
+				PosY += 60;
+				e.Graphics.DrawString("Кому: " + counteragentTextBox.Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 5, PosY);
+				PosY += 30;
+				e.Graphics.DrawString("От кого: " + DataConstants.ConstFirmName, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 5, PosY);
+				
+				
+				// ТАБЛИЧНАЯ ЧАСТЬ: Загрузка данных из таблицы
+				PosY += 30;
+				e.Graphics.DrawLine(new Pen(Color.Black), 0, PosY, 650, PosY);
+				PosY += 15;
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 400, 25));
+				e.Graphics.DrawString("Наименование:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 5, PosY);
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(405, PosY, 65, 25));
+				e.Graphics.DrawString("Ед. изм:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 410, PosY);
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(475, PosY, 65, 25));
+				e.Graphics.DrawString("Кол-во:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 480, PosY);
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(545, PosY, 100, 25));
+				e.Graphics.DrawString("Цена:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 550, PosY);
+				PosY += 30;
+				e.Graphics.DrawLine(new Pen(Color.Black), 0, PosY, 650, PosY);
+				PosY += 30;
+			}
+			
+			String textName;
+			for(int i = printLine; i < listViewNomenclature.Items.Count; i++){
+				//    Наименование
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 400, 25));
+				textName = listViewNomenclature.Items[i].SubItems[1].Text;
+				if(textName.Length > 50) textName = textName.Substring(0, 50);
+				e.Graphics.DrawString(textName, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 5, PosY);
+				//    Ед. изм.
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(405, PosY, 65, 25));
+				e.Graphics.DrawString(listViewNomenclature.Items[i].SubItems[2].Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 410, PosY);
+				//    Количество.
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(475, PosY, 65, 25));
+				e.Graphics.DrawString(listViewNomenclature.Items[i].SubItems[3].Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 480, PosY);
+				//    Цена.
+				e.Graphics.FillRectangle(Brushes.White, new Rectangle(545, PosY, 100, 25));
+				e.Graphics.DrawString(listViewNomenclature.Items[i].SubItems[4].Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 550, PosY);
+				
+				printLine++;
+				PosY += 30;
+				
+				if(PosY >= 1000) {
+					e.HasMorePages = true;
+					return;
+				}
+			}
+			
+			if((PosY + 150) >= 1000) {
+				e.HasMorePages = true;
+				return;
+			}
+			PosY += 30;
+			e.Graphics.DrawLine(new Pen(Color.Black), 0, PosY, 650, PosY);
+			//	Сумма.
+			PosY += 30;
+			e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 250, 25));
+			e.Graphics.DrawString("Сумма: " + sumTextBox.Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 0, PosY);
+			//	НДС.
+			PosY += 30;
+			e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 250, 25));
+			e.Graphics.DrawString("НДС: " + vatTextBox.Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 0, PosY);
+			//	Всего.
+			PosY += 30;
+			e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 250, 25));
+			e.Graphics.DrawString("Всего: " + totalTextBox.Text, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 0, PosY);
+			
+			
+		}
+		void ButtonPrintPreviewClick(object sender, EventArgs e)
+		{
+			printLine = 0;
+			PrintPreviewDialog ppd = new PrintPreviewDialog();
+			ppd.Document = printDocument1;
+			ppd.MdiParent = DataForms.FClient;
+			ppd.Show();
+		}
+		void ButtonPrintClick(object sender, EventArgs e)
+		{
+			printLine = 0;
+			if(printDialog1.ShowDialog() == DialogResult.OK){
+				printDialog1.Document.Print();
+			}
+		}
+		
 		
 	}
 }

@@ -247,6 +247,7 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonPrintPreview.Text = "Просмотр";
 			this.buttonPrintPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonPrintPreview.UseVisualStyleBackColor = true;
+			this.buttonPrintPreview.Click += new System.EventHandler(this.ButtonPrintPreviewClick);
 			// 
 			// buttonPrint
 			// 
@@ -260,6 +261,7 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonPrint.Text = "Печать.";
 			this.buttonPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonPrint.UseVisualStyleBackColor = true;
+			this.buttonPrint.Click += new System.EventHandler(this.ButtonPrintClick);
 			// 
 			// buttonSave
 			// 
@@ -994,6 +996,7 @@ namespace Aggregator.Client.Documents.Order
 			// printDocument1
 			// 
 			this.printDocument1.OriginAtMargins = true;
+			this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument1PrintPage);
 			// 
 			// printDialog1
 			// 
