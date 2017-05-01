@@ -192,14 +192,15 @@
     <Compile Include="Utilits\Console.cs" />
     <Compile Include="Utilits\Conversion.cs" />
     <Compile Include="Utilits\ExportExcel.cs" />
-    <Compile Include="Utilits\FormCalculationCostRealization.cs" />
-    <Compile Include="Utilits\FormCalculationCostRealization.Designer.cs">
-      <DependentUpon>FormCalculationCostRealization.cs</DependentUpon>
+    <Compile Include="Utilits\CalculationCostRealization.cs" />
+    <Compile Include="Utilits\CalculationCostRealization.Designer.cs">
+      <DependentUpon>CalculationCostRealization.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilits\NotificationSearchNomenclature.cs" />
     <Compile Include="Utilits\NotificationSearchNomenclature.Designer.cs">
       <DependentUpon>NotificationSearchNomenclature.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilits\SendMail.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Admin\FormConsoleQuery.resx">
@@ -286,8 +287,8 @@
     <EmbeddedResource Include="Utilits\Calculator.resx">
       <DependentUpon>Calculator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilits\FormCalculationCostRealization.resx">
-      <DependentUpon>FormCalculationCostRealization.cs</DependentUpon>
+    <EmbeddedResource Include="Utilits\CalculationCostRealization.resx">
+      <DependentUpon>CalculationCostRealization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilits\NotificationSearchNomenclature.resx">
       <DependentUpon>NotificationSearchNomenclature.cs</DependentUpon>

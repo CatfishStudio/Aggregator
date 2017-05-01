@@ -280,8 +280,7 @@ namespace Aggregator.Client.Documents.Order
 				Utilits.Console.Log("[ВВОД НА ОСНОВАНИИ]" + Environment.NewLine +
 									"Отчёт --------------------------------------------------------------------" + 				                    
 				                    Environment.NewLine + report + Environment.NewLine +
-				                    "------------------------------------------------------------------------------", 
-				                    false, true);
+				                    "------------------------------------------------------------------------------");
 				MessageBox.Show("Обработка Плана закупок №" + docPPNumber + " завершена!", "Сообщение");
 			}catch(Exception ex){
 				Dispose();

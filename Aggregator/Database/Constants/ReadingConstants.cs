@@ -44,14 +44,24 @@ namespace Aggregator.Database.Constants
 				// OLEDB
 				try{
 					oleDbConnection.Open();
-					oleDbCommand = new OleDbCommand("SELECT [id], [name], [email], [address], [vat], [units] FROM Constants", oleDbConnection);
+					oleDbCommand = new OleDbCommand("SELECT [id], [name], [address], [vat], [units], " +
+					                                "[email], [emailPwd], [smtpServer], [port],[EnableSsl],[caption],[message] " +
+					                                "FROM Constants", oleDbConnection);
 					oleDbDataReader = oleDbCommand.ExecuteReader();
 					oleDbDataReader.Read();
 					DataConstants.ConstFirmName = oleDbDataReader["name"].ToString();
-					DataConstants.ConstFirmEmail = oleDbDataReader["email"].ToString();
 					DataConstants.ConstFirmAddress = oleDbDataReader["address"].ToString();
 					DataConstants.ConstFirmVAT = (Double)oleDbDataReader["vat"];
 					DataConstants.ConstFirmUnits = oleDbDataReader["units"].ToString();
+					
+					DataConstants.ConstFirmEmail = oleDbDataReader["email"].ToString();
+					DataConstants.ConstFirmPwd = oleDbDataReader["emailPwd"].ToString();
+					DataConstants.ConstFirmSmtp = oleDbDataReader["smtpServer"].ToString();
+					DataConstants.ConstFirmPort = oleDbDataReader["port"].ToString();
+					DataConstants.ConstFirmEnableSsl = Convert.ToBoolean(oleDbDataReader["EnableSsl"]);
+					DataConstants.ConstFirmCaption = oleDbDataReader["caption"].ToString();
+					DataConstants.ConstFirmMessage = oleDbDataReader["message"].ToString();
+					
 					oleDbDataReader.Close();
 					oleDbConnection.Close();
 				}catch(Exception ex){
@@ -61,14 +71,24 @@ namespace Aggregator.Database.Constants
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				try{
-					sqlCommand = new SqlCommand("SELECT [id], [name], [email], [address], [vat], [units] FROM Constants", sqlConnection);
+					sqlCommand = new SqlCommand("SELECT [id], [name], [address], [vat], [units], " +
+					                            "[email], [emailPwd], [smtpServer], [port],[EnableSsl],[caption],[message] " +
+					                            "FROM Constants", sqlConnection);
 					sqlDataReader = sqlCommand.ExecuteReader();
 					sqlDataReader.Read();
 					DataConstants.ConstFirmName = sqlDataReader["name"].ToString();
-					DataConstants.ConstFirmEmail = sqlDataReader["email"].ToString();
 					DataConstants.ConstFirmAddress = sqlDataReader["address"].ToString();
 					DataConstants.ConstFirmVAT = (Double)sqlDataReader["vat"];
-					DataConstants.ConstFirmUnits = oleDbDataReader["units"].ToString();
+					DataConstants.ConstFirmUnits = sqlDataReader["units"].ToString();
+					
+					DataConstants.ConstFirmEmail = sqlDataReader["email"].ToString();
+					DataConstants.ConstFirmPwd = sqlDataReader["emailPwd"].ToString();
+					DataConstants.ConstFirmSmtp = sqlDataReader["smtpServer"].ToString();
+					DataConstants.ConstFirmPort = sqlDataReader["port"].ToString();
+					DataConstants.ConstFirmEnableSsl = Convert.ToBoolean(sqlDataReader["EnableSsl"]);
+					DataConstants.ConstFirmCaption = sqlDataReader["caption"].ToString();
+					DataConstants.ConstFirmMessage = sqlDataReader["message"].ToString();
+					
 					sqlDataReader.Close();
 					sqlConnection.Close();
 				}catch(Exception ex){

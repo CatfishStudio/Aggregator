@@ -8,7 +8,7 @@
  */
 namespace Aggregator.Utilits
 {
-	partial class FormCalculationCostRealization
+	partial class CalculationCostRealization
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -93,7 +93,7 @@ namespace Aggregator.Utilits
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCalculationCostRealization));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalculationCostRealization));
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.buttonSaveExcel = new System.Windows.Forms.Button();
 			this.buttonPrintPreview = new System.Windows.Forms.Button();
@@ -767,7 +767,7 @@ namespace Aggregator.Utilits
 			// 
 			this.saveFileDialog1.Filter = "Microsoft Excel 97/2000/XP (.xls)|*.xls";
 			// 
-			// FormCalculationCostRealization
+			// CalculationCostRealization
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -778,7 +778,7 @@ namespace Aggregator.Utilits
 			this.Controls.Add(this.panel5);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "FormCalculationCostRealization";
+			this.Name = "CalculationCostRealization";
 			this.Text = "Расчет: Стоимость реализации";
 			this.Activated += new System.EventHandler(this.FormCalculationCostRealizationActivated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCalculationCostRealizationFormClosed);

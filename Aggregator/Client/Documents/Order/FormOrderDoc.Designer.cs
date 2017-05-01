@@ -93,6 +93,26 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Drawing.Printing.PrintDocument printDocument1;
 		private System.Windows.Forms.PrintDialog printDialog1;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.TextBox mailfromTextBox;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.TextBox mailtoTextBox;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.GroupBox groupBox5;
+		private System.Windows.Forms.GroupBox groupBox6;
+		private System.Windows.Forms.TextBox captionTextBox;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.TextBox messageTextBox;
+		private System.Windows.Forms.TabControl tabControl2;
+		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.TabPage tabPage4;
+		private System.Windows.Forms.TabPage tabPage5;
+		private System.Windows.Forms.TextBox pathFileTextBox;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.TextBox fileNameTextBox;
+		private System.Windows.Forms.Label label14;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -194,6 +214,26 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonNomenclatureDelete = new System.Windows.Forms.Button();
 			this.buttonNomenclatureAdd = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.messageTextBox = new System.Windows.Forms.TextBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.captionTextBox = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.tabControl2 = new System.Windows.Forms.TabControl();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.pathFileTextBox = new System.Windows.Forms.TextBox();
+			this.label15 = new System.Windows.Forms.Label();
+			this.fileNameTextBox = new System.Windows.Forms.TextBox();
+			this.label14 = new System.Windows.Forms.Label();
+			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.mailtoTextBox = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.mailfromTextBox = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
 			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
 			this.printDialog1 = new System.Windows.Forms.PrintDialog();
 			this.panel1.SuspendLayout();
@@ -207,6 +247,13 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.panel5.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			this.groupBox5.SuspendLayout();
+			this.groupBox6.SuspendLayout();
+			this.tabControl2.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			this.groupBox4.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -217,7 +264,7 @@ namespace Aggregator.Client.Documents.Order
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonCancel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 422);
+			this.panel1.Location = new System.Drawing.Point(0, 501);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(739, 45);
 			this.panel1.TabIndex = 4;
@@ -400,7 +447,7 @@ namespace Aggregator.Client.Documents.Order
 			this.tabControl1.Location = new System.Drawing.Point(0, 80);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(739, 342);
+			this.tabControl1.Size = new System.Drawing.Size(739, 421);
 			this.tabControl1.TabIndex = 6;
 			// 
 			// tabPage1
@@ -411,7 +458,7 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(731, 316);
+			this.tabPage1.Size = new System.Drawing.Size(731, 395);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Номенклатура";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -447,7 +494,7 @@ namespace Aggregator.Client.Documents.Order
 			this.listViewNomenclature.Location = new System.Drawing.Point(3, 32);
 			this.listViewNomenclature.MultiSelect = false;
 			this.listViewNomenclature.Name = "listViewNomenclature";
-			this.listViewNomenclature.Size = new System.Drawing.Size(725, 185);
+			this.listViewNomenclature.Size = new System.Drawing.Size(725, 264);
 			this.listViewNomenclature.SmallImageList = this.imageList1;
 			this.listViewNomenclature.StateImageList = this.imageList1;
 			this.listViewNomenclature.TabIndex = 9;
@@ -569,7 +616,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.panel7.Controls.Add(this.splitContainer1);
 			this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel7.Location = new System.Drawing.Point(3, 217);
+			this.panel7.Location = new System.Drawing.Point(3, 296);
 			this.panel7.Name = "panel7";
 			this.panel7.Size = new System.Drawing.Size(725, 96);
 			this.panel7.TabIndex = 10;
@@ -985,13 +1032,212 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+			this.tabPage2.Controls.Add(this.groupBox5);
+			this.tabPage2.Controls.Add(this.groupBox6);
+			this.tabPage2.Controls.Add(this.groupBox4);
+			this.tabPage2.Controls.Add(this.groupBox3);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(731, 316);
+			this.tabPage2.Size = new System.Drawing.Size(731, 395);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Отправить заказ";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Controls.Add(this.messageTextBox);
+			this.groupBox5.Controls.Add(this.label13);
+			this.groupBox5.Controls.Add(this.captionTextBox);
+			this.groupBox5.Controls.Add(this.label12);
+			this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.groupBox5.Location = new System.Drawing.Point(3, 99);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(725, 114);
+			this.groupBox5.TabIndex = 2;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Письмо:";
+			// 
+			// messageTextBox
+			// 
+			this.messageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.messageTextBox.Location = new System.Drawing.Point(6, 55);
+			this.messageTextBox.Multiline = true;
+			this.messageTextBox.Name = "messageTextBox";
+			this.messageTextBox.Size = new System.Drawing.Size(713, 53);
+			this.messageTextBox.TabIndex = 6;
+			// 
+			// label13
+			// 
+			this.label13.Location = new System.Drawing.Point(6, 39);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(100, 23);
+			this.label13.TabIndex = 5;
+			this.label13.Text = "Сообщение:";
+			// 
+			// captionTextBox
+			// 
+			this.captionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.captionTextBox.Location = new System.Drawing.Point(47, 13);
+			this.captionTextBox.Name = "captionTextBox";
+			this.captionTextBox.Size = new System.Drawing.Size(672, 20);
+			this.captionTextBox.TabIndex = 4;
+			// 
+			// label12
+			// 
+			this.label12.Location = new System.Drawing.Point(6, 16);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(100, 23);
+			this.label12.TabIndex = 0;
+			this.label12.Text = "Тема:";
+			// 
+			// groupBox6
+			// 
+			this.groupBox6.Controls.Add(this.tabControl2);
+			this.groupBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.groupBox6.Location = new System.Drawing.Point(3, 213);
+			this.groupBox6.Name = "groupBox6";
+			this.groupBox6.Size = new System.Drawing.Size(725, 179);
+			this.groupBox6.TabIndex = 3;
+			this.groupBox6.TabStop = false;
+			this.groupBox6.Text = "Вложенный файл:";
+			// 
+			// tabControl2
+			// 
+			this.tabControl2.Controls.Add(this.tabPage3);
+			this.tabControl2.Controls.Add(this.tabPage4);
+			this.tabControl2.Controls.Add(this.tabPage5);
+			this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl2.Location = new System.Drawing.Point(3, 16);
+			this.tabControl2.Name = "tabControl2";
+			this.tabControl2.SelectedIndex = 0;
+			this.tabControl2.Size = new System.Drawing.Size(719, 160);
+			this.tabControl2.TabIndex = 0;
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.pathFileTextBox);
+			this.tabPage3.Controls.Add(this.label15);
+			this.tabPage3.Controls.Add(this.fileNameTextBox);
+			this.tabPage3.Controls.Add(this.label14);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(711, 134);
+			this.tabPage3.TabIndex = 0;
+			this.tabPage3.Text = "Файл";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// pathFileTextBox
+			// 
+			this.pathFileTextBox.Location = new System.Drawing.Point(93, 39);
+			this.pathFileTextBox.Name = "pathFileTextBox";
+			this.pathFileTextBox.Size = new System.Drawing.Size(243, 20);
+			this.pathFileTextBox.TabIndex = 3;
+			// 
+			// label15
+			// 
+			this.label15.Location = new System.Drawing.Point(6, 42);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(81, 23);
+			this.label15.TabIndex = 2;
+			this.label15.Text = "Адрес файла:";
+			// 
+			// fileNameTextBox
+			// 
+			this.fileNameTextBox.Location = new System.Drawing.Point(93, 13);
+			this.fileNameTextBox.Name = "fileNameTextBox";
+			this.fileNameTextBox.Size = new System.Drawing.Size(243, 20);
+			this.fileNameTextBox.TabIndex = 1;
+			// 
+			// label14
+			// 
+			this.label14.Location = new System.Drawing.Point(6, 16);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(81, 23);
+			this.label14.TabIndex = 0;
+			this.label14.Text = "Имя файла:";
+			// 
+			// tabPage4
+			// 
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage4.Size = new System.Drawing.Size(711, 134);
+			this.tabPage4.TabIndex = 1;
+			this.tabPage4.Text = "Поля шапки";
+			this.tabPage4.UseVisualStyleBackColor = true;
+			// 
+			// tabPage5
+			// 
+			this.tabPage5.Location = new System.Drawing.Point(4, 22);
+			this.tabPage5.Name = "tabPage5";
+			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage5.Size = new System.Drawing.Size(711, 134);
+			this.tabPage5.TabIndex = 2;
+			this.tabPage5.Text = "Столбцы таблицы";
+			this.tabPage5.UseVisualStyleBackColor = true;
+			// 
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.mailtoTextBox);
+			this.groupBox4.Controls.Add(this.label11);
+			this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+			this.groupBox4.Location = new System.Drawing.Point(3, 48);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(725, 51);
+			this.groupBox4.TabIndex = 1;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = "Получатель:";
+			// 
+			// mailtoTextBox
+			// 
+			this.mailtoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.mailtoTextBox.Location = new System.Drawing.Point(91, 19);
+			this.mailtoTextBox.Name = "mailtoTextBox";
+			this.mailtoTextBox.Size = new System.Drawing.Size(628, 20);
+			this.mailtoTextBox.TabIndex = 3;
+			// 
+			// label11
+			// 
+			this.label11.Location = new System.Drawing.Point(6, 22);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(100, 23);
+			this.label11.TabIndex = 2;
+			this.label11.Text = "Адрес (почта):";
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.mailfromTextBox);
+			this.groupBox3.Controls.Add(this.label10);
+			this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+			this.groupBox3.Location = new System.Drawing.Point(3, 3);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(725, 45);
+			this.groupBox3.TabIndex = 0;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Отправитель:";
+			// 
+			// mailfromTextBox
+			// 
+			this.mailfromTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.mailfromTextBox.Location = new System.Drawing.Point(91, 16);
+			this.mailfromTextBox.Name = "mailfromTextBox";
+			this.mailfromTextBox.Size = new System.Drawing.Size(628, 20);
+			this.mailfromTextBox.TabIndex = 1;
+			// 
+			// label10
+			// 
+			this.label10.Location = new System.Drawing.Point(6, 19);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(100, 23);
+			this.label10.TabIndex = 0;
+			this.label10.Text = "Адрес (почта):";
 			// 
 			// printDocument1
 			// 
@@ -1007,7 +1253,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(739, 467);
+			this.ClientSize = new System.Drawing.Size(739, 546);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
@@ -1031,6 +1277,17 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.panel5.ResumeLayout(false);
+			this.tabPage2.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
+			this.groupBox6.ResumeLayout(false);
+			this.tabControl2.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
+			this.tabPage3.PerformLayout();
+			this.groupBox4.ResumeLayout(false);
+			this.groupBox4.PerformLayout();
+			this.groupBox3.ResumeLayout(false);
+			this.groupBox3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}

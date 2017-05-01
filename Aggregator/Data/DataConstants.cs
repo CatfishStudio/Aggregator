@@ -31,9 +31,17 @@ namespace Aggregator.Data
 		
 		/* Константы из базы данных */
 		public static String ConstFirmName = "";
-		public static String ConstFirmEmail = "";
 		public static String ConstFirmAddress = "";
 		public static Double ConstFirmVAT = 0;
 		public static String ConstFirmUnits = "";
+		
+		public static String ConstFirmEmail = "";
+		public static String ConstFirmPwd = "";
+		public static String ConstFirmSmtp = "";
+		public static String ConstFirmPort = "";
+		public static Boolean ConstFirmEnableSsl = false;
+		public static String ConstFirmCaption = "";
+		public static String ConstFirmMessage = "";
+		
 	}
 }

@@ -1038,6 +1038,60 @@ namespace Aggregator.Client.Documents.Order
 			return null;
 		}
 		
+		void tuneMail()
+		{
+			if(counteragentTextBox.Text != ""){
+				
+				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
+					// OLEDB
+					OleDbConnection oleDbConnection;
+					OleDbCommand oleDbCommand;
+					OleDbDataReader oleDbDataReader;
+					oleDbConnection = new OleDbConnection(DataConfig.oledbConnectLineBegin + DataConfig.localDatabase + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass);
+					try{
+						oleDbConnection.Open();
+						oleDbCommand = new OleDbCommand("SELECT [id], [name], [organization_email] FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", oleDbConnection);
+						oleDbDataReader = oleDbCommand.ExecuteReader();
+						while(oleDbDataReader.Read()){
+							mailtoTextBox.Text = oleDbDataReader["organization_email"].ToString();
+						}
+						oleDbDataReader.Close();
+						oleDbConnection.Close();
+					}catch(Exception ex){
+						oleDbConnection.Close();
+						Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
+					}
+				}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+					// MSSQL SERVER
+					SqlConnection sqlConnection;
+					SqlCommand sqlCommand;
+					SqlDataReader sqlDataReader;
+					sqlConnection = new SqlConnection(DataConfig.serverConnection);
+					try{
+						sqlConnection.Open();
+						sqlCommand = new SqlCommand("SELECT [id], [name], [organization_email] FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", sqlConnection);
+						sqlDataReader = sqlCommand.ExecuteReader();
+						while(sqlDataReader.Read()) {
+							mailtoTextBox.Text = sqlDataReader["organization_email"].ToString();
+						}
+						sqlDataReader.Close();
+						sqlConnection.Close();
+					}catch(Exception ex){
+						sqlConnection.Close();
+						Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
+					}
+				}
+			}else{
+				mailtoTextBox.Text = "Контрагент не выбран";
+			}
+			
+			mailfromTextBox.Text = DataConstants.ConstFirmEmail;
+			captionTextBox.Text = DataConstants.ConstFirmCaption;
+			messageTextBox.Text = DataConstants.ConstFirmMessage;
+			fileNameTextBox.Text = DataConstants.ConstFirmName + "-Заказ-" + docNumberTextBox.Text + ".xls";
+			pathFileTextBox.Text = DataConfig.resource;
+		}
+		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
 		 * =================================================================================================
@@ -1052,6 +1106,7 @@ namespace Aggregator.Client.Documents.Order
 				Text = "Заказ: Изменить";
 				open();
 			}
+			tuneMail();
 			Utilits.Console.Log(Text);
 		}
 		void FormOrderDocFormClosed(object sender, FormClosedEventArgs e)

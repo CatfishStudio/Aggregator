@@ -19,9 +19,9 @@ namespace Aggregator.Utilits
 	/// <summary>
 	/// Description of FormCalculationCostRealization.
 	/// </summary>
-	public partial class FormCalculationCostRealization : Form
+	public partial class CalculationCostRealization : Form
 	{
-		public FormCalculationCostRealization()
+		public CalculationCostRealization()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.

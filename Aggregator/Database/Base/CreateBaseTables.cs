@@ -69,7 +69,15 @@ namespace Aggregator.Database.Base
 			sqlCommand = "CREATE TABLE Constants (" +
 				"[id] COUNTER PRIMARY KEY, " +
 				"[name] VARCHAR DEFAULT '', " +
+				
 				"[email] VARCHAR DEFAULT '', " +
+				"[emailPwd] VARCHAR DEFAULT '', " +
+				"[smtpServer] VARCHAR DEFAULT '', " +
+				"[port] VARCHAR DEFAULT '', " +
+				"[EnableSsl] INTEGER DEFAULT 0, " +
+				"[caption] VARCHAR DEFAULT '', " +
+				"[message] TEXT DEFAULT '', " +
+				
 				"[address] VARCHAR DEFAULT '', " +
 				"[vat] FLOAT DEFAULT 0, " +
 				"[units] VARCHAR DEFAULT '' " +
@@ -78,8 +86,8 @@ namespace Aggregator.Database.Base
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Константы.", false, true);
 			
 			sqlCommand = "INSERT INTO Constants (" +
-				"[name], [email], [address], [vat], [units]) " +
-				"VALUES ('Фирма', 'myfirm@mail.ru', 'Страна, Город, Улица, Дом', 20, 'шт.')";
+				"[name], [email], [emailPwd], [smtpServer], [port], [EnableSsl], [caption], [message], [address], [vat], [units]) " +
+				"VALUES ('Фирма', 'mymail@gmail.com', '0000', 'smtp.gmail.com', '587', 1, 'Тема письма', 'Сообщение письма', 'Страна, Город, Улица, Дом', 20, 'шт.')";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Константы.", false, true);
 			

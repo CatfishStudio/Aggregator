@@ -40,10 +40,18 @@ namespace Aggregator.Client.Directories
 		void FormConstantsLoad(object sender, EventArgs e)
 		{
 			nameTextBox.Text = DataConstants.ConstFirmName;
-			emailTextBox.Text = DataConstants.ConstFirmEmail;
 			addressTextBox.Text = DataConstants.ConstFirmAddress;
 			vatTextBox.Text = DataConstants.ConstFirmVAT.ToString();
 			unitsTextBox.Text = DataConstants.ConstFirmUnits;
+			
+			emailTextBox.Text = DataConstants.ConstFirmEmail;
+			pwdTextBox.Text = DataConstants.ConstFirmPwd;
+			smtpTextBox.Text = DataConstants.ConstFirmSmtp;
+			portTextBox.Text = DataConstants.ConstFirmPort;
+			sslCheckBox.Checked = DataConstants.ConstFirmEnableSsl;
+			captionTextBox.Text = DataConstants.ConstFirmCaption;
+			messageTextBox.Text = DataConstants.ConstFirmMessage;
+			
 			Utilits.Console.Log("Константы: открыт.");
 		}
 		void FormConstantsFormClosed(object sender, FormClosedEventArgs e)
@@ -60,10 +68,17 @@ namespace Aggregator.Client.Directories
 				return;
 			}
 			DataConstants.ConstFirmName = nameTextBox.Text;
-			DataConstants.ConstFirmEmail = emailTextBox.Text;
 			DataConstants.ConstFirmAddress = addressTextBox.Text;
 			DataConstants.ConstFirmVAT = Convert.ToDouble(vatTextBox.Text);
 			DataConstants.ConstFirmUnits = unitsTextBox.Text;
+			
+			DataConstants.ConstFirmEmail = emailTextBox.Text;
+			DataConstants.ConstFirmPwd = pwdTextBox.Text;
+			DataConstants.ConstFirmSmtp = smtpTextBox.Text;
+			DataConstants.ConstFirmPort = portTextBox.Text;
+			DataConstants.ConstFirmEnableSsl = sslCheckBox.Checked;
+			DataConstants.ConstFirmCaption = captionTextBox.Text;
+			DataConstants.ConstFirmMessage = messageTextBox.Text;
 			
 			SavingConstants savingConstants = new SavingConstants();
 			savingConstants.save();
@@ -90,6 +105,22 @@ namespace Aggregator.Client.Directories
 		{
 			vatTextBox.Text = "0";
 		}
+		void Button2Click(object sender, EventArgs e)
+		{
+			smtpTextBox.Clear();
+		}
+		void Button7Click(object sender, EventArgs e)
+		{
+			portTextBox.Clear();
+		}
+		void Button6Click(object sender, EventArgs e)
+		{
+			pwdTextBox.Clear();
+		}
+		void Button9Click(object sender, EventArgs e)
+		{
+			unitsTextBox.Clear();
+		}
 		void Button8Click(object sender, EventArgs e)
 		{
 			if(DataForms.FUnits != null) DataForms.FUnits.Close();
@@ -101,13 +132,19 @@ namespace Aggregator.Client.Directories
 				DataForms.FUnits.Show();
 			}
 		}
-		void Button9Click(object sender, EventArgs e)
-		{
-			unitsTextBox.Clear();
-		}
 		void FormConstantsActivated(object sender, EventArgs e)
 		{
 			DataForms.FClient.messageInStatus(this.Text);
 		}
+		void Button10Click(object sender, EventArgs e)
+		{
+			captionTextBox.Clear();
+		}
+		void Button11Click(object sender, EventArgs e)
+		{
+			messageTextBox.Clear();
+		}
+		
+		
 	}
 }

@@ -40,6 +40,12 @@ namespace Aggregator.Database.Constants
 				sqlCommand = "UPDATE Constants SET " +
 					"[name] = '" + DataConstants.ConstFirmName + "', " +
 					"[email] = '" + DataConstants.ConstFirmEmail + "', " +
+					"[emailPwd] = '" + DataConstants.ConstFirmPwd + "', " +
+					"[smtpServer] = '" + DataConstants.ConstFirmSmtp + "', " +
+					"[port] = '" + DataConstants.ConstFirmPort + "', " +
+					"[EnableSsl] = " + Convert.ToInt32(DataConstants.ConstFirmEnableSsl).ToString() + ", " +
+					"[caption] = '" + DataConstants.ConstFirmCaption + "', " +
+					"[message] = '" + DataConstants.ConstFirmMessage + "', " +
 					"[address] = '" + DataConstants.ConstFirmAddress + "', " +
 					"[vat] = " + DataConstants.ConstFirmVAT.ToString() + ", " +
 					"[units] = '" + DataConstants.ConstFirmUnits + "' " +
@@ -52,6 +58,12 @@ namespace Aggregator.Database.Constants
 				sqlCommand = "UPDATE Constants SET " +
 					"[name] = '" + DataConstants.ConstFirmName + "', " +
 					"[email] = '" + DataConstants.ConstFirmEmail + "', " +
+					"[emailPwd] = '" + DataConstants.ConstFirmPwd + "', " +
+					"[smtpServer] = '" + DataConstants.ConstFirmSmtp + "', " +
+					"[port] = '" + DataConstants.ConstFirmPort + "', " +
+					"[EnableSsl] = " + Convert.ToInt32(DataConstants.ConstFirmEnableSsl).ToString() + ", " +
+					"[caption] = '" + DataConstants.ConstFirmCaption + "', " +
+					"[message] = '" + DataConstants.ConstFirmMessage + "', " +
 					"[address] = '" + DataConstants.ConstFirmAddress + "', " +
 					"[vat] = " + DataConstants.ConstFirmVAT.ToString() + ", " +
 					"[units] = '" + DataConstants.ConstFirmUnits + "' " +

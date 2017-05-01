@@ -208,9 +208,9 @@ namespace Aggregator.Client
 		
 		void calcCostRealizationShow()
 		{
-			FormCalculationCostRealization FCalculationCostRealization = new FormCalculationCostRealization();
-			FCalculationCostRealization.MdiParent = DataForms.FClient;
-			FCalculationCostRealization.Show();
+			CalculationCostRealization FCalculationCostRealization = new CalculationCostRealization();
+			(FCalculationCostRealization as Form).MdiParent = DataForms.FClient;
+			(FCalculationCostRealization as Form).Show();
 		}
 		
 		/* Сообщение в статусе */

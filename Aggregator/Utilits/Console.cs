@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Windows.Forms;
 using Aggregator.Data;
 
 namespace Aggregator.Utilits
@@ -28,6 +29,8 @@ namespace Aggregator.Utilits
 				}else{
 					DataForms.FClient.consoleText.Text = "[" + DateTime.Now.ToString() + "]: " + message + Environment.NewLine + DataForms.FClient.consoleText.Text;
 				}
+			}else{
+				if(show) MessageBox.Show(message, "Ошибка");
 			}
 		}
 	}
