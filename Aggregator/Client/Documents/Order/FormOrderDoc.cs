@@ -46,7 +46,8 @@ namespace Aggregator.Client.Documents.Order
 		SqlServer sqlServer;
 		String docNumber;
 		int selectTableLine = -1;		// выбранная строка в таблице
-				
+		String priceDate;
+		
 		String getDocNumber()
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
@@ -1053,10 +1054,11 @@ namespace Aggregator.Client.Documents.Order
 					oleDbConnection = new OleDbConnection(DataConfig.oledbConnectLineBegin + DataConfig.localDatabase + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass);
 					try{
 						oleDbConnection.Open();
-						oleDbCommand = new OleDbCommand("SELECT [id], [name], [organization_email] FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", oleDbConnection);
+						oleDbCommand = new OleDbCommand("SELECT [id], [name], [organization_email], [excel_date] FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", oleDbConnection);
 						oleDbDataReader = oleDbCommand.ExecuteReader();
 						while(oleDbDataReader.Read()){
 							mailtoTextBox.Text = oleDbDataReader["organization_email"].ToString();
+							priceDate = oleDbDataReader["excel_date"].ToString();
 						}
 						oleDbDataReader.Close();
 						oleDbConnection.Close();
@@ -1076,6 +1078,7 @@ namespace Aggregator.Client.Documents.Order
 						sqlDataReader = sqlCommand.ExecuteReader();
 						while(sqlDataReader.Read()) {
 							mailtoTextBox.Text = sqlDataReader["organization_email"].ToString();
+							priceDate = sqlDataReader["excel_date"].ToString();
 						}
 						sqlDataReader.Close();
 						sqlConnection.Close();
@@ -1432,6 +1435,11 @@ namespace Aggregator.Client.Documents.Order
 		}
 		void Button15Click(object sender, EventArgs e)
 		{
+			if(listViewNomenclature.Items.Count == 0) {
+				MessageBox.Show("Таблица номенклатуры пустая, добавьте номенклатуру!", "Сообщение");
+				return;
+			}
+			
 			if(ID == null){
 				MessageBox.Show("Чтобы отправить заказ по почте его необходимо сначала сохранить!", "Сообщение");
 			}else{
@@ -1441,17 +1449,159 @@ namespace Aggregator.Client.Documents.Order
 				
 				String fileName = pathFileTextBox.Text + fileNameTextBox.Text;
 				
+				int row = 0;
+				int col = 0;
+				
 				Workbook workbook = new Workbook();
 				
 				try
 				{
-					Worksheet worksheet = new Worksheet("Лист1");
-		            worksheet.Cells[0, 0] = new Cell("№п/п:");
-		            worksheet.Cells[0, 1] = new Cell("Наименование:");
-		            worksheet.Cells[0, 2] = new Cell("Ед.изм.:");
-		            worksheet.Cells[0, 3] = new Cell("Вес/Кол-во:");
-		            worksheet.Cells[0, 4] = new Cell("Цена:");
-		            worksheet.Cells[0, 5] = new Cell("Сумма:");
+					Worksheet worksheet = new Worksheet("Заказ");
+					
+					/* ШАПКА */
+					if(checkBox1.Checked){
+						worksheet.Cells[row, 1] = new Cell("Поставщик:");
+						worksheet.Cells[row, 2] = new Cell(counteragentTextBox.Text);
+						row++;
+					}
+					if(checkBox2.Checked){
+						worksheet.Cells[row, 1] = new Cell("Прайс лист от ");
+						worksheet.Cells[row, 2] = new Cell(priceDate);
+						row++;
+					}
+					if(checkBox3.Checked){
+						worksheet.Cells[row, 1] = new Cell("Заказчик: ");
+						worksheet.Cells[row, 2] = new Cell(DataConstants.ConstFirmName);
+						row++;
+					}
+					if(checkBox4.Checked){
+						worksheet.Cells[row, 2] = new Cell(DataConstants.ConstFirmAddress);
+						row++;
+					}
+					if(checkBox5.Checked){
+						worksheet.Cells[row, 2] = new Cell(DataConstants.ConstFirmEmail);
+						row++;
+					}
+					
+					/* ТАБЛИЦА */
+					col = 0;
+					row++;
+					if(checkBox6.Checked){
+						worksheet.Cells[row, col] = new Cell("№п/п:");
+						col++;
+					}
+					if(checkBox7.Checked){
+						worksheet.Cells[row, col] = new Cell("Код:");
+						col++;
+					}
+					if(checkBox8.Checked){
+						worksheet.Cells[row, col] = new Cell("Серия:");
+						col++;
+					}
+					if(checkBox9.Checked){
+						worksheet.Cells[row, col] = new Cell("Артикул:");
+						col++;
+					}
+					if(checkBox10.Checked){
+						worksheet.Cells[row, col] = new Cell("Наименование:");
+						col++;
+					}
+					if(checkBox11.Checked){
+						worksheet.Cells[row, col] = new Cell("Производитель:");
+						col++;
+					}
+					if(checkBox12.Checked){
+						worksheet.Cells[row, col] = new Cell("Ед.изм.:");
+						col++;
+					}
+					if(checkBox13.Checked){
+						worksheet.Cells[row, col] = new Cell("Срок годности:");
+						col++;
+					}
+					if(checkBox14.Checked){
+						worksheet.Cells[row, col] = new Cell("Остаток:");
+						col++;
+					}
+					if(checkBox15.Checked){
+						worksheet.Cells[row, col] = new Cell("Скидка №1:");
+						col++;
+						worksheet.Cells[row, col] = new Cell("Скидка №2:");
+						col++;
+						worksheet.Cells[row, col] = new Cell("Скидка №3:");
+						col++;
+						worksheet.Cells[row, col] = new Cell("Скидка №4:");
+						col++;
+					}
+					if(checkBox16.Checked){
+						worksheet.Cells[row, col] = new Cell("Цена:");
+						col++;
+					}
+					if(checkBox17.Checked){
+						worksheet.Cells[row, col] = new Cell("Заказ:");
+						col++;
+					}
+					row++;
+						
+					int countRows = listViewNomenclature.Items.Count;
+					int countColumns = col;
+					for(int r = 0; r < countRows; r++){
+						col = 0;
+						if(checkBox6.Checked){
+							worksheet.Cells[row, col] = new Cell(r);
+							col++;
+						}
+						if(checkBox7.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[14].Text);
+							col++;
+						}
+						if(checkBox8.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[15].Text);
+							col++;
+						}
+						if(checkBox9.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[16].Text);
+							col++;
+						}
+						if(checkBox10.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[1].Text);
+							col++;
+						}
+						if(checkBox11.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[7].Text);
+							col++;
+						}
+						if(checkBox12.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[2].Text);
+							col++;
+						}
+						if(checkBox13.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[9].Text);
+							col++;
+						}
+						if(checkBox14.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[8].Text);
+							col++;
+						}
+						if(checkBox15.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[10].Text);
+							col++;
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[11].Text);
+							col++;
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[12].Text);
+							col++;
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[13].Text);
+							col++;
+						}
+						if(checkBox16.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[4].Text);
+							col++;
+						}
+						if(checkBox17.Checked){
+							worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[3].Text);
+							col++;
+						}
+						row++;
+		            }
 					
 					workbook.Worksheets.Add(worksheet);
 		            workbook.Save(fileName);
@@ -1463,7 +1613,7 @@ namespace Aggregator.Client.Documents.Order
 					return;
 				}
 				
-	            if(!File.Exists(fileName)){ 
+				if(!File.Exists(fileName)){ 
 					MessageBox.Show("Файл: " + fileName + " не найден!", "Сообщение");
 					DataForms.FClient.messageInStatus("Заказ не удалось отправить по почте!");
 					DataForms.FClient.Update();
@@ -1482,6 +1632,121 @@ namespace Aggregator.Client.Documents.Order
 				}
 				
 				if(File.Exists(fileName)) File.Delete(fileName);
+			}
+		}
+		void ButtonSaveExcelClick(object sender, EventArgs e)
+		{
+			if(saveFileDialog1.ShowDialog() == DialogResult.OK){
+				int row = 0;
+				int col = 0;
+				
+				Workbook workbook = new Workbook();
+				
+				try
+				{
+					Worksheet worksheet = new Worksheet("Заказ");
+					
+					/* ШАПКА */
+					worksheet.Cells[row, 1] = new Cell("Поставщик:");
+					worksheet.Cells[row, 2] = new Cell(counteragentTextBox.Text);
+					row++;
+					worksheet.Cells[row, 1] = new Cell("Прайс лист от ");
+					worksheet.Cells[row, 2] = new Cell(priceDate);
+					row++;
+					worksheet.Cells[row, 1] = new Cell("Заказчик: ");
+					worksheet.Cells[row, 2] = new Cell(DataConstants.ConstFirmName);
+					row++;
+					worksheet.Cells[row, 2] = new Cell(DataConstants.ConstFirmAddress);
+					row++;
+					worksheet.Cells[row, 2] = new Cell(DataConstants.ConstFirmEmail);
+					row++;
+					
+					/* ТАБЛИЦА */
+					col = 0;
+					row++;
+					worksheet.Cells[row, col] = new Cell("№п/п:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Код:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Серия:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Артикул:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Наименование:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Производитель:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Ед.изм.:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Срок годности:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Остаток:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Скидка №1:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Скидка №2:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Скидка №3:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Скидка №4:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Цена:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Заказ:");
+					col++;
+					row++;
+						
+					int countRows = listViewNomenclature.Items.Count;
+					int countColumns = col;
+					for(int r = 0; r < countRows; r++){
+						col = 0;
+						worksheet.Cells[row, col] = new Cell(r);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[14].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[15].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[16].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[1].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[7].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[2].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[9].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[8].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[10].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[11].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[12].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[13].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[4].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[3].Text);
+						col++;
+						row++;
+		            }
+					
+					workbook.Worksheets.Add(worksheet);
+		            workbook.Save(saveFileDialog1.FileName);
+	            } catch (Exception ex) {
+					workbook = null;
+					Utilits.Console.Log("[ОШИБКА] Создание excel файла заказ: " + Environment.NewLine + ex.Message, false, true);
+					return;
+				}
+				
+				if(!File.Exists(saveFileDialog1.FileName)){ 
+					MessageBox.Show("Файл: " + saveFileDialog1.FileName + " не создан!", "Сообщение");
+					return;
+	            }
+				
+				MessageBox.Show("Файл сохранен!", "Сообщение");
 			}
 		}
 		

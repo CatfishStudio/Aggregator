@@ -118,6 +118,24 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.GroupBox groupBox8;
 		private System.Windows.Forms.GroupBox groupBox7;
 		private System.Windows.Forms.SplitContainer splitContainer2;
+		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox checkBox3;
+		private System.Windows.Forms.CheckBox checkBox4;
+		private System.Windows.Forms.CheckBox checkBox5;
+		private System.Windows.Forms.CheckBox checkBox6;
+		private System.Windows.Forms.CheckBox checkBox8;
+		private System.Windows.Forms.CheckBox checkBox7;
+		private System.Windows.Forms.CheckBox checkBox9;
+		private System.Windows.Forms.CheckBox checkBox10;
+		private System.Windows.Forms.CheckBox checkBox12;
+		private System.Windows.Forms.CheckBox checkBox11;
+		private System.Windows.Forms.CheckBox checkBox13;
+		private System.Windows.Forms.CheckBox checkBox14;
+		private System.Windows.Forms.CheckBox checkBox17;
+		private System.Windows.Forms.CheckBox checkBox16;
+		private System.Windows.Forms.CheckBox checkBox15;
+		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -234,7 +252,27 @@ namespace Aggregator.Client.Documents.Order
 			this.fileNameTextBox = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.groupBox8 = new System.Windows.Forms.GroupBox();
+			this.checkBox5 = new System.Windows.Forms.CheckBox();
+			this.checkBox4 = new System.Windows.Forms.CheckBox();
+			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.checkBox17 = new System.Windows.Forms.CheckBox();
+			this.checkBox16 = new System.Windows.Forms.CheckBox();
+			this.checkBox15 = new System.Windows.Forms.CheckBox();
+			this.checkBox14 = new System.Windows.Forms.CheckBox();
+			this.checkBox13 = new System.Windows.Forms.CheckBox();
+			this.checkBox12 = new System.Windows.Forms.CheckBox();
+			this.checkBox11 = new System.Windows.Forms.CheckBox();
+			this.checkBox10 = new System.Windows.Forms.CheckBox();
+			this.checkBox9 = new System.Windows.Forms.CheckBox();
+			this.checkBox8 = new System.Windows.Forms.CheckBox();
+			this.checkBox7 = new System.Windows.Forms.CheckBox();
+			this.checkBox6 = new System.Windows.Forms.CheckBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.mailtoTextBox = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
@@ -243,9 +281,7 @@ namespace Aggregator.Client.Documents.Order
 			this.label10 = new System.Windows.Forms.Label();
 			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
 			this.printDialog1 = new System.Windows.Forms.PrintDialog();
-			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-			this.groupBox7 = new System.Windows.Forms.GroupBox();
-			this.groupBox8 = new System.Windows.Forms.GroupBox();
+			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -263,11 +299,14 @@ namespace Aggregator.Client.Documents.Order
 			this.tabControl2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tabPage4.SuspendLayout();
-			this.groupBox4.SuspendLayout();
-			this.groupBox3.SuspendLayout();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
+			this.groupBox7.SuspendLayout();
+			this.groupBox8.SuspendLayout();
+			this.tabPage5.SuspendLayout();
+			this.groupBox4.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -281,7 +320,7 @@ namespace Aggregator.Client.Documents.Order
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel1.Location = new System.Drawing.Point(0, 501);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(739, 45);
+			this.panel1.Size = new System.Drawing.Size(755, 45);
 			this.panel1.TabIndex = 4;
 			// 
 			// button15
@@ -289,7 +328,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button15.Image = ((System.Drawing.Image)(resources.GetObject("button15.Image")));
 			this.button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button15.Location = new System.Drawing.Point(252, 10);
+			this.button15.Location = new System.Drawing.Point(268, 10);
 			this.button15.Name = "button15";
 			this.button15.Size = new System.Drawing.Size(168, 23);
 			this.button15.TabIndex = 42;
@@ -303,13 +342,14 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonSaveExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSaveExcel.Image = ((System.Drawing.Image)(resources.GetObject("buttonSaveExcel.Image")));
 			this.buttonSaveExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSaveExcel.Location = new System.Drawing.Point(426, 10);
+			this.buttonSaveExcel.Location = new System.Drawing.Point(442, 10);
 			this.buttonSaveExcel.Name = "buttonSaveExcel";
 			this.buttonSaveExcel.Size = new System.Drawing.Size(123, 23);
 			this.buttonSaveExcel.TabIndex = 41;
 			this.buttonSaveExcel.Text = "Сохранить в Excel";
 			this.buttonSaveExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonSaveExcel.UseVisualStyleBackColor = true;
+			this.buttonSaveExcel.Click += new System.EventHandler(this.ButtonSaveExcelClick);
 			// 
 			// buttonPrintPreview
 			// 
@@ -344,7 +384,7 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
 			this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSave.Location = new System.Drawing.Point(555, 10);
+			this.buttonSave.Location = new System.Drawing.Point(571, 10);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(83, 23);
 			this.buttonSave.TabIndex = 1;
@@ -358,7 +398,7 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonCancel.Image = ((System.Drawing.Image)(resources.GetObject("buttonCancel.Image")));
 			this.buttonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonCancel.Location = new System.Drawing.Point(644, 10);
+			this.buttonCancel.Location = new System.Drawing.Point(660, 10);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(83, 23);
 			this.buttonCancel.TabIndex = 0;
@@ -381,7 +421,7 @@ namespace Aggregator.Client.Documents.Order
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(739, 80);
+			this.panel2.Size = new System.Drawing.Size(755, 80);
 			this.panel2.TabIndex = 5;
 			// 
 			// button2
@@ -429,7 +469,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.autorLabel.Location = new System.Drawing.Point(414, 14);
 			this.autorLabel.Name = "autorLabel";
-			this.autorLabel.Size = new System.Drawing.Size(318, 23);
+			this.autorLabel.Size = new System.Drawing.Size(334, 23);
 			this.autorLabel.TabIndex = 18;
 			this.autorLabel.Text = "Автор:";
 			// 
@@ -476,7 +516,7 @@ namespace Aggregator.Client.Documents.Order
 			this.tabControl1.Location = new System.Drawing.Point(0, 80);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(739, 421);
+			this.tabControl1.Size = new System.Drawing.Size(755, 421);
 			this.tabControl1.TabIndex = 6;
 			// 
 			// tabPage1
@@ -487,7 +527,7 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(731, 395);
+			this.tabPage1.Size = new System.Drawing.Size(747, 395);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Номенклатура";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -523,7 +563,7 @@ namespace Aggregator.Client.Documents.Order
 			this.listViewNomenclature.Location = new System.Drawing.Point(3, 32);
 			this.listViewNomenclature.MultiSelect = false;
 			this.listViewNomenclature.Name = "listViewNomenclature";
-			this.listViewNomenclature.Size = new System.Drawing.Size(725, 264);
+			this.listViewNomenclature.Size = new System.Drawing.Size(741, 264);
 			this.listViewNomenclature.SmallImageList = this.imageList1;
 			this.listViewNomenclature.StateImageList = this.imageList1;
 			this.listViewNomenclature.TabIndex = 9;
@@ -647,7 +687,7 @@ namespace Aggregator.Client.Documents.Order
 			this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel7.Location = new System.Drawing.Point(3, 296);
 			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(725, 96);
+			this.panel7.Size = new System.Drawing.Size(741, 96);
 			this.panel7.TabIndex = 10;
 			// 
 			// splitContainer1
@@ -663,8 +703,8 @@ namespace Aggregator.Client.Documents.Order
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-			this.splitContainer1.Size = new System.Drawing.Size(725, 96);
-			this.splitContainer1.SplitterDistance = 301;
+			this.splitContainer1.Size = new System.Drawing.Size(741, 96);
+			this.splitContainer1.SplitterDistance = 341;
 			this.splitContainer1.TabIndex = 0;
 			// 
 			// groupBox1
@@ -684,7 +724,7 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(301, 96);
+			this.groupBox1.Size = new System.Drawing.Size(341, 96);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "...";
@@ -695,7 +735,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.priceTextBox.Location = new System.Drawing.Point(102, 65);
 			this.priceTextBox.Name = "priceTextBox";
-			this.priceTextBox.Size = new System.Drawing.Size(144, 20);
+			this.priceTextBox.Size = new System.Drawing.Size(184, 20);
 			this.priceTextBox.TabIndex = 26;
 			this.priceTextBox.Text = "0,00";
 			this.priceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -716,7 +756,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button13.Image = ((System.Drawing.Image)(resources.GetObject("button13.Image")));
-			this.button13.Location = new System.Drawing.Point(247, 65);
+			this.button13.Location = new System.Drawing.Point(287, 65);
 			this.button13.Name = "button13";
 			this.button13.Size = new System.Drawing.Size(26, 20);
 			this.button13.TabIndex = 28;
@@ -727,7 +767,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button14.Location = new System.Drawing.Point(275, 65);
+			this.button14.Location = new System.Drawing.Point(315, 65);
 			this.button14.Name = "button14";
 			this.button14.Size = new System.Drawing.Size(20, 20);
 			this.button14.TabIndex = 27;
@@ -741,7 +781,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.amountTextBox.Location = new System.Drawing.Point(102, 42);
 			this.amountTextBox.Name = "amountTextBox";
-			this.amountTextBox.Size = new System.Drawing.Size(144, 20);
+			this.amountTextBox.Size = new System.Drawing.Size(184, 20);
 			this.amountTextBox.TabIndex = 4;
 			this.amountTextBox.Text = "0,00";
 			this.amountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -761,7 +801,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button9.Location = new System.Drawing.Point(275, 19);
+			this.button9.Location = new System.Drawing.Point(315, 19);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(20, 20);
 			this.button9.TabIndex = 24;
@@ -774,7 +814,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-			this.button7.Location = new System.Drawing.Point(247, 42);
+			this.button7.Location = new System.Drawing.Point(287, 42);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(26, 20);
 			this.button7.TabIndex = 20;
@@ -786,7 +826,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-			this.button8.Location = new System.Drawing.Point(247, 19);
+			this.button8.Location = new System.Drawing.Point(287, 19);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(26, 20);
 			this.button8.TabIndex = 23;
@@ -797,7 +837,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button6.Location = new System.Drawing.Point(275, 42);
+			this.button6.Location = new System.Drawing.Point(315, 42);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(20, 20);
 			this.button6.TabIndex = 19;
@@ -811,7 +851,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.unitsTextBox.Location = new System.Drawing.Point(102, 19);
 			this.unitsTextBox.Name = "unitsTextBox";
-			this.unitsTextBox.Size = new System.Drawing.Size(144, 20);
+			this.unitsTextBox.Size = new System.Drawing.Size(184, 20);
 			this.unitsTextBox.TabIndex = 5;
 			this.unitsTextBox.TextChanged += new System.EventHandler(this.UnitsTextBoxTextChanged);
 			// 
@@ -840,7 +880,7 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox2.Location = new System.Drawing.Point(0, 0);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(420, 96);
+			this.groupBox2.Size = new System.Drawing.Size(396, 96);
 			this.groupBox2.TabIndex = 0;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Итоги:";
@@ -852,7 +892,7 @@ namespace Aggregator.Client.Documents.Order
 			this.totalTextBox.Location = new System.Drawing.Point(64, 66);
 			this.totalTextBox.Name = "totalTextBox";
 			this.totalTextBox.ReadOnly = true;
-			this.totalTextBox.Size = new System.Drawing.Size(296, 20);
+			this.totalTextBox.Size = new System.Drawing.Size(272, 20);
 			this.totalTextBox.TabIndex = 27;
 			this.totalTextBox.Text = "0,00";
 			this.totalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -863,7 +903,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button11.Enabled = false;
 			this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
-			this.button11.Location = new System.Drawing.Point(362, 66);
+			this.button11.Location = new System.Drawing.Point(338, 66);
 			this.button11.Name = "button11";
 			this.button11.Size = new System.Drawing.Size(26, 20);
 			this.button11.TabIndex = 29;
@@ -874,7 +914,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button12.Enabled = false;
 			this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button12.Location = new System.Drawing.Point(390, 66);
+			this.button12.Location = new System.Drawing.Point(366, 66);
 			this.button12.Name = "button12";
 			this.button12.Size = new System.Drawing.Size(20, 20);
 			this.button12.TabIndex = 28;
@@ -888,7 +928,7 @@ namespace Aggregator.Client.Documents.Order
 			this.vatTextBox.Location = new System.Drawing.Point(64, 43);
 			this.vatTextBox.Name = "vatTextBox";
 			this.vatTextBox.ReadOnly = true;
-			this.vatTextBox.Size = new System.Drawing.Size(296, 20);
+			this.vatTextBox.Size = new System.Drawing.Size(272, 20);
 			this.vatTextBox.TabIndex = 24;
 			this.vatTextBox.Text = "0,00";
 			this.vatTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -899,7 +939,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button5.Enabled = false;
 			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-			this.button5.Location = new System.Drawing.Point(362, 43);
+			this.button5.Location = new System.Drawing.Point(338, 43);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(26, 20);
 			this.button5.TabIndex = 26;
@@ -910,7 +950,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button10.Enabled = false;
 			this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button10.Location = new System.Drawing.Point(390, 43);
+			this.button10.Location = new System.Drawing.Point(366, 43);
 			this.button10.Name = "button10";
 			this.button10.Size = new System.Drawing.Size(20, 20);
 			this.button10.TabIndex = 25;
@@ -924,7 +964,7 @@ namespace Aggregator.Client.Documents.Order
 			this.sumTextBox.Location = new System.Drawing.Point(64, 19);
 			this.sumTextBox.Name = "sumTextBox";
 			this.sumTextBox.ReadOnly = true;
-			this.sumTextBox.Size = new System.Drawing.Size(296, 20);
+			this.sumTextBox.Size = new System.Drawing.Size(272, 20);
 			this.sumTextBox.TabIndex = 21;
 			this.sumTextBox.Text = "0,00";
 			this.sumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -935,7 +975,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button3.Enabled = false;
 			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-			this.button3.Location = new System.Drawing.Point(362, 19);
+			this.button3.Location = new System.Drawing.Point(338, 19);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(26, 20);
 			this.button3.TabIndex = 23;
@@ -946,7 +986,7 @@ namespace Aggregator.Client.Documents.Order
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button4.Enabled = false;
 			this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button4.Location = new System.Drawing.Point(390, 19);
+			this.button4.Location = new System.Drawing.Point(366, 19);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(20, 20);
 			this.button4.TabIndex = 22;
@@ -989,7 +1029,7 @@ namespace Aggregator.Client.Documents.Order
 			this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel5.Location = new System.Drawing.Point(3, 3);
 			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(725, 29);
+			this.panel5.Size = new System.Drawing.Size(741, 29);
 			this.panel5.TabIndex = 2;
 			// 
 			// findButton
@@ -1069,7 +1109,7 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(731, 395);
+			this.tabPage2.Size = new System.Drawing.Size(747, 395);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Отправить заказ";
 			// 
@@ -1082,7 +1122,7 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox5.Location = new System.Drawing.Point(3, 99);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(725, 114);
+			this.groupBox5.Size = new System.Drawing.Size(741, 114);
 			this.groupBox5.TabIndex = 2;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Письмо:";
@@ -1095,7 +1135,7 @@ namespace Aggregator.Client.Documents.Order
 			this.messageTextBox.Location = new System.Drawing.Point(6, 55);
 			this.messageTextBox.Multiline = true;
 			this.messageTextBox.Name = "messageTextBox";
-			this.messageTextBox.Size = new System.Drawing.Size(713, 53);
+			this.messageTextBox.Size = new System.Drawing.Size(729, 53);
 			this.messageTextBox.TabIndex = 6;
 			// 
 			// label13
@@ -1112,7 +1152,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.captionTextBox.Location = new System.Drawing.Point(47, 13);
 			this.captionTextBox.Name = "captionTextBox";
-			this.captionTextBox.Size = new System.Drawing.Size(672, 20);
+			this.captionTextBox.Size = new System.Drawing.Size(688, 20);
 			this.captionTextBox.TabIndex = 4;
 			// 
 			// label12
@@ -1129,7 +1169,7 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.groupBox6.Location = new System.Drawing.Point(3, 213);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(725, 179);
+			this.groupBox6.Size = new System.Drawing.Size(741, 179);
 			this.groupBox6.TabIndex = 3;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Вложенный файл:";
@@ -1143,7 +1183,7 @@ namespace Aggregator.Client.Documents.Order
 			this.tabControl2.Location = new System.Drawing.Point(3, 16);
 			this.tabControl2.Name = "tabControl2";
 			this.tabControl2.SelectedIndex = 0;
-			this.tabControl2.Size = new System.Drawing.Size(719, 160);
+			this.tabControl2.Size = new System.Drawing.Size(735, 160);
 			this.tabControl2.TabIndex = 0;
 			// 
 			// tabPage3
@@ -1156,7 +1196,7 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(711, 134);
+			this.tabPage3.Size = new System.Drawing.Size(727, 134);
 			this.tabPage3.TabIndex = 0;
 			this.tabPage3.Text = "Файл";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -1167,10 +1207,10 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.label16.Location = new System.Drawing.Point(6, 113);
 			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(699, 18);
+			this.label16.Size = new System.Drawing.Size(715, 18);
 			this.label16.TabIndex = 4;
 			this.label16.Text = "ПРИМЕЧАНИЕ:  Файл будет создан при нажатии на кнопку \"Отправить заказ\". После отп" +
-	"равки файл автоматически будет удалён.";
+	"равки *.xls файл будет автоматически удалён.";
 			// 
 			// pathFileTextBox
 			// 
@@ -1178,7 +1218,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.pathFileTextBox.Location = new System.Drawing.Point(93, 39);
 			this.pathFileTextBox.Name = "pathFileTextBox";
-			this.pathFileTextBox.Size = new System.Drawing.Size(612, 20);
+			this.pathFileTextBox.Size = new System.Drawing.Size(628, 20);
 			this.pathFileTextBox.TabIndex = 3;
 			// 
 			// label15
@@ -1195,7 +1235,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.fileNameTextBox.Location = new System.Drawing.Point(93, 13);
 			this.fileNameTextBox.Name = "fileNameTextBox";
-			this.fileNameTextBox.Size = new System.Drawing.Size(612, 20);
+			this.fileNameTextBox.Size = new System.Drawing.Size(628, 20);
 			this.fileNameTextBox.TabIndex = 1;
 			// 
 			// label14
@@ -1212,20 +1252,249 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage4.Location = new System.Drawing.Point(4, 22);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(711, 134);
+			this.tabPage4.Size = new System.Drawing.Size(727, 134);
 			this.tabPage4.TabIndex = 1;
 			this.tabPage4.Text = "Шапка";
 			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
+			// splitContainer2
+			// 
+			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+			this.splitContainer2.Name = "splitContainer2";
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.groupBox7);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.groupBox8);
+			this.splitContainer2.Size = new System.Drawing.Size(721, 128);
+			this.splitContainer2.SplitterDistance = 367;
+			this.splitContainer2.TabIndex = 0;
+			// 
+			// groupBox7
+			// 
+			this.groupBox7.Controls.Add(this.checkBox2);
+			this.groupBox7.Controls.Add(this.checkBox1);
+			this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.groupBox7.Location = new System.Drawing.Point(0, 0);
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.Size = new System.Drawing.Size(367, 128);
+			this.groupBox7.TabIndex = 0;
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = "Данные поставщика:";
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox2.Checked = true;
+			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox2.Location = new System.Drawing.Point(6, 49);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(355, 24);
+			this.checkBox2.TabIndex = 1;
+			this.checkBox2.Text = "Дата прайс-листа";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox1.Checked = true;
+			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox1.Location = new System.Drawing.Point(6, 19);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(355, 24);
+			this.checkBox1.TabIndex = 0;
+			this.checkBox1.Text = "Наименование поставщика";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
+			// groupBox8
+			// 
+			this.groupBox8.Controls.Add(this.checkBox5);
+			this.groupBox8.Controls.Add(this.checkBox4);
+			this.groupBox8.Controls.Add(this.checkBox3);
+			this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.groupBox8.Location = new System.Drawing.Point(0, 0);
+			this.groupBox8.Name = "groupBox8";
+			this.groupBox8.Size = new System.Drawing.Size(350, 128);
+			this.groupBox8.TabIndex = 0;
+			this.groupBox8.TabStop = false;
+			this.groupBox8.Text = "Наши данные:";
+			// 
+			// checkBox5
+			// 
+			this.checkBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox5.Location = new System.Drawing.Point(6, 79);
+			this.checkBox5.Name = "checkBox5";
+			this.checkBox5.Size = new System.Drawing.Size(338, 24);
+			this.checkBox5.TabIndex = 3;
+			this.checkBox5.Text = "Почта нашей организации";
+			this.checkBox5.UseVisualStyleBackColor = true;
+			// 
+			// checkBox4
+			// 
+			this.checkBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox4.Location = new System.Drawing.Point(6, 49);
+			this.checkBox4.Name = "checkBox4";
+			this.checkBox4.Size = new System.Drawing.Size(338, 24);
+			this.checkBox4.TabIndex = 2;
+			this.checkBox4.Text = "Адрес нашей организации";
+			this.checkBox4.UseVisualStyleBackColor = true;
+			// 
+			// checkBox3
+			// 
+			this.checkBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox3.Location = new System.Drawing.Point(6, 19);
+			this.checkBox3.Name = "checkBox3";
+			this.checkBox3.Size = new System.Drawing.Size(338, 24);
+			this.checkBox3.TabIndex = 1;
+			this.checkBox3.Text = "Наименование нашей организации";
+			this.checkBox3.UseVisualStyleBackColor = true;
+			// 
 			// tabPage5
 			// 
+			this.tabPage5.Controls.Add(this.checkBox17);
+			this.tabPage5.Controls.Add(this.checkBox16);
+			this.tabPage5.Controls.Add(this.checkBox15);
+			this.tabPage5.Controls.Add(this.checkBox14);
+			this.tabPage5.Controls.Add(this.checkBox13);
+			this.tabPage5.Controls.Add(this.checkBox12);
+			this.tabPage5.Controls.Add(this.checkBox11);
+			this.tabPage5.Controls.Add(this.checkBox10);
+			this.tabPage5.Controls.Add(this.checkBox9);
+			this.tabPage5.Controls.Add(this.checkBox8);
+			this.tabPage5.Controls.Add(this.checkBox7);
+			this.tabPage5.Controls.Add(this.checkBox6);
 			this.tabPage5.Location = new System.Drawing.Point(4, 22);
 			this.tabPage5.Name = "tabPage5";
 			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage5.Size = new System.Drawing.Size(711, 134);
+			this.tabPage5.Size = new System.Drawing.Size(727, 134);
 			this.tabPage5.TabIndex = 2;
 			this.tabPage5.Text = "Таблица";
 			this.tabPage5.UseVisualStyleBackColor = true;
+			// 
+			// checkBox17
+			// 
+			this.checkBox17.Checked = true;
+			this.checkBox17.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox17.Location = new System.Drawing.Point(428, 96);
+			this.checkBox17.Name = "checkBox17";
+			this.checkBox17.Size = new System.Drawing.Size(164, 24);
+			this.checkBox17.TabIndex = 19;
+			this.checkBox17.Text = "Заказ (количество)";
+			this.checkBox17.UseVisualStyleBackColor = true;
+			// 
+			// checkBox16
+			// 
+			this.checkBox16.Checked = true;
+			this.checkBox16.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox16.Location = new System.Drawing.Point(428, 66);
+			this.checkBox16.Name = "checkBox16";
+			this.checkBox16.Size = new System.Drawing.Size(164, 24);
+			this.checkBox16.TabIndex = 18;
+			this.checkBox16.Text = "Цена";
+			this.checkBox16.UseVisualStyleBackColor = true;
+			// 
+			// checkBox15
+			// 
+			this.checkBox15.Location = new System.Drawing.Point(428, 36);
+			this.checkBox15.Name = "checkBox15";
+			this.checkBox15.Size = new System.Drawing.Size(164, 24);
+			this.checkBox15.TabIndex = 17;
+			this.checkBox15.Text = "Скидка";
+			this.checkBox15.UseVisualStyleBackColor = true;
+			// 
+			// checkBox14
+			// 
+			this.checkBox14.Location = new System.Drawing.Point(428, 6);
+			this.checkBox14.Name = "checkBox14";
+			this.checkBox14.Size = new System.Drawing.Size(164, 24);
+			this.checkBox14.TabIndex = 16;
+			this.checkBox14.Text = "Остаток";
+			this.checkBox14.UseVisualStyleBackColor = true;
+			// 
+			// checkBox13
+			// 
+			this.checkBox13.Location = new System.Drawing.Point(201, 96);
+			this.checkBox13.Name = "checkBox13";
+			this.checkBox13.Size = new System.Drawing.Size(164, 24);
+			this.checkBox13.TabIndex = 15;
+			this.checkBox13.Text = "Срок годности";
+			this.checkBox13.UseVisualStyleBackColor = true;
+			// 
+			// checkBox12
+			// 
+			this.checkBox12.Location = new System.Drawing.Point(201, 66);
+			this.checkBox12.Name = "checkBox12";
+			this.checkBox12.Size = new System.Drawing.Size(164, 24);
+			this.checkBox12.TabIndex = 14;
+			this.checkBox12.Text = "Единицы измерения";
+			this.checkBox12.UseVisualStyleBackColor = true;
+			// 
+			// checkBox11
+			// 
+			this.checkBox11.Location = new System.Drawing.Point(201, 36);
+			this.checkBox11.Name = "checkBox11";
+			this.checkBox11.Size = new System.Drawing.Size(164, 24);
+			this.checkBox11.TabIndex = 13;
+			this.checkBox11.Text = "Производитель";
+			this.checkBox11.UseVisualStyleBackColor = true;
+			// 
+			// checkBox10
+			// 
+			this.checkBox10.Checked = true;
+			this.checkBox10.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox10.Location = new System.Drawing.Point(201, 6);
+			this.checkBox10.Name = "checkBox10";
+			this.checkBox10.Size = new System.Drawing.Size(164, 24);
+			this.checkBox10.TabIndex = 12;
+			this.checkBox10.Text = "Наименование";
+			this.checkBox10.UseVisualStyleBackColor = true;
+			// 
+			// checkBox9
+			// 
+			this.checkBox9.Location = new System.Drawing.Point(6, 96);
+			this.checkBox9.Name = "checkBox9";
+			this.checkBox9.Size = new System.Drawing.Size(164, 24);
+			this.checkBox9.TabIndex = 11;
+			this.checkBox9.Text = "Артикул";
+			this.checkBox9.UseVisualStyleBackColor = true;
+			// 
+			// checkBox8
+			// 
+			this.checkBox8.Location = new System.Drawing.Point(6, 66);
+			this.checkBox8.Name = "checkBox8";
+			this.checkBox8.Size = new System.Drawing.Size(164, 24);
+			this.checkBox8.TabIndex = 10;
+			this.checkBox8.Text = "Серия";
+			this.checkBox8.UseVisualStyleBackColor = true;
+			// 
+			// checkBox7
+			// 
+			this.checkBox7.Location = new System.Drawing.Point(6, 36);
+			this.checkBox7.Name = "checkBox7";
+			this.checkBox7.Size = new System.Drawing.Size(164, 24);
+			this.checkBox7.TabIndex = 9;
+			this.checkBox7.Text = "Код";
+			this.checkBox7.UseVisualStyleBackColor = true;
+			// 
+			// checkBox6
+			// 
+			this.checkBox6.Checked = true;
+			this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox6.Location = new System.Drawing.Point(6, 6);
+			this.checkBox6.Name = "checkBox6";
+			this.checkBox6.Size = new System.Drawing.Size(164, 24);
+			this.checkBox6.TabIndex = 8;
+			this.checkBox6.Text = "№п/п";
+			this.checkBox6.UseVisualStyleBackColor = true;
 			// 
 			// groupBox4
 			// 
@@ -1234,7 +1503,7 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
 			this.groupBox4.Location = new System.Drawing.Point(3, 48);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(725, 51);
+			this.groupBox4.Size = new System.Drawing.Size(741, 51);
 			this.groupBox4.TabIndex = 1;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Получатель:";
@@ -1245,7 +1514,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.mailtoTextBox.Location = new System.Drawing.Point(91, 19);
 			this.mailtoTextBox.Name = "mailtoTextBox";
-			this.mailtoTextBox.Size = new System.Drawing.Size(628, 20);
+			this.mailtoTextBox.Size = new System.Drawing.Size(644, 20);
 			this.mailtoTextBox.TabIndex = 3;
 			// 
 			// label11
@@ -1263,7 +1532,7 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
 			this.groupBox3.Location = new System.Drawing.Point(3, 3);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(725, 45);
+			this.groupBox3.Size = new System.Drawing.Size(741, 45);
 			this.groupBox3.TabIndex = 0;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Отправитель:";
@@ -1274,7 +1543,7 @@ namespace Aggregator.Client.Documents.Order
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.mailfromTextBox.Location = new System.Drawing.Point(91, 16);
 			this.mailfromTextBox.Name = "mailfromTextBox";
-			this.mailfromTextBox.Size = new System.Drawing.Size(628, 20);
+			this.mailfromTextBox.Size = new System.Drawing.Size(644, 20);
 			this.mailfromTextBox.TabIndex = 1;
 			// 
 			// label10
@@ -1295,48 +1564,15 @@ namespace Aggregator.Client.Documents.Order
 			this.printDialog1.Document = this.printDocument1;
 			this.printDialog1.UseEXDialog = true;
 			// 
-			// splitContainer2
+			// saveFileDialog1
 			// 
-			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-			this.splitContainer2.Name = "splitContainer2";
-			// 
-			// splitContainer2.Panel1
-			// 
-			this.splitContainer2.Panel1.Controls.Add(this.groupBox7);
-			// 
-			// splitContainer2.Panel2
-			// 
-			this.splitContainer2.Panel2.Controls.Add(this.groupBox8);
-			this.splitContainer2.Size = new System.Drawing.Size(705, 128);
-			this.splitContainer2.SplitterDistance = 359;
-			this.splitContainer2.TabIndex = 0;
-			// 
-			// groupBox7
-			// 
-			this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox7.Location = new System.Drawing.Point(0, 0);
-			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(359, 128);
-			this.groupBox7.TabIndex = 0;
-			this.groupBox7.TabStop = false;
-			this.groupBox7.Text = "Данные поставщика:";
-			// 
-			// groupBox8
-			// 
-			this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox8.Location = new System.Drawing.Point(0, 0);
-			this.groupBox8.Name = "groupBox8";
-			this.groupBox8.Size = new System.Drawing.Size(342, 128);
-			this.groupBox8.TabIndex = 0;
-			this.groupBox8.TabStop = false;
-			this.groupBox8.Text = "Наши данные:";
+			this.saveFileDialog1.Filter = "Microsoft Excel 97/2000/XP (.xls)|*.xls";
 			// 
 			// FormOrderDoc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(739, 546);
+			this.ClientSize = new System.Drawing.Size(755, 546);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
@@ -1368,13 +1604,16 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage3.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
+			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel2.ResumeLayout(false);
+			this.splitContainer2.ResumeLayout(false);
+			this.groupBox7.ResumeLayout(false);
+			this.groupBox8.ResumeLayout(false);
+			this.tabPage5.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			this.splitContainer2.Panel1.ResumeLayout(false);
-			this.splitContainer2.Panel2.ResumeLayout(false);
-			this.splitContainer2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
