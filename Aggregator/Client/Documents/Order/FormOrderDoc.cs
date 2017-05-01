@@ -11,12 +11,15 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
+using System.Net;
 using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
 using Aggregator.Client.Directories;
 using Aggregator.Utilits;
+using ExcelLibrary.SpreadSheet;
 
 namespace Aggregator.Client.Documents.Order
 {
@@ -1082,14 +1085,14 @@ namespace Aggregator.Client.Documents.Order
 					}
 				}
 			}else{
-				mailtoTextBox.Text = "Контрагент не выбран";
+				mailtoTextBox.Text = "";
 			}
 			
 			mailfromTextBox.Text = DataConstants.ConstFirmEmail;
 			captionTextBox.Text = DataConstants.ConstFirmCaption;
 			messageTextBox.Text = DataConstants.ConstFirmMessage;
 			fileNameTextBox.Text = DataConstants.ConstFirmName + "-Заказ-" + docNumberTextBox.Text + ".xls";
-			pathFileTextBox.Text = DataConfig.resource;
+			pathFileTextBox.Text = DataConfig.resource + "\\";
 		}
 		
 		/* =================================================================================================
@@ -1425,6 +1428,60 @@ namespace Aggregator.Client.Documents.Order
 			printLine = 0;
 			if(printDialog1.ShowDialog() == DialogResult.OK){
 				printDialog1.Document.Print();
+			}
+		}
+		void Button15Click(object sender, EventArgs e)
+		{
+			if(ID == null){
+				MessageBox.Show("Чтобы отправить заказ по почте его необходимо сначала сохранить!", "Сообщение");
+			}else{
+				
+				DataForms.FClient.messageInStatus("Пожалуйста подождите идет процесс отправки заказа по почте!");
+				DataForms.FClient.Update();
+				
+				String fileName = pathFileTextBox.Text + fileNameTextBox.Text;
+				
+				Workbook workbook = new Workbook();
+				
+				try
+				{
+					Worksheet worksheet = new Worksheet("Лист1");
+		            worksheet.Cells[0, 0] = new Cell("№п/п:");
+		            worksheet.Cells[0, 1] = new Cell("Наименование:");
+		            worksheet.Cells[0, 2] = new Cell("Ед.изм.:");
+		            worksheet.Cells[0, 3] = new Cell("Вес/Кол-во:");
+		            worksheet.Cells[0, 4] = new Cell("Цена:");
+		            worksheet.Cells[0, 5] = new Cell("Сумма:");
+					
+					workbook.Worksheets.Add(worksheet);
+		            workbook.Save(fileName);
+	            } catch (Exception ex) {
+					workbook = null;
+					Utilits.Console.Log("[ОШИБКА] Создание файла заказа для отправки контрагенту: " + Environment.NewLine + ex.Message, false, true);
+					DataForms.FClient.messageInStatus("Заказ не удалось отправить по почте!");
+					DataForms.FClient.Update();
+					return;
+				}
+				
+	            if(!File.Exists(fileName)){ 
+					MessageBox.Show("Файл: " + fileName + " не найден!", "Сообщение");
+					DataForms.FClient.messageInStatus("Заказ не удалось отправить по почте!");
+					DataForms.FClient.Update();
+	            	return;
+	            }
+	            
+				SendMail mail = new SendMail();
+				if(mail.Send(mailfromTextBox.Text, mailtoTextBox.Text, captionTextBox.Text, messageTextBox.Text, fileName)){
+					MessageBox.Show("Заказ был успешно отправлен по почте!", "Сообщение");
+					DataForms.FClient.messageInStatus("Заказ был успешно отправлен по почте!");
+					DataForms.FClient.Update();
+				}else{
+					MessageBox.Show("Заказ не удалось отправить по почте!", "Сообщение");
+					DataForms.FClient.messageInStatus("Заказ не удалось отправить по почте!");
+					DataForms.FClient.Update();
+				}
+				
+				if(File.Exists(fileName)) File.Delete(fileName);
 			}
 		}
 		

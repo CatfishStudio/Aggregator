@@ -29,7 +29,7 @@ namespace Aggregator.Utilits
 			client = new SmtpClient();
 		}
 		
-		public void Send(String mailfrom, String mailto, String caption, String message, String attachFile = null)
+		public bool Send(String mailfrom, String mailto, String caption, String message, String attachFile = null)
 		{
 			try
 			{ 
@@ -46,9 +46,13 @@ namespace Aggregator.Utilits
 				client.Credentials = new NetworkCredential(mailfrom.Split('@')[0], DataConstants.ConstFirmPwd); // пароль
 				client.DeliveryMethod = SmtpDeliveryMethod.Network;
 				client.Send(mail);
-			mail.Dispose();
+				mail.Dispose();
+				return true;
 			} catch (Exception ex) {
-				Utilits.Console.Log("Отправка почты: " + ex.Message, false, true);
+				client = null;
+				mail.Dispose();
+				Utilits.Console.Log("[ОШИБКА] Отправка заказа по почте: " + ex.Message, false, true);
+				return false;
 			}
 		}
 		

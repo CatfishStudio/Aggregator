@@ -87,7 +87,7 @@ namespace Aggregator.Database.Base
 			
 			sqlCommand = "INSERT INTO Constants (" +
 				"[name], [email], [emailPwd], [smtpServer], [port], [EnableSsl], [caption], [message], [address], [vat], [units]) " +
-				"VALUES ('Фирма', 'mymail@gmail.com', '0000', 'smtp.gmail.com', '587', 1, 'Тема письма', 'Сообщение письма', 'Страна, Город, Улица, Дом', 20, 'шт.')";
+				"VALUES ('Наша Фирма', 'mymail@gmail.com', '0000', 'smtp.gmail.com', '587', 1, 'Тема письма', 'Сообщение письма', 'Страна, Город, Улица, Дом', 20, 'шт.')";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Константы.", false, true);
 			

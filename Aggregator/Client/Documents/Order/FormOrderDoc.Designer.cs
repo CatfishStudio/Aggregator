@@ -113,6 +113,11 @@ namespace Aggregator.Client.Documents.Order
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.TextBox fileNameTextBox;
 		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.Button button15;
+		private System.Windows.Forms.GroupBox groupBox8;
+		private System.Windows.Forms.GroupBox groupBox7;
+		private System.Windows.Forms.SplitContainer splitContainer2;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -138,6 +143,7 @@ namespace Aggregator.Client.Documents.Order
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrderDoc));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.button15 = new System.Windows.Forms.Button();
 			this.buttonSaveExcel = new System.Windows.Forms.Button();
 			this.buttonPrintPreview = new System.Windows.Forms.Button();
 			this.buttonPrint = new System.Windows.Forms.Button();
@@ -222,6 +228,7 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
 			this.tabControl2 = new System.Windows.Forms.TabControl();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.label16 = new System.Windows.Forms.Label();
 			this.pathFileTextBox = new System.Windows.Forms.TextBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.fileNameTextBox = new System.Windows.Forms.TextBox();
@@ -236,6 +243,9 @@ namespace Aggregator.Client.Documents.Order
 			this.label10 = new System.Windows.Forms.Label();
 			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
 			this.printDialog1 = new System.Windows.Forms.PrintDialog();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.groupBox8 = new System.Windows.Forms.GroupBox();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -252,12 +262,17 @@ namespace Aggregator.Client.Documents.Order
 			this.groupBox6.SuspendLayout();
 			this.tabControl2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
+			this.tabPage4.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			this.splitContainer2.Panel1.SuspendLayout();
+			this.splitContainer2.Panel2.SuspendLayout();
+			this.splitContainer2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.button15);
 			this.panel1.Controls.Add(this.buttonSaveExcel);
 			this.panel1.Controls.Add(this.buttonPrintPreview);
 			this.panel1.Controls.Add(this.buttonPrint);
@@ -268,6 +283,20 @@ namespace Aggregator.Client.Documents.Order
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(739, 45);
 			this.panel1.TabIndex = 4;
+			// 
+			// button15
+			// 
+			this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button15.Image = ((System.Drawing.Image)(resources.GetObject("button15.Image")));
+			this.button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button15.Location = new System.Drawing.Point(252, 10);
+			this.button15.Name = "button15";
+			this.button15.Size = new System.Drawing.Size(168, 23);
+			this.button15.TabIndex = 42;
+			this.button15.Text = "Отправить заказ по почте";
+			this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.button15.UseVisualStyleBackColor = true;
+			this.button15.Click += new System.EventHandler(this.Button15Click);
 			// 
 			// buttonSaveExcel
 			// 
@@ -1119,6 +1148,7 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			// tabPage3
 			// 
+			this.tabPage3.Controls.Add(this.label16);
 			this.tabPage3.Controls.Add(this.pathFileTextBox);
 			this.tabPage3.Controls.Add(this.label15);
 			this.tabPage3.Controls.Add(this.fileNameTextBox);
@@ -1131,11 +1161,24 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage3.Text = "Файл";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
+			// label16
+			// 
+			this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.label16.Location = new System.Drawing.Point(6, 113);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(699, 18);
+			this.label16.TabIndex = 4;
+			this.label16.Text = "ПРИМЕЧАНИЕ:  Файл будет создан при нажатии на кнопку \"Отправить заказ\". После отп" +
+	"равки файл автоматически будет удалён.";
+			// 
 			// pathFileTextBox
 			// 
+			this.pathFileTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.pathFileTextBox.Location = new System.Drawing.Point(93, 39);
 			this.pathFileTextBox.Name = "pathFileTextBox";
-			this.pathFileTextBox.Size = new System.Drawing.Size(243, 20);
+			this.pathFileTextBox.Size = new System.Drawing.Size(612, 20);
 			this.pathFileTextBox.TabIndex = 3;
 			// 
 			// label15
@@ -1148,9 +1191,11 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			// fileNameTextBox
 			// 
+			this.fileNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.fileNameTextBox.Location = new System.Drawing.Point(93, 13);
 			this.fileNameTextBox.Name = "fileNameTextBox";
-			this.fileNameTextBox.Size = new System.Drawing.Size(243, 20);
+			this.fileNameTextBox.Size = new System.Drawing.Size(612, 20);
 			this.fileNameTextBox.TabIndex = 1;
 			// 
 			// label14
@@ -1163,12 +1208,13 @@ namespace Aggregator.Client.Documents.Order
 			// 
 			// tabPage4
 			// 
+			this.tabPage4.Controls.Add(this.splitContainer2);
 			this.tabPage4.Location = new System.Drawing.Point(4, 22);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage4.Size = new System.Drawing.Size(711, 134);
 			this.tabPage4.TabIndex = 1;
-			this.tabPage4.Text = "Поля шапки";
+			this.tabPage4.Text = "Шапка";
 			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
 			// tabPage5
@@ -1178,7 +1224,7 @@ namespace Aggregator.Client.Documents.Order
 			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage5.Size = new System.Drawing.Size(711, 134);
 			this.tabPage5.TabIndex = 2;
-			this.tabPage5.Text = "Столбцы таблицы";
+			this.tabPage5.Text = "Таблица";
 			this.tabPage5.UseVisualStyleBackColor = true;
 			// 
 			// groupBox4
@@ -1249,6 +1295,43 @@ namespace Aggregator.Client.Documents.Order
 			this.printDialog1.Document = this.printDocument1;
 			this.printDialog1.UseEXDialog = true;
 			// 
+			// splitContainer2
+			// 
+			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+			this.splitContainer2.Name = "splitContainer2";
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.groupBox7);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.groupBox8);
+			this.splitContainer2.Size = new System.Drawing.Size(705, 128);
+			this.splitContainer2.SplitterDistance = 359;
+			this.splitContainer2.TabIndex = 0;
+			// 
+			// groupBox7
+			// 
+			this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.groupBox7.Location = new System.Drawing.Point(0, 0);
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.Size = new System.Drawing.Size(359, 128);
+			this.groupBox7.TabIndex = 0;
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = "Данные поставщика:";
+			// 
+			// groupBox8
+			// 
+			this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.groupBox8.Location = new System.Drawing.Point(0, 0);
+			this.groupBox8.Name = "groupBox8";
+			this.groupBox8.Size = new System.Drawing.Size(342, 128);
+			this.groupBox8.TabIndex = 0;
+			this.groupBox8.TabStop = false;
+			this.groupBox8.Text = "Наши данные:";
+			// 
 			// FormOrderDoc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1284,10 +1367,14 @@ namespace Aggregator.Client.Documents.Order
 			this.tabControl2.ResumeLayout(false);
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage3.PerformLayout();
+			this.tabPage4.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel2.ResumeLayout(false);
+			this.splitContainer2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
