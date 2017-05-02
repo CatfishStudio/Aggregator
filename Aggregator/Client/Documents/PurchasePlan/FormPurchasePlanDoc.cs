@@ -1337,7 +1337,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				// Заголовок документа
 				e.Graphics.DrawString("ПЛАН ЗАКУПОК № " + docNumberTextBox.Text + "   дата: " + dateTimePicker1.Text, new Font("Microsoft Sans Serif", 14, FontStyle.Regular), Brushes.Black, 20, PosY);
 				// ТАБЛИЧНАЯ ЧАСТЬ: Загрузка данных из таблицы
-				PosY += 60;
+				PosY += 50;
+				e.Graphics.DrawLine(new Pen(Color.Black), 0, PosY, 650, PosY);
+				PosY += 15;
 				e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, PosY, 400, 25));
 				e.Graphics.DrawString("Наименование:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 5, PosY);
 				e.Graphics.FillRectangle(Brushes.White, new Rectangle(405, PosY, 65, 25));
@@ -1348,7 +1350,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				e.Graphics.DrawString("Цена:", new Font("Microsoft Sans Serif", 10, FontStyle.Bold), Brushes.Black, 550, PosY);
 				PosY += 30;
 				e.Graphics.DrawLine(new Pen(Color.Black), 0, PosY, 650, PosY);
-				PosY += 30;
+				PosY += 15;
 			}
 			
 			String textName;
