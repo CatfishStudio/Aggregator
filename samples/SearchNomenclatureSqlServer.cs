@@ -92,7 +92,6 @@ namespace Aggregator.Database.Server
 		
 		String getCriteriasSearch(String nomenclatureID)
 		{
-			/* Входные данные */
 			sqlConnection.Open();
 			Nomenclature templeteNomenclature;
 			sqlCommand = new SqlCommand("SELECT * FROM Nomenclature WHERE (id = " + nomenclatureID + ")", sqlConnection);
@@ -112,46 +111,46 @@ namespace Aggregator.Database.Server
 			// Начало построения запроса
 			String stringQuery = "WHERE ";
 			
-			// По Наименованию
-			int count = 0;
+			// По Наименованию - точное совпадение
 			String str = "";
 			String[] words =  templeteNomenclature.Name.Split();
-			
-			count = words.Length;
-			if(count > 0){
-				for(int i = 0; i < count; i++){
-					if(words[i].ToString() == "" || words[i].ToString() == " ") continue;
-					
-					if(str.Length == 0) str += "(";
-					else if(str[str.Length - 1].ToString() == ")") str += " OR (";
-					else str += "(";
-					
-					for(int j = 0; j <= i; j++){
-						if(words[j].ToString() == "" || words[j].ToString() == " ") continue;
-						
-						if(str[str.Length - 1].ToString() == "'") str += " AND name LIKE '%" + words[j] + "%'";
-						else str += "name LIKE '%" + words[j] + "%'";
-					}
-					str += ")";
+			int count = words.Length;
+			int i = 0;
+			for(i = 0; i < count; i++){
+				if(i == 0) str += "(";
+				if(words[i].Length > 2){
+					if( i > 0) str += " AND ";
+					str += "name LIKE '%" + words[i] + "%'";
 				}
+				if(i == (count-1)) str += ")";
 			}
 			
 			str = str.Replace(".", "").Replace(",", "");
+			//stringQuery += str;
 			if(str != "") {
 				stringQuery += str;
 				stringQuery += " OR ";
 			}
 			
 			// По Коду, Серии, Артиклу
-			str = "";
-			str += "(code = '" + templeteNomenclature.Code + "' AND code <> '')"+
+			stringQuery += "(code = '" + templeteNomenclature.Code + "' AND code <> '')"+
 						" OR (series = '" + templeteNomenclature.Series + "' AND series <> '')"+
 						" OR (article = '" + templeteNomenclature.Article + "' AND article <> '')";
 			
-			str = str.Replace(".", "").Replace(",", "");
-			if(str != "") {
-				stringQuery += str;
+			// По Наименованию - частичное совпадение
+			str = "";
+			count = words.Length;
+			for(i = 0; i < count; i++){
+				if(i == 0) str += "(";
+				if(words[i].Length > 3 && checkIgnore(words[i]) == false){
+					if( i > 0) str += " OR ";
+					str += "name LIKE '%" + words[i] + "%'";
+				}
+				if(i == (count-1)) str += ")";
 			}
+			
+			str = str.Replace(".", "").Replace(",", "");	
+			if(str != "" && str != "()") stringQuery += " OR " + str;
 			
 			// Упорядочить
 			stringQuery += " ORDER BY price ASC";
@@ -301,52 +300,6 @@ namespace Aggregator.Database.Server
 			sqlConnection.Open();
 			foreach(Price price in priceList){
 				sqlCommand = new SqlCommand("SELECT * FROM " + price.priceName + " ORDER BY name ASC", sqlConnection);
-				
-				sqlDataReader = sqlCommand.ExecuteReader();
-				Nomenclature nomenclature;
-		        while (sqlDataReader.Read())
-		        {
-		        	nomenclature = new Nomenclature();
-		        	nomenclature.Name = sqlDataReader["name"].ToString();
-		        	nomenclature.Code = sqlDataReader["code"].ToString();
-		        	nomenclature.Series = sqlDataReader["series"].ToString();
-		        	nomenclature.Article = sqlDataReader["article"].ToString();
-		        	nomenclature.Manufacturer = sqlDataReader["manufacturer"].ToString();
-		        	nomenclature.Units = DataConstants.ConstFirmUnits;
-		        	nomenclature.Remainder = (Double)sqlDataReader["remainder"];
-		        	nomenclature.Price = (Double)sqlDataReader["price"];
-		        	nomenclature.Discount1 = (Double)sqlDataReader["discount1"];
-		        	nomenclature.Discount2 = (Double)sqlDataReader["discount2"];
-		        	nomenclature.Discount3 = (Double)sqlDataReader["discount3"];
-		        	nomenclature.Discount4 = (Double)sqlDataReader["discount4"];
-		        	nomenclature.Term = (DateTime)sqlDataReader["term"];
-		        	nomenclature.CounteragentName = price.counteragentName;
-		        	nomenclature.CounteragentPrice = price.priceName;
-		        	nomenclatureList.Add(nomenclature);
-		        }
-		        sqlDataReader.Close();
-			}
-
-			sqlConnection.Close();
-			
-			return nomenclatureList;
-		}
-		
-		public List<Nomenclature> filterNomenclature(String value)
-		{
-			String strCommand = "";
-			nomenclatureList = new List<Nomenclature>();
-			
-			sqlConnection.Open();
-			foreach(Price price in priceList){
-				strCommand = "SELECT * FROM " + price.priceName + " WHERE (" +
-						"name LIKE '%" + value + "%') " +
-						"OR(code = '" + value + "' AND code <> '') "+
-						"OR (series = '" + value + "' AND series <> '') "+
-						"OR (article = '" + value + "' AND article <> '') "+
-						"ORDER BY name ASC";
-				
-				sqlCommand = new SqlCommand(strCommand, sqlConnection);
 				
 				sqlDataReader = sqlCommand.ExecuteReader();
 				Nomenclature nomenclature;

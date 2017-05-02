@@ -43,7 +43,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		public ListView ListViewPrices;
 		public ListView ListViewReturnValue;
 		public int SelectTableLine;
+		public String FilterText;
 		SearchNomenclatureOleDb searchNomenclatureOleDb;
+		
 		
 		public void LoadNomenclature(List<Nomenclature> nomenclatureList)
 		{
@@ -105,6 +107,8 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		
 		void loadALLNomenclature()
 		{
+			searchReset();
+			
 			while(listView1.Items.Count > 0){
 				listView1.Items[0].Remove();
 			}
@@ -114,6 +118,12 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			searchNomenclatureOleDb.setPrices(ListViewPrices);
 			nomenclatureList = searchNomenclatureOleDb.getAllNomenclature();
 			LoadNomenclature(nomenclatureList);
+		}
+		
+		void searchReset()
+		{
+			searchResultList = null;
+			searchStep = 0;
 		}
 		
 		void searchValues()
@@ -159,22 +169,21 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			listView1.Select();
 			listView1.EnsureVisible(searchResultList[searchStep].position);
 		}
-		/*
-		void search()
+		
+		void filter()
 		{
-			String str;
-			for(int i = 0; i < listView1.Items.Count; i++){
-				str = listView1.Items[i].SubItems[1].Text;
-				if(str.Contains(textBox1.Text)){
-					listView1.FocusedItem = listView1.Items[i];
-					listView1.Items[i].Selected = true;
-					listView1.Select();
-					listView1.EnsureVisible(i);
-					break;
-				}
+			searchReset();
+			
+			while(listView1.Items.Count > 0){
+				listView1.Items[0].Remove();
 			}
+			
+			List<Nomenclature> nomenclatureList;
+			searchNomenclatureOleDb = new SearchNomenclatureOleDb();
+			searchNomenclatureOleDb.setPrices(ListViewPrices);
+			nomenclatureList = searchNomenclatureOleDb.filterNomenclature(filterTextBox.Text);
+			LoadNomenclature(nomenclatureList);
 		}
-		*/
 		
 		/* =================================================================================================
 		 * РАЗДЕЛ: СОБЫТИЙ
@@ -182,6 +191,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		 */	
 		void FormPurchasePlanNomenclatureLoad(object sender, EventArgs e)
 		{
+			filterTextBox.Text = FilterText;
 			Utilits.Console.Log(Text);
 		}
 		void FormPurchasePlanNomenclatureFormClosed(object sender, FormClosedEventArgs e)
@@ -225,6 +235,16 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		void FormPurchasePlanNomenclatureActivated(object sender, EventArgs e)
 		{
 			DataForms.FClient.messageInStatus(this.Text);
+		}
+		void ToolStripButton1Click(object sender, EventArgs e)
+		{
+			filter();
+		}
+		void FilterTextBoxKeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				filter();
+			}
 		}
 
 	}

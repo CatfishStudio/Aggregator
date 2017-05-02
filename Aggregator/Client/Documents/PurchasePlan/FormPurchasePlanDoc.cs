@@ -1214,6 +1214,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				FPurchasePlanNomenclature.ListViewPrices = listViewPrices;
 				FPurchasePlanNomenclature.ListViewReturnValue = listViewNomenclature;
 				FPurchasePlanNomenclature.SelectTableLine = selectTableLine;
+				FPurchasePlanNomenclature.FilterText = listViewNomenclature.Items[listViewNomenclature.SelectedItems[0].Index].SubItems[2].Text;
 				FPurchasePlanNomenclature.LoadNomenclature(nomenclatureList);
 				FPurchasePlanNomenclature.Show();
 			}

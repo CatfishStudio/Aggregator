@@ -40,6 +40,11 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		private System.Windows.Forms.TextBox searchTextBox;
 		private System.Windows.Forms.Button findButton;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+		private System.Windows.Forms.ToolStripTextBox filterTextBox;
+		private System.Windows.Forms.ToolStripButton toolStripButton1;
+		private System.Windows.Forms.ToolTip toolTip1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -90,8 +95,14 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.выбратьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.показатьВесьПереченьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+			this.filterTextBox = new System.Windows.Forms.ToolStripTextBox();
+			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.panel1.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -104,7 +115,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel1.Location = new System.Drawing.Point(0, 355);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(457, 72);
+			this.panel1.Size = new System.Drawing.Size(453, 72);
 			this.panel1.TabIndex = 4;
 			// 
 			// label1
@@ -114,7 +125,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.Location = new System.Drawing.Point(12, 5);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(433, 31);
+			this.label1.Size = new System.Drawing.Size(429, 31);
 			this.label1.TabIndex = 20;
 			this.label1.Text = "...";
 			// 
@@ -126,6 +137,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.findButton.Name = "findButton";
 			this.findButton.Size = new System.Drawing.Size(25, 23);
 			this.findButton.TabIndex = 18;
+			this.toolTip1.SetToolTip(this.findButton, "Поиск");
 			this.findButton.UseVisualStyleBackColor = true;
 			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
 			// 
@@ -136,6 +148,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.searchTextBox.Name = "searchTextBox";
 			this.searchTextBox.Size = new System.Drawing.Size(245, 20);
 			this.searchTextBox.TabIndex = 2;
+			this.toolTip1.SetToolTip(this.searchTextBox, "Введите значение для поиска");
 			this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyDown);
 			// 
 			// buttonSave
@@ -143,7 +156,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
 			this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSave.Location = new System.Drawing.Point(289, 37);
+			this.buttonSave.Location = new System.Drawing.Point(285, 37);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(75, 23);
 			this.buttonSave.TabIndex = 1;
@@ -157,7 +170,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonCancel.Image = ((System.Drawing.Image)(resources.GetObject("buttonCancel.Image")));
 			this.buttonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonCancel.Location = new System.Drawing.Point(370, 37);
+			this.buttonCancel.Location = new System.Drawing.Point(366, 37);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(75, 23);
 			this.buttonCancel.TabIndex = 0;
@@ -190,10 +203,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
 			this.listView1.LargeImageList = this.imageList1;
-			this.listView1.Location = new System.Drawing.Point(0, 0);
+			this.listView1.Location = new System.Drawing.Point(0, 25);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(457, 355);
+			this.listView1.Size = new System.Drawing.Size(453, 330);
 			this.listView1.SmallImageList = this.imageList1;
 			this.listView1.StateImageList = this.imageList1;
 			this.listView1.TabIndex = 7;
@@ -303,12 +316,47 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "page.png");
 			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.toolStripLabel1,
+			this.filterTextBox,
+			this.toolStripButton1});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(453, 25);
+			this.toolStrip1.TabIndex = 8;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// toolStripLabel1
+			// 
+			this.toolStripLabel1.Name = "toolStripLabel1";
+			this.toolStripLabel1.Size = new System.Drawing.Size(126, 22);
+			this.toolStripLabel1.Text = "Фильтр по значению:";
+			// 
+			// filterTextBox
+			// 
+			this.filterTextBox.Name = "filterTextBox";
+			this.filterTextBox.Size = new System.Drawing.Size(200, 25);
+			this.filterTextBox.ToolTipText = "Введите значение для фильтра";
+			this.filterTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterTextBoxKeyDown);
+			// 
+			// toolStripButton1
+			// 
+			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton1.Name = "toolStripButton1";
+			this.toolStripButton1.Size = new System.Drawing.Size(90, 22);
+			this.toolStripButton1.Text = "Применить";
+			this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1Click);
+			// 
 			// FormPurchasePlanNomenclature
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(457, 427);
+			this.ClientSize = new System.Drawing.Size(453, 427);
 			this.Controls.Add(this.listView1);
+			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormPurchasePlanNomenclature";
@@ -319,7 +367,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.contextMenuStrip1.ResumeLayout(false);
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 	}
