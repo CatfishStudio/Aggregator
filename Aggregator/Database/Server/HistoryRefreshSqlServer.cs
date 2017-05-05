@@ -80,8 +80,10 @@ namespace Aggregator.Database.Server
 			sqlServer.sqlCommandUpdate.Parameters.Add("@user", SqlDbType.VarChar, 255, "user");
 			sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
 			if(!sqlServer.ExecuteFill("History")){
-				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] История обновлений базы данных не загружена!");
+				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] История обновлений базы данных не загружена!", false, true);
 			}
+			Utilits.Console.Log("[МОНИТОРИНГ] Подготовка завершена.");
+			//MonitoringRun();
 		}
 		
 		public void MonitoringRun()
@@ -94,8 +96,8 @@ namespace Aggregator.Database.Server
 			SqlDependency.Stop(DataConfig.serverConnection);
 			SqlDependency.Start(DataConfig.serverConnection);
         	monitoringProcess();
-        	Utilits.Console.Log("Мониторинг обновлений базы данных успешно запущен!");
         	DataForms.FClient.indicator(true);
+        	Utilits.Console.Log("[МОНИТОРИНГ] Процесс успешно запущен.");
 		}
 		
 		void monitoringProcess()
@@ -110,6 +112,7 @@ namespace Aggregator.Database.Server
 		                var sqlDependency = new SqlDependency(command);
 		                sqlDependency.OnChange += new OnChangeEventHandler(onDependencyChange);
 		                command.ExecuteReader();
+		                Utilits.Console.Log("[МОНИТОРИНГ] Запуск события.");
 		            }
 	            }catch(Exception ex){
 					Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message, false, true);
@@ -127,7 +130,7 @@ namespace Aggregator.Database.Server
 			    || SqlNotificationInfo.Update.Equals(info)
             	|| SqlNotificationInfo.Delete.Equals(info))
         	{
-				Utilits.Console.Log("[МОНИТОРИНГ] Данные в базе данных были обновлены.");
+				Utilits.Console.Log("[МОНИТОРИНГ] Получены новые данные с сервера.");
 				
 				Table table;
 				int i = 0;
@@ -165,7 +168,7 @@ namespace Aggregator.Database.Server
 		public void MonitoringStop()
 		{
 			SqlDependency.Stop(DataConfig.serverConnection);
-			Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] Мониторинг обновлений базы данных прекратил свою работу!", false, true);
+			Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] Остановка процесса!", false, true);
 			DataForms.FClient.indicator(false);
 		}
 		
@@ -180,9 +183,9 @@ namespace Aggregator.Database.Server
 				if(tableName == "PurchasePlan" && DataForms.FPurchasePlanJournal != null) DataForms.FPurchasePlanJournal.TableRefresh();
 				if(tableName == "Orders" && DataForms.FOrderJournal != null) DataForms.FOrderJournal.TableRefresh();
 				
-				Utilits.Console.Log("[МОНИТОРИНГ] Таблица " + tableRepresent + " была успешно обновлена.");
+				Utilits.Console.Log("[МОНИТОРИНГ] Таблица '" + tableRepresent + "' была успешно обновлена.");
 			}catch(Exception ex){
-				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] Обновление таблицы "+ tableRepresent + "! " + ex.Message.ToString(), false, true);
+				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] Обновление таблицы '"+ tableRepresent + "' " + ex.Message.ToString(), false, true);
 			}
 		}
 		
@@ -198,7 +201,7 @@ namespace Aggregator.Database.Server
 				sqlServer.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["user"] = DataConfig.userName;
 				sqlServer.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["datetime"] = DateTime.Now.ToString();
 				
-				if(!sqlServer.ExecuteUpdate("History")) Utilits.Console.Log("[ОШИБКА] ошибка обновления данных.", false, true);
+				if(!sqlServer.ExecuteUpdate("History")) Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] ошибка обновления данных.", false, true);
 			}catch(Exception ex){
 				sqlServer.Error();
 				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message.ToString(), false, true);

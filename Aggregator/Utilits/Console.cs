@@ -20,6 +20,7 @@ namespace Aggregator.Utilits
 		public static void Log(String message, bool clear = false, bool show = false)
 		{
 			if(DataForms.FClient != null){
+				if(DataForms.FClient.consoleText.Text.Length > 10000) DataForms.FClient.consoleText.Clear();
 				if(show){
 					DataForms.FClient.consolePanel.Visible = true;
 				}
