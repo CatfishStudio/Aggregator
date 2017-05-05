@@ -1,6 +1,6 @@
 ﻿/*
  * Создано в SharpDevelop.
- * Пользователь: Cartish
+ * Пользователь: Somov Studio
  * Дата: 27.03.2017
  * Время: 11:02
  * 
@@ -43,20 +43,28 @@ namespace Aggregator.Database.Local
 			
 			oleDbConnection = new OleDbConnection();
 			oleDbConnection.ConnectionString = DataConfig.oledbConnectLineBegin + DataConfig.localDatabase + DataConfig.oledbConnectLineEnd + DataConfig.oledbConnectPass;
-			oleDbConnection.Open();
 			oleDbCommand = new OleDbCommand("SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", oleDbConnection);
-			oleDbDataReader = oleDbCommand.ExecuteReader();
-			while (oleDbDataReader.Read())
-	        {
-				table.name = oleDbDataReader["name"].ToString();
-				table.represent = oleDbDataReader["represent"].ToString();
-				table.datetime = oleDbDataReader["datetime"].ToString();
-				table.error = oleDbDataReader["error"].ToString();
-				table.user = oleDbDataReader["user"].ToString();
-				tables.Add(table);
+			
+			try{
+				oleDbConnection.Open();
+				oleDbDataReader = oleDbCommand.ExecuteReader();
+				while (oleDbDataReader.Read())
+		        {
+					table.name = oleDbDataReader["name"].ToString();
+					table.represent = oleDbDataReader["represent"].ToString();
+					table.datetime = oleDbDataReader["datetime"].ToString();
+					table.error = oleDbDataReader["error"].ToString();
+					table.user = oleDbDataReader["user"].ToString();
+					tables.Add(table);
+				}
+				oleDbDataReader.Close();
+				oleDbConnection.Close();
+			}catch(Exception ex){
+				Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
+				if(oleDbDataReader != null) oleDbDataReader.Close();
+				if(oleDbConnection != null) oleDbConnection.Close();
+				return;
 			}
-			oleDbDataReader.Close();
-			oleDbConnection.Close();
 			
 			oleDb = new OleDb(DataConfig.localDatabase);
 			oleDb.oleDbCommandSelect.CommandText = "SELECT [id], [name], [represent], [datetime], [error], [user] FROM History";
@@ -73,40 +81,58 @@ namespace Aggregator.Database.Local
 			oleDb.oleDbCommandUpdate.Parameters.Add("@error", OleDbType.VarChar, 255, "error");
 			oleDb.oleDbCommandUpdate.Parameters.Add("@user", OleDbType.VarChar, 255, "user");
 			oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
-			oleDb.ExecuteFill("History");
+			if(!oleDb.ExecuteFill("History")){
+				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] История обновлений базы данных не загружена!");
+			}
 		}
 		
 		/* Проверить обновления */
 		public void check()
 		{
-			Table table;
-			
-			oleDbConnection.Open();
-			oleDbCommand = new OleDbCommand("SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", oleDbConnection);
-			oleDbDataReader = oleDbCommand.ExecuteReader();
-			
-			int i = 0;
-			while (oleDbDataReader.Read())
-	        {
-				table.name = oleDbDataReader["name"].ToString();
-				table.represent = oleDbDataReader["represent"].ToString();
-				table.datetime = oleDbDataReader["datetime"].ToString();
-				table.error = oleDbDataReader["error"].ToString();
-				table.user = oleDbDataReader["user"].ToString();
-
-				if(tables[i].datetime != table.datetime){
-					refresh(tables[i].name, tables[i].represent);
-					tables[i] = table;
-				}
-				i++;
+			if(oleDb.dataSet.Tables.Count == 0){
+				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Мониторинг не запущен! Неудалось проверить обновления базы данных!", false, true);
+				return;
 			}
-			oleDbDataReader.Close();
-			oleDbConnection.Close();
+			
+			Table table;
+			int i = 0;
+			
+			try{
+				oleDbConnection.Open();
+				oleDbCommand = new OleDbCommand("SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", oleDbConnection);
+				oleDbDataReader = oleDbCommand.ExecuteReader();
+							
+				while (oleDbDataReader.Read())
+		        {
+					table.name = oleDbDataReader["name"].ToString();
+					table.represent = oleDbDataReader["represent"].ToString();
+					table.datetime = oleDbDataReader["datetime"].ToString();
+					table.error = oleDbDataReader["error"].ToString();
+					table.user = oleDbDataReader["user"].ToString();
+	
+					if(tables[i].datetime != table.datetime){
+						refresh(tables[i].name, tables[i].represent);
+						tables[i] = table;
+					}
+					i++;
+				}
+				oleDbDataReader.Close();
+				oleDbConnection.Close();
+			}catch(Exception ex){
+				Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
+				if(oleDbDataReader != null) oleDbDataReader.Close();
+				if(oleDbConnection != null) oleDbConnection.Close();
+			}
 		}
 		
 		/* Обновить */
 		public void update(String tableName)
 		{
+			if(oleDb.dataSet.Tables.Count == 0){
+				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Мониторинг не запущен! Не удалось обновить историю!", false, true);
+				return;
+			}
+			
 			try{
 				oleDb.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["user"] = DataConfig.userName;
 				oleDb.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["datetime"] = DateTime.Now.ToString();
@@ -131,7 +157,6 @@ namespace Aggregator.Database.Local
 				
 				Utilits.Console.Log("[ИСТОРИЯ] Таблица " + tableRepresent + " была успешно обновлена.");
 			}catch(Exception ex){
-				oleDb.Error();
 				Utilits.Console.Log("[ОШИБКА] Обновление таблицы "+ tableRepresent + "! " + ex.Message.ToString(), false, true);
 			}
 		}
@@ -149,12 +174,17 @@ namespace Aggregator.Database.Local
 		
 		public void Dispose()
 		{
-			oleDb.Dispose();
-			oleDbDataReader.Close();
-			oleDbCommand.Dispose();
-			oleDbConnection.Dispose();
-			tables.Clear();
-			tables = null;
+			if(oleDb != null) oleDb.Dispose();
+			if(oleDbDataReader != null)oleDbDataReader.Close();
+			if(oleDbCommand != null) oleDbCommand.Dispose();
+			if(oleDbConnection != null){
+				oleDbConnection.Close();
+				oleDbConnection.Dispose();
+			}
+			if(tables != null) {
+				tables.Clear();
+				tables = null;
+			}
 		}
 	}
 }

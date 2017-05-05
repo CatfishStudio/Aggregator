@@ -222,11 +222,10 @@ namespace Aggregator.Client
 		public void autoUpdateOn()
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
-				toolStripStatusLabel1.ImageIndex = 1;
-				toolStripStatusLabel1.Visible = true;
+				indicator(true);
 				timer1.Start();
 			}else{
-				toolStripStatusLabel1.Visible = false;
+				indicator(false);
 				timer1.Stop();
 			}
 		}
@@ -234,12 +233,22 @@ namespace Aggregator.Client
 		public void autoUpdateOff()
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
-				toolStripStatusLabel1.ImageIndex = 2;
-				toolStripStatusLabel1.Visible = true;
+				indicator(false);
 				timer1.Stop();
 			}else{
-				toolStripStatusLabel1.Visible = false;
+				indicator(false);
 				timer1.Stop();
+			}
+		}
+		
+		public void indicator(Boolean statusOnOff)
+		{
+			if(statusOnOff){ // on (автоматическое обновление включено)
+				toolStripStatusLabel1.ImageIndex = 0;
+				toolStripStatusLabel1.Visible = true;
+			}else{ // off (автоматическое обновление отключено)
+				toolStripStatusLabel1.ImageIndex = 2;
+				toolStripStatusLabel1.Visible = true;
 			}
 		}
 		
@@ -250,9 +259,9 @@ namespace Aggregator.Client
 				// OLEDB
 				if(DataConfig.autoUpdate && historyRefreshOleDb != null) historyRefreshOleDb.update(tableName);
 				if(!DataConfig.autoUpdate && historyRefreshOleDb != null) historyRefreshOleDb.refresh(tableName, tableName);
-			}else{	
+			}else if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER){	
 				// MSSQL
-
+				if(historyRefreshSqlServer != null)	historyRefreshSqlServer.update(tableName);
 			}
 		}
 		
@@ -265,27 +274,39 @@ namespace Aggregator.Client
 		{
 			statusStrip1.ImageList = imageList1;
 			
-			ReadingConstants readingConstants = new ReadingConstants();
+			ReadingConstants readingConstants = new ReadingConstants(); // константы
 			readingConstants.read();
 			readingConstants.Dispose();
 			
+			applyPermissions(); // права пользователя
+			
+			Utilits.Console.Log("Программа запущена!");
+			
+			/* Мониторин (автоматическое обновление данных в прогремме) */
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){ // OLEDB
 				historyRefreshOleDb = new HistoryRefreshOleDb();
 				if(DataConfig.autoUpdate) autoUpdateOn();
 				else autoUpdateOff();
 			}else if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER){	// MSSQL
-				toolStripStatusLabel1.Visible = false;
 				historyRefreshSqlServer = new HistoryRefreshSqlServer();
-				historyRefreshSqlServer.MonitoringStart("database");
+				historyRefreshSqlServer.MonitoringRun();
 			}
-			applyPermissions();
-			Utilits.Console.Log("Программа успешно запущена!");
 		}
 		void FormClientFormClosing(object sender, FormClosingEventArgs e)
 		{
 			if(MessageBox.Show("Вы хотите выйти из программы?","Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
 				e.Cancel = false;
 			}else{
+				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL)
+				{
+					timer1.Stop();
+					historyRefreshOleDb.Dispose();
+				}
+				if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER)
+				{
+					historyRefreshSqlServer.MonitoringStop();
+					historyRefreshSqlServer.Dispose();
+				}
 				e.Cancel = true;
 			}
 		}

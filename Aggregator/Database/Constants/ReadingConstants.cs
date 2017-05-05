@@ -71,6 +71,7 @@ namespace Aggregator.Database.Constants
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				try{
+					sqlConnection.Open();
 					sqlCommand = new SqlCommand("SELECT [id], [name], [address], [vat], [units], " +
 					                            "[email], [emailPwd], [smtpServer], [port],[EnableSsl],[caption],[message] " +
 					                            "FROM Constants", sqlConnection);

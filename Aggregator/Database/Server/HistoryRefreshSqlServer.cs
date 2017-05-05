@@ -1,6 +1,6 @@
 ﻿/*
  * Создано в SharpDevelop.
- * Пользователь: Cartish
+ * Пользователь: Somov Studio
  * Дата: 14.03.2017
  * Время: 9:46
  * 
@@ -28,11 +28,42 @@ namespace Aggregator.Database.Server
 	
 	public class HistoryRefreshSqlServer
 	{
-		List<Table> tables;
 		SqlServer sqlServer;
+		SqlConnection sqlConnection;
+		SqlCommand sqlCommand;
+		SqlDataReader sqlDataReader;
+		
+		List<Table> tables;
 		
 		public HistoryRefreshSqlServer()
 		{
+			tables = new List<Table>();
+			Table table;
+			
+			sqlConnection = new SqlConnection(DataConfig.serverConnection);
+			sqlCommand = new SqlCommand("SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", sqlConnection);
+			
+			try{
+				sqlConnection.Open();
+				sqlDataReader = sqlCommand.ExecuteReader();
+				while (sqlDataReader.Read())
+		        {
+					table.name = sqlDataReader["name"].ToString();
+					table.represent = sqlDataReader["represent"].ToString();
+					table.datetime = sqlDataReader["datetime"].ToString();
+					table.error = sqlDataReader["error"].ToString();
+					table.user = sqlDataReader["user"].ToString();
+					tables.Add(table);
+				}
+				sqlDataReader.Close();
+				sqlConnection.Close();
+			}catch(Exception ex){
+				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message, false, true);
+				if(sqlDataReader != null) sqlDataReader.Close();
+				if(sqlConnection != null) sqlConnection.Close();
+				return;
+			}
+			
 			sqlServer = new SqlServer();
 			sqlServer.sqlCommandSelect.CommandText = "SELECT [id], [name], [represent], [datetime], [error], [user] FROM History";
 			sqlServer.sqlCommandUpdate.CommandText = "UPDATE History SET " +
@@ -48,75 +79,157 @@ namespace Aggregator.Database.Server
 			sqlServer.sqlCommandUpdate.Parameters.Add("@error", SqlDbType.VarChar, 255, "error");
 			sqlServer.sqlCommandUpdate.Parameters.Add("@user", SqlDbType.VarChar, 255, "user");
 			sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
-			if(sqlServer.ExecuteFill("History")){
-				tables = new List<Table>();
-				Table table;
-				foreach(DataRow row in sqlServer.dataSet.Tables["History"].Rows)
-				{
-					table.name = row["name"].ToString();
-					table.represent = row["represent"].ToString();
-					table.datetime = row["datetime"].ToString();
-					table.error = row["error"].ToString();
-					table.user = row["user"].ToString();
-					tables.Add(table);
-				}
-				sqlServer.Dispose();
-			}else{
-				sqlServer.Dispose();
-				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] История обновления баз данных не загружена!");
+			if(!sqlServer.ExecuteFill("History")){
+				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] История обновлений базы данных не загружена!");
 			}
 		}
 		
-		public void MonitoringStart(String databaseName)
+		public void MonitoringRun()
 		{
-			if(sqlServer.dataSet.Tables.Count == 0) return;
-			
-			try{
-				SqlDependency.Start(DataConfig.serverConnection, "ALTER DATABASE "+databaseName+" set enable_broker");
-				using (SqlConnection connection = new SqlConnection(DataConfig.serverConnection))
-		        {
-		            connection.Open();
-		            using (var command = new SqlCommand(
-		                "SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", connection))
-			            {
-			                var sqlDependency = new SqlDependency(command);
-			                sqlDependency.OnChange += new OnChangeEventHandler(OnDependencyChange);
-			                command.ExecuteReader();
-			            }
-		        }
-			}catch(Exception ex){
-				Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
+			if(sqlServer.dataSet.Tables.Count == 0){
+				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] Мониторинг обновлений базы данных не удалось запустить!", false, true);
+				return;
 			}
 			
-			
-			/*
+			SqlDependency.Stop(DataConfig.serverConnection);
 			SqlDependency.Start(DataConfig.serverConnection);
-			using (SqlCommand command = new SqlCommand("SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", sqlServer.sqlConnection))
-    		{
-        		SqlDependency dependency=new SqlDependency(command);
-        		dependency.OnChange += new OnChangeEventHandler(OnDependencyChange);
-		        using (SqlDataReader reader = command.ExecuteReader())
-		        {
-		        	Utilits.Console.Log("[MonitoringStart] " + reader.ToString());
-		        }
-			}
-			*/
+        	monitoringProcess();
+        	Utilits.Console.Log("Мониторинг обновлений базы данных успешно запущен!");
+        	DataForms.FClient.indicator(true);
 		}
 		
-		void OnDependencyChange(object sender, SqlNotificationEventArgs e)
+		void monitoringProcess()
 		{
-			SqlNotificationInfo info = e.Info;
-        	if (SqlNotificationInfo.Insert.Equals(info) || SqlNotificationInfo.Update.Equals(info)
+			using (SqlConnection connection = new SqlConnection(DataConfig.serverConnection))
+	        {
+	            connection.Open();
+	            try{
+		            using (var command = new SqlCommand(
+		                "SELECT [id], [name], [represent], [datetime], [error], [user] FROM dbo.History", connection))
+		            {
+		                var sqlDependency = new SqlDependency(command);
+		                sqlDependency.OnChange += new OnChangeEventHandler(onDependencyChange);
+		                command.ExecuteReader();
+		            }
+	            }catch(Exception ex){
+					Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message, false, true);
+					if(connection != null) connection.Close();
+					MonitoringStop();
+					return;
+				}
+	        }
+		}
+		
+		void onDependencyChange(object sender, SqlNotificationEventArgs args)
+		{
+			SqlNotificationInfo info = args.Info;
+        	if (SqlNotificationInfo.Insert.Equals(info) 
+			    || SqlNotificationInfo.Update.Equals(info)
             	|| SqlNotificationInfo.Delete.Equals(info))
         	{
-            	//...
+				Utilits.Console.Log("[МОНИТОРИНГ] Данные в базе данных были обновлены.");
+				
+				Table table;
+				int i = 0;
+				
+				try{
+					sqlConnection = new SqlConnection(DataConfig.serverConnection);
+					sqlCommand = new SqlCommand("SELECT [id], [name], [represent], [datetime], [error], [user] FROM History", sqlConnection);
+					sqlConnection.Open();
+					sqlDataReader = sqlCommand.ExecuteReader();
+					while (sqlDataReader.Read())
+			        {
+						table.name = sqlDataReader["name"].ToString();
+						table.represent = sqlDataReader["represent"].ToString();
+						table.datetime = sqlDataReader["datetime"].ToString();
+						table.error = sqlDataReader["error"].ToString();
+						table.user = sqlDataReader["user"].ToString();
+
+						if(tables[i].datetime != table.datetime){
+							refresh(tables[i].name, tables[i].represent);
+							tables[i] = table;
+						}
+						i++;
+					}
+					sqlDataReader.Close();
+					sqlConnection.Close();
+				}catch(Exception ex){
+					Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message, false, true);
+					if(sqlDataReader != null) sqlDataReader.Close();
+					if(sqlConnection != null) sqlConnection.Close();
+				}
         	}
-			Utilits.Console.Log("[OnDependencyChange] " + e.ToString());
+			monitoringProcess();
 		}
 
 		public void MonitoringStop()
 		{
 			SqlDependency.Stop(DataConfig.serverConnection);
+			Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] Мониторинг обновлений базы данных прекратил свою работу!", false, true);
+			DataForms.FClient.indicator(false);
 		}
+		
+		/* Обновить таблицы новыми данными */
+		public void refresh(String tableName, String tableRepresent)
+		{
+			try{
+				if(tableName == "Users" && DataForms.FUsers != null) DataForms.FUsers.TableRefresh();
+				if(tableName == "Counteragents" && DataForms.FCounteragents != null) DataForms.FCounteragents.TableRefresh();
+				if(tableName == "Nomenclature" && DataForms.FNomenclature != null) DataForms.FNomenclature.TableRefresh();
+				if(tableName == "Units" && DataForms.FUnits != null) DataForms.FUnits.TableRefresh();
+				if(tableName == "PurchasePlan" && DataForms.FPurchasePlanJournal != null) DataForms.FPurchasePlanJournal.TableRefresh();
+				if(tableName == "Orders" && DataForms.FOrderJournal != null) DataForms.FOrderJournal.TableRefresh();
+				
+				Utilits.Console.Log("[МОНИТОРИНГ] Таблица " + tableRepresent + " была успешно обновлена.");
+			}catch(Exception ex){
+				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] Обновление таблицы "+ tableRepresent + "! " + ex.Message.ToString(), false, true);
+			}
+		}
+		
+		/* Обновить */
+		public void update(String tableName)
+		{
+			if(sqlServer.dataSet.Tables.Count == 0){
+				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] Мониторинг не запущен! Не удалось обновить историю!", false, true);
+				return;
+			}
+			
+			try{
+				sqlServer.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["user"] = DataConfig.userName;
+				sqlServer.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["datetime"] = DateTime.Now.ToString();
+				
+				if(!sqlServer.ExecuteUpdate("History")) Utilits.Console.Log("[ОШИБКА] ошибка обновления данных.", false, true);
+			}catch(Exception ex){
+				sqlServer.Error();
+				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message.ToString(), false, true);
+			}
+		}
+		
+		int getTableIndex(String tableName)
+		{
+			if(tableName == "Users") return 0;
+			if(tableName == "Counteragents") return 1;
+			if(tableName == "Nomenclature") return 2;
+			if(tableName == "Units") return 3;
+			if(tableName == "PurchasePlan") return 4;
+			if(tableName == "Orders") return 5;
+			return -1;
+		}
+		
+		public void Dispose()
+		{
+			if(sqlServer != null) sqlServer.Dispose();
+			if(sqlDataReader != null) sqlDataReader.Close();
+			if(sqlCommand != null) sqlCommand.Dispose();
+			if(sqlConnection != null){
+				sqlConnection.Close();
+				sqlConnection.Dispose();
+			}
+			if(tables != null) {
+				tables.Clear();
+				tables = null;
+			}
+		}
+		
 	}
 }
