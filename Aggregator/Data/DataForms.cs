@@ -35,6 +35,7 @@ namespace Aggregator.Data
 		public static FormOrderJournal FOrderJournal;
 		/*Администратор*/
 		public static FormSettingsDatabase FSettingsDatabase;
+		public static FormDatabase FDatabase;
 		public static FormConsoleQuery FConsoleQuery;
 		public static FormUsers FUsers;
 	}

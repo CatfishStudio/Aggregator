@@ -75,10 +75,10 @@ namespace Aggregator.Client
 		/* Открыть окно настройки подключения к базе данных */
 		void databaseSettingsShow()
 		{
-			if(DataForms.FSettingsDatabase == null){
-				DataForms.FSettingsDatabase = new FormSettingsDatabase();
-				DataForms.FSettingsDatabase.MdiParent = DataForms.FClient;
-				DataForms.FSettingsDatabase.Show();
+			if(DataForms.FDatabase == null){
+				DataForms.FDatabase = new FormDatabase();
+				DataForms.FDatabase.MdiParent = DataForms.FClient;
+				DataForms.FDatabase.Show();
 			}
 		}
 		

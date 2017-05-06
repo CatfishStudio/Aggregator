@@ -57,6 +57,10 @@
     <Compile Include="Admin\FormConsoleQuery.Designer.cs">
       <DependentUpon>FormConsoleQuery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\FormDatabase.cs" />
+    <Compile Include="Admin\FormDatabase.Designer.cs">
+      <DependentUpon>FormDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\FormSettingsDatabase.cs" />
     <Compile Include="Admin\FormSettingsDatabase.Designer.cs">
       <DependentUpon>FormSettingsDatabase.cs</DependentUpon>
@@ -205,6 +209,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Admin\FormConsoleQuery.resx">
       <DependentUpon>FormConsoleQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormDatabase.resx">
+      <DependentUpon>FormDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\FormSettingsDatabase.resx">
       <DependentUpon>FormSettingsDatabase.cs</DependentUpon>
