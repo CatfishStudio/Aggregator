@@ -25,7 +25,7 @@ namespace Aggregator.Database.Config
 				DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
 				DataConfig.oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
 				DataConfig.oledbConnectPass = "12345";
-				createDataBase = new CreateDatabase(DataConfig.configFile, DataConstants.TYPE_OLEDB);
+				createDataBase = new CreateDatabase(DataConfig.configFile);
 			
 			}catch(Exception ex){
 				MessageBox.Show(ex.ToString(), "Ошибка:");
