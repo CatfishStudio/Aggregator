@@ -12,7 +12,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Aggregator.Data;
-using Aggregator.Database.Base;
+using Aggregator.Database;
 using Aggregator.User;
 using Aggregator.Database.Config;
 
@@ -79,7 +79,12 @@ namespace Aggregator
 			
 			// Поиск локальной базы данный Database
 			if(!File.Exists(DataConfig.localDatabase) && DataConfig.typeConnection == DataConstants.CONNETION_LOCAL){
-				CreateBase.CreateBaseOleDb(); //файл не найден, он будет создан
+				// файл не найден, он будет создан
+				DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+				DataConfig.oledbConnectLineEnd = "";
+				DataConfig.oledbConnectPass = "";
+				CreateDatabaseMSAccess createDatabaseMSAccess = new CreateDatabaseMSAccess(DataConfig.localDatabase);
+				createDatabaseMSAccess.CreateDB();
 			}
 			
 			createFormSelectUser();

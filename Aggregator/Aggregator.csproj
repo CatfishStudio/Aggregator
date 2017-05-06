@@ -57,6 +57,14 @@
     <Compile Include="Admin\FormConsoleQuery.Designer.cs">
       <DependentUpon>FormConsoleQuery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\FormCreateAccessDB.cs" />
+    <Compile Include="Admin\FormCreateAccessDB.Designer.cs">
+      <DependentUpon>FormCreateAccessDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormCreateMSSQLDB.cs" />
+    <Compile Include="Admin\FormCreateMSSQLDB.Designer.cs">
+      <DependentUpon>FormCreateMSSQLDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\FormDatabase.cs" />
     <Compile Include="Admin\FormDatabase.Designer.cs">
       <DependentUpon>FormDatabase.cs</DependentUpon>
@@ -150,8 +158,6 @@
     <Compile Include="Client\Settings\FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Database\Base\CreateBase.cs" />
-    <Compile Include="Database\Base\CreateBaseTables.cs" />
     <Compile Include="Database\Config\CreateConfig.cs" />
     <Compile Include="Database\Config\CreateConfigTables.cs" />
     <Compile Include="Database\Config\ReadingConfig.cs" />
@@ -159,6 +165,8 @@
     <Compile Include="Database\Constants\ReadingConstants.cs" />
     <Compile Include="Database\Constants\SavingConstants.cs" />
     <Compile Include="Database\CreateDatabase.cs" />
+    <Compile Include="Database\CreateDatabaseMSAccess.cs" />
+    <Compile Include="Database\CreateDatabaseMSSQL.cs" />
     <Compile Include="Database\Local\HistoryRefreshOleDb.cs" />
     <Compile Include="Database\Local\OleDb.cs" />
     <Compile Include="Database\Local\QueryOleDb.cs" />
@@ -209,6 +217,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Admin\FormConsoleQuery.resx">
       <DependentUpon>FormConsoleQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormCreateAccessDB.resx">
+      <DependentUpon>FormCreateAccessDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\FormDatabase.resx">
       <DependentUpon>FormDatabase.cs</DependentUpon>
@@ -318,7 +329,6 @@
     <Folder Include="Admin" />
     <Folder Include="Database\Config" />
     <Folder Include="Database\Local" />
-    <Folder Include="Database\Base" />
     <Folder Include="Database\Server" />
     <Folder Include="Database\Constants" />
     <Folder Include="Utilits" />

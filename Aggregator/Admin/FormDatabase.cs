@@ -53,6 +53,10 @@ namespace Aggregator.Admin
 			Utilits.Console.Log("Настройки базы данных: закрыт.");
 			DataForms.FDatabase = null;
 		}
+		void FormDatabaseActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
+		}
 		void ButtonCloseClick(object sender, EventArgs e)
 		{
 			Close();
@@ -98,7 +102,9 @@ namespace Aggregator.Admin
 		}
 		void Button2Click(object sender, EventArgs e)
 		{
-	
+			FormCreateAccessDB FCreateAccessDB = new FormCreateAccessDB();
+			FCreateAccessDB.MdiParent = DataForms.FClient;
+			FCreateAccessDB.Show();
 		}
 		void TestConnectButtonClick(object sender, EventArgs e)
 		{
