@@ -83,7 +83,6 @@ namespace Aggregator.Database.Server
 				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] История обновлений базы данных не загружена!", false, true);
 			}
 			Utilits.Console.Log("[МОНИТОРИНГ] Подготовка завершена.");
-			//MonitoringRun();
 		}
 		
 		public void MonitoringRun()
@@ -93,11 +92,15 @@ namespace Aggregator.Database.Server
 				return;
 			}
 			
-			SqlDependency.Stop(DataConfig.serverConnection);
-			SqlDependency.Start(DataConfig.serverConnection);
-        	monitoringProcess();
-        	DataForms.FClient.indicator(true);
-        	Utilits.Console.Log("[МОНИТОРИНГ] Процесс успешно запущен.");
+			try{
+				SqlDependency.Stop(DataConfig.serverConnection);
+				SqlDependency.Start(DataConfig.serverConnection);
+	        	monitoringProcess();
+	        	DataForms.FClient.indicator(true);
+	        	Utilits.Console.Log("[МОНИТОРИНГ] Процесс успешно запущен.");
+        	}catch(Exception ex){
+				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message, false, true);
+			}
 		}
 		
 		void monitoringProcess()
