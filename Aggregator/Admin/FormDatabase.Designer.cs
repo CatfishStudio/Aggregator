@@ -32,6 +32,7 @@ namespace Aggregator.Admin
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button button5;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -60,6 +61,7 @@ namespace Aggregator.Admin
 			this.buttonClose = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.button5 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.testConnectButton = new System.Windows.Forms.Button();
 			this.serverTextBox = new System.Windows.Forms.TextBox();
@@ -84,7 +86,7 @@ namespace Aggregator.Admin
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonClose);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 277);
+			this.panel1.Location = new System.Drawing.Point(0, 297);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(456, 45);
 			this.panel1.TabIndex = 1;
@@ -126,20 +128,31 @@ namespace Aggregator.Admin
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(456, 277);
+			this.panel2.Size = new System.Drawing.Size(456, 297);
 			this.panel2.TabIndex = 2;
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.button5);
 			this.groupBox2.Controls.Add(this.button3);
 			this.groupBox2.Controls.Add(this.testConnectButton);
 			this.groupBox2.Controls.Add(this.serverTextBox);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Location = new System.Drawing.Point(12, 165);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(432, 100);
+			this.groupBox2.Size = new System.Drawing.Size(432, 123);
 			this.groupBox2.TabIndex = 3;
 			this.groupBox2.TabStop = false;
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(80, 88);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(341, 23);
+			this.button5.TabIndex = 8;
+			this.button5.Text = "Создать таблицы в пустой базе данных";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.Button5Click);
 			// 
 			// button3
 			// 
@@ -273,7 +286,7 @@ namespace Aggregator.Admin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(456, 322);
+			this.ClientSize = new System.Drawing.Size(456, 342);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
