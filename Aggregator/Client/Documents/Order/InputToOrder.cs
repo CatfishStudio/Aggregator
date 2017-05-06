@@ -390,7 +390,7 @@ namespace Aggregator.Client.Documents.Order
 						
 						if(thisIsOrderUpdate == ""){ // Создаём новый заказ
 							/* Сохранение основных данных документа Заказ */
-							sqlQuery = new QuerySqlServer();
+							sqlQuery = new QuerySqlServer(DataConfig.serverConnection);
 							sqlQuery.SetCommand("INSERT INTO Orders " +
 								"(docDate, docNumber, docName, docCounteragent, " +
 								"docAutor, docSum, docVat, docTotal, docPurchasePlan) " +
@@ -424,7 +424,7 @@ namespace Aggregator.Client.Documents.Order
 								report += "Документ План закупок №" + docPPNumber + " - обновлён!";
 								
 								/* Перерасчет Заказа */
-								sqlQuery = new QuerySqlServer();
+								sqlQuery = new QuerySqlServer(DataConfig.serverConnection);
 								oleDbQuery.SetCommand("UPDATE Orders SET " +
 				                    "docSum = " + Conversion.DoubleToString(orderDoc.docSum) + ", " +
 									"docVat = " + Conversion.DoubleToString(orderDoc.docVat) + ", " +

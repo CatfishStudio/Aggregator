@@ -9,6 +9,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Aggregator.Data;
 using Aggregator.Database;
 
 namespace Aggregator.Admin
@@ -31,15 +32,17 @@ namespace Aggregator.Admin
 		}
 		void FormCreateAccessDBLoad(object sender, EventArgs e)
 		{
-	
+			Utilits.Console.Log(this.Text + ": открыт.");
 		}
 		void FormCreateAccessDBFormClosed(object sender, FormClosedEventArgs e)
 		{
-	
+			Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(this.Text + ": закрыт.");
 		}
 		void FormCreateAccessDBActivated(object sender, EventArgs e)
 		{
-	
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 		void ButtonCloseClick(object sender, EventArgs e)
 		{
@@ -53,6 +56,15 @@ namespace Aggregator.Admin
 		}
 		void ButtonSaveClick(object sender, EventArgs e)
 		{
+			if(baseNameTextBox.Text == ""){
+				MessageBox.Show("Вы не ввели имя базы данных!", "Предупреждение");
+				return;
+			}
+			if(pathTextBox.Text == ""){
+				MessageBox.Show("Вы не выбрали путь куда необходимо сохранить файл!", "Предупреждение");
+				return;
+			}
+			
 			CreateDatabaseMSAccess createDatabaseMSAccess = new CreateDatabaseMSAccess(pathTextBox.Text + "\\" + baseNameTextBox.Text + ".mdb");
 			createDatabaseMSAccess.CreateDB();
 		}

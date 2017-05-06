@@ -225,7 +225,7 @@ namespace Aggregator.Client.Directories
 						}
 					} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 						// MSSQL SERVER
-						QuerySqlServer query = new QuerySqlServer();
+						QuerySqlServer query = new QuerySqlServer(DataConfig.serverConnection);
 						query.SetCommand("DELETE FROM Units WHERE (id = " + fileID + ")");
 						if(query.Execute()){
 							Utilits.Console.Log("Единица измерений '" + fileName + "' успешно удалена.");

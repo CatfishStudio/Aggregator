@@ -363,7 +363,7 @@ namespace Aggregator.Client.Directories
 							}
 						} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 							// MSSQL SERVER
-							QuerySqlServer query = new QuerySqlServer();
+							QuerySqlServer query = new QuerySqlServer(DataConfig.serverConnection);
 							query.SetCommand("DELETE FROM Nomenclature WHERE (id = " + fileID + ")");
 							if(query.Execute()){
 								Utilits.Console.Log("Номенклатура '" + fileName + "' успешно удалена.");
@@ -433,11 +433,11 @@ namespace Aggregator.Client.Directories
 							
 						}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 							// MSSQL SERVER
-							QuerySqlServer query = new QuerySqlServer();
-							query = new QuerySqlServer();
+							QuerySqlServer query = new QuerySqlServer(DataConfig.serverConnection);
+							query = new QuerySqlServer(DataConfig.serverConnection);
 							query.SetCommand("DELETE FROM Nomenclature WHERE (parent ='" + folderName +"')");
 							if(query.Execute()){
-								query = new QuerySqlServer();
+								query = new QuerySqlServer(DataConfig.serverConnection);
 								query.SetCommand("DELETE FROM Nomenclature WHERE (id = " + folderID +")");
 								if(query.Execute()){
 									DataForms.FClient.updateHistory("Nomenclature");

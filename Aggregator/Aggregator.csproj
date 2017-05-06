@@ -221,6 +221,9 @@
     <EmbeddedResource Include="Admin\FormCreateAccessDB.resx">
       <DependentUpon>FormCreateAccessDB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormCreateMSSQLDB.resx">
+      <DependentUpon>FormCreateMSSQLDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\FormDatabase.resx">
       <DependentUpon>FormDatabase.cs</DependentUpon>
     </EmbeddedResource>

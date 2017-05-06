@@ -22,10 +22,10 @@ namespace Aggregator.Database.Server
 		SqlConnection sqlConnection;
 		SqlCommand sqlCommand;		
 		
-		public QuerySqlServer()
+		public QuerySqlServer(String connectionString)
 		{
 			sqlConnection = new SqlConnection();
-			sqlConnection.ConnectionString = DataConfig.serverConnection;
+			sqlConnection.ConnectionString = connectionString;
 		}
 		
 		public void SetCommand(String sqlTextCommand)

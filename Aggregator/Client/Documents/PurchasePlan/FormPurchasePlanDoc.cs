@@ -651,7 +651,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				}
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
-				QuerySqlServer query = new QuerySqlServer();
+				QuerySqlServer query = new QuerySqlServer(DataConfig.serverConnection);
 				query.SetCommand("DELETE FROM PurchasePlanPriceLists WHERE (docID = '" + docNumber + "')");
 				if(query.Execute()){
 					if(saveNewChangesPriceLists()){

@@ -365,10 +365,10 @@ namespace Aggregator.Client.Directories
 							}
 						} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 							// MSSQL SERVER
-							QuerySqlServer query = new QuerySqlServer();
+							QuerySqlServer query = new QuerySqlServer(DataConfig.serverConnection);
 							query.SetCommand("DELETE FROM Counteragents WHERE (id = " + fileID + ")");
 							if(query.Execute()){
-								query = new QuerySqlServer();
+								query = new QuerySqlServer(DataConfig.serverConnection);
 								query.SetCommand("DROP TABLE " + priceName);
 								if(query.Execute()){
 									Utilits.Console.Log("Контрагент '" + fileName + "' успешно удалён. Прайс '" + priceName + "' успешно удалён.");
@@ -452,7 +452,7 @@ namespace Aggregator.Client.Directories
 							}
 						} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 							// MSSQL SERVER
-							QuerySqlServer query = new QuerySqlServer();
+							QuerySqlServer query = new QuerySqlServer(DataConfig.serverConnection);
 							sqlServer = new SqlServer();
 							sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Counteragents WHERE(parent = '" + folderName + "')";
 							if(sqlServer.ExecuteFill("Counteragents")){
@@ -464,10 +464,10 @@ namespace Aggregator.Client.Directories
 										Utilits.Console.Log("[ОШИБКА] Прайс лист '" + row["excel_table_id"].ToString() + "' не удалось удалить!", false, true);
 									}
 								}
-								query = new QuerySqlServer();
+								query = new QuerySqlServer(DataConfig.serverConnection);
 								query.SetCommand("DELETE FROM Counteragents WHERE (parent ='" + folderName +"')");
 								if(query.Execute()){
-									query = new QuerySqlServer();
+									query = new QuerySqlServer(DataConfig.serverConnection);
 									query.SetCommand("DELETE FROM Counteragents WHERE (id = " + folderID +")");
 									if(query.Execute()){
 										DataForms.FClient.updateHistory("Counteragents");

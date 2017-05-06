@@ -265,10 +265,10 @@ namespace Aggregator.Client.Documents.Order
 				} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 					// MSSQL SERVER
 					QuerySqlServer query;
-					query = new QuerySqlServer();
+					query = new QuerySqlServer(DataConfig.serverConnection);
 					query.SetCommand("UPDATE OrderNomenclature SET docOrder = '' WHERE (docOrder = '" + docNumber + "')");
 					if(query.Execute()){
-						query = new QuerySqlServer();
+						query = new QuerySqlServer(DataConfig.serverConnection);
 						query.SetCommand("DELETE FROM Orders WHERE (id = " + docID + ")");
 						if(query.Execute()){
 							DataForms.FClient.updateHistory("Orders");

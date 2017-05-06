@@ -121,7 +121,9 @@ namespace Aggregator.Admin
 		}
 		void Button3Click(object sender, EventArgs e)
 		{
-	
+			FormCreateMSSQLDB FCreateMSSQLDB = new FormCreateMSSQLDB();
+			FCreateMSSQLDB.MdiParent = DataForms.FClient;
+			FCreateMSSQLDB.Show();
 		}
 		void RadioButtonsCheckedChanged(object sender, EventArgs e)
 		{

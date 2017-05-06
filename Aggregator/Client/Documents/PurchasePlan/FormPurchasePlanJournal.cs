@@ -260,28 +260,28 @@ namespace Aggregator.Client.Documents.PurchasePlan
 						// MSSQL SERVER
 						QuerySqlServer query;
 						
-						query = new QuerySqlServer();
+						query = new QuerySqlServer(DataConfig.serverConnection);
 						query.SetCommand("DELETE FROM Orders WHERE (docPurchasePlan = '" + docName + "')");
 						if(!query.Execute()){
 							Utilits.Console.Log("[ОШИБКА] Не удалось удалить заказы привязанные к Плану закупок №" + docName, false, true);
 							return;
 						}
 						
-						query = new QuerySqlServer();
+						query = new QuerySqlServer(DataConfig.serverConnection);
 						query.SetCommand("DELETE FROM OrderNomenclature WHERE (docPurchasePlan = '" + docName + "')");
 						if(!query.Execute()){
 							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не удалось удалить перечень номенклатуры!", false, true);
 							return;
 						}
 						
-						query = new QuerySqlServer();
+						query = new QuerySqlServer(DataConfig.serverConnection);
 						query.SetCommand("DELETE FROM PurchasePlanPriceLists WHERE (docID = '" + docName + "')");
 						if(!query.Execute()){
 							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не удалось удалить перечень прайс-листов!", false, true);
 							return;
 						}
 						
-						query = new QuerySqlServer();
+						query = new QuerySqlServer(DataConfig.serverConnection);
 						query.SetCommand("DELETE FROM PurchasePlan WHERE (id = " + docID + ")");
 						if(!query.Execute()){
 							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не получилось удалить!", false, true);

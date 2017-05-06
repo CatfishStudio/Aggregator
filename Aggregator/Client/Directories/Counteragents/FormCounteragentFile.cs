@@ -423,7 +423,7 @@ namespace Aggregator.Client.Directories
 				// MSSQL SERVER
 				String sqlCommand;
 				QuerySqlServer query;
-				query = new QuerySqlServer();
+				query = new QuerySqlServer(DataConfig.serverConnection);
 				sqlCommand = "CREATE TABLE " + ExcelTableID + " (" +
 					"[id] COUNTER PRIMARY KEY, " +
 					"[name] VARCHAR DEFAULT '', " +
@@ -547,7 +547,7 @@ namespace Aggregator.Client.Directories
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				String sqlCommand;
-				QuerySqlServer query = new QuerySqlServer();
+				QuerySqlServer query = new QuerySqlServer(DataConfig.serverConnection);
 				sqlCommand = "DROP TABLE " + excelTableID;
 				query.SetCommand(sqlCommand);
 				if(!query.Execute()){

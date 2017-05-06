@@ -124,7 +124,7 @@ namespace Aggregator.Client.Directories
 				query.Dispose();
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
-				QuerySqlServer query = new QuerySqlServer();
+				QuerySqlServer query = new QuerySqlServer(DataConfig.serverConnection);
 				query.SetCommand("UPDATE Nomenclature SET parent='" + nameTextBox.Text + "' WHERE(parent = '" + folderName + "')");
 				query.Execute();
 				query.Dispose();

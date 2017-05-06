@@ -28,7 +28,7 @@ namespace Aggregator.Database.Constants
 				oleDbQuery = new QueryOleDb(DataConfig.localDatabase);
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
-				sqlQuery = new QuerySqlServer();
+				sqlQuery = new QuerySqlServer(DataConfig.serverConnection);
 			}
 		}
 		
