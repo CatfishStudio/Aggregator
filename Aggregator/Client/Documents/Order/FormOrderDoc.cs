@@ -637,7 +637,6 @@ namespace Aggregator.Client.Documents.Order
 						ListViewItem_add.SubItems.Add("0,00");
 						ListViewItem_add.SubItems.Add("0,00");
 						ListViewItem_add.SubItems.Add(row["manufacturer"].ToString());
-						ListViewItem_add.SubItems.Add(row["manufacturer"].ToString());
 						ListViewItem_add.SubItems.Add(Conversion.StringToMoney(Conversion.StringToDouble(row["remainder"].ToString()).ToString()));
 						dt = new DateTime();
 						DateTime.TryParse(row["term"].ToString(), out dt);
