@@ -76,9 +76,9 @@ namespace Aggregator.Admin
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
 			this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSave.Location = new System.Drawing.Point(214, 10);
+			this.buttonSave.Location = new System.Drawing.Point(232, 10);
 			this.buttonSave.Name = "buttonSave";
-			this.buttonSave.Size = new System.Drawing.Size(85, 23);
+			this.buttonSave.Size = new System.Drawing.Size(76, 23);
 			this.buttonSave.TabIndex = 1;
 			this.buttonSave.Text = "Создать";
 			this.buttonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -90,11 +90,11 @@ namespace Aggregator.Admin
 			this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonClose.Image = ((System.Drawing.Image)(resources.GetObject("buttonClose.Image")));
 			this.buttonClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonClose.Location = new System.Drawing.Point(305, 10);
+			this.buttonClose.Location = new System.Drawing.Point(314, 10);
 			this.buttonClose.Name = "buttonClose";
-			this.buttonClose.Size = new System.Drawing.Size(85, 23);
+			this.buttonClose.Size = new System.Drawing.Size(76, 23);
 			this.buttonClose.TabIndex = 0;
-			this.buttonClose.Text = "Отменить";
+			this.buttonClose.Text = "Закрыть";
 			this.buttonClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonClose.UseVisualStyleBackColor = true;
 			this.buttonClose.Click += new System.EventHandler(this.ButtonCloseClick);

@@ -244,9 +244,11 @@ namespace Aggregator.Client
 		public void indicator(Boolean statusOnOff)
 		{
 			if(statusOnOff){ // on (автоматическое обновление включено)
+				toolStripStatusLabel1.Text = "Мониторинг изменений в базе данных: включен.";
 				toolStripStatusLabel1.ImageIndex = 0;
 				toolStripStatusLabel1.Visible = true;
 			}else{ // off (автоматическое обновление отключено)
+				toolStripStatusLabel1.Text = "Мониторинг изменений в базе данных: отключен.";
 				toolStripStatusLabel1.ImageIndex = 2;
 				toolStripStatusLabel1.Visible = true;
 			}

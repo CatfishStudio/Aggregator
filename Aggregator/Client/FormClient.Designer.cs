@@ -805,10 +805,11 @@ namespace Aggregator.Client
 			// 
 			// toolStripStatusLabel1
 			// 
-			this.toolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.toolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel1.Image")));
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 17);
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(251, 17);
+			this.toolStripStatusLabel1.Text = "Мониторинг изменений в базе данных: ...";
+			this.toolStripStatusLabel1.ToolTipText = "Индикатор состояния мониторинга изменений в базе данных.";
 			// 
 			// toolStripStatusLabel2
 			// 

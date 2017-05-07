@@ -89,6 +89,7 @@ namespace Aggregator.Database.Server
 		{
 			if(sqlServer.dataSet.Tables.Count == 0){
 				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] Мониторинг обновлений базы данных не удалось запустить!", false, true);
+				DataForms.FClient.indicator(false);
 				return;
 			}
 			
@@ -99,6 +100,7 @@ namespace Aggregator.Database.Server
 	        	DataForms.FClient.indicator(true);
 	        	Utilits.Console.Log("[МОНИТОРИНГ] Процесс успешно запущен.");
         	}catch(Exception ex){
+				DataForms.FClient.indicator(false);
 				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message, false, true);
 			}
 		}
@@ -117,9 +119,11 @@ namespace Aggregator.Database.Server
 		                command.ExecuteReader();
 		                Utilits.Console.Log("[МОНИТОРИНГ] Запуск события.");
 		            }
+	            	DataForms.FClient.indicator(true);
 	            }catch(Exception ex){
 					Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message, false, true);
 					if(connection != null) connection.Close();
+					DataForms.FClient.indicator(false);
 					MonitoringStop();
 					return;
 				}
@@ -159,10 +163,12 @@ namespace Aggregator.Database.Server
 					}
 					sqlDataReader.Close();
 					sqlConnection.Close();
+					DataForms.FClient.indicator(true);
 				}catch(Exception ex){
 					Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message, false, true);
 					if(sqlDataReader != null) sqlDataReader.Close();
 					if(sqlConnection != null) sqlConnection.Close();
+					DataForms.FClient.indicator(false);
 				}
         	}
 			monitoringProcess();
