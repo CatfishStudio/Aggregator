@@ -8,6 +8,7 @@
  */
 using System;
 using System.Windows.Forms;
+using ADOX;
 using Aggregator.Data;
 
 namespace Aggregator.Database.Config
@@ -20,20 +21,20 @@ namespace Aggregator.Database.Config
 		public static void Create()
 		{
 			/* Создание файла базы данных */
-			CreateDatabase createDataBase;
-			try{
-				DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
-				DataConfig.oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
-				DataConfig.oledbConnectPass = "12345";
-				createDataBase = new CreateDatabase(DataConfig.configFile);
-			
-			}catch(Exception ex){
-				MessageBox.Show(ex.ToString(), "Ошибка:");
+			CreateConfigDatabase createConfigDatabase;
+			DataConfig.oledbConnectLineBegin = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+			DataConfig.oledbConnectLineEnd = ";Jet OLEDB:Database Password=";
+			DataConfig.oledbConnectPass = "12345";
+			createConfigDatabase = new CreateConfigDatabase(DataConfig.configFile);
+			if(createConfigDatabase.Create()){
+				/* Создание таблиц */
+				CreateConfigTables.TableDatabaseSettings();
+				CreateConfigTables.TableSettings();
+			}else{
+				MessageBox.Show("Не удалось создать файл конфигурации." + Environment.NewLine + "Программа будет закрыта!", "Сообщение");
 				Application.Exit();
 			}
-			/* Создание таблиц */
-			CreateConfigTables.TableDatabaseSettings();
-			CreateConfigTables.TableSettings();
+						
 		}
 	}
 }

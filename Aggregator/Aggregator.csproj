@@ -159,12 +159,12 @@
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Database\Config\CreateConfig.cs" />
+    <Compile Include="Database\Config\CreateConfigDatabase.cs" />
     <Compile Include="Database\Config\CreateConfigTables.cs" />
     <Compile Include="Database\Config\ReadingConfig.cs" />
     <Compile Include="Database\Config\SavingConfig.cs" />
     <Compile Include="Database\Constants\ReadingConstants.cs" />
     <Compile Include="Database\Constants\SavingConstants.cs" />
-    <Compile Include="Database\CreateDatabase.cs" />
     <Compile Include="Database\CreateDatabaseMSAccess.cs" />
     <Compile Include="Database\CreateDatabaseMSSQL.cs" />
     <Compile Include="Database\Local\HistoryRefreshOleDb.cs" />
