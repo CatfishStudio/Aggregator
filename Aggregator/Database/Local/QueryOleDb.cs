@@ -48,8 +48,8 @@ namespace Aggregator.Database.Local
 		
 		public void Dispose()
 		{
-			oleDbCommand.Dispose();
-			oleDbConnection.Dispose();
+			if(oleDbCommand != null) oleDbCommand.Dispose();
+			if(oleDbConnection != null) oleDbConnection.Dispose();
 		}
 		
 	}

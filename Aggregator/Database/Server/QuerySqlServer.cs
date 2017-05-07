@@ -49,8 +49,8 @@ namespace Aggregator.Database.Server
 		
 		public void Dispose()
 		{
-			sqlCommand.Dispose();
-			sqlConnection.Dispose();
+			if(sqlCommand != null) sqlCommand.Dispose();
+			if(sqlConnection != null) sqlConnection.Dispose();
 		}
 	}
 }

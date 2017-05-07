@@ -425,7 +425,7 @@ namespace Aggregator.Client.Documents.Order
 								
 								/* Перерасчет Заказа */
 								sqlQuery = new QuerySqlServer(DataConfig.serverConnection);
-								oleDbQuery.SetCommand("UPDATE Orders SET " +
+								sqlQuery.SetCommand("UPDATE Orders SET " +
 				                    "docSum = " + Conversion.DoubleToString(orderDoc.docSum) + ", " +
 									"docVat = " + Conversion.DoubleToString(orderDoc.docVat) + ", " +
 									"docTotal = " + Conversion.DoubleToString(orderDoc.docTotal) + " " +
@@ -465,7 +465,8 @@ namespace Aggregator.Client.Documents.Order
 				
 			}catch(Exception ex){
 				Dispose();
-				Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
+				//Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
+				Utilits.Console.Log("[ОШИБКА] " + ex.ToString(), false, true);
 			}
 		}
 		
@@ -492,12 +493,12 @@ namespace Aggregator.Client.Documents.Order
 					numStr += idStr;
 					return numStr;
 				}catch(Exception ex){
-					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message, false, true);
 				}
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				try{
-					sqlCommand = new SqlCommand("SELECT SCOPE_IDENTITY(Orders)", sqlConnection);
+					sqlCommand = new SqlCommand("SELECT MAX(id) FROM Orders", sqlConnection);
 					sqlConnection.Open();
 					
 					var order_id = sqlCommand.ExecuteScalar();
@@ -513,7 +514,7 @@ namespace Aggregator.Client.Documents.Order
 					numStr += idStr;
 					return numStr;
 				}catch(Exception ex){
-					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message, false, true);
 				}
 			}
 			return null;
