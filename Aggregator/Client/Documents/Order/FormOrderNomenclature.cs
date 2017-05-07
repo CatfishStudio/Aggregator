@@ -242,7 +242,7 @@ namespace Aggregator.Client.Documents.Order
 		 */	
 		void FormOrderNomenclatureLoad(object sender, EventArgs e)
 		{
-			Utilits.Console.Log(Text);
+			Utilits.Console.Log(this.Text + ": открыт");
 		}
 		void FormOrderNomenclatureFormClosed(object sender, FormClosedEventArgs e)
 		{

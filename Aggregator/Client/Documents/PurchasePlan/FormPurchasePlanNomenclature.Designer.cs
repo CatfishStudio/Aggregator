@@ -336,6 +336,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			// filterTextBox
 			// 
+			this.filterTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.filterTextBox.Name = "filterTextBox";
 			this.filterTextBox.Size = new System.Drawing.Size(200, 25);
 			this.filterTextBox.ToolTipText = "Введите значение для фильтра";

@@ -176,9 +176,9 @@ namespace Aggregator.Client.Directories
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
-			Dispose();
+			Utilits.Console.Log(this.Text + ": закрыт");
 			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Номенклатура папка: закрыт.");
+			Dispose();
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
 		{

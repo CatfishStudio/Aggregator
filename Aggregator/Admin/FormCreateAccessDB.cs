@@ -36,9 +36,9 @@ namespace Aggregator.Admin
 		}
 		void FormCreateAccessDBFormClosed(object sender, FormClosedEventArgs e)
 		{
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
 			Utilits.Console.Log(this.Text + ": закрыт.");
+			Dispose();
 		}
 		void FormCreateAccessDBActivated(object sender, EventArgs e)
 		{

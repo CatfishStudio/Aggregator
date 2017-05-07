@@ -1103,15 +1103,15 @@ namespace Aggregator.Client.Directories
 				firstColumnNumber = true;
 				open();
 			}
-			Utilits.Console.Log(Text);
+			Utilits.Console.Log(this.Text);
 		}
 		void FormCounteragentFileFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Контрагент: закрыт.");
+			Utilits.Console.Log(this.Text + ": закрыт");
+			Dispose();
 		}
 		void OpenExcelButtonClick(object sender, EventArgs e)
 		{

@@ -341,6 +341,8 @@ namespace Aggregator.Utilits
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Calculator";
 			this.Text = "Калькулятор";
+			this.Activated += new System.EventHandler(this.CalculatorActivated);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CalculatorFormClosed);
 			this.Load += new System.EventHandler(this.CalculatorLoad);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);

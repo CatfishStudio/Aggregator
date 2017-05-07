@@ -221,7 +221,7 @@ namespace Aggregator.Client.Directories
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 				}
 			}
-			if(comboBox1.Text != "") comboBox1.Items.Add(comboBox1.Text);
+			if(toolStripComboBox1.Text != "") toolStripComboBox1.Items.Add(toolStripComboBox1.Text);
 		}
 		
 		void searchLocal()
@@ -230,7 +230,7 @@ namespace Aggregator.Client.Directories
 			oleDb = new OleDb(DataConfig.localDatabase);
 			oleDb.dataSet.Clear();
 			oleDb.dataSet.DataSetName = "Nomenclature";
-			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (name LIKE '%" + comboBox1.Text + "%') ORDER BY name ASC";
+			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (name LIKE '%" + toolStripComboBox1.Text + "%') ORDER BY name ASC";
 			if(oleDb.ExecuteFill("Nomenclature")){
 				table = oleDb.dataSet.Tables["Nomenclature"];
 			}else{
@@ -263,7 +263,7 @@ namespace Aggregator.Client.Directories
 			sqlServer = new SqlServer();
 			sqlServer.dataSet.Clear();
 			sqlServer.dataSet.DataSetName = "Nomenclature";
-			sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (name LIKE '%" + comboBox1.Text + "%') ORDER BY name ASC";
+			sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Nomenclature WHERE (name LIKE '%" + toolStripComboBox1.Text + "%') ORDER BY name ASC";
 			if(sqlServer.ExecuteFill("Nomenclature")){
 				table = sqlServer.dataSet.Tables["Nomenclature"];
 			}else{
@@ -586,16 +586,16 @@ namespace Aggregator.Client.Directories
 		void FormNomenclatureLoad(object sender, EventArgs e)
 		{
 			TableRefresh(""); // Загрузка данных из базы данных
-			Utilits.Console.Log("Журнал Номенклатура: отркыт.");
+			Utilits.Console.Log(this.Text + ": открыт");
 		}
 		void FormNomenclatureFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(this.Text + ": закрыт");
 			Dispose();
 			DataForms.FNomenclature = null;
-			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Журнал Номенклатуры: закрыт.");
 		}
 		void FormNomenclatureActivated(object sender, EventArgs e)
 		{
@@ -656,7 +656,7 @@ namespace Aggregator.Client.Directories
 		}
 		void RefreshButtonClick(object sender, EventArgs e)
 		{
-			comboBox1.Text = "";
+			toolStripComboBox1.Text = "";
 			TableRefresh(openFolder);
 		}
 		void EditButtonClick(object sender, EventArgs e)
@@ -719,36 +719,12 @@ namespace Aggregator.Client.Directories
 			}
 			deleteFile();
 		}
-		void ButtonLoadingClick(object sender, EventArgs e)
-		{
-			if(panelLoading.Visible) panelLoading.Visible = false;
-			else panelLoading.Visible = true;
-		}
-		void Button3Click(object sender, EventArgs e)
-		{
-			if(DataConfig.userPermissions == "guest"){
-				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
-				return;
-			}
-			panelLoading.Visible = false;
-			loadPriceList();
-		}
-		void Button4Click(object sender, EventArgs e)
-		{
-			if(DataConfig.userPermissions == "guest"){
-				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
-				return;
-			}
-			panelLoading.Visible = false;
-			loadFileExcel();
-		}
 		void ИзПрайслистовКонтрагентовToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if(DataConfig.userPermissions == "guest"){
 				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
 				return;
 			}
-			panelLoading.Visible = false;
 			loadPriceList();
 		}
 		void ИзТабличногоФайлаExcelToolStripMenuItemClick(object sender, EventArgs e)
@@ -757,12 +733,88 @@ namespace Aggregator.Client.Directories
 				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
 				return;
 			}
-			panelLoading.Visible = false;
 			loadFileExcel();
 		}
 		void ВыбратьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			returnValue();
+		}
+		void ToolStripButton1Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			addFile();
+		}
+		void ToolStripButton2Click(object sender, EventArgs e)
+		{
+			editFile();
+		}
+		void ToolStripButton3Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			deleteFile();
+		}
+		void ToolStripButton4Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			addFolder();
+		}
+		void ToolStripButton5Click(object sender, EventArgs e)
+		{
+			editFolder();
+		}
+		void ToolStripButton6Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			deleteFolder();
+		}
+		void ToolStripButton7Click(object sender, EventArgs e)
+		{
+			hierarchy();  // иерархическое отображение
+		}
+		void ИзПрайслистаКонтрагентаToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			loadPriceList();
+		}
+		void ИзТабличногоФайлаExcelToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			loadFileExcel();
+		}
+		void ToolStripComboBox1KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				openFolder = "";
+				search(); // поиск
+			}
+		}
+		void ToolStripButton9Click(object sender, EventArgs e)
+		{
+			openFolder = "";
+			search(); // поиск
+		}
+		void ToolStripButton10Click(object sender, EventArgs e)
+		{
+			toolStripComboBox1.Text = "";
+			TableRefresh(openFolder);
 		}
 		
 	}

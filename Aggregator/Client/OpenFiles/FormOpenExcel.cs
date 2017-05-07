@@ -130,7 +130,7 @@ namespace Aggregator.Client.OpenFiles
 			}else{
 				readExcelFormat2007();
 			}
-			Utilits.Console.Log(Text);
+			Utilits.Console.Log(this.Text + ": открыт");
 		}
 		void FormOpenExcelActivated(object sender, EventArgs e)
 		{
@@ -140,6 +140,7 @@ namespace Aggregator.Client.OpenFiles
 		{
 			DataForms.FClient.messageInStatus("...");
 			Utilits.Console.Log(Text + ": закрыт.");
+			Dispose();
 		}
 		
 	}

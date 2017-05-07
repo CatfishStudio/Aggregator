@@ -52,13 +52,13 @@ namespace Aggregator.Client.Directories
 			captionTextBox.Text = DataConstants.ConstFirmCaption;
 			messageTextBox.Text = DataConstants.ConstFirmMessage;
 			
-			Utilits.Console.Log("Константы: открыт.");
+			Utilits.Console.Log(this.Text + ": открыт.");
 		}
 		void FormConstantsFormClosed(object sender, FormClosedEventArgs e)
 		{
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Константы: закрыт.");
+			Utilits.Console.Log(this.Text + ": закрыт.");
+			Dispose();
 			DataForms.FConstants = null;
 		}
 		void ButtonSaveClick(object sender, EventArgs e)

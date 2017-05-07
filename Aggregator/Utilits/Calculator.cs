@@ -9,6 +9,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Aggregator.Data;
 
 namespace Aggregator.Utilits
 {
@@ -36,7 +37,7 @@ namespace Aggregator.Utilits
 		}
 		void CalculatorLoad(object sender, EventArgs e)
 		{
-	
+			Utilits.Console.Log(this.Text + ": открыт");
 		}
 		void inputValue(String Value)
 		{
@@ -198,6 +199,16 @@ namespace Aggregator.Utilits
 			textBox1.Clear();
 			textBox1.Text = Conversion.StringToMoney(Money);
 			if(textBox1.Text == "" || Conversion.checkString(textBox1.Text) == false) textBox1.Text = "0,00";
+		}
+		void CalculatorFormClosed(object sender, FormClosedEventArgs e)
+		{
+			Utilits.Console.Log(this.Text + ": закрыт");
+			DataForms.FClient.messageInStatus("...");
+			Dispose();
+		}
+		void CalculatorActivated(object sender, EventArgs e)
+		{
+			DataForms.FClient.messageInStatus(this.Text);
 		}
 	}
 	

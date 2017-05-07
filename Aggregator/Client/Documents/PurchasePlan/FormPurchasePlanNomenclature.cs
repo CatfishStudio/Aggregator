@@ -208,9 +208,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void FormPurchasePlanNomenclatureFormClosed(object sender, FormClosedEventArgs e)
 		{
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
 			Utilits.Console.Log(Text + ": закрыт.");
+			Dispose();
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
 		{

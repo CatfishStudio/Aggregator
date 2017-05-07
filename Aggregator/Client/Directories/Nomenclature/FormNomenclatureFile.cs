@@ -328,9 +328,9 @@ namespace Aggregator.Client.Directories
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Номенклатура: закрыт.");
+			Utilits.Console.Log(this.Text + ": закрыт");
+			Dispose();
 		}
 		void PriceTextBoxKeyDown(object sender, KeyEventArgs e)
 		{

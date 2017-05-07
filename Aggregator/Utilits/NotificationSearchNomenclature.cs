@@ -73,6 +73,10 @@ namespace Aggregator.Utilits
 		{
 			Run();
 		}
+		void NotificationSearchNomenclatureFormClosed(object sender, FormClosedEventArgs e)
+		{
+			Dispose();
+		}
 		
 	}
 }

@@ -297,8 +297,6 @@ namespace Aggregator.Client
 		void FormClientFormClosing(object sender, FormClosingEventArgs e)
 		{
 			if(MessageBox.Show("Вы хотите выйти из программы?","Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
-				e.Cancel = false;
-			}else{
 				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL)
 				{
 					timer1.Stop();
@@ -309,6 +307,8 @@ namespace Aggregator.Client
 					historyRefreshSqlServer.MonitoringStop();
 					historyRefreshSqlServer.Dispose();
 				}
+				e.Cancel = false;
+			}else{
 				e.Cancel = true;
 			}
 		}

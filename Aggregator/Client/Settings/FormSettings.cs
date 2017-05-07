@@ -47,7 +47,7 @@ namespace Aggregator.Client.Settings
 			if(DataConfig.period == "month") periodComboBox.Text = "Месяц";
 			if(DataConfig.period == "year") periodComboBox.Text = "Год";
 			
-			Utilits.Console.Log(Text);
+			Utilits.Console.Log(this.Text + ": открыт");
 		}
 		void FormSettingsFormClosed(object sender, FormClosedEventArgs e)
 		{

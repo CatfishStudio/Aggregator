@@ -207,11 +207,12 @@ namespace Aggregator.User
 		}
 		void FormUsersEditFormClosed(object sender, FormClosedEventArgs e)
 		{
-			Utilits.Console.Log(Text + ": закрыт.");
+			
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
-			Dispose();
+			Utilits.Console.Log(Text + ": закрыт.");
 			DataForms.FClient.messageInStatus("...");
+			Dispose();
 		}
 		void Button1Click(object sender, EventArgs e)
 		{

@@ -189,15 +189,15 @@ namespace Aggregator.Client.Directories
 		 */	
 		void FormNomenclatureLoadExcelLoad(object sender, EventArgs e)
 		{
-			Utilits.Console.Log(Text + ": открыт.");
+			Utilits.Console.Log(Text + ": открыт");
 		}
 		void FormNomenclatureLoadExcelFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log(Text + ": закрыт.");
+			Utilits.Console.Log(Text + ": закрыт");
+			Dispose();
 		}
 		void Button1Click(object sender, EventArgs e)
 		{

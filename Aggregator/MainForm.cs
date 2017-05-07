@@ -97,5 +97,9 @@ namespace Aggregator
 			DataForms.FCheckUser.Show();
 			DataForms.FMain = this;
 		}
+		void MainFormFormClosed(object sender, FormClosedEventArgs e)
+		{
+			Dispose();
+		}
 	}
 }

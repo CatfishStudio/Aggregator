@@ -36,9 +36,9 @@ namespace Aggregator.Admin
 		}
 		void FormCreateMSSQLDBFormClosed(object sender, FormClosedEventArgs e)
 		{
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
 			Utilits.Console.Log(this.Text + ": закрыт.");
+			Dispose();
 		}
 		void FormCreateMSSQLDBActivated(object sender, EventArgs e)
 		{

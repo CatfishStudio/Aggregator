@@ -78,6 +78,7 @@ namespace Aggregator.Utilits
 			this.Name = "NotificationSearchNomenclature";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Оповещение";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NotificationSearchNomenclatureFormClosed);
 			this.Load += new System.EventHandler(this.NotificationSearchNomenclatureLoad);
 			this.ResumeLayout(false);
 

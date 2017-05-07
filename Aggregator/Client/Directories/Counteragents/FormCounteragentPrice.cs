@@ -288,15 +288,15 @@ namespace Aggregator.Client.Directories
 		void FormCounteragentPriceLoad(object sender, EventArgs e)
 		{
 			readPrice();
-			Utilits.Console.Log(Text);
+			Utilits.Console.Log(this.Text + ": открыт");
 		}
 		void FormCounteragentPriceFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Папка: закрыт.");
+			Utilits.Console.Log(Text + ": закрыт");
+			Dispose();
 		}
 		void ButtonCancelClick(object sender, EventArgs e)
 		{

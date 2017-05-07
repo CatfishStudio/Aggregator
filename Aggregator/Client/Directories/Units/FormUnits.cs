@@ -135,7 +135,7 @@ namespace Aggregator.Client.Directories
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 				}
 			}
-			if(comboBox1.Text != "") comboBox1.Items.Add(comboBox1.Text);
+			if(toolStripComboBox1.Text != "") toolStripComboBox1.Items.Add(toolStripComboBox1.Text);
 		}
 		
 		void searchLocal()
@@ -143,7 +143,7 @@ namespace Aggregator.Client.Directories
 			oleDb = new OleDb(DataConfig.localDatabase);
 			oleDb.dataSet.Clear();
 			oleDb.dataSet.DataSetName = "Units";
-			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Units WHERE (name LIKE '%" + comboBox1.Text + "%') ORDER BY name ASC";
+			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM Units WHERE (name LIKE '%" + toolStripComboBox1.Text + "%') ORDER BY name ASC";
 			if(oleDb.ExecuteFill("Units")){
 				listView1.Items.Clear();
 				ListViewItem ListViewItem_add;
@@ -168,7 +168,7 @@ namespace Aggregator.Client.Directories
 			sqlServer = new SqlServer();
 			sqlServer.dataSet.Clear();
 			sqlServer.dataSet.DataSetName = "Units";
-			sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Units WHERE (name LIKE '%" + comboBox1.Text + "%') ORDER BY name ASC";
+			sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM Units WHERE (name LIKE '%" + toolStripComboBox1.Text + "%') ORDER BY name ASC";
 			if(sqlServer.ExecuteFill("Units")){
 				listView1.Items.Clear();
 				ListViewItem ListViewItem_add;
@@ -262,16 +262,16 @@ namespace Aggregator.Client.Directories
 		void FormUnitsLoad(object sender, EventArgs e)
 		{
 			TableRefresh(); // Загрузка данных из базы данных
-			Utilits.Console.Log("Журнал Единицы измерения: отркыт.");
+			Utilits.Console.Log(this.Text + ": открыт");
 		}
 		void FormUnitsFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(this.Text + ": закрыт");
 			Dispose();
 			DataForms.FUnits = null;
-			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Журнал Единицы измерения: закрыт.");
 		}
 		void FormUnitsActivated(object sender, EventArgs e)
 		{
@@ -307,7 +307,7 @@ namespace Aggregator.Client.Directories
 		}
 		void RefreshButtonClick(object sender, EventArgs e)
 		{
-			comboBox1.Text = "";
+			toolStripComboBox1.Text = "";
 			TableRefresh();
 		}
 		void Button1Click(object sender, EventArgs e)
@@ -337,6 +337,41 @@ namespace Aggregator.Client.Directories
 		void ВыбратьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			returnValue(); // возвращает выбраные данные
+		}
+		void ToolStripButton1Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			addFile();
+		}
+		void ToolStripButton2Click(object sender, EventArgs e)
+		{
+			editFile();
+		}
+		void ToolStripButton3Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			deleteFile();
+		}
+		void ToolStripComboBox1KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				search(); // поиск
+			}
+		}
+		void ToolStripButton9Click(object sender, EventArgs e)
+		{
+			search(); // поиск
+		}
+		void ToolStripButton10Click(object sender, EventArgs e)
+		{
+			toolStripComboBox1.Text = "";
+			TableRefresh();
 		}
 		
 	}

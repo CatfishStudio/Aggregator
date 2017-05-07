@@ -146,17 +146,6 @@ namespace Aggregator.User
 		 */	
 		void FormUsersLoad(object sender, EventArgs e)
 		{
-			/*
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && DataConfig.typeDatabase == DataConstants.TYPE_OLEDB){
-				// OLEDB
-				oleDb = new OleDb(DataConfig.localDatabase);
-				TableRefresh();
-			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER && DataConfig.typeDatabase == DataConstants.TYPE_MSSQL){
-				// MSSQL SERVER
-				sqlServer = new SqlServer();
-				TableRefresh();
-			}
-			*/
 			TableRefresh();
 			Utilits.Console.Log(Text + ": открыт.");
 		}
@@ -164,10 +153,10 @@ namespace Aggregator.User
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
-			Dispose();
-			DataForms.FUsers = null;
 			DataForms.FClient.messageInStatus("...");
 			Utilits.Console.Log(Text + ": закрыт.");
+			Dispose();
+			DataForms.FUsers = null;
 		}
 		void ButtonCloseClick(object sender, EventArgs e)
 		{
@@ -192,6 +181,34 @@ namespace Aggregator.User
 		void FormUsersActivated(object sender, EventArgs e)
 		{
 			DataForms.FClient.messageInStatus(this.Text);
+		}
+		void ToolStripButton1Click(object sender, EventArgs e)
+		{
+			addUser();
+		}
+		void ToolStripButton2Click(object sender, EventArgs e)
+		{
+			editUser();
+		}
+		void ToolStripButton3Click(object sender, EventArgs e)
+		{
+			deleteUser();
+		}
+		void ToolStripButton4Click(object sender, EventArgs e)
+		{
+			TableRefresh();
+		}
+		void ДобавитьПользователяToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			addUser();
+		}
+		void ИзменитьПользователяToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editUser();
+		}
+		void УдалитьПользователяToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			deleteUser();
 		}
 		
 		

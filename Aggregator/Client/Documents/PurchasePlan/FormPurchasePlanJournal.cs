@@ -99,9 +99,9 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM PurchasePlan WHERE (docDate BETWEEN #" + 
 				dateTimePicker1.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "# AND #" + 
 				dateTimePicker2.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "#) " +
-				"AND (docNumber LIKE '%" + comboBox1.Text + 
-				"%' OR docTotal LIKE '%" + comboBox1.Text + 
-				"%' OR docAutor LIKE '%" + comboBox1.Text +
+				"AND (docNumber LIKE '%" + toolStripComboBox1.Text + 
+				"%' OR docTotal LIKE '%" + toolStripComboBox1.Text + 
+				"%' OR docAutor LIKE '%" + toolStripComboBox1.Text +
 				"%') ORDER BY docDate DESC";
 			
 			if(oleDb.ExecuteFill("PurchasePlan")){
@@ -139,7 +139,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			sqlServer.dataSet.DataSetName = "PurchasePlan";
 			sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM PurchasePlan WHERE (docDate BETWEEN '" + 
 				dateTimePicker1.Text + "' AND '" + dateTimePicker2.Text + 
-				"' AND (docNumber LIKE '%" + comboBox1.Text + "%' OR docTotal LIKE '%" + comboBox1.Text + "%' OR docAutor LIKE '%" + comboBox1.Text + 
+				"' AND (docNumber LIKE '%" + toolStripComboBox1.Text + "%' OR docTotal LIKE '%" + toolStripComboBox1.Text + "%' OR docAutor LIKE '%" + toolStripComboBox1.Text + 
 				"%')) ORDER BY docDate ASC";
 			
 			if(sqlServer.ExecuteFill("PurchasePlan")){
@@ -191,7 +191,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
 				}
 			}
-			if(comboBox1.Text != "")  comboBox1.Items.Add(comboBox1.Text);
+			if(toolStripComboBox1.Text != "")  toolStripComboBox1.Items.Add(toolStripComboBox1.Text);
 		}
 		
 		void addFile()
@@ -306,16 +306,16 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		{
 			getPeriod();
 			TableRefresh(); // Загрузка данных из базы данных
-			Utilits.Console.Log("Журнал закупок: отркыт.");
+			Utilits.Console.Log(this.Text + ": открыт");
 		}
 		void FormPurchasePlanJournalFormClosed(object sender, FormClosedEventArgs e)
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
+			DataForms.FClient.messageInStatus("...");
+			Utilits.Console.Log(this.Text + ": закрыт");
 			Dispose();
 			DataForms.FPurchasePlanJournal = null;
-			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Журнал закупок: закрыт.");
 		}
 		void FindButtonClick(object sender, EventArgs e)
 		{
@@ -323,7 +323,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void RefreshButtonClick(object sender, EventArgs e)
 		{
-			comboBox1.Text = "";
+			toolStripComboBox1.Text = "";
 			TableRefresh();
 		}
 		void DateButtonClick(object sender, EventArgs e)
@@ -372,7 +372,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		}
 		void ОбновитьToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			comboBox1.Text = "";
+			toolStripComboBox1.Text = "";
 			TableRefresh();
 		}
 		void ЗаказToolStripMenuItemClick(object sender, EventArgs e)
@@ -399,6 +399,41 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		void FormPurchasePlanJournalActivated(object sender, EventArgs e)
 		{
 			DataForms.FClient.messageInStatus(this.Text);
+		}
+		void ToolStripButton1Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			addFile();
+		}
+		void ToolStripButton2Click(object sender, EventArgs e)
+		{
+			editFile();
+		}
+		void ToolStripButton3Click(object sender, EventArgs e)
+		{
+			if(DataConfig.userPermissions == "guest" || DataConfig.userPermissions == "user"){
+				MessageBox.Show("У вас недостаточно прав чтобы выполнить данное действие.", "Сообщение");
+				return;
+			}
+			deleteFile();
+		}
+		void ToolStripComboBox1KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Enter){
+				search(); // поиск
+			}
+		}
+		void ToolStripButton9Click(object sender, EventArgs e)
+		{
+			search();
+		}
+		void ToolStripButton10Click(object sender, EventArgs e)
+		{
+			toolStripComboBox1.Text = "";
+			TableRefresh();
 		}
 		
 	}

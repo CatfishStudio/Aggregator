@@ -18,14 +18,6 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button buttonClose;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Panel panel7;
-		private System.Windows.Forms.Button findButton;
-		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.Button refreshButton;
-		private System.Windows.Forms.Panel panel4;
-		private System.Windows.Forms.Button deleteButton;
-		private System.Windows.Forms.Button editButton;
-		private System.Windows.Forms.Button addButton;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -40,6 +32,15 @@ namespace Aggregator.Client.Directories
 		private System.Windows.Forms.ToolStripMenuItem удалитьЗаписьToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem выбратьЗаписьToolStripMenuItem;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton toolStripButton1;
+		private System.Windows.Forms.ToolStripButton toolStripButton2;
+		private System.Windows.Forms.ToolStripButton toolStripButton3;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+		private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+		private System.Windows.Forms.ToolStripButton toolStripButton9;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+		private System.Windows.Forms.ToolStripButton toolStripButton10;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -68,14 +69,15 @@ namespace Aggregator.Client.Directories
 			this.button1 = new System.Windows.Forms.Button();
 			this.buttonClose = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.panel7 = new System.Windows.Forms.Panel();
-			this.findButton = new System.Windows.Forms.Button();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.refreshButton = new System.Windows.Forms.Button();
-			this.panel4 = new System.Windows.Forms.Panel();
-			this.deleteButton = new System.Windows.Forms.Button();
-			this.editButton = new System.Windows.Forms.Button();
-			this.addButton = new System.Windows.Forms.Button();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+			this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
@@ -92,6 +94,7 @@ namespace Aggregator.Client.Directories
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -134,109 +137,104 @@ namespace Aggregator.Client.Directories
 			// 
 			// panel2
 			// 
-			this.panel2.Controls.Add(this.panel7);
-			this.panel2.Controls.Add(this.findButton);
-			this.panel2.Controls.Add(this.comboBox1);
-			this.panel2.Controls.Add(this.refreshButton);
-			this.panel2.Controls.Add(this.panel4);
-			this.panel2.Controls.Add(this.deleteButton);
-			this.panel2.Controls.Add(this.editButton);
-			this.panel2.Controls.Add(this.addButton);
+			this.panel2.Controls.Add(this.toolStrip1);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(611, 45);
+			this.panel2.Size = new System.Drawing.Size(611, 25);
 			this.panel2.TabIndex = 3;
 			// 
-			// panel7
+			// toolStrip1
 			// 
-			this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel7.Location = new System.Drawing.Point(434, 12);
-			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(4, 23);
-			this.panel7.TabIndex = 13;
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.toolStripButton1,
+			this.toolStripButton2,
+			this.toolStripButton3,
+			this.toolStripSeparator5,
+			this.toolStripComboBox1,
+			this.toolStripButton9,
+			this.toolStripSeparator6,
+			this.toolStripButton10});
+			this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(611, 25);
+			this.toolStrip1.TabIndex = 18;
+			this.toolStrip1.Text = "toolStrip1";
 			// 
-			// findButton
+			// toolStripButton1
 			// 
-			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
-			this.findButton.Location = new System.Drawing.Point(403, 12);
-			this.findButton.Name = "findButton";
-			this.findButton.Size = new System.Drawing.Size(25, 23);
-			this.findButton.TabIndex = 12;
-			this.toolTip1.SetToolTip(this.findButton, "Поиск");
-			this.findButton.UseVisualStyleBackColor = true;
-			this.findButton.Click += new System.EventHandler(this.FindButtonClick);
+			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton1.Name = "toolStripButton1";
+			this.toolStripButton1.Size = new System.Drawing.Size(23, 20);
+			this.toolStripButton1.Text = "Добавить";
+			this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1Click);
 			// 
-			// comboBox1
+			// toolStripButton2
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(115, 12);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(282, 21);
-			this.comboBox1.TabIndex = 11;
+			this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton2.Name = "toolStripButton2";
+			this.toolStripButton2.Size = new System.Drawing.Size(23, 20);
+			this.toolStripButton2.Text = "Изменить";
+			this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2Click);
 			// 
-			// refreshButton
+			// toolStripButton3
 			// 
-			this.refreshButton.Image = ((System.Drawing.Image)(resources.GetObject("refreshButton.Image")));
-			this.refreshButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.refreshButton.Location = new System.Drawing.Point(444, 12);
-			this.refreshButton.Name = "refreshButton";
-			this.refreshButton.Size = new System.Drawing.Size(85, 23);
-			this.refreshButton.TabIndex = 7;
-			this.refreshButton.Text = "Обновить";
-			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.toolTip1.SetToolTip(this.refreshButton, "Обновить данные");
-			this.refreshButton.UseVisualStyleBackColor = true;
-			this.refreshButton.Click += new System.EventHandler(this.RefreshButtonClick);
+			this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+			this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton3.Name = "toolStripButton3";
+			this.toolStripButton3.Size = new System.Drawing.Size(23, 20);
+			this.toolStripButton3.Text = "Удалить";
+			this.toolStripButton3.Click += new System.EventHandler(this.ToolStripButton3Click);
 			// 
-			// panel4
+			// toolStripSeparator5
 			// 
-			this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel4.Location = new System.Drawing.Point(105, 12);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(4, 23);
-			this.panel4.TabIndex = 4;
+			this.toolStripSeparator5.Name = "toolStripSeparator5";
+			this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
 			// 
-			// deleteButton
+			// toolStripComboBox1
 			// 
-			this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
-			this.deleteButton.Location = new System.Drawing.Point(74, 12);
-			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(25, 23);
-			this.deleteButton.TabIndex = 2;
-			this.toolTip1.SetToolTip(this.deleteButton, "Удалить");
-			this.deleteButton.UseVisualStyleBackColor = true;
-			this.deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
+			this.toolStripComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+			this.toolStripComboBox1.Name = "toolStripComboBox1";
+			this.toolStripComboBox1.Size = new System.Drawing.Size(200, 23);
+			this.toolStripComboBox1.Text = "Введите данные для поиска";
+			this.toolStripComboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ToolStripComboBox1KeyDown);
 			// 
-			// editButton
+			// toolStripButton9
 			// 
-			this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
-			this.editButton.Location = new System.Drawing.Point(43, 12);
-			this.editButton.Name = "editButton";
-			this.editButton.Size = new System.Drawing.Size(25, 23);
-			this.editButton.TabIndex = 1;
-			this.toolTip1.SetToolTip(this.editButton, "Изменить");
-			this.editButton.UseVisualStyleBackColor = true;
-			this.editButton.Click += new System.EventHandler(this.EditButtonClick);
+			this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
+			this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton9.Name = "toolStripButton9";
+			this.toolStripButton9.Size = new System.Drawing.Size(62, 20);
+			this.toolStripButton9.Text = "Поиск";
+			this.toolStripButton9.Click += new System.EventHandler(this.ToolStripButton9Click);
 			// 
-			// addButton
+			// toolStripSeparator6
 			// 
-			this.addButton.Image = ((System.Drawing.Image)(resources.GetObject("addButton.Image")));
-			this.addButton.Location = new System.Drawing.Point(12, 12);
-			this.addButton.Name = "addButton";
-			this.addButton.Size = new System.Drawing.Size(25, 23);
-			this.addButton.TabIndex = 0;
-			this.toolTip1.SetToolTip(this.addButton, "Добавить");
-			this.addButton.UseVisualStyleBackColor = true;
-			this.addButton.Click += new System.EventHandler(this.AddButtonClick);
+			this.toolStripSeparator6.Name = "toolStripSeparator6";
+			this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
+			// 
+			// toolStripButton10
+			// 
+			this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
+			this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton10.Name = "toolStripButton10";
+			this.toolStripButton10.Size = new System.Drawing.Size(81, 20);
+			this.toolStripButton10.Text = "Обновить";
+			this.toolStripButton10.Click += new System.EventHandler(this.ToolStripButton10Click);
 			// 
 			// panel3
 			// 
 			this.panel3.Controls.Add(this.listView1);
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel3.Location = new System.Drawing.Point(0, 45);
+			this.panel3.Location = new System.Drawing.Point(0, 25);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(611, 280);
+			this.panel3.Size = new System.Drawing.Size(611, 300);
 			this.panel3.TabIndex = 4;
 			// 
 			// listView1
@@ -255,7 +253,7 @@ namespace Aggregator.Client.Directories
 			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(611, 280);
+			this.listView1.Size = new System.Drawing.Size(611, 300);
 			this.listView1.SmallImageList = this.imageList1;
 			this.listView1.StateImageList = this.imageList1;
 			this.listView1.TabIndex = 6;
@@ -290,7 +288,7 @@ namespace Aggregator.Client.Directories
 			this.toolStripMenuItem2,
 			this.выбратьЗаписьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 120);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(172, 98);
 			// 
 			// создатьЗаписьToolStripMenuItem
 			// 
@@ -353,6 +351,9 @@ namespace Aggregator.Client.Directories
 			this.Load += new System.EventHandler(this.FormUnitsLoad);
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.panel3.ResumeLayout(false);
 			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);

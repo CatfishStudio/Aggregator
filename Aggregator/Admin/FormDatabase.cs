@@ -46,13 +46,13 @@ namespace Aggregator.Admin
 			
 			localDatabaseTextBox.Text = DataConfig.localDatabase;
 			serverTextBox.Text = DataConfig.serverConnection;
-			Utilits.Console.Log("Настройки базы данных: открыт.");
+			Utilits.Console.Log(this.Text + ": открыт");
 		}
 		void FormDatabaseFormClosed(object sender, FormClosedEventArgs e)
 		{
-			Dispose();
 			DataForms.FClient.messageInStatus("...");
-			Utilits.Console.Log("Настройки базы данных: закрыт.");
+			Utilits.Console.Log(this.Text + ": закрыт");
+			Dispose();
 			DataForms.FDatabase = null;
 		}
 		void FormDatabaseActivated(object sender, EventArgs e)

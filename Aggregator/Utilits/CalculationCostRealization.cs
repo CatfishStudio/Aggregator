@@ -505,6 +505,7 @@ namespace Aggregator.Utilits
 		{
 			DataForms.FClient.messageInStatus("...");
 			Utilits.Console.Log(Text + ": закрыт.");
+			Dispose();
 		}
 			
 
