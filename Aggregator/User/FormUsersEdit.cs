@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Cartish
+ * User: Somov Studio
  * Date: 02.03.2017
  * Time: 7:41
  * 

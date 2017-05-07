@@ -84,12 +84,9 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
 		private System.Windows.Forms.ToolStripMenuItem расчетыToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem стоимостьРеализацииToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem создатьToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
 		private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem текстовыйФайлToolStripMenuItem2;
-		private System.Windows.Forms.ToolStripMenuItem текстовыйФайлToolStripMenuItem3;
 		private System.Windows.Forms.ToolStripMenuItem excelФайлToolStripMenuItem;
 		private System.Windows.Forms.ToolStripButton toolStripButton11;
 		private System.Windows.Forms.ToolStripButton toolStripButton12;
@@ -124,10 +121,7 @@ namespace Aggregator.Client
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormClient));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.создатьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.текстовыйФайлToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
 			this.открытьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.текстовыйФайлToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
 			this.excelФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
 			this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -235,7 +229,6 @@ namespace Aggregator.Client
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.создатьToolStripMenuItem1,
 			this.открытьToolStripMenuItem1,
 			this.toolStripSeparator9,
 			this.выходToolStripMenuItem1});
@@ -243,41 +236,18 @@ namespace Aggregator.Client
 			this.toolStripMenuItem1.Size = new System.Drawing.Size(48, 20);
 			this.toolStripMenuItem1.Text = "&Файл";
 			// 
-			// создатьToolStripMenuItem1
-			// 
-			this.создатьToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.текстовыйФайлToolStripMenuItem2});
-			this.создатьToolStripMenuItem1.Name = "создатьToolStripMenuItem1";
-			this.создатьToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
-			this.создатьToolStripMenuItem1.Text = "Создать";
-			// 
-			// текстовыйФайлToolStripMenuItem2
-			// 
-			this.текстовыйФайлToolStripMenuItem2.Name = "текстовыйФайлToolStripMenuItem2";
-			this.текстовыйФайлToolStripMenuItem2.Size = new System.Drawing.Size(165, 22);
-			this.текстовыйФайлToolStripMenuItem2.Text = "Текстовый файл";
-			this.текстовыйФайлToolStripMenuItem2.Click += new System.EventHandler(this.ТекстовыйФайлToolStripMenuItem2Click);
-			// 
 			// открытьToolStripMenuItem1
 			// 
 			this.открытьToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.текстовыйФайлToolStripMenuItem3,
 			this.excelФайлToolStripMenuItem});
 			this.открытьToolStripMenuItem1.Name = "открытьToolStripMenuItem1";
 			this.открытьToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
 			this.открытьToolStripMenuItem1.Text = "Открыть";
 			// 
-			// текстовыйФайлToolStripMenuItem3
-			// 
-			this.текстовыйФайлToolStripMenuItem3.Name = "текстовыйФайлToolStripMenuItem3";
-			this.текстовыйФайлToolStripMenuItem3.Size = new System.Drawing.Size(165, 22);
-			this.текстовыйФайлToolStripMenuItem3.Text = "Текстовый файл";
-			this.текстовыйФайлToolStripMenuItem3.Click += new System.EventHandler(this.ТекстовыйФайлToolStripMenuItem3Click);
-			// 
 			// excelФайлToolStripMenuItem
 			// 
 			this.excelФайлToolStripMenuItem.Name = "excelФайлToolStripMenuItem";
-			this.excelФайлToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+			this.excelФайлToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
 			this.excelФайлToolStripMenuItem.Text = "Excel файл";
 			this.excelФайлToolStripMenuItem.Click += new System.EventHandler(this.ExcelФайлToolStripMenuItemClick);
 			// 
@@ -561,6 +531,7 @@ namespace Aggregator.Client
 			this.консольЗапросовToolStripMenuItem.Name = "консольЗапросовToolStripMenuItem";
 			this.консольЗапросовToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
 			this.консольЗапросовToolStripMenuItem.Text = "Консоль запросов";
+			this.консольЗапросовToolStripMenuItem.Visible = false;
 			this.консольЗапросовToolStripMenuItem.Click += new System.EventHandler(this.КонсольЗапросовToolStripMenuItemClick);
 			// 
 			// настройкиToolStripMenuItem
@@ -768,6 +739,7 @@ namespace Aggregator.Client
 			this.toolStripButton11.Name = "toolStripButton11";
 			this.toolStripButton11.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton11.Text = "Настройки";
+			this.toolStripButton11.Click += new System.EventHandler(this.ToolStripButton11Click);
 			// 
 			// toolStripButton12
 			// 
@@ -791,6 +763,7 @@ namespace Aggregator.Client
 			this.toolStripButton13.Name = "toolStripButton13";
 			this.toolStripButton13.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton13.Text = "Выход";
+			this.toolStripButton13.Click += new System.EventHandler(this.ToolStripButton13Click);
 			// 
 			// statusStrip1
 			// 

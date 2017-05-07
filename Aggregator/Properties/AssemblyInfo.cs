@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Aggregator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Somov Studio")]
 [assembly: AssemblyProduct("Aggregator")]
 [assembly: AssemblyCopyright("Copyright 2017")]
 [assembly: AssemblyTrademark("")]

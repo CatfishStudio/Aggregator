@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Cartish
+ * User: Somov Studio
  * Date: 23.02.2017
  * Time: 11:17
  * 
@@ -482,6 +482,14 @@ namespace Aggregator.Client
 		void ExcelФайлToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			openFileExcel();
+		}
+		void ToolStripButton13Click(object sender, EventArgs e)
+		{
+			Close();
+		}
+		void ToolStripButton11Click(object sender, EventArgs e)
+		{
+			settingsShow();
 		}
 		
 				
