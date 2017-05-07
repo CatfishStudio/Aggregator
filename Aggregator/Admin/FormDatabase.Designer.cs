@@ -86,7 +86,7 @@ namespace Aggregator.Admin
 			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.buttonClose);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 297);
+			this.panel1.Location = new System.Drawing.Point(0, 308);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(456, 45);
 			this.panel1.TabIndex = 1;
@@ -128,7 +128,7 @@ namespace Aggregator.Admin
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(456, 297);
+			this.panel2.Size = new System.Drawing.Size(456, 308);
 			this.panel2.TabIndex = 2;
 			// 
 			// groupBox2
@@ -140,13 +140,13 @@ namespace Aggregator.Admin
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Location = new System.Drawing.Point(12, 165);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(432, 123);
+			this.groupBox2.Size = new System.Drawing.Size(432, 121);
 			this.groupBox2.TabIndex = 3;
 			this.groupBox2.TabStop = false;
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(80, 88);
+			this.button5.Location = new System.Drawing.Point(80, 59);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(341, 23);
 			this.button5.TabIndex = 8;
@@ -156,7 +156,7 @@ namespace Aggregator.Admin
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(80, 59);
+			this.button3.Location = new System.Drawing.Point(80, 88);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(170, 23);
 			this.button3.TabIndex = 7;
@@ -167,7 +167,7 @@ namespace Aggregator.Admin
 			// testConnectButton
 			// 
 			this.testConnectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.testConnectButton.Location = new System.Drawing.Point(256, 59);
+			this.testConnectButton.Location = new System.Drawing.Point(256, 88);
 			this.testConnectButton.Name = "testConnectButton";
 			this.testConnectButton.Size = new System.Drawing.Size(165, 23);
 			this.testConnectButton.TabIndex = 5;
@@ -286,7 +286,7 @@ namespace Aggregator.Admin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(456, 342);
+			this.ClientSize = new System.Drawing.Size(456, 353);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

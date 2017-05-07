@@ -34,7 +34,6 @@ namespace Aggregator.Data
 		public static FormPurchasePlanJournal FPurchasePlanJournal;
 		public static FormOrderJournal FOrderJournal;
 		/*Администратор*/
-		public static FormSettingsDatabase FSettingsDatabase;
 		public static FormDatabase FDatabase;
 		public static FormConsoleQuery FConsoleQuery;
 		public static FormUsers FUsers;
