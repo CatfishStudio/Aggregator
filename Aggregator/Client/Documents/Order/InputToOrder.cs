@@ -459,14 +459,12 @@ namespace Aggregator.Client.Documents.Order
 				Utilits.Console.Log("[ВВОД НА ОСНОВАНИИ]" + Environment.NewLine +
 									"Отчёт --------------------------------------------------------------------" + 				                    
 				                    Environment.NewLine + report + Environment.NewLine +
-				                    "------------------------------------------------------------------------------", 
-				                    false, true);
+				                    "------------------------------------------------------------------------------");
 				MessageBox.Show("Обработка Плана закупок №" + docPPNumber + " завершена!", "Сообщение");
 				
 			}catch(Exception ex){
 				Dispose();
-				//Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
-				Utilits.Console.Log("[ОШИБКА] " + ex.ToString(), false, true);
+				Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
 			}
 		}
 		

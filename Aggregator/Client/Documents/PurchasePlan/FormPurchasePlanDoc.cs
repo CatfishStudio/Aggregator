@@ -12,6 +12,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
@@ -1618,6 +1619,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					// MSSQL SERVER
 					ExportExcel.CreateWorkbook(saveFileDialog1.FileName, sqlServer.dataSet);
 				}
+				
+				if(!File.Exists(saveFileDialog1.FileName)){ 
+					MessageBox.Show("Файл: " + saveFileDialog1.FileName + " не создан!", "Сообщение");
+					return;
+	            }
+				
+				MessageBox.Show("Файл сохранен!", "Сообщение");
 			}
 		}
 		void FormPurchasePlanDocActivated(object sender, EventArgs e)

@@ -71,13 +71,13 @@ namespace Aggregator.Client.Documents.Order
 					return numStr;
 				}catch(Exception ex){
 					oleDbConnection.Close();
-					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message, false, true);
 				}
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				SqlConnection sqlConnection = new SqlConnection(DataConfig.serverConnection);
 				try{
-					SqlCommand sqlCommand = new SqlCommand("SELECT SCOPE_IDENTITY(Orders)", sqlConnection);
+					SqlCommand sqlCommand = new SqlCommand("SELECT MAX(id) FROM Orders", sqlConnection);
 					sqlConnection.Open();
 					var order_id = sqlCommand.ExecuteScalar();
 					sqlConnection.Close();
@@ -92,7 +92,7 @@ namespace Aggregator.Client.Documents.Order
 					return numStr;
 				}catch(Exception ex){
 					sqlConnection.Close();
-					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message, false, true);
 				}
 			}
 			return null;
@@ -519,7 +519,7 @@ namespace Aggregator.Client.Documents.Order
 				sqlServer.sqlCommandInsert.Parameters.Add("@counteragentPricelist", SqlDbType.VarChar, 255, "counteragentPricelist");
 				sqlServer.sqlCommandInsert.Parameters.Add("@docPurchasePlan", SqlDbType.VarChar, 255, "docPurchasePlan");
 				sqlServer.sqlCommandInsert.Parameters.Add("@docOrder", SqlDbType.VarChar, 255, "docOrder");
-				if(oleDb.ExecuteUpdate("OrderNomenclature")){
+				if(sqlServer.ExecuteUpdate("OrderNomenclature")){
 					return true;
 				}else{
 					return false;
@@ -959,7 +959,7 @@ namespace Aggregator.Client.Documents.Order
 				sqlServer.sqlCommandUpdate.Parameters.Add("@docOrder", SqlDbType.VarChar, 255, "docOrder");
 				sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
 				
-				sqlServer.sqlCommandDelete.CommandText = "DELETE * FROM OrderNomenclature WHERE ([id] = @id)";
+				sqlServer.sqlCommandDelete.CommandText = "DELETE FROM OrderNomenclature WHERE ([id] = @id)";
 				sqlServer.sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int, 10, "id").SourceVersion = DataRowVersion.Original;
 				
 				ListViewItem item;
@@ -1074,7 +1074,7 @@ namespace Aggregator.Client.Documents.Order
 					sqlConnection = new SqlConnection(DataConfig.serverConnection);
 					try{
 						sqlConnection.Open();
-						sqlCommand = new SqlCommand("SELECT [id], [name], [organization_email] FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", sqlConnection);
+						sqlCommand = new SqlCommand("SELECT [id], [name], [organization_email], [excel_date] FROM Counteragents WHERE (name = '" + counteragentTextBox.Text + "')", sqlConnection);
 						sqlDataReader = sqlCommand.ExecuteReader();
 						while(sqlDataReader.Read()) {
 							mailtoTextBox.Text = sqlDataReader["organization_email"].ToString();
