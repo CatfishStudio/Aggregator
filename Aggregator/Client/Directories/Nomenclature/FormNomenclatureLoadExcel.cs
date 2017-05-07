@@ -144,7 +144,7 @@ namespace Aggregator.Client.Directories
 				DataRow newRow;
 				int colsCount = dataSet.Tables[0].Columns.Count;
 				foreach(DataRow row in dataSet.Tables[0].Rows){
-					newRow = oleDb.dataSet.Tables["Nomenclature"].NewRow();
+					newRow = sqlServer.dataSet.Tables["Nomenclature"].NewRow();
 					if(colsCount > 0) newRow["name"] = row[0];
 					if(colsCount > 1) newRow["code"] = row[1];
 					if(colsCount > 2) newRow["series"] = row[2];

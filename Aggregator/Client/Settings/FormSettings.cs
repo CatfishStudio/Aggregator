@@ -33,9 +33,13 @@ namespace Aggregator.Client.Settings
 		void FormSettingsLoad(object sender, EventArgs e)
 		{
 			ReadingConfig.ReadSettings();
-			autoUpdateCheckBox.Checked = DataConfig.autoUpdate;
-			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) autoUpdateCheckBox.Enabled = true;
-			else autoUpdateCheckBox.Enabled = false;
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+				autoUpdateCheckBox.Checked = DataConfig.autoUpdate;
+				autoUpdateCheckBox.Enabled = true;
+			} else {
+				autoUpdateCheckBox.Checked = true;
+				autoUpdateCheckBox.Enabled = false;
+			}
 			// today, yesterday, week, month, year
 			if(DataConfig.period == "today") periodComboBox.Text = "Сегодня";
 			if(DataConfig.period == "yesterday") periodComboBox.Text = "Вчера";

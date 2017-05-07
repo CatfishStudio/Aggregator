@@ -334,18 +334,43 @@ namespace Aggregator.Database.Local
 		
 		public List<Nomenclature> filterNomenclature(String value)
 		{
+			if(value == ""){
+				MessageBox.Show("Фильтр не содержит данных!", "Предупреждение");
+				return null;
+			}
+			
+			String names = "";
+			String[] words =  value.Split();
+			int count = 0;
+			count = words.Length;
+			if(count > 0){
+				for(int i = 0; i < count; i++){
+					if(words[i].ToString() == "" || words[i].ToString() == " ")	continue;
+					
+					if(names.Length > 0) names += " OR ";
+					names += "(name LIKE '%" + words[i] + "%')";
+				}
+			}			
+			
 			String strCommand = "";
 			nomenclatureList = new List<Nomenclature>();
 			
 			oleDbConnection.Open();
 			foreach(Price price in priceList){
 				
+				/*
 				strCommand = "SELECT * FROM " + price.priceName + " WHERE (" +
 						"name LIKE '%" + value + "%') " +
 						"OR(code = '" + value + "' AND code <> '') "+
 						"OR (series = '" + value + "' AND series <> '') "+
 						"OR (article = '" + value + "' AND article <> '') "+
 						"ORDER BY name ASC";
+				*/
+				strCommand = "SELECT * FROM " + price.priceName + " WHERE " + names +
+						" OR (code = '" + value + "' AND code <> '')"+
+						" OR (series = '" + value + "' AND series <> '')"+
+						" OR (article = '" + value + "' AND article <> '')"+
+						" ORDER BY name ASC";
 				
 				oleDbCommand = new OleDbCommand(strCommand, oleDbConnection);
 				

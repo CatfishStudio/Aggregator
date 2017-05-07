@@ -99,7 +99,7 @@ namespace Aggregator.Client.Directories
 			}else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				sqlServer.dataSet.Tables["Units"].Rows[0]["name"] = nameTextBox.Text;
-				sqlServer.dataSet.Tables["Units"].Rows[0]["name"] = infoTextBox.Text;
+				sqlServer.dataSet.Tables["Units"].Rows[0]["info"] = infoTextBox.Text;
 				sqlServer.sqlCommandUpdate.CommandText = "UPDATE Units SET " +
 					"[name] = @name, [info] = @info " +
 					"WHERE ([id] = @id)";

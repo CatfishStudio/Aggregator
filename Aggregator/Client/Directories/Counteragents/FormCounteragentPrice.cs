@@ -268,7 +268,7 @@ namespace Aggregator.Client.Directories
 				sqlServer.sqlCommandUpdate.Parameters.Add("@term", SqlDbType.Date, 15, "term");
 				sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
 				
-				sqlServer.sqlCommandDelete.CommandText = "DELETE * FROM " + PriceName + " WHERE ([id] = @id)";
+				sqlServer.sqlCommandDelete.CommandText = "DELETE FROM " + PriceName + " WHERE ([id] = @id)";
 				sqlServer.sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int, 10, "id").SourceVersion = DataRowVersion.Original;
 				
 				if(sqlServer.ExecuteUpdate(PriceName)){

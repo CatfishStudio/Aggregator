@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database.Local;
+using Aggregator.Database.Server;
 using Aggregator.Utilits;
 
 namespace Aggregator.Client.Documents.PurchasePlan
@@ -45,10 +46,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		public int SelectTableLine;
 		public String FilterText;
 		SearchNomenclatureOleDb searchNomenclatureOleDb;
+		SearchNomenclatureSqlServer searchNomenclatureSqlServer;
 		
 		
 		public void LoadNomenclature(List<Nomenclature> nomenclatureList)
 		{
+			if(nomenclatureList == null)  return;
+			
 			DateTime dt;
 			ListViewItem ListViewItem_add;
 			foreach(Nomenclature nomenclature in nomenclatureList){
@@ -178,10 +182,18 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				listView1.Items[0].Remove();
 			}
 			
-			List<Nomenclature> nomenclatureList;
-			searchNomenclatureOleDb = new SearchNomenclatureOleDb();
-			searchNomenclatureOleDb.setPrices(ListViewPrices);
-			nomenclatureList = searchNomenclatureOleDb.filterNomenclature(filterTextBox.Text);
+			List<Nomenclature> nomenclatureList = null;
+			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
+				// OLEDB
+				searchNomenclatureOleDb = new SearchNomenclatureOleDb();
+				searchNomenclatureOleDb.setPrices(ListViewPrices);
+				nomenclatureList = searchNomenclatureOleDb.filterNomenclature(filterTextBox.Text);
+			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
+				// MSSQL SERVER
+				searchNomenclatureSqlServer = new SearchNomenclatureSqlServer();
+				searchNomenclatureSqlServer.setPrices(ListViewPrices);
+				nomenclatureList = searchNomenclatureSqlServer.filterNomenclature(filterTextBox.Text);
+			}
 			LoadNomenclature(nomenclatureList);
 		}
 		

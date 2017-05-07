@@ -69,13 +69,13 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					return numStr;
 				}catch(Exception ex){
 					oleDbConnection.Close();
-					Utilits.Console.Log("[ОШИБКА]: " + ex.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message, false, true);
 				}
 			} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 				// MSSQL SERVER
 				SqlConnection sqlConnection = new SqlConnection(DataConfig.serverConnection);
 				try{
-					SqlCommand sqlCommand = new SqlCommand("SELECT SCOPE_IDENTITY(PurchasePlan)", sqlConnection);
+					SqlCommand sqlCommand = new SqlCommand("SELECT MAX(id) FROM PurchasePlan", sqlConnection);
 					sqlConnection.Open();
 					var order_id = sqlCommand.ExecuteScalar();
 					sqlConnection.Close();
@@ -90,7 +90,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					return numStr;
 				}catch(Exception ex){
 					sqlConnection.Close();
-					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
+					Utilits.Console.Log("[ОШИБКА]: " + ex.Message, false, true);
 				}
 			}
 			return null;
@@ -159,7 +159,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				sqlServer.sqlCommandSelect.CommandText = "SELECT id, docDate, docNumber, docName, docAutor, docSum, docVat, docTotal FROM PurchasePlan WHERE (id = 0)";
 				sqlServer.ExecuteFill("PurchasePlan");				
 				
-				DataRow newRow = oleDb.dataSet.Tables["PurchasePlan"].NewRow();
+				DataRow newRow = sqlServer.dataSet.Tables["PurchasePlan"].NewRow();
 				newRow["docDate"] = dateTimePicker1.Value;
 				newRow["docNumber"] = docNumber;
 				newRow["docName"] = "План закупок";
@@ -230,7 +230,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				
 				DataRow newRow = null;
 				for(int i = 0; i < listViewPrices.Items.Count; i++){
-					newRow = oleDb.dataSet.Tables["PurchasePlanPriceLists"].NewRow();
+					newRow = sqlServer.dataSet.Tables["PurchasePlanPriceLists"].NewRow();
 					newRow["counteragentName"] = listViewPrices.Items[i].SubItems[1].Text.ToString();
 					newRow["counteragentPricelist"] = listViewPrices.Items[i].SubItems[2].Text.ToString();
 					newRow["docID"] = docNumber;
@@ -450,7 +450,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					foreach(DataRow row in oleDb.dataSet.Tables["PurchasePlanPriceLists"].Rows){
 						ListViewItem_add = new ListViewItem();
 						ListViewItem_add.SubItems.Add(row["counteragentName"].ToString());
-						ListViewItem_add.StateImageIndex = 1;
+						ListViewItem_add.StateImageIndex = 0;
 						ListViewItem_add.SubItems.Add(row["counteragentPricelist"].ToString());
 						listViewPrices.Items.Add(ListViewItem_add);
 					}
@@ -466,7 +466,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 					foreach(DataRow row in sqlServer.dataSet.Tables["PurchasePlanPriceLists"].Rows){
 						ListViewItem_add = new ListViewItem();
 						ListViewItem_add.SubItems.Add(row["counteragentName"].ToString());
-						ListViewItem_add.StateImageIndex = 1;
+						ListViewItem_add.StateImageIndex = 0;
 						ListViewItem_add.SubItems.Add(row["counteragentPricelist"].ToString());
 						listViewPrices.Items.Add(ListViewItem_add);
 					}
@@ -882,7 +882,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				sqlServer.sqlCommandUpdate.Parameters.Add("@docOrder", SqlDbType.VarChar, 255, "docOrder");
 				sqlServer.sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int, 10, "id");
 				
-				sqlServer.sqlCommandDelete.CommandText = "DELETE * FROM OrderNomenclature WHERE ([id] = @id)";
+				sqlServer.sqlCommandDelete.CommandText = "DELETE FROM OrderNomenclature WHERE ([id] = @id)";
 				sqlServer.sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int, 10, "id").SourceVersion = DataRowVersion.Original;
 								
 				ListViewItem item;

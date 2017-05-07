@@ -384,7 +384,7 @@ namespace Aggregator.Client.Directories
 							newRow["discount4"] = Math.Round(value, 2);
 						} else newRow["discount4"] = 0;
 						if(numericUpDown16.Value > 0) newRow["term"] = row[(int)numericUpDown16.Value-1];
-						else newRow["term"] = "01.01.0001";
+						else newRow["term"] = "01.01.2000";
 						oleDb.dataSet.Tables[ExcelTableID].Rows.Add(newRow);
 					}
 				}catch(Exception ex){
@@ -425,13 +425,13 @@ namespace Aggregator.Client.Directories
 				QuerySqlServer query;
 				query = new QuerySqlServer(DataConfig.serverConnection);
 				sqlCommand = "CREATE TABLE " + ExcelTableID + " (" +
-					"[id] COUNTER PRIMARY KEY, " +
-					"[name] VARCHAR DEFAULT '', " +
-					"[code] VARCHAR DEFAULT '', " +
-					"[series] VARCHAR DEFAULT '', " +
-					"[article] VARCHAR DEFAULT '', " +
+					"[id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, " +
+					"[name] VARCHAR(255) DEFAULT '', " +
+					"[code] VARCHAR(255) DEFAULT '', " +
+					"[series] VARCHAR(255) DEFAULT '', " +
+					"[article] VARCHAR(255) DEFAULT '', " +
 					"[remainder] FLOAT DEFAULT 0, " +
-					"[manufacturer] VARCHAR DEFAULT '', " +
+					"[manufacturer] VARCHAR(255) DEFAULT '', " +
 					"[price] FLOAT DEFAULT 0, " +
 					"[discount1] FLOAT DEFAULT 0, " +
 					"[discount2] FLOAT DEFAULT 0, " +
@@ -489,7 +489,7 @@ namespace Aggregator.Client.Directories
 							newRow["discount4"] = Math.Round(value, 2);
 						} else newRow["discount4"] = 0;
 						if(numericUpDown16.Value > 0) newRow["term"] = row[(int)numericUpDown16.Value-1];
-						else newRow["term"] = "01.01.0001";
+						else newRow["term"] = "01.01.2000";
 						sqlServer.dataSet.Tables[ExcelTableID].Rows.Add(newRow);
 					}
 				}catch(Exception ex){
