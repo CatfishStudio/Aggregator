@@ -82,7 +82,7 @@ namespace Aggregator.Database.Local
 			oleDb.oleDbCommandUpdate.Parameters.Add("@user", OleDbType.VarChar, 255, "user");
 			oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
 			if(!oleDb.ExecuteFill("History")){
-				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] История обновлений базы данных не загружена!");
+				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] История обновлений базы данных не загружена!");
 			}
 		}
 		
@@ -90,7 +90,7 @@ namespace Aggregator.Database.Local
 		public void check()
 		{
 			if(oleDb.dataSet.Tables.Count == 0){
-				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Мониторинг не запущен! Неудалось проверить обновления базы данных!", false, true);
+				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] Мониторинг не запущен! Неудалось проверить обновления базы данных!", false, true);
 				return;
 			}
 			
@@ -119,7 +119,7 @@ namespace Aggregator.Database.Local
 				oleDbDataReader.Close();
 				oleDbConnection.Close();
 			}catch(Exception ex){
-				Utilits.Console.Log("[ОШИБКА] " + ex.Message, false, true);
+				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message, false, true);
 				if(oleDbDataReader != null) oleDbDataReader.Close();
 				if(oleDbConnection != null) oleDbConnection.Close();
 			}
@@ -129,7 +129,7 @@ namespace Aggregator.Database.Local
 		public void update(String tableName)
 		{
 			if(oleDb.dataSet.Tables.Count == 0){
-				Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Мониторинг не запущен! Не удалось обновить историю!", false, true);
+				Utilits.Console.Log("[МОНИТОРИНГ:ПРЕДУПРЕЖДЕНИЕ] Мониторинг не запущен! Не удалось обновить историю!", false, true);
 				return;
 			}
 			
@@ -137,10 +137,10 @@ namespace Aggregator.Database.Local
 				oleDb.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["user"] = DataConfig.userName;
 				oleDb.dataSet.Tables["History"].Rows[getTableIndex(tableName)]["datetime"] = DateTime.Now.ToString();
 				
-				if(!oleDb.ExecuteUpdate("History")) Utilits.Console.Log("[ОШИБКА] ошибка обновления данных.", false, true);
+				if(!oleDb.ExecuteUpdate("History")) Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] ошибка обновления данных.", false, true);
 			}catch(Exception ex){
 				oleDb.Error();
-				Utilits.Console.Log("[ОШИБКА] " + ex.Message.ToString(), false, true);
+				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] " + ex.Message.ToString(), false, true);
 			}
 		}
 		
@@ -157,9 +157,9 @@ namespace Aggregator.Database.Local
 				if(tableName == "Orders" && DataForms.FOrderJournal != null) DataForms.FOrderJournal.TableRefresh();
 				if(tableName == "Orders" && DataForms.FFullJournal != null) DataForms.FFullJournal.TableRefresh();
 				
-				Utilits.Console.Log("[ИСТОРИЯ] Таблица " + tableRepresent + " была успешно обновлена.");
+				Utilits.Console.Log("[МОНИТОРИНГ] Таблица " + tableRepresent + " была успешно обновлена.");
 			}catch(Exception ex){
-				Utilits.Console.Log("[ОШИБКА] Обновление таблицы "+ tableRepresent + "! " + ex.Message.ToString(), false, true);
+				Utilits.Console.Log("[МОНИТОРИНГ:ОШИБКА] Обновление таблицы "+ tableRepresent + "! " + ex.Message.ToString(), false, true);
 			}
 		}
 		

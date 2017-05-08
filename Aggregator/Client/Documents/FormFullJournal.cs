@@ -372,42 +372,42 @@ namespace Aggregator.Client.Documents
 		{
 			if(listView1.SelectedIndices.Count > 0){
 				String docID = listView1.Items[listView1.SelectedIndices[0]].SubItems[8].Text;
-				String docName = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text;
+				String docNumber = listView1.Items[listView1.SelectedIndices[0]].SubItems[2].Text;
 				
-				if(MessageBox.Show("Удалить документ План закупок №" + docName + Environment.NewLine + " и связанные с ним Заказы ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+				if(MessageBox.Show("Удалить документ План закупок №" + docNumber + Environment.NewLine + " и связанные с ним Заказы ?"  ,"Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
 					if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 						// OLEDB
 						QueryOleDb query;
 						
 						query = new QueryOleDb(DataConfig.localDatabase);
-						query.SetCommand("DELETE FROM Orders WHERE (docPurchasePlan = '" + docName + "')");
+						query.SetCommand("DELETE FROM Orders WHERE (docPurchasePlan = '" + docNumber + "')");
 						if(!query.Execute()){
-							Utilits.Console.Log("[ОШИБКА] Не удалось удалить заказы привязанные к Плану закупок №" + docName, false, true);
+							Utilits.Console.Log("[ОШИБКА] Не удалось удалить заказы привязанные к Плану закупок №" + docNumber, false, true);
 							return;
 						}
 						
 						query = new QueryOleDb(DataConfig.localDatabase);
-						query.SetCommand("DELETE FROM OrderNomenclature WHERE (docPurchasePlan = '" + docName + "')");
+						query.SetCommand("DELETE FROM OrderNomenclature WHERE (docPurchasePlan = '" + docNumber + "')");
 						if(!query.Execute()){
-							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не удалось удалить перечень номенклатуры!", false, true);
+							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docNumber + " не удалось удалить перечень номенклатуры!", false, true);
 							return;
 						}
 						
 						query = new QueryOleDb(DataConfig.localDatabase);
-						query.SetCommand("DELETE FROM PurchasePlanPriceLists WHERE (docID = '" + docName + "')");
+						query.SetCommand("DELETE FROM PurchasePlanPriceLists WHERE (docID = '" + docNumber + "')");
 						if(!query.Execute()){
-							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не удалось удалить перечень прайс-листов!", false, true);
+							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docNumber + " не удалось удалить перечень прайс-листов!", false, true);
 							return;
 						}
 						
 						query = new QueryOleDb(DataConfig.localDatabase);
 						query.SetCommand("DELETE FROM PurchasePlan WHERE (id = " + docID + ")");
 						if(!query.Execute()){
-							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не получилось удалить!", false, true);
+							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docNumber + " не получилось удалить!", false, true);
 							return;
 						}
 						
-						Utilits.Console.Log("Документ план закупок №" + docName + " успешно удален.");
+						Utilits.Console.Log("Документ план закупок №" + docNumber + " успешно удален.");
 						DataForms.FClient.updateHistory("Orders");
 						DataForms.FClient.updateHistory("PurchasePlan");
 						
@@ -417,34 +417,34 @@ namespace Aggregator.Client.Documents
 						QuerySqlServer query;
 						
 						query = new QuerySqlServer(DataConfig.serverConnection);
-						query.SetCommand("DELETE FROM Orders WHERE (docPurchasePlan = '" + docName + "')");
+						query.SetCommand("DELETE FROM Orders WHERE (docPurchasePlan = '" + docNumber + "')");
 						if(!query.Execute()){
-							Utilits.Console.Log("[ОШИБКА] Не удалось удалить заказы привязанные к Плану закупок №" + docName, false, true);
+							Utilits.Console.Log("[ОШИБКА] Не удалось удалить заказы привязанные к Плану закупок №" + docNumber, false, true);
 							return;
 						}
 						
 						query = new QuerySqlServer(DataConfig.serverConnection);
-						query.SetCommand("DELETE FROM OrderNomenclature WHERE (docPurchasePlan = '" + docName + "')");
+						query.SetCommand("DELETE FROM OrderNomenclature WHERE (docPurchasePlan = '" + docNumber + "')");
 						if(!query.Execute()){
-							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не удалось удалить перечень номенклатуры!", false, true);
+							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docNumber + " не удалось удалить перечень номенклатуры!", false, true);
 							return;
 						}
 						
 						query = new QuerySqlServer(DataConfig.serverConnection);
-						query.SetCommand("DELETE FROM PurchasePlanPriceLists WHERE (docID = '" + docName + "')");
+						query.SetCommand("DELETE FROM PurchasePlanPriceLists WHERE (docID = '" + docNumber + "')");
 						if(!query.Execute()){
-							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не удалось удалить перечень прайс-листов!", false, true);
+							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docNumber + " не удалось удалить перечень прайс-листов!", false, true);
 							return;
 						}
 						
 						query = new QuerySqlServer(DataConfig.serverConnection);
 						query.SetCommand("DELETE FROM PurchasePlan WHERE (id = " + docID + ")");
 						if(!query.Execute()){
-							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docName + " не получилось удалить!", false, true);
+							Utilits.Console.Log("[ОШИБКА] Документ план закупок №" + docNumber + " не получилось удалить!", false, true);
 							return;
 						}
 						
-						Utilits.Console.Log("Документ план закупок №" + docName + " успешно удален.");
+						Utilits.Console.Log("Документ план закупок №" + docNumber + " успешно удален.");
 						DataForms.FClient.updateHistory("Orders");
 						DataForms.FClient.updateHistory("PurchasePlan");
 						

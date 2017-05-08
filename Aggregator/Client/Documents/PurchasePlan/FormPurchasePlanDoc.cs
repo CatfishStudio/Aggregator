@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Aggregator.Client.Documents.Order;
 using Aggregator.Data;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
@@ -1133,6 +1134,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				if(saveEdit() && saveEditPrices() && saveEditOrderNomenclature()){
 					DataForms.FClient.updateHistory("PurchasePlan");
 					Utilits.Console.Log("Документ План закупок №" + docNumber + ": успешно изменён и сохранён.");
+					if(MessageBox.Show("Обновить заказы созданные на основании План закупок №" + docNumber + "?","Вопрос", MessageBoxButtons.YesNo) == DialogResult.Yes){
+						InputToOrder inputToOrder = new InputToOrder(docNumberTextBox.Text);
+						inputToOrder.Execute();
+					}
 					Close();
 				}else{
 					Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Документ План закупок №" + docNumber + ": не удалось сохранить изменения.", false, true);
