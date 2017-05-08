@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Aggregator.Client.Documents;
 using Aggregator.Client.OpenFiles;
+using Aggregator.Client.Reports;
 using Aggregator.Data;
 using Aggregator.Database.Constants;
 using Aggregator.Database.Local;
@@ -221,6 +222,13 @@ namespace Aggregator.Client
 			CalculationCostRealization FCalculationCostRealization = new CalculationCostRealization();
 			(FCalculationCostRealization as Form).MdiParent = DataForms.FClient;
 			(FCalculationCostRealization as Form).Show();
+		}
+		
+		void reportCountragent()
+		{
+			FormReportCountragents FReportCountragents= new FormReportCountragents();
+			FReportCountragents.MdiParent = DataForms.FClient;
+			FReportCountragents.Show();
 		}
 		
 		/* Сообщение в статусе */
@@ -510,6 +518,14 @@ namespace Aggregator.Client
 		void ToolStripButton8Click(object sender, EventArgs e)
 		{
 			fullJournalShow();
+		}
+		void ОтчетПоКонтрагентуToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			reportCountragent();
+		}
+		void ToolStripButton14Click(object sender, EventArgs e)
+		{
+			reportCountragent();
 		}
 		
 				

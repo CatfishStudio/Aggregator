@@ -418,6 +418,7 @@ namespace Aggregator.Client
 			this.отчетПоКонтрагентуToolStripMenuItem.Name = "отчетПоКонтрагентуToolStripMenuItem";
 			this.отчетПоКонтрагентуToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
 			this.отчетПоКонтрагентуToolStripMenuItem.Text = "Отчет по контрагенту";
+			this.отчетПоКонтрагентуToolStripMenuItem.Click += new System.EventHandler(this.ОтчетПоКонтрагентуToolStripMenuItemClick);
 			// 
 			// расчетыToolStripMenuItem
 			// 
@@ -727,6 +728,7 @@ namespace Aggregator.Client
 			this.toolStripButton14.Name = "toolStripButton14";
 			this.toolStripButton14.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton14.Text = "Отчет по контрагенту";
+			this.toolStripButton14.Click += new System.EventHandler(this.ToolStripButton14Click);
 			// 
 			// toolStripSeparator11
 			// 

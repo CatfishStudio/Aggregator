@@ -294,6 +294,9 @@
     <EmbeddedResource Include="Client\OpenFiles\FormOpenExcel.resx">
       <DependentUpon>FormOpenExcel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Client\Reports\FormReportCountragents.resx">
+      <DependentUpon>FormReportCountragents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Client\Settings\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
