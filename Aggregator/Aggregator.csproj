@@ -117,6 +117,10 @@
     <Compile Include="Client\Directories\Units\FormUnitsFile.Designer.cs">
       <DependentUpon>FormUnitsFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Documents\FormFullJournal.cs" />
+    <Compile Include="Client\Documents\FormFullJournal.Designer.cs">
+      <DependentUpon>FormFullJournal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\Documents\Order\FormOrderDoc.cs" />
     <Compile Include="Client\Documents\Order\FormOrderDoc.Designer.cs">
       <DependentUpon>FormOrderDoc.cs</DependentUpon>
@@ -258,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Directories\Units\FormUnitsFile.resx">
       <DependentUpon>FormUnitsFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Documents\FormFullJournal.resx">
+      <DependentUpon>FormFullJournal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client\Documents\Order\FormOrderDoc.resx">
       <DependentUpon>FormOrderDoc.cs</DependentUpon>

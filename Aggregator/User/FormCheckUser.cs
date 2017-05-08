@@ -35,7 +35,7 @@ namespace Aggregator.User
 			//
 		}
 		
-		Boolean programClose;	//флаг закрытия приложения
+		//Boolean programClose;	//флаг закрытия приложения
 		OleDb oleDb;			// OleDb
 		SqlServer sqlServer;	// MSSQL
 		
@@ -98,7 +98,7 @@ namespace Aggregator.User
 							DataConfig.userPass = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
 							DataConfig.userPermissions = oleDb.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["permissions"].ToString(); 
 							DataForms.FMain.Visible = false;
-							programClose = false;
+							DataConfig.programClose = false;
 							DataForms.FClient = new FormClient();
 							DataForms.FClient.Show();
 							Utilits.Console.Log("Пользователь успешно авторизовался!");
@@ -122,7 +122,7 @@ namespace Aggregator.User
 							DataConfig.userPass = sqlServer.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["pass"].ToString();
 							DataConfig.userPermissions = sqlServer.dataSet.Tables["Users"].Rows[comboBox1.SelectedIndex]["permissions"].ToString(); 
 							DataForms.FMain.Visible = false;
-							programClose = false;
+							DataConfig.programClose = false;
 							DataForms.FClient = new FormClient();
 							DataForms.FClient.Show();
 							Utilits.Console.Log("Пользователь успешно авторизовался!");
@@ -145,7 +145,7 @@ namespace Aggregator.User
 		{
 			if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL && oleDb != null) oleDb.Dispose();
 			if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER && sqlServer != null) sqlServer.Dispose();
-			if(programClose) Application.Exit();
+			if(DataConfig.programClose) Application.Exit();
 		}
 		void Button2Click(object sender, EventArgs e)
 		{
@@ -153,7 +153,7 @@ namespace Aggregator.User
 		}
 		void FormSelectUserLoad(object sender, EventArgs e)
 		{
-			programClose = true;
+			DataConfig.programClose = true;
 			loadData();
 		}
 		void Button1Click(object sender, EventArgs e)

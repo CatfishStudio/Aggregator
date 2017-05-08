@@ -80,15 +80,19 @@ namespace Aggregator.Database.Server
 		
 		public void Dispose()
 		{
-			sqlConnection.Close();
-			sqlConnection.Dispose();
-			sqlCommandSelect.Dispose();
-			sqlCommandDelete.Dispose();
-			sqlCommandUpdate.Dispose();
-			sqlCommandInsert.Dispose();
-			sqlDataAdapter.Dispose();
-			dataSet.Clear();
-			dataSet.Dispose();
+			if(sqlConnection != null) {
+				sqlConnection.Close();
+				sqlConnection.Dispose();
+			}
+			if(sqlCommandSelect != null) sqlCommandSelect.Dispose();
+			if(sqlCommandDelete != null) sqlCommandDelete.Dispose();
+			if(sqlCommandUpdate != null) sqlCommandUpdate.Dispose();
+			if(sqlCommandInsert != null) sqlCommandInsert.Dispose();
+			if(sqlDataAdapter != null) sqlDataAdapter.Dispose();
+			if(dataSet != null){
+				dataSet.Clear();
+				dataSet.Dispose();
+			}
 		}
 	}
 }

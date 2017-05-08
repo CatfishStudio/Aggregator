@@ -107,9 +107,10 @@ namespace Aggregator.Client.Documents.Order
 			if(oleDb.ExecuteFill("Orders")){
 				listView1.Items.Clear();
 				DateTime dt;
+				ListViewItem ListViewItem_add;
 				foreach(DataRow rowElement in oleDb.dataSet.Tables[0].Rows)
 	    		{
-					ListViewItem ListViewItem_add = new ListViewItem();
+					ListViewItem_add = new ListViewItem();
 					dt = new DateTime();
 					DateTime.TryParse(rowElement["docDate"].ToString(), out dt);
 					ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
@@ -153,9 +154,10 @@ namespace Aggregator.Client.Documents.Order
 			if(sqlServer.ExecuteFill("Orders")){
 				listView1.Items.Clear();
 				DateTime dt;
+				ListViewItem ListViewItem_add;
 				foreach(DataRow rowElement in sqlServer.dataSet.Tables[0].Rows)
 	    		{
-					ListViewItem ListViewItem_add = new ListViewItem();
+					ListViewItem_add = new ListViewItem();
 					dt = new DateTime();
 					DateTime.TryParse(rowElement["docDate"].ToString(), out dt);
 					ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));

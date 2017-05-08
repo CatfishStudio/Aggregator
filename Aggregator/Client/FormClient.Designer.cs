@@ -381,6 +381,7 @@ namespace Aggregator.Client
 			this.полныйЖурналToolStripMenuItem.Name = "полныйЖурналToolStripMenuItem";
 			this.полныйЖурналToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
 			this.полныйЖурналToolStripMenuItem.Text = "Полный журнал";
+			this.полныйЖурналToolStripMenuItem.Click += new System.EventHandler(this.ПолныйЖурналToolStripMenuItemClick);
 			// 
 			// toolStripSeparator4
 			// 
@@ -710,7 +711,8 @@ namespace Aggregator.Client
 			this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton8.Name = "toolStripButton8";
 			this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton8.Text = "Полный журнал";
+			this.toolStripButton8.Text = "Полный журнал документов";
+			this.toolStripButton8.Click += new System.EventHandler(this.ToolStripButton8Click);
 			// 
 			// toolStripSeparator8
 			// 

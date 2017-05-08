@@ -357,7 +357,7 @@ namespace Aggregator.Client.Directories
 								if(query.Execute()){
 									Utilits.Console.Log("Контрагент '" + fileName + "' успешно удалён. Прайс '" + priceName + "' успешно удалён.");
 								}else{
-									Utilits.Console.Log("[ОШИБКА] Прайс '" + priceName + "' не удалось удалить!");
+									Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Прайс '" + priceName + "' не удалось удалить!");
 								}
 								DataForms.FClient.updateHistory("Counteragents");
 							}else{
@@ -373,7 +373,7 @@ namespace Aggregator.Client.Directories
 								if(query.Execute()){
 									Utilits.Console.Log("Контрагент '" + fileName + "' успешно удалён. Прайс '" + priceName + "' успешно удалён.");
 								}else{
-									Utilits.Console.Log("[ОШИБКА] Прайс '" + priceName + "' не удалось удалить!");
+									Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Прайс '" + priceName + "' не удалось удалить!");
 								}
 								DataForms.FClient.updateHistory("Counteragents");
 							}else{

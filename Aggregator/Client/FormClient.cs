@@ -9,6 +9,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Aggregator.Client.Documents;
 using Aggregator.Client.OpenFiles;
 using Aggregator.Data;
 using Aggregator.Database.Constants;
@@ -206,6 +207,15 @@ namespace Aggregator.Client
 			FOrderDoc.Show();
 		}
 		
+		void fullJournalShow()
+		{
+			if(DataForms.FFullJournal == null){
+				DataForms.FFullJournal = new FormFullJournal();
+				DataForms.FFullJournal.MdiParent= DataForms.FClient;
+				DataForms.FFullJournal.Show();
+			}
+		}
+		
 		void calcCostRealizationShow()
 		{
 			CalculationCostRealization FCalculationCostRealization = new CalculationCostRealization();
@@ -296,20 +306,22 @@ namespace Aggregator.Client
 		}
 		void FormClientFormClosing(object sender, FormClosingEventArgs e)
 		{
-			if(MessageBox.Show("Вы хотите выйти из программы?","Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
-				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL)
-				{
-					timer1.Stop();
-					historyRefreshOleDb.Dispose();
+			if(DataConfig.programClose == false){
+				if(MessageBox.Show("Вы хотите выйти из программы?","Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+					if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL)
+					{
+						timer1.Stop();
+						historyRefreshOleDb.Dispose();
+					}
+					if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER)
+					{
+						historyRefreshSqlServer.MonitoringStop();
+						historyRefreshSqlServer.Dispose();
+					}
+					e.Cancel = false;
+				}else{
+					e.Cancel = true;
 				}
-				if(DataConfig.typeConnection == DataConstants.CONNETION_SERVER)
-				{
-					historyRefreshSqlServer.MonitoringStop();
-					historyRefreshSqlServer.Dispose();
-				}
-				e.Cancel = false;
-			}else{
-				e.Cancel = true;
 			}
 		}
 		void Timer1Tick(object sender, EventArgs e)
@@ -490,6 +502,14 @@ namespace Aggregator.Client
 		void ToolStripButton11Click(object sender, EventArgs e)
 		{
 			settingsShow();
+		}
+		void ПолныйЖурналToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			fullJournalShow();
+		}
+		void ToolStripButton8Click(object sender, EventArgs e)
+		{
+			fullJournalShow();
 		}
 		
 				

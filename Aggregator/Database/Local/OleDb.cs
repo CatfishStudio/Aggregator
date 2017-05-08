@@ -81,15 +81,19 @@ namespace Aggregator.Database.Local
 		
 		public void Dispose()
 		{
-			oleDbConnection.Close();
-			oleDbConnection.Dispose();
-			oleDbCommandSelect.Dispose();
-			oleDbCommandDelete.Dispose();
-			oleDbCommandUpdate.Dispose();
-			oleDbCommandInsert.Dispose();
-			oleDbDataAdapter.Dispose();
-			dataSet.Clear();
-			dataSet.Dispose();
+			if(oleDbConnection != null) {
+				oleDbConnection.Close();
+				oleDbConnection.Dispose();
+			}
+			if(oleDbCommandSelect != null) oleDbCommandSelect.Dispose();
+			if(oleDbCommandDelete != null) oleDbCommandDelete.Dispose();
+			if(oleDbCommandUpdate != null) oleDbCommandUpdate.Dispose();
+			if(oleDbCommandInsert != null) oleDbCommandInsert.Dispose();
+			if(oleDbDataAdapter != null) oleDbDataAdapter.Dispose();
+			if(dataSet != null){
+				dataSet.Clear();
+				dataSet.Dispose();
+			}
 		}
 		
 	}

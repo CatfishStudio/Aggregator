@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using Aggregator.Data;
 
 namespace Aggregator.Database.Server
@@ -190,7 +191,9 @@ namespace Aggregator.Database.Server
 				if(tableName == "Nomenclature" && DataForms.FNomenclature != null) DataForms.FNomenclature.TableRefresh();
 				if(tableName == "Units" && DataForms.FUnits != null) DataForms.FUnits.TableRefresh();
 				if(tableName == "PurchasePlan" && DataForms.FPurchasePlanJournal != null) DataForms.FPurchasePlanJournal.TableRefresh();
+				if(tableName == "PurchasePlan" && DataForms.FFullJournal != null) DataForms.FFullJournal.TableRefresh();
 				if(tableName == "Orders" && DataForms.FOrderJournal != null) DataForms.FOrderJournal.TableRefresh();
+				if(tableName == "Orders" && DataForms.FFullJournal != null) DataForms.FFullJournal.TableRefresh();
 				
 				Utilits.Console.Log("[МОНИТОРИНГ] Таблица '" + tableRepresent + "' была успешно обновлена.");
 			}catch(Exception ex){

@@ -153,7 +153,9 @@ namespace Aggregator.Database.Local
 				if(tableName == "Nomenclature" && DataForms.FNomenclature != null) DataForms.FNomenclature.TableRefresh();
 				if(tableName == "Units" && DataForms.FUnits != null) DataForms.FUnits.TableRefresh();
 				if(tableName == "PurchasePlan" && DataForms.FPurchasePlanJournal != null) DataForms.FPurchasePlanJournal.TableRefresh();
+				if(tableName == "PurchasePlan" && DataForms.FFullJournal != null) DataForms.FFullJournal.TableRefresh();
 				if(tableName == "Orders" && DataForms.FOrderJournal != null) DataForms.FOrderJournal.TableRefresh();
+				if(tableName == "Orders" && DataForms.FFullJournal != null) DataForms.FFullJournal.TableRefresh();
 				
 				Utilits.Console.Log("[ИСТОРИЯ] Таблица " + tableRepresent + " была успешно обновлена.");
 			}catch(Exception ex){

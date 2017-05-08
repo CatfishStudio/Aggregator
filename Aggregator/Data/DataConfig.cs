@@ -19,6 +19,8 @@ namespace Aggregator.Data
 		public static String programPath = "";			// адрес программы
 		public static String resource = "";				// адрес папки ресурсов
 		public static String configFile = "";			// адрес и имя файла базы данных config.mdb
+		public static Boolean programClose = true;		// флаг обязательного закрытия приложения
+		
 		/* Пользователь */
 		public static String userName = "";				// имя
 		public static String userPass = "";				// пароль

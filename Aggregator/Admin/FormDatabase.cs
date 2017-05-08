@@ -81,6 +81,7 @@ namespace Aggregator.Admin
 			SavingConfig.SaveDatabaseSettings();
 			Close();
 			MessageBox.Show("Чтобы изменения вступили в силу, необходимо перезапустить программу.", "Сообщение:");
+			DataConfig.programClose = true;
 			Application.Exit();
 		}
 		void Button1Click(object sender, EventArgs e)

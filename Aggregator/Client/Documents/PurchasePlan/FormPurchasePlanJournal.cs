@@ -107,9 +107,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			if(oleDb.ExecuteFill("PurchasePlan")){
 				listView1.Items.Clear();
 				DateTime dt;
+				ListViewItem ListViewItem_add;
 				foreach(DataRow rowElement in oleDb.dataSet.Tables[0].Rows)
 	    		{
-					ListViewItem ListViewItem_add = new ListViewItem();
+					ListViewItem_add = new ListViewItem();
 					dt = new DateTime();
 					DateTime.TryParse(rowElement["docDate"].ToString(), out dt);
 					ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
@@ -140,14 +141,15 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			sqlServer.sqlCommandSelect.CommandText = "SELECT * FROM PurchasePlan WHERE (docDate BETWEEN '" + 
 				dateTimePicker1.Text + "' AND '" + dateTimePicker2.Text + 
 				"' AND (docNumber LIKE '%" + toolStripComboBox1.Text + "%' OR docTotal LIKE '%" + toolStripComboBox1.Text + "%' OR docAutor LIKE '%" + toolStripComboBox1.Text + 
-				"%')) ORDER BY docDate ASC";
+				"%')) ORDER BY docDate DESC";
 			
 			if(sqlServer.ExecuteFill("PurchasePlan")){
 				listView1.Items.Clear();
 				DateTime dt;
+				ListViewItem ListViewItem_add;
 				foreach(DataRow rowElement in sqlServer.dataSet.Tables[0].Rows)
 	    		{
-					ListViewItem ListViewItem_add = new ListViewItem();
+					ListViewItem_add = new ListViewItem();
 					dt = new DateTime();
 					DateTime.TryParse(rowElement["docDate"].ToString(), out dt);
 					ListViewItem_add.SubItems.Add(dt.ToString("dd.MM.yyyy"));
