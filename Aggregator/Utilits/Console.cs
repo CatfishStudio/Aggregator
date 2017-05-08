@@ -21,7 +21,7 @@ namespace Aggregator.Utilits
 		{
 			if(DataForms.FClient != null){
 				if(DataForms.FClient.consoleText.Text.Length > 10000) DataForms.FClient.consoleText.Clear();
-				if(show){
+				if(show && DataConfig.showConsole){
 					DataForms.FClient.consolePanel.Visible = true;
 				}
 				if(clear){

@@ -78,18 +78,22 @@ namespace Aggregator.Database.Config
 			OleDb oleDb;
 			oleDb = new OleDb(DataConfig.configFile);
 			try{
-				oleDb.oleDbCommandSelect.CommandText = "SELECT [id], [autoUpdate], [period] FROM Settings";
+				oleDb.oleDbCommandSelect.CommandText = "SELECT [id], [autoUpdate], [showConsole], [period] FROM Settings";
 				oleDb.oleDbCommandUpdate.CommandText = "UPDATE Settings SET " +
 					"[autoUpdate] = @autoUpdate, " +
+					"[showConsole] = @showConsole, " +
 					"[period] = @period " +
 					"WHERE ([id] = @id)";
 				oleDb.oleDbCommandUpdate.Parameters.Add("@autoUpdate", OleDbType.VarChar, 255, "autoUpdate");
+				oleDb.oleDbCommandUpdate.Parameters.Add("@showConsole", OleDbType.VarChar, 255, "showConsole");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@period", OleDbType.VarChar, 255, "period");
 				oleDb.oleDbCommandUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "id");
 				oleDb.ExecuteFill("Settings");
 				
 				oleDb.dataSet.Tables["Settings"].Rows[0]["autoUpdate"] = DataConfig.autoUpdate.ToString();
+				oleDb.dataSet.Tables["Settings"].Rows[0]["showConsole"] = DataConfig.showConsole.ToString();
 				oleDb.dataSet.Tables["Settings"].Rows[0]["period"] = DataConfig.period;
+				
 				if(oleDb.ExecuteUpdate("Settings")){
 					oleDb.Dispose();
 					Utilits.Console.Log("Сохранение настроек программы прошло успешно.");

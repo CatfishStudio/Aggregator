@@ -61,7 +61,10 @@ namespace Aggregator.Database.Config
 				
 				if(oleDb.dataSet.Tables["Settings"].Rows[0]["autoUpdate"].ToString() == "True") DataConfig.autoUpdate = true;
 				else DataConfig.autoUpdate = false;
+				if(oleDb.dataSet.Tables["Settings"].Rows[0]["showConsole"].ToString() == "True") DataConfig.showConsole = true;
+				else DataConfig.showConsole = false;
 				DataConfig.period = oleDb.dataSet.Tables["Settings"].Rows[0]["period"].ToString();
+				
 				oleDb.Dispose();
 				Utilits.Console.Log("[Настройки]: Настройки программы успешно загружены.");
 			}catch(Exception ex){

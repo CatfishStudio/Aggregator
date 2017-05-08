@@ -41,6 +41,8 @@ namespace Aggregator.Data
 		
 		/* Настройки программы*/
 		public static Boolean autoUpdate = true;		// автоматическое обновление данных в журналах
-		public static String period = "";				// фильтр период по умолчанию для журналов				
+		public static Boolean showConsole = true;		// показывать консоль каждый раз при ошибках
+		public static String period = "";				// фильтр период по умолчанию для журналов
+		
 	}
 }

@@ -21,6 +21,7 @@ namespace Aggregator.Client.Settings
 		private System.Windows.Forms.CheckBox autoUpdateCheckBox;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox periodComboBox;
+		private System.Windows.Forms.CheckBox showConsoleCheckBox;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -48,6 +49,7 @@ namespace Aggregator.Client.Settings
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.showConsoleCheckBox = new System.Windows.Forms.CheckBox();
 			this.periodComboBox = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.autoUpdateCheckBox = new System.Windows.Forms.CheckBox();
@@ -95,6 +97,7 @@ namespace Aggregator.Client.Settings
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.showConsoleCheckBox);
 			this.panel1.Controls.Add(this.periodComboBox);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.autoUpdateCheckBox);
@@ -103,6 +106,15 @@ namespace Aggregator.Client.Settings
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(426, 170);
 			this.panel1.TabIndex = 3;
+			// 
+			// showConsoleCheckBox
+			// 
+			this.showConsoleCheckBox.Location = new System.Drawing.Point(12, 42);
+			this.showConsoleCheckBox.Name = "showConsoleCheckBox";
+			this.showConsoleCheckBox.Size = new System.Drawing.Size(402, 24);
+			this.showConsoleCheckBox.TabIndex = 3;
+			this.showConsoleCheckBox.Text = "Автоматически открывать консоль при ошибках.";
+			this.showConsoleCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// periodComboBox
 			// 
@@ -113,14 +125,14 @@ namespace Aggregator.Client.Settings
 			"Неделя",
 			"Месяц",
 			"Год"});
-			this.periodComboBox.Location = new System.Drawing.Point(258, 36);
+			this.periodComboBox.Location = new System.Drawing.Point(258, 72);
 			this.periodComboBox.Name = "periodComboBox";
 			this.periodComboBox.Size = new System.Drawing.Size(156, 21);
 			this.periodComboBox.TabIndex = 2;
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(12, 39);
+			this.label1.Location = new System.Drawing.Point(12, 75);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(257, 23);
 			this.label1.TabIndex = 1;
@@ -130,7 +142,7 @@ namespace Aggregator.Client.Settings
 			// 
 			this.autoUpdateCheckBox.Location = new System.Drawing.Point(12, 12);
 			this.autoUpdateCheckBox.Name = "autoUpdateCheckBox";
-			this.autoUpdateCheckBox.Size = new System.Drawing.Size(329, 24);
+			this.autoUpdateCheckBox.Size = new System.Drawing.Size(402, 24);
 			this.autoUpdateCheckBox.TabIndex = 0;
 			this.autoUpdateCheckBox.Text = "Автоматическое обновление данных в открытых журналах.";
 			this.autoUpdateCheckBox.UseVisualStyleBackColor = true;

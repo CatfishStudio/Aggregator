@@ -89,14 +89,15 @@ namespace Aggregator.Database.Config
 			sqlCommand = "CREATE TABLE Settings (" +
 				"[id] COUNTER PRIMARY KEY, " +
 				"[autoUpdate] VARCHAR(10) DEFAULT '', " +
+				"[showConsole] VARCHAR(10) DEFAULT '', " +
 				"[period] VARCHAR(25) DEFAULT ''" +
 				")";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка создания таблицы Settings.", false, true);
 			
 			sqlCommand = "INSERT INTO Settings (" +
-				"[autoUpdate], [period]) " +
-				"VALUES ('False', 'today')";
+				"[autoUpdate], [showConsole], [period]) " +
+				"VALUES ('False', 'True', 'today')";
 			query.SetCommand(sqlCommand);
 			if(!query.Execute()) Utilits.Console.Log("[ОШИБКА] ошибка добавления данных в таблицу Settings.", false, true);
 		}

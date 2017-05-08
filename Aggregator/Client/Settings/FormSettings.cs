@@ -40,6 +40,8 @@ namespace Aggregator.Client.Settings
 				autoUpdateCheckBox.Checked = true;
 				autoUpdateCheckBox.Enabled = false;
 			}
+			showConsoleCheckBox.Checked = DataConfig.showConsole;
+			
 			// today, yesterday, week, month, year
 			if(DataConfig.period == "today") periodComboBox.Text = "Сегодня";
 			if(DataConfig.period == "yesterday") periodComboBox.Text = "Вчера";
@@ -70,7 +72,8 @@ namespace Aggregator.Client.Settings
 			DataForms.FClient.autoUpdateOff();
 			DataConfig.autoUpdate = autoUpdateCheckBox.Checked;
 			if(DataConfig.autoUpdate) DataForms.FClient.autoUpdateOn();
-						
+			DataConfig.showConsole = showConsoleCheckBox.Checked;
+			
 			if(periodComboBox.Text == "Сегодня") DataConfig.period = "today";
 			if(periodComboBox.Text == "Вчера") DataConfig.period = "yesterday";
 			if(periodComboBox.Text == "Неделя") DataConfig.period = "week";
