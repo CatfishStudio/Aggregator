@@ -20,6 +20,7 @@ using Aggregator.Database.Local;
 using Aggregator.Database.Server;
 using Aggregator.Client.Directories;
 using Aggregator.Utilits;
+using ExcelLibrary.SpreadSheet;
 
 namespace Aggregator.Client.Documents.PurchasePlan
 {
@@ -1617,12 +1618,111 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				return;
 			}
 			if(saveFileDialog1.ShowDialog() == DialogResult.OK){
+				/*
 				if(DataConfig.typeConnection == DataConstants.CONNETION_LOCAL) {
 					// OLEDB
 					ExportExcel.CreateWorkbook(saveFileDialog1.FileName, oleDb.dataSet);
 				} else if (DataConfig.typeConnection == DataConstants.CONNETION_SERVER){
 					// MSSQL SERVER
 					ExportExcel.CreateWorkbook(saveFileDialog1.FileName, sqlServer.dataSet);
+				}
+				*/
+				
+				int row = 0;
+				int col = 0;
+				
+				Workbook workbook = new Workbook();
+				
+				try
+				{
+					Worksheet worksheet = new Worksheet("План закупок");
+					
+					/* ШАПКА */
+					worksheet.Cells[row, 1] = new Cell("План закупок №" + docNumberTextBox.Text);
+					row++;
+					
+					/* ТАБЛИЦА */
+					col = 0;
+					row++;
+					worksheet.Cells[row, col] = new Cell("№п/п:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Код товара:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Серия:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Артикул:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Номенклатура:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Ед.изм:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Кол-во:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Цена:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Производитель:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Остаток:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Срок годности:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Скидка №1:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Скидка №2:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Скидка №3:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Скидка №4:");
+					col++;
+					worksheet.Cells[row, col] = new Cell("Контрагент:");
+					col++;
+					row++;
+						
+					int countRows = listViewNomenclature.Items.Count;
+					int countColumns = col;
+					for(int r = 0; r < countRows; r++){
+						col = 0;
+						worksheet.Cells[row, col] = new Cell(r);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[15].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[16].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[17].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[6].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[3].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[4].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[7].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[8].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[9].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[10].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[11].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[12].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[13].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[14].Text);
+						col++;
+						worksheet.Cells[row, col] = new Cell(listViewNomenclature.Items[r].SubItems[18].Text);
+						col++;
+						row++;
+		            }
+					
+					workbook.Worksheets.Add(worksheet);
+		            workbook.Save(saveFileDialog1.FileName);
+	            } catch (Exception ex) {
+					workbook = null;
+					Utilits.Console.Log("[ОШИБКА] Создание excel файла заказ: " + Environment.NewLine + ex.Message, false, true);
+					return;
 				}
 				
 				if(!File.Exists(saveFileDialog1.FileName)){ 
@@ -1643,10 +1743,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				search();
 			}
 		}
-			
-		
-		
-		
 		
 	}
 }
