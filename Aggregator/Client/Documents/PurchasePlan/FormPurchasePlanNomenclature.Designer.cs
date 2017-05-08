@@ -78,6 +78,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
@@ -89,7 +90,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader15 = new System.Windows.Forms.ColumnHeader();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.выбратьНоменклатуруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,7 +115,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel1.Location = new System.Drawing.Point(0, 355);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(453, 72);
+			this.panel1.Size = new System.Drawing.Size(519, 72);
 			this.panel1.TabIndex = 4;
 			// 
 			// label1
@@ -125,7 +125,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.Location = new System.Drawing.Point(12, 5);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(429, 31);
+			this.label1.Size = new System.Drawing.Size(495, 31);
 			this.label1.TabIndex = 20;
 			this.label1.Text = "...";
 			// 
@@ -156,7 +156,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
 			this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSave.Location = new System.Drawing.Point(285, 37);
+			this.buttonSave.Location = new System.Drawing.Point(351, 37);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(75, 23);
 			this.buttonSave.TabIndex = 1;
@@ -170,7 +170,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonCancel.Image = ((System.Drawing.Image)(resources.GetObject("buttonCancel.Image")));
 			this.buttonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonCancel.Location = new System.Drawing.Point(366, 37);
+			this.buttonCancel.Location = new System.Drawing.Point(432, 37);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(75, 23);
 			this.buttonCancel.TabIndex = 0;
@@ -186,6 +186,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader1,
 			this.columnHeader2,
 			this.columnHeader3,
+			this.columnHeader14,
 			this.columnHeader4,
 			this.columnHeader5,
 			this.columnHeader6,
@@ -196,7 +197,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.columnHeader11,
 			this.columnHeader12,
 			this.columnHeader13,
-			this.columnHeader14,
 			this.columnHeader15});
 			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
@@ -206,7 +206,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.listView1.Location = new System.Drawing.Point(0, 25);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(453, 330);
+			this.listView1.Size = new System.Drawing.Size(519, 330);
 			this.listView1.SmallImageList = this.imageList1;
 			this.listView1.StateImageList = this.imageList1;
 			this.listView1.TabIndex = 7;
@@ -223,6 +223,11 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.columnHeader2.Text = "Наименование";
 			this.columnHeader2.Width = 250;
+			// 
+			// columnHeader14
+			// 
+			this.columnHeader14.Text = "Контрагент";
+			this.columnHeader14.Width = 250;
 			// 
 			// columnHeader3
 			// 
@@ -276,11 +281,6 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.columnHeader13.Text = "Артикул";
 			// 
-			// columnHeader14
-			// 
-			this.columnHeader14.Text = "Контрагент";
-			this.columnHeader14.Width = 250;
-			// 
 			// columnHeader15
 			// 
 			this.columnHeader15.Text = "Прайс-лист";
@@ -324,7 +324,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			this.toolStripButton1});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(453, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(519, 25);
 			this.toolStrip1.TabIndex = 8;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -355,7 +355,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(453, 427);
+			this.ClientSize = new System.Drawing.Size(519, 427);
 			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.panel1);
