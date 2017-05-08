@@ -202,7 +202,7 @@ namespace Aggregator.Client.Directories
 				// OLEDB
 				try{
 					searchLocal();
-					Utilits.Console.Log("Журнал Контрагенты: поиск завершен.");
+					Utilits.Console.Log(this.Text + ": поиск завершен.");
 				}catch(Exception ex){
 					oleDb.Error();
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
@@ -211,7 +211,7 @@ namespace Aggregator.Client.Directories
 				// MSSQL SERVER
 				try{
 					searchServer();
-					Utilits.Console.Log("Журнал Контрагенты: поиск завершен.");
+					Utilits.Console.Log(this.Text + ": поиск завершен.");
 				}catch(Exception ex){
 					sqlServer.Error();
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);

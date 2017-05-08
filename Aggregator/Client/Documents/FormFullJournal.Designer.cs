@@ -44,6 +44,19 @@ namespace Aggregator.Client.Documents
 		private System.Windows.Forms.ColumnHeader columnHeader6;
 		private System.Windows.Forms.ColumnHeader columnHeader7;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
+		private System.Windows.Forms.ColumnHeader columnHeader9;
+		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem создатьДокументToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem заказToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem планЗакупокToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem редактироватьДокументToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem удалитьДокументToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem вводНаОснованииToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem заказToolStripMenuItem2;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -95,13 +108,27 @@ namespace Aggregator.Client.Documents
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.создатьДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.заказToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.планЗакупокToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.редактироватьДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.удалитьДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.вводНаОснованииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.заказToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.panel3.SuspendLayout();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -115,7 +142,7 @@ namespace Aggregator.Client.Documents
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel1.Location = new System.Drawing.Point(0, 467);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(909, 45);
+			this.panel1.Size = new System.Drawing.Size(897, 45);
 			this.panel1.TabIndex = 3;
 			// 
 			// dateTimePicker2
@@ -160,16 +187,18 @@ namespace Aggregator.Client.Documents
 			this.dateButton.TabIndex = 19;
 			this.dateButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.dateButton.UseVisualStyleBackColor = true;
+			this.dateButton.Click += new System.EventHandler(this.DateButtonClick);
 			// 
 			// buttonClose
 			// 
 			this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonClose.Location = new System.Drawing.Point(822, 10);
+			this.buttonClose.Location = new System.Drawing.Point(810, 10);
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.Size = new System.Drawing.Size(75, 23);
 			this.buttonClose.TabIndex = 0;
 			this.buttonClose.Text = "Закрыть";
 			this.buttonClose.UseVisualStyleBackColor = true;
+			this.buttonClose.Click += new System.EventHandler(this.ButtonCloseClick);
 			// 
 			// dateTimePicker1
 			// 
@@ -187,7 +216,7 @@ namespace Aggregator.Client.Documents
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(909, 25);
+			this.panel2.Size = new System.Drawing.Size(897, 25);
 			this.panel2.TabIndex = 4;
 			// 
 			// toolStrip1
@@ -204,7 +233,7 @@ namespace Aggregator.Client.Documents
 			this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(909, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(897, 25);
 			this.toolStrip1.TabIndex = 25;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -218,7 +247,7 @@ namespace Aggregator.Client.Documents
 			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
 			this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-			this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+			this.toolStripDropDownButton1.Text = "Создать документ";
 			// 
 			// заказToolStripMenuItem
 			// 
@@ -226,6 +255,7 @@ namespace Aggregator.Client.Documents
 			this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
 			this.заказToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.заказToolStripMenuItem.Text = "Заказ";
+			this.заказToolStripMenuItem.Click += new System.EventHandler(this.ЗаказToolStripMenuItemClick);
 			// 
 			// планЗакупокToolStripMenuItem
 			// 
@@ -233,6 +263,7 @@ namespace Aggregator.Client.Documents
 			this.планЗакупокToolStripMenuItem.Name = "планЗакупокToolStripMenuItem";
 			this.планЗакупокToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.планЗакупокToolStripMenuItem.Text = "План закупок";
+			this.планЗакупокToolStripMenuItem.Click += new System.EventHandler(this.ПланЗакупокToolStripMenuItemClick);
 			// 
 			// toolStripButton2
 			// 
@@ -241,7 +272,8 @@ namespace Aggregator.Client.Documents
 			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton2.Name = "toolStripButton2";
 			this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton2.Text = "Изменить заказ";
+			this.toolStripButton2.Text = "Редактировать документ";
+			this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2Click);
 			// 
 			// toolStripButton3
 			// 
@@ -250,7 +282,8 @@ namespace Aggregator.Client.Documents
 			this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton3.Name = "toolStripButton3";
 			this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton3.Text = "Удалить заказ";
+			this.toolStripButton3.Text = "Удалить документ";
+			this.toolStripButton3.Click += new System.EventHandler(this.ToolStripButton3Click);
 			// 
 			// toolStripSeparator5
 			// 
@@ -262,6 +295,7 @@ namespace Aggregator.Client.Documents
 			this.toolStripComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
 			this.toolStripComboBox1.Name = "toolStripComboBox1";
 			this.toolStripComboBox1.Size = new System.Drawing.Size(200, 25);
+			this.toolStripComboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ToolStripComboBox1KeyDown);
 			// 
 			// toolStripButton9
 			// 
@@ -270,6 +304,7 @@ namespace Aggregator.Client.Documents
 			this.toolStripButton9.Name = "toolStripButton9";
 			this.toolStripButton9.Size = new System.Drawing.Size(62, 22);
 			this.toolStripButton9.Text = "Поиск";
+			this.toolStripButton9.Click += new System.EventHandler(this.ToolStripButton9Click);
 			// 
 			// toolStripSeparator6
 			// 
@@ -283,6 +318,7 @@ namespace Aggregator.Client.Documents
 			this.toolStripButton10.Name = "toolStripButton10";
 			this.toolStripButton10.Size = new System.Drawing.Size(81, 22);
 			this.toolStripButton10.Text = "Обновить";
+			this.toolStripButton10.Click += new System.EventHandler(this.ToolStripButton10Click);
 			// 
 			// panel3
 			// 
@@ -290,7 +326,7 @@ namespace Aggregator.Client.Documents
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel3.Location = new System.Drawing.Point(0, 25);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(909, 442);
+			this.panel3.Size = new System.Drawing.Size(897, 442);
 			this.panel3.TabIndex = 5;
 			// 
 			// listView1
@@ -303,8 +339,10 @@ namespace Aggregator.Client.Documents
 			this.columnHeader4,
 			this.columnHeader5,
 			this.columnHeader6,
+			this.columnHeader9,
 			this.columnHeader7,
 			this.columnHeader8});
+			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
 			this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
@@ -312,7 +350,7 @@ namespace Aggregator.Client.Documents
 			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(909, 442);
+			this.listView1.Size = new System.Drawing.Size(897, 442);
 			this.listView1.SmallImageList = this.imageList1;
 			this.listView1.StateImageList = this.imageList1;
 			this.listView1.TabIndex = 6;
@@ -349,6 +387,11 @@ namespace Aggregator.Client.Documents
 			this.columnHeader6.Text = "Контрагент";
 			this.columnHeader6.Width = 150;
 			// 
+			// columnHeader9
+			// 
+			this.columnHeader9.Text = "Документ ПЗ";
+			this.columnHeader9.Width = 100;
+			// 
 			// columnHeader7
 			// 
 			this.columnHeader7.Text = "Автор";
@@ -358,6 +401,95 @@ namespace Aggregator.Client.Documents
 			// 
 			this.columnHeader8.Text = "№";
 			this.columnHeader8.Width = 0;
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.создатьДокументToolStripMenuItem,
+			this.редактироватьДокументToolStripMenuItem,
+			this.удалитьДокументToolStripMenuItem,
+			this.toolStripSeparator1,
+			this.вводНаОснованииToolStripMenuItem,
+			this.toolStripSeparator2,
+			this.обновитьToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(210, 148);
+			// 
+			// создатьДокументToolStripMenuItem
+			// 
+			this.создатьДокументToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.заказToolStripMenuItem1,
+			this.планЗакупокToolStripMenuItem1});
+			this.создатьДокументToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("создатьДокументToolStripMenuItem.Image")));
+			this.создатьДокументToolStripMenuItem.Name = "создатьДокументToolStripMenuItem";
+			this.создатьДокументToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+			this.создатьДокументToolStripMenuItem.Text = "Создать документ";
+			// 
+			// заказToolStripMenuItem1
+			// 
+			this.заказToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("заказToolStripMenuItem1.Image")));
+			this.заказToolStripMenuItem1.Name = "заказToolStripMenuItem1";
+			this.заказToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+			this.заказToolStripMenuItem1.Text = "Заказ";
+			this.заказToolStripMenuItem1.Click += new System.EventHandler(this.ЗаказToolStripMenuItem1Click);
+			// 
+			// планЗакупокToolStripMenuItem1
+			// 
+			this.планЗакупокToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("планЗакупокToolStripMenuItem1.Image")));
+			this.планЗакупокToolStripMenuItem1.Name = "планЗакупокToolStripMenuItem1";
+			this.планЗакупокToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+			this.планЗакупокToolStripMenuItem1.Text = "План закупок";
+			this.планЗакупокToolStripMenuItem1.Click += new System.EventHandler(this.ПланЗакупокToolStripMenuItem1Click);
+			// 
+			// редактироватьДокументToolStripMenuItem
+			// 
+			this.редактироватьДокументToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("редактироватьДокументToolStripMenuItem.Image")));
+			this.редактироватьДокументToolStripMenuItem.Name = "редактироватьДокументToolStripMenuItem";
+			this.редактироватьДокументToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+			this.редактироватьДокументToolStripMenuItem.Text = "Редактировать документ";
+			this.редактироватьДокументToolStripMenuItem.Click += new System.EventHandler(this.РедактироватьДокументToolStripMenuItemClick);
+			// 
+			// удалитьДокументToolStripMenuItem
+			// 
+			this.удалитьДокументToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("удалитьДокументToolStripMenuItem.Image")));
+			this.удалитьДокументToolStripMenuItem.Name = "удалитьДокументToolStripMenuItem";
+			this.удалитьДокументToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+			this.удалитьДокументToolStripMenuItem.Text = "Удалить документ";
+			this.удалитьДокументToolStripMenuItem.Click += new System.EventHandler(this.УдалитьДокументToolStripMenuItemClick);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(206, 6);
+			// 
+			// вводНаОснованииToolStripMenuItem
+			// 
+			this.вводНаОснованииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.заказToolStripMenuItem2});
+			this.вводНаОснованииToolStripMenuItem.Name = "вводНаОснованииToolStripMenuItem";
+			this.вводНаОснованииToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+			this.вводНаОснованииToolStripMenuItem.Text = "Ввод на основании";
+			// 
+			// заказToolStripMenuItem2
+			// 
+			this.заказToolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("заказToolStripMenuItem2.Image")));
+			this.заказToolStripMenuItem2.Name = "заказToolStripMenuItem2";
+			this.заказToolStripMenuItem2.Size = new System.Drawing.Size(104, 22);
+			this.заказToolStripMenuItem2.Text = "Заказ";
+			this.заказToolStripMenuItem2.Click += new System.EventHandler(this.ЗаказToolStripMenuItem2Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(206, 6);
+			// 
+			// обновитьToolStripMenuItem
+			// 
+			this.обновитьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("обновитьToolStripMenuItem.Image")));
+			this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+			this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+			this.обновитьToolStripMenuItem.Text = "Обновить";
+			this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.ОбновитьToolStripMenuItemClick);
 			// 
 			// imageList1
 			// 
@@ -370,7 +502,7 @@ namespace Aggregator.Client.Documents
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(909, 512);
+			this.ClientSize = new System.Drawing.Size(897, 512);
 			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
@@ -386,6 +518,7 @@ namespace Aggregator.Client.Documents
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			this.panel3.ResumeLayout(false);
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

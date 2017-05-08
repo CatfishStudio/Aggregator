@@ -95,10 +95,10 @@ namespace Aggregator.Client.Documents.PurchasePlan
 			oleDb.dataSet.Clear();
 			oleDb.dataSet.DataSetName = "PurchasePlan";
 			
-			//Дата в формате: BETWEEN #22/03/2017# AND #22/03/2017#
+			// Дата в формате: BETWEEN #месяц/день/год# AND #месяц/день/год#
 			oleDb.oleDbCommandSelect.CommandText = "SELECT * FROM PurchasePlan WHERE (docDate BETWEEN #" + 
-				dateTimePicker1.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "# AND #" + 
-				dateTimePicker2.Value.ToString("dd.MM.yyyy").Replace(".", "/") + "#) " +
+				dateTimePicker1.Value.ToString("MM.dd.yyyy").Replace(".", "/") + "# AND #" + 
+				dateTimePicker2.Value.ToString("MM.dd.yyyy").Replace(".", "/") + "#) " +
 				"AND (docNumber LIKE '%" + toolStripComboBox1.Text + 
 				"%' OR docTotal LIKE '%" + toolStripComboBox1.Text + 
 				"%' OR docAutor LIKE '%" + toolStripComboBox1.Text +
@@ -178,7 +178,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				// OLEDB
 				try{
 					TableRefreshLocal();
-					Utilits.Console.Log("Журнал План закупок: поиск завершен.");
+					Utilits.Console.Log(this.Text + ": поиск завершен.");
 				}catch(Exception ex){
 					oleDb.Error();
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);
@@ -187,7 +187,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 				// MSSQL SERVER
 				try{
 					TableRefreshServer();
-					Utilits.Console.Log("Журнал План закупок: поиск завершен.");
+					Utilits.Console.Log(this.Text + ": поиск завершен.");
 				}catch(Exception ex){
 					sqlServer.Error();
 					Utilits.Console.Log("[ОШИБКА]: " + ex.Message.ToString(), false, true);

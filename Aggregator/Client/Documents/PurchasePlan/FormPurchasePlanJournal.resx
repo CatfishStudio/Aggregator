@@ -156,7 +156,7 @@
     <value>156, 16</value>
   </metadata>
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>661, 15</value>
+    <value>408, 15</value>
   </metadata>
   <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -175,14 +175,14 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHNSURBVDhPlVJLS0JREL5/oFXLIAoXEbQICqJVS1dBi/bR
-        RqqF2AOiNG8UhEkQhF0VH9fnhSJCXfQieizMKGhTgVEEJpGPRWBB5KKvMzfNmw+wgeGcM2fmm+H7huOq
-        WDAYDPl8Png8Hni9XgQCga1qeTVjVKw0t8v1PxDqTBa/f/jFoUnqnqIIkM5kkGJORrG6Aagb2Wc+LzuZ
-        coLH5WPcmo9qAzIS/3BAD4rRBAZej2Q4gZhwiau57RKIXq+PaLVakAuCECEiRVGUne4WiyU8NcMj+ZLG
-        wooJO7MHuBi1lQCokDXoKniL4i7HYromvN5tgTetYe/4FFrD9E++JElZ6kDu9/tp1Dg77co92B9XfSHa
-        B2y2IB5axOSMETzPp2RSyzV3Mc3dbvcvB9EJFTKHg/jY7AacjdgYa5f/KIcpk+KqaW6z2eSkc10zcKZG
-        /kiDN3srJF1v5W4QSWTpTJZpnpXvVqsV7xs9wLMJuDYCQgPWh9oq8qiWKwIoNScA0TiAXYkV35ghDqtg
-        L0ylzJMByjmgNg6HA/Mj/VjSqPG0qkYul4PT6azYDarlWLcTpea0caQGndSBOCr8vxVjxd1ghCdICFW5
-        5jXenVXiHd+oziVMWqE44wAAAABJRU5ErkJggg==
+        JqqF2AOiNG8UhEUQhF0VH9fnBUNCXZREaC3MKGhTgVEEJpGPRWBB5KKvMzetmw+ogeGcM2fmm+H7huPq
+        mN/vD3k8HrhcLrjdbvh8vmC9vIYxKlaa0+H4Hwh1Jkvd3n3j0CR/nqICkMvnkWVORrE/A1A3svdSSXYy
+        5QT3a3Fcr8caAzISf3FAD4rRBHpeh0w4jaRwjovF3R8QnU4X0Wg0IBcEIUJEiqIoO91NJlN4dp5H5imH
+        5Q0j9hYOcDZh+QGgQtagp+xtirscS2pb8HwTBG/cQjR+DI1+7itfkqQCdSD3er00aoqdVuUeRKdUH0gM
+        ADttSIVWMDNvAM/zWZnUas0dTHOn0/nNQWJahfzhMN52egF7MwKTnfIf5TBlslw9zS0Wi5x0qm0FTtQo
+        xcbwYm2HpO2v3Q0iiSyXLzDNC/LdbDbjNdAHPBqBSwMgNGF7pKMmj2q5CoBScwIQDUPYl1jx1TrEURWs
+        5amUeTJANQfUxmazYWl8EKtjajxsqlEsFmG322t2g2o51u1IqTltHKlBJ3Ugjsr/L5VYZTcY4WkSQlWt
+        eYN3d5141yem6yVLO9WdlgAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolStripButton3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -312,16 +312,16 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAc
-        AwAAAk1TRnQBSQFMAwEBAAFAAQIBQAECARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
+        AwAAAk1TRnQBSQFMAwEBAAFIAQIBSAECARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
         ARADAAEBAQABIAYAARASAAMZBCMBMwMjATMDIwEzAyMBMwMjATMDIwEzAyMBMwMjATMDIwEzAyEBMAMj
         ATMDIwEzAyMBMwMjATMDHwEswAADWgHAA6IB/wOfAf8DnwH/A6EB/wOjAf8DoQH/A58B/wOgAf8DogH/
-        A28B8wOhAf8DnwH/A58B/wOiAf8DYQHhwAADohH/A5sN/wPyAf8DnBH/A6IB/8AAA58F/wL6AfkB/wL6
+        A24B8wOhAf8DnwH/A58B/wOiAf8DYQHhwAADohH/A5sN/wPyAf8DnBH/A6IB/8AAA58F/wL6AfkB/wL6
         AfkF/wOXBf8C+wH5Af8C/AH7Af8D7gH/ApgBmQX/AvoB+QH/AvoB+QX/A58B/8AAA58F/wHrAeoB6QH/
         AesB6gHoBf8DlwX/AesB6gHpAf8B7QHsAeoB/wPuAf8DmAX/AesB6gHpAf8B6wHqAegF/wOfAf/AAAOg
         Bf8B3AHbAdgJ/wOYBf8B3AHbAdgF/wLwAfEB/wOaBf8B3AHbAdgJ/wOhAf/AAAOiDf8DnQH/A54N/wOd
-        Af8Dnw3/A54B/wNkAejAAANoAesDogH/A6IB/wOjAf8DXgHYA04BmQOiAf8DoAH/A6EB/wNdAdcDXQHX
-        A6IB/wOhAf8DowH/A2EB4swAA18B/wMjATMDIwEzAxcBIAMjATMDIwEzAyMBMwMjATMDFwEgAyMBMwMj
-        ATMDXwH/0AADVQGyA18B/wNfAf8DVQGyA6IB/wOfAf8DnwH/A6IB/wNWAbEDXwH/A18B/wNWAbTcAAOl
+        Af8Dnw3/A54B/wNjAejAAANnAesDogH/A6IB/wOjAf8DXgHYA04BmQOiAf8DoAH/A6EB/wNdAdcDXQHX
+        A6IB/wOhAf8DowH/A2EB4swAA14B/wMjATMDIwEzAxcBIAMjATMDIwEzAyMBMwMjATMDFwEgAyMBMwMj
+        ATMDXgH/0AADVQGyA14B/wNeAf8DVQGyA6IB/wOfAf8DnwH/A6IB/wNWAbEDXgH/A14B/wNWAbTcAAOl
         Ef8DpQH/6AADoQX/AvoB+QH/AvoB+QX/A6EB/+gAA6AF/wLqAekB/wLqAegF/wOgAf/oAAOgBf8B3AHb
         AdgJ/wOhAf/oAAOiDf8CnQGeAf8DVAGs6AADVQGwA6IB/wOgAf8DoQH/A1QBrNgAAUIBTQE+BwABPgMA
         ASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/86AAEBBgABwAEDBgABwAEDBgAB+AEfBgAB+AEfBgAB+AEf

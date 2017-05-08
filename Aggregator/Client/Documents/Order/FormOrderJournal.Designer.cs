@@ -77,7 +77,12 @@ namespace Aggregator.Client.Documents.Order
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrderJournal));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.dateButton = new System.Windows.Forms.Button();
 			this.buttonClose = new System.Windows.Forms.Button();
+			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -88,9 +93,6 @@ namespace Aggregator.Client.Documents.Order
 			this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
-			this.dateButton = new System.Windows.Forms.Button();
-			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
@@ -112,8 +114,6 @@ namespace Aggregator.Client.Documents.Order
 			this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
@@ -135,6 +135,51 @@ namespace Aggregator.Client.Documents.Order
 			this.panel1.Size = new System.Drawing.Size(796, 45);
 			this.panel1.TabIndex = 2;
 			// 
+			// dateTimePicker2
+			// 
+			this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.dateTimePicker2.CustomFormat = "dd.MM.yyyy";
+			this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dateTimePicker2.Location = new System.Drawing.Point(221, 12);
+			this.dateTimePicker2.Name = "dateTimePicker2";
+			this.dateTimePicker2.Size = new System.Drawing.Size(96, 20);
+			this.dateTimePicker2.TabIndex = 18;
+			// 
+			// label2
+			// 
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label2.Location = new System.Drawing.Point(194, 13);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(44, 23);
+			this.label2.TabIndex = 21;
+			this.label2.Text = "по";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
+			this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.label1.Location = new System.Drawing.Point(12, 13);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(74, 23);
+			this.label1.TabIndex = 20;
+			this.label1.Text = "Период с";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// dateButton
+			// 
+			this.dateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.dateButton.Image = ((System.Drawing.Image)(resources.GetObject("dateButton.Image")));
+			this.dateButton.Location = new System.Drawing.Point(323, 10);
+			this.dateButton.Name = "dateButton";
+			this.dateButton.Size = new System.Drawing.Size(25, 23);
+			this.dateButton.TabIndex = 19;
+			this.dateButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.dateButton, "Применить период.");
+			this.dateButton.UseVisualStyleBackColor = true;
+			this.dateButton.Click += new System.EventHandler(this.DateButtonClick);
+			// 
 			// buttonClose
 			// 
 			this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -145,6 +190,16 @@ namespace Aggregator.Client.Documents.Order
 			this.buttonClose.Text = "Закрыть";
 			this.buttonClose.UseVisualStyleBackColor = true;
 			this.buttonClose.Click += new System.EventHandler(this.ButtonCloseClick);
+			// 
+			// dateTimePicker1
+			// 
+			this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
+			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dateTimePicker1.Location = new System.Drawing.Point(92, 13);
+			this.dateTimePicker1.Name = "dateTimePicker1";
+			this.dateTimePicker1.Size = new System.Drawing.Size(96, 20);
+			this.dateTimePicker1.TabIndex = 16;
 			// 
 			// panel2
 			// 
@@ -237,39 +292,6 @@ namespace Aggregator.Client.Documents.Order
 			this.toolStripButton10.Size = new System.Drawing.Size(81, 22);
 			this.toolStripButton10.Text = "Обновить";
 			this.toolStripButton10.Click += new System.EventHandler(this.ToolStripButton10Click);
-			// 
-			// dateButton
-			// 
-			this.dateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.dateButton.Image = ((System.Drawing.Image)(resources.GetObject("dateButton.Image")));
-			this.dateButton.Location = new System.Drawing.Point(323, 10);
-			this.dateButton.Name = "dateButton";
-			this.dateButton.Size = new System.Drawing.Size(25, 23);
-			this.dateButton.TabIndex = 19;
-			this.dateButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.toolTip1.SetToolTip(this.dateButton, "Применить период.");
-			this.dateButton.UseVisualStyleBackColor = true;
-			this.dateButton.Click += new System.EventHandler(this.DateButtonClick);
-			// 
-			// dateTimePicker2
-			// 
-			this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.dateTimePicker2.CustomFormat = "dd.MM.yyyy";
-			this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dateTimePicker2.Location = new System.Drawing.Point(221, 12);
-			this.dateTimePicker2.Name = "dateTimePicker2";
-			this.dateTimePicker2.Size = new System.Drawing.Size(96, 20);
-			this.dateTimePicker2.TabIndex = 18;
-			// 
-			// dateTimePicker1
-			// 
-			this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
-			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dateTimePicker1.Location = new System.Drawing.Point(92, 13);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(96, 20);
-			this.dateTimePicker1.TabIndex = 16;
 			// 
 			// panel3
 			// 
@@ -374,7 +396,7 @@ namespace Aggregator.Client.Documents.Order
 			this.toolStripSeparator1,
 			this.обновитьToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(160, 98);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(160, 120);
 			// 
 			// создатьПланЗакупокToolStripMenuItem
 			// 
@@ -418,28 +440,6 @@ namespace Aggregator.Client.Documents.Order
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "page_white_text.png");
-			// 
-			// label1
-			// 
-			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-			this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.label1.Location = new System.Drawing.Point(12, 13);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(74, 23);
-			this.label1.TabIndex = 20;
-			this.label1.Text = "Период с";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// label2
-			// 
-			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label2.Location = new System.Drawing.Point(194, 13);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(44, 23);
-			this.label2.TabIndex = 21;
-			this.label2.Text = "по";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// FormOrderJournal
 			// 
