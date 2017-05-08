@@ -63,7 +63,7 @@ namespace Aggregator.Client.Reports
 			}
 		}
 		
-		String getCommandSelect()
+		String getCommandSelectOleDb()
 		{
 			int col = 0;
 			String command = "SELECT ";
@@ -135,6 +135,80 @@ namespace Aggregator.Client.Reports
 			"AND (Orders.docDate BETWEEN #" + 
 			dateTimePicker1.Value.ToString("MM.dd.yyyy").Replace(".", "/") + "# AND #" + 
 				dateTimePicker2.Value.ToString("MM.dd.yyyy").Replace(".", "/") + "#)";
+			
+			return command;
+		}
+		
+		String getCommandSelectSqlServer()
+		{
+			int col = 0;
+			String command = "SELECT ";
+			if(codeSeriesArticleСheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.code ";
+				else command += ", OrderNomenclature.code ";
+				col++;
+				command += ", OrderNomenclature.series ";
+				col++;
+				command += ", OrderNomenclature.article ";
+				col++;
+			}
+			if(nameCheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.name ";
+				else command += ", OrderNomenclature.name ";
+				col++;
+			}
+			if(unitsСheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.units ";
+				else command += ", OrderNomenclature.units ";
+				col++;
+			}
+			if(amountСheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.amount ";
+				else command += ", OrderNomenclature.amount ";
+				col++;
+			}
+			if(priceСheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.price ";
+				else command += ", OrderNomenclature.price ";
+				col++;
+			}
+			if(discountСheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.discount1 ";
+				else command += ", OrderNomenclature.discount1 ";
+				col++;
+				command += ", OrderNomenclature.discount2 ";
+				col++;
+				command += ", OrderNomenclature.discount3 ";
+				col++;
+				command += ", OrderNomenclature.discount4 ";
+				col++;
+			}
+			if(manufacturerСheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.manufacturer ";
+				else command += ", OrderNomenclature.manufacturer ";
+				col++;
+			}
+			if(termСheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.term ";
+				else command += ", OrderNomenclature.term ";
+				col++;
+			}
+			if(orderCheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.docOrder ";
+				else command += ", OrderNomenclature.docOrder ";
+				col++;
+			}
+			if(PurchasePlanCheckBox.Checked){
+				if(col == 0) command += "OrderNomenclature.docPurchasePlan ";
+				else command += ", OrderNomenclature.docPurchasePlan ";
+				col++;
+			}
+			
+			command += "FROM OrderNomenclature, Orders "+
+			"WHERE (OrderNomenclature.counteragentName = '" + counteragentTextBox.Text + "') "+
+			"AND (Orders.docCounteragent = '" + counteragentTextBox.Text + "') "+
+			"AND (OrderNomenclature.docOrder = Orders.docNumber) " +
+			"AND (Orders.docDate BETWEEN '" + dateTimePicker1.Text + "' AND '" + dateTimePicker2.Text + "')";
 			
 			return command;
 		}
@@ -253,7 +327,7 @@ namespace Aggregator.Client.Reports
 				oleDb = new OleDb(DataConfig.localDatabase);
 				oleDb.dataSet.Clear();
 			
-				oleDb.oleDbCommandSelect.CommandText = getCommandSelect();
+				oleDb.oleDbCommandSelect.CommandText = getCommandSelectOleDb();
 				
 				/*
 				oleDb.oleDbCommandSelect.CommandText = "SELECT " +
@@ -288,7 +362,7 @@ namespace Aggregator.Client.Reports
 			try{
 				sqlServer = new SqlServer();
 				sqlServer.dataSet.Clear();
-				sqlServer.sqlCommandSelect.CommandText = getCommandSelect();
+				sqlServer.sqlCommandSelect.CommandText = getCommandSelectSqlServer();
 				
 				if(sqlServer.ExecuteFill("OrderNomenclature")){
 					if(sqlServer.dataSet.Tables.Count > 0){
@@ -406,9 +480,8 @@ namespace Aggregator.Client.Reports
 
 			}
 			
-			PosY += 30;
+			PosY += 15;
 			e.Graphics.DrawLine(new Pen(Color.Black), 0, PosY, 650, PosY);
-			PosY += 30;
 		}
 		
 		
