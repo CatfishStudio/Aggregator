@@ -15,6 +15,8 @@ namespace Aggregator.Data
 	/// </summary>
 	public static class DataConstants
 	{
+		public const String KEY_APPLICATION = "0000-0000-0000-0000";
+		
 		public const String CONNETION_LOCAL = "connection_local";
 		public const String CONNETION_SERVER = "connection_server";
 		public const String TYPE_OLEDB = "type_oledb";

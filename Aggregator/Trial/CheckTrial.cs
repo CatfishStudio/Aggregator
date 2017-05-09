@@ -26,12 +26,12 @@ namespace Aggregator.Trial
 				RegistryKey aggregatorKey = currentUserKey.OpenSubKey("Aggregator");
 				if(aggregatorKey == null){
 					aggregatorKey = currentUserKey.CreateSubKey("Aggregator");
-					aggregatorKey.SetValue("datetime", DateTime.Today.ToString("dd.MM.yyyy"));
-					aggregatorKey.SetValue("activated", "0");
+					aggregatorKey.SetValue("000001", encrypt(DateTime.Today.ToString("dd.MM.yyyy").ToString()) );
+					aggregatorKey.SetValue("000002", encrypt("0"));
 				}
 				
-				DataConfig.dateStart = aggregatorKey.GetValue("datetime").ToString();
-				DataConfig.activated = aggregatorKey.GetValue("activated").ToString();
+				DataConfig.dateStart = decipher(aggregatorKey.GetValue("000001").ToString());
+				DataConfig.activated = decipher(aggregatorKey.GetValue("000002").ToString());
 				aggregatorKey.Close();
 			}catch(Exception ex){
 				MessageBox.Show(ex.Message, "Ошибка");
@@ -41,14 +41,79 @@ namespace Aggregator.Trial
 		
 		public bool Check()
 		{
-			if(DataConfig.activated == "0"){
-				FormTrial FTrial = new FormTrial();
-				FTrial.ShowDialog();
+			if(DataConfig.activated == DataConstants.KEY_APPLICATION){
 				return true;
 			}else{
-				return true;
+				DateTime dt = Convert.ToDateTime(DataConfig.dateStart);
+				TimeSpan ts = DateTime.Now - dt;
+				int differenceInDays = 30 - ts.Days;
+				
+				FormTrial FTrial = new FormTrial();
+				FTrial.DaysLeft = differenceInDays;
+				FTrial.CTrial = this;
+				FTrial.ShowDialog();
+				
+				if(differenceInDays < 0) return false;
+				else return true;
 			}
 		}
 		
+		public void Activation(String key)
+		{
+			if(key == DataConstants.KEY_APPLICATION){
+				
+				try{
+					RegistryKey currentUserKey = Registry.CurrentUser;
+					RegistryKey aggregatorKey = currentUserKey.OpenSubKey("Aggregator");
+					if(aggregatorKey == null){
+						aggregatorKey = currentUserKey.CreateSubKey("Aggregator");
+						aggregatorKey.SetValue("000001", encrypt(DateTime.Today.ToString("dd.MM.yyyy").ToString()) );
+						aggregatorKey.SetValue("000002", encrypt(key));
+					}else{
+						aggregatorKey = currentUserKey.OpenSubKey("Aggregator", true);
+						aggregatorKey.SetValue("000002", encrypt(key));
+					}
+					
+					DataConfig.dateStart = decipher(aggregatorKey.GetValue("000001").ToString());
+					DataConfig.activated = decipher(aggregatorKey.GetValue("000002").ToString());
+					aggregatorKey.Close();
+					
+				}catch(Exception ex){
+					MessageBox.Show(ex.ToString(), "Ошибка");
+					return;
+				}
+				
+				MessageBox.Show("Активация прошла успешно!" + Environment.NewLine + "Необходимо перезапустить программу.", "Сообщение");
+				DataConfig.programClose = true;
+				Application.Exit();
+			}else{
+				MessageBox.Show("Вы ввели не верный ключ активации!", "Сообщение");
+				return;
+			}
+		}
+		
+		String encrypt(String strValue)
+		{
+			String hexOutput = null;
+			char[] values = strValue.ToCharArray();
+			foreach(char letter in values)
+			{
+				int ivalue = Convert.ToInt32(letter);
+				if(hexOutput == null) hexOutput += String.Format("{0:X}", ivalue);
+				else hexOutput += " " + String.Format("{0:X}", ivalue);
+			}
+			return hexOutput;
+		}
+		
+		String decipher(String hexValue)
+		{
+			String strOutput = null;
+			String[] values = hexValue.Split(' ');
+			foreach(String hex in values){
+				int ivalue = Convert.ToInt32(hex, 16);
+				strOutput += Char.ConvertFromUtf32(ivalue);
+			}
+			return strOutput;
+		}
 	}
 }

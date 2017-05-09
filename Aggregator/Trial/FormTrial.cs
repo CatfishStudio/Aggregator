@@ -28,6 +28,10 @@ namespace Aggregator.Trial
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
+		public int DaysLeft = 0;
+		public CheckTrial CTrial = null;
+		
 		void Button2Click(object sender, EventArgs e)
 		{
 			Close();
@@ -35,6 +39,20 @@ namespace Aggregator.Trial
 		void LinkLabel1LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start(linkLabel1.Text);
+		}
+		void FormTrialLoad(object sender, EventArgs e)
+		{
+			if(DaysLeft <= 0) {
+				label5.Text = "У вас осталось: 0 дней. \nВы не можите больше пользоваться программой пока не купите лицензионный ключ.";
+				button2.Enabled = false;
+			} else {
+				label5.Text = "У вас осталось: " + DaysLeft.ToString() + " дней";
+				button2.Enabled = true;
+			}
+		}
+		void Button1Click(object sender, EventArgs e)
+		{
+			CTrial.Activation(textBox1.Text);
 		}
 	}
 }

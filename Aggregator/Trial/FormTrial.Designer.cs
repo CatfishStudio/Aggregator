@@ -86,7 +86,7 @@ namespace Aggregator.Trial
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(0, 57);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(413, 226);
+			this.panel1.Size = new System.Drawing.Size(413, 247);
 			this.panel1.TabIndex = 1;
 			// 
 			// linkLabel1
@@ -111,7 +111,7 @@ namespace Aggregator.Trial
 			// button2
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(278, 191);
+			this.button2.Location = new System.Drawing.Point(278, 212);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(123, 23);
 			this.button2.TabIndex = 6;
@@ -124,19 +124,20 @@ namespace Aggregator.Trial
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
 			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button1.Location = new System.Drawing.Point(158, 191);
+			this.button1.Location = new System.Drawing.Point(158, 212);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(114, 23);
 			this.button1.TabIndex = 5;
 			this.button1.Text = "Активизировать";
 			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
 			// label5
 			// 
 			this.label5.Location = new System.Drawing.Point(3, 165);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(149, 23);
+			this.label5.Size = new System.Drawing.Size(398, 44);
 			this.label5.TabIndex = 4;
 			this.label5.Text = "У вас осталось: 30 дней";
 			// 
@@ -184,7 +185,7 @@ namespace Aggregator.Trial
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(413, 283);
+			this.ClientSize = new System.Drawing.Size(413, 304);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.label1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -194,6 +195,7 @@ namespace Aggregator.Trial
 			this.Name = "FormTrial";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Ввести ключь программы";
+			this.Load += new System.EventHandler(this.FormTrialLoad);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.ResumeLayout(false);

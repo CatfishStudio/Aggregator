@@ -559,21 +559,21 @@ namespace Aggregator.Client
 			// 
 			this.ввестиКлючПрограммыToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ввестиКлючПрограммыToolStripMenuItem.Image")));
 			this.ввестиКлючПрограммыToolStripMenuItem.Name = "ввестиКлючПрограммыToolStripMenuItem";
-			this.ввестиКлючПрограммыToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-			this.ввестиКлючПрограммыToolStripMenuItem.Text = "Ввести ключ программы";
+			this.ввестиКлючПрограммыToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+			this.ввестиКлючПрограммыToolStripMenuItem.Text = "Ввести ключь программы";
 			this.ввестиКлючПрограммыToolStripMenuItem.Click += new System.EventHandler(this.ВвестиКлючПрограммыToolStripMenuItemClick);
 			// 
 			// помощьToolStripMenuItem
 			// 
 			this.помощьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem.Image")));
 			this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
 			this.помощьToolStripMenuItem.Text = "Помощь";
 			// 
 			// оПрограммеToolStripMenuItem
 			// 
 			this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
 			this.оПрограммеToolStripMenuItem.Text = "О программе";
 			this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ОПрограммеToolStripMenuItemClick);
 			// 

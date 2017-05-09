@@ -530,11 +530,11 @@ namespace Aggregator.Client
 		}
 		void ВвестиКлючПрограммыToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			if(DataConfig.activated == "0"){
-				FormTrial FTrial = new FormTrial();
-				FTrial.ShowDialog();
+			if(DataConfig.activated != DataConstants.KEY_APPLICATION){
+				CheckTrial checkTrial = new CheckTrial();
+				checkTrial.Check();
 			}else{
-				MessageBox.Show("Ваша копия программы уже активизированны!", "Сообщение");
+				MessageBox.Show("Ваша копия программы уже активизированна!", "Сообщение");
 			}
 		}
 		
