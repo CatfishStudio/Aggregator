@@ -567,13 +567,14 @@ namespace Aggregator.Client
 			// 
 			this.помощьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem.Image")));
 			this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
 			this.помощьToolStripMenuItem.Text = "Помощь";
+			this.помощьToolStripMenuItem.Click += new System.EventHandler(this.ПомощьToolStripMenuItemClick);
 			// 
 			// оПрограммеToolStripMenuItem
 			// 
 			this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
 			this.оПрограммеToolStripMenuItem.Text = "О программе";
 			this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ОПрограммеToolStripMenuItemClick);
 			// 
@@ -764,6 +765,7 @@ namespace Aggregator.Client
 			this.toolStripButton12.Name = "toolStripButton12";
 			this.toolStripButton12.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton12.Text = "Помощь";
+			this.toolStripButton12.Click += new System.EventHandler(this.ToolStripButton12Click);
 			// 
 			// toolStripSeparator10
 			// 

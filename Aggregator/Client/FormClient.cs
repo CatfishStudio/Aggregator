@@ -236,6 +236,11 @@ namespace Aggregator.Client
 			FReportCountragents.Show();
 		}
 		
+		void helpShow()
+		{
+			System.Diagnostics.Process.Start(DataConfig.programPath + "help.chm");
+		}
+		
 		/* Сообщение в статусе */
 		public void messageInStatus(String message) {
 			toolStripStatusLabel2.Text = message;
@@ -540,6 +545,14 @@ namespace Aggregator.Client
 			}else{
 				MessageBox.Show("Ваша копия программы уже активизирована!", "Сообщение");
 			}
+		}
+		void ToolStripButton12Click(object sender, EventArgs e)
+		{
+			helpShow();
+		}
+		void ПомощьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			helpShow();
 		}
 		
 				

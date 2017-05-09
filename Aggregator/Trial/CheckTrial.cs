@@ -23,9 +23,9 @@ namespace Aggregator.Trial
 		{
 			try{
 				RegistryKey currentUserKey = Registry.CurrentUser;
-				RegistryKey aggregatorKey = currentUserKey.OpenSubKey("Aggregator");
+				RegistryKey aggregatorKey = currentUserKey.OpenSubKey(DataConstants.NAME_APPLICATION);
 				if(aggregatorKey == null){
-					aggregatorKey = currentUserKey.CreateSubKey("Aggregator");
+					aggregatorKey = currentUserKey.CreateSubKey(DataConstants.NAME_APPLICATION);
 					aggregatorKey.SetValue("000001", encrypt(DateTime.Today.ToString("dd.MM.yyyy").ToString()) );
 					aggregatorKey.SetValue("000002", encrypt("0"));
 				}
@@ -64,13 +64,13 @@ namespace Aggregator.Trial
 				
 				try{
 					RegistryKey currentUserKey = Registry.CurrentUser;
-					RegistryKey aggregatorKey = currentUserKey.OpenSubKey("Aggregator");
+					RegistryKey aggregatorKey = currentUserKey.OpenSubKey(DataConstants.NAME_APPLICATION);
 					if(aggregatorKey == null){
-						aggregatorKey = currentUserKey.CreateSubKey("Aggregator");
+						aggregatorKey = currentUserKey.CreateSubKey(DataConstants.NAME_APPLICATION);
 						aggregatorKey.SetValue("000001", encrypt(DateTime.Today.ToString("dd.MM.yyyy").ToString()) );
 						aggregatorKey.SetValue("000002", encrypt(key));
 					}else{
-						aggregatorKey = currentUserKey.OpenSubKey("Aggregator", true);
+						aggregatorKey = currentUserKey.OpenSubKey(DataConstants.NAME_APPLICATION, true);
 						aggregatorKey.SetValue("000002", encrypt(key));
 					}
 					
