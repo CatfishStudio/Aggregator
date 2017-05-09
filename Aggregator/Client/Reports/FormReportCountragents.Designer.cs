@@ -113,7 +113,6 @@ namespace Aggregator.Client.Reports
 			this.panel2.Controls.Add(this.buttonSaveExcel);
 			this.panel2.Controls.Add(this.buttonPrintPreview);
 			this.panel2.Controls.Add(this.buttonPrint);
-			this.panel2.Controls.Add(this.buttonSave);
 			this.panel2.Controls.Add(this.buttonCancel);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel2.Location = new System.Drawing.Point(0, 397);
@@ -126,13 +125,14 @@ namespace Aggregator.Client.Reports
 			this.buttonSaveExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSaveExcel.Image = ((System.Drawing.Image)(resources.GetObject("buttonSaveExcel.Image")));
 			this.buttonSaveExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSaveExcel.Location = new System.Drawing.Point(424, 16);
+			this.buttonSaveExcel.Location = new System.Drawing.Point(541, 16);
 			this.buttonSaveExcel.Name = "buttonSaveExcel";
 			this.buttonSaveExcel.Size = new System.Drawing.Size(123, 23);
 			this.buttonSaveExcel.TabIndex = 43;
 			this.buttonSaveExcel.Text = "Сохранить в Excel";
 			this.buttonSaveExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonSaveExcel.UseVisualStyleBackColor = true;
+			this.buttonSaveExcel.Click += new System.EventHandler(this.ButtonSaveExcelClick);
 			// 
 			// buttonPrintPreview
 			// 
@@ -167,7 +167,7 @@ namespace Aggregator.Client.Reports
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
 			this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonSave.Location = new System.Drawing.Point(553, 16);
+			this.buttonSave.Location = new System.Drawing.Point(638, 37);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(111, 23);
 			this.buttonSave.TabIndex = 1;
@@ -194,6 +194,7 @@ namespace Aggregator.Client.Reports
 			this.panel1.Controls.Add(this.dateTimePicker2);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.label3);
+			this.panel1.Controls.Add(this.buttonSave);
 			this.panel1.Controls.Add(this.dateTimePicker1);
 			this.panel1.Controls.Add(this.button2);
 			this.panel1.Controls.Add(this.button1);

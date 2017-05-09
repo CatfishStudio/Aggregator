@@ -1721,7 +1721,7 @@ namespace Aggregator.Client.Documents.PurchasePlan
 		            workbook.Save(saveFileDialog1.FileName);
 	            } catch (Exception ex) {
 					workbook = null;
-					Utilits.Console.Log("[ОШИБКА] Создание excel файла заказ: " + Environment.NewLine + ex.Message, false, true);
+					Utilits.Console.Log("[ОШИБКА] Создание excel файла плана закупок: " + Environment.NewLine + ex.Message, false, true);
 					return;
 				}
 				

@@ -8,11 +8,14 @@
  */
 using System;
 using System.Drawing;
+using System.IO;
+using System.Net;
 using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Client.Directories;
 using Aggregator.Database.Local;
 using Aggregator.Database.Server;
+using ExcelLibrary.SpreadSheet;
 
 namespace Aggregator.Client.Reports
 {
@@ -482,6 +485,75 @@ namespace Aggregator.Client.Reports
 			
 			PosY += 15;
 			e.Graphics.DrawLine(new Pen(Color.Black), 0, PosY, 650, PosY);
+		}
+		void ButtonSaveExcelClick(object sender, EventArgs e)
+		{
+			if(saveFileDialog1.ShowDialog() == DialogResult.OK){
+				int row = 0;
+				int col = 0;
+				
+				Workbook workbook = new Workbook();
+				
+				try
+				{
+					Worksheet worksheet = new Worksheet("Отчёт");
+					
+					/* ШАПКА */
+					worksheet.Cells[row, 2] = new Cell("ОТЧЕТ ПО КОНТРАГЕНТУ:");
+					row++;
+					worksheet.Cells[row, 1] = new Cell("Контрагент:");
+					worksheet.Cells[row, 2] = new Cell(counteragentTextBox.Text);
+					row++;
+					worksheet.Cells[row, 1] = new Cell("Период с: ");
+					worksheet.Cells[row, 2] = new Cell(dateTimePicker1.Text);
+					worksheet.Cells[row, 3] = new Cell(" по ");
+					worksheet.Cells[row, 4] = new Cell(dateTimePicker2.Text);
+					row++;
+					row++;
+					
+					/* ТАБЛИЦА */
+					col = 0;
+					worksheet.Cells[row, col] = new Cell("№п/п:");
+					col++;
+					
+					int countColumns = dataGridView1.Columns.Count;
+					for(int columns = 0; columns < countColumns; columns++){
+						worksheet.Cells[row, col] = new Cell(dataGridView1.Columns[columns].HeaderText);
+						col++;
+					}
+					row++;
+					
+					int countRows = dataGridView1.Rows.Count;
+					for(int rows = 0; rows < countRows; rows++){
+						
+						col = 0;
+						worksheet.Cells[row, col] = new Cell(rows);
+						col++;
+						
+						for(int columns = 0; columns < countColumns; columns++){
+							
+							worksheet.Cells[row, col] = new Cell(dataGridView1[columns, rows].Value);
+							col++;
+							
+						}
+						row++;
+					}
+					
+					workbook.Worksheets.Add(worksheet);
+		            workbook.Save(saveFileDialog1.FileName);
+				} catch (Exception ex) {
+					workbook = null;
+					Utilits.Console.Log("[ОШИБКА] Создание excel файла: " + Environment.NewLine + ex.ToString(), false, true);
+					return;
+				}
+				
+				if(!File.Exists(saveFileDialog1.FileName)){ 
+					MessageBox.Show("Файл: " + saveFileDialog1.FileName + " не создан!", "Сообщение");
+					return;
+	            }
+				
+				MessageBox.Show("Файл сохранен!", "Сообщение");
+			}
 		}
 		
 		
