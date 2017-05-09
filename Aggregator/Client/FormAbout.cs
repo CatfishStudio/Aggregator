@@ -30,11 +30,20 @@ namespace Aggregator.Client
 		}
 		void LinkLabel1LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			System.Diagnostics.Process.Start("mailto:" + linkLabel1.Text);
+			try{
+				System.Diagnostics.Process.Start("mailto:" + linkLabel1.Text);
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
+		
 		void LinkLabel2LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			System.Diagnostics.Process.Start(linkLabel2.Text);
+			try{
+				System.Diagnostics.Process.Start(linkLabel2.Text);
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
 	}
 }

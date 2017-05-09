@@ -647,7 +647,7 @@ namespace Aggregator.Client.Directories
 			this.groupBox6.Size = new System.Drawing.Size(510, 150);
 			this.groupBox6.TabIndex = 6;
 			this.groupBox6.TabStop = false;
-			this.groupBox6.Text = "Проспотр прайса:";
+			this.groupBox6.Text = "Просмотр прайса:";
 			// 
 			// dataGrid1
 			// 

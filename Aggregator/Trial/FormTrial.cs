@@ -38,7 +38,11 @@ namespace Aggregator.Trial
 		}
 		void LinkLabel1LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			System.Diagnostics.Process.Start(linkLabel1.Text);
+			try{
+				System.Diagnostics.Process.Start(linkLabel1.Text);
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
 		void FormTrialLoad(object sender, EventArgs e)
 		{

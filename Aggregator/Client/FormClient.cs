@@ -238,7 +238,11 @@ namespace Aggregator.Client
 		
 		void helpShow()
 		{
-			System.Diagnostics.Process.Start(DataConfig.programPath + "help.chm");
+			try{
+				System.Diagnostics.Process.Start(DataConfig.programPath + "help.chm");
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
 		
 		/* Сообщение в статусе */
@@ -423,27 +427,51 @@ namespace Aggregator.Client
 		}
 		void КалькуляторToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start("calc.exe");
+			try{
+				System.Diagnostics.Process.Start("calc.exe");
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
 		void БлокнотToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start("notepad.exe");
+			try{
+				System.Diagnostics.Process.Start("notepad.exe");
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
 		void WordPadToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start("wordpad.exe");
+			try{
+				System.Diagnostics.Process.Start("wordpad.exe");
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
 		void PaintToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start("mspaint.exe");
+			try{
+				System.Diagnostics.Process.Start("mspaint.exe");
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
 		void ExplorerToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start("explorer.exe");
+			try{
+				System.Diagnostics.Process.Start("explorer.exe");
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
 		void КоманданяСтрокаToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start("cmd.exe");
+			try{
+				System.Diagnostics.Process.Start("cmd.exe");
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message, "Ошибка");
+			}
 		}
 		void НоменклатураToolStripMenuItemClick(object sender, EventArgs e)
 		{
