@@ -17,6 +17,7 @@ using Aggregator.Database.Constants;
 using Aggregator.Database.Local;
 using Aggregator.Admin;
 using Aggregator.Database.Server;
+using Aggregator.Trial;
 using Aggregator.User;
 using Aggregator.Client.Settings;
 using Aggregator.Client.Directories;
@@ -526,6 +527,15 @@ namespace Aggregator.Client
 		void ToolStripButton14Click(object sender, EventArgs e)
 		{
 			reportCountragent();
+		}
+		void ВвестиКлючПрограммыToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(DataConfig.activated == "0"){
+				FormTrial FTrial = new FormTrial();
+				FTrial.ShowDialog();
+			}else{
+				MessageBox.Show("Ваша копия программы уже активизированны!", "Сообщение");
+			}
 		}
 		
 				

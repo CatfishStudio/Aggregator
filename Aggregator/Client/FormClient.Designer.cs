@@ -95,6 +95,7 @@ namespace Aggregator.Client
 		private System.Windows.Forms.ToolStripMenuItem отчетПоКонтрагентуToolStripMenuItem;
 		private System.Windows.Forms.ToolStripButton toolStripButton14;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+		private System.Windows.Forms.ToolStripMenuItem ввестиКлючПрограммыToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -160,6 +161,7 @@ namespace Aggregator.Client
 			this.консольЗапросовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ввестиКлючПрограммыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -546,23 +548,32 @@ namespace Aggregator.Client
 			// справкаToolStripMenuItem
 			// 
 			this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.ввестиКлючПрограммыToolStripMenuItem,
 			this.помощьToolStripMenuItem,
 			this.оПрограммеToolStripMenuItem});
 			this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
 			this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
 			this.справкаToolStripMenuItem.Text = "Справка";
 			// 
+			// ввестиКлючПрограммыToolStripMenuItem
+			// 
+			this.ввестиКлючПрограммыToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ввестиКлючПрограммыToolStripMenuItem.Image")));
+			this.ввестиКлючПрограммыToolStripMenuItem.Name = "ввестиКлючПрограммыToolStripMenuItem";
+			this.ввестиКлючПрограммыToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+			this.ввестиКлючПрограммыToolStripMenuItem.Text = "Ввести ключ программы";
+			this.ввестиКлючПрограммыToolStripMenuItem.Click += new System.EventHandler(this.ВвестиКлючПрограммыToolStripMenuItemClick);
+			// 
 			// помощьToolStripMenuItem
 			// 
 			this.помощьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("помощьToolStripMenuItem.Image")));
 			this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.помощьToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.помощьToolStripMenuItem.Text = "Помощь";
 			// 
 			// оПрограммеToolStripMenuItem
 			// 
 			this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
 			this.оПрограммеToolStripMenuItem.Text = "О программе";
 			this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ОПрограммеToolStripMenuItemClick);
 			// 

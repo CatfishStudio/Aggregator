@@ -13,6 +13,7 @@ using System.IO;
 using System.Windows.Forms;
 using Aggregator.Data;
 using Aggregator.Database;
+using Aggregator.Trial;
 using Aggregator.User;
 using Aggregator.Database.Config;
 
@@ -36,7 +37,9 @@ namespace Aggregator
 		}
 		void MainFormLoad(object sender, EventArgs e)
 		{
-			timer1.Start();
+			CheckTrial checkTrial = new CheckTrial();
+			if(checkTrial.Check()) timer1.Start();
+			else Application.Exit();
 		}
 		void Timer1Tick(object sender, EventArgs e)
 		{
