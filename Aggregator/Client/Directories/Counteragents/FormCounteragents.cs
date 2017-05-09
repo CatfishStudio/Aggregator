@@ -352,12 +352,15 @@ namespace Aggregator.Client.Directories
 							QueryOleDb query = new QueryOleDb(DataConfig.localDatabase);
 							query.SetCommand("DELETE FROM Counteragents WHERE (id = " + fileID + ")");
 							if(query.Execute()){
-								query = new QueryOleDb(DataConfig.localDatabase);
-								query.SetCommand("DROP TABLE " + priceName);
-								if(query.Execute()){
-									Utilits.Console.Log("Контрагент '" + fileName + "' успешно удалён. Прайс '" + priceName + "' успешно удалён.");
-								}else{
-									Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Прайс '" + priceName + "' не удалось удалить!");
+								
+								if(priceName != ""){
+									query = new QueryOleDb(DataConfig.localDatabase);
+									query.SetCommand("DROP TABLE " + priceName);
+									if(query.Execute()){
+										Utilits.Console.Log("Контрагент '" + fileName + "' успешно удалён. Прайс '" + priceName + "' успешно удалён.");
+									}else{
+										Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Прайс '" + priceName + "' не удалось удалить!");
+									}
 								}
 								DataForms.FClient.updateHistory("Counteragents");
 							}else{
@@ -368,12 +371,14 @@ namespace Aggregator.Client.Directories
 							QuerySqlServer query = new QuerySqlServer(DataConfig.serverConnection);
 							query.SetCommand("DELETE FROM Counteragents WHERE (id = " + fileID + ")");
 							if(query.Execute()){
-								query = new QuerySqlServer(DataConfig.serverConnection);
-								query.SetCommand("DROP TABLE " + priceName);
-								if(query.Execute()){
-									Utilits.Console.Log("Контрагент '" + fileName + "' успешно удалён. Прайс '" + priceName + "' успешно удалён.");
-								}else{
-									Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Прайс '" + priceName + "' не удалось удалить!");
+								if(priceName != ""){
+									query = new QuerySqlServer(DataConfig.serverConnection);
+									query.SetCommand("DROP TABLE " + priceName);
+									if(query.Execute()){
+										Utilits.Console.Log("Контрагент '" + fileName + "' успешно удалён. Прайс '" + priceName + "' успешно удалён.");
+									}else{
+										Utilits.Console.Log("[ПРЕДУПРЕЖДЕНИЕ] Прайс '" + priceName + "' не удалось удалить!");
+									}
 								}
 								DataForms.FClient.updateHistory("Counteragents");
 							}else{
