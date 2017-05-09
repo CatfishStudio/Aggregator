@@ -127,6 +127,7 @@ namespace Aggregator.Client
 		/* О программе */
 		void about()
 		{
+			/*
 			MessageBox.Show("Программа: Aggregator" + System.Environment.NewLine +
 			                "Разработчик: Somov Studio" + System.Environment.NewLine +
 			                "Лиценция: Freeware" + System.Environment.NewLine +
@@ -134,6 +135,9 @@ namespace Aggregator.Client
 			                "Дата: 01.03.2017" + System.Environment.NewLine +
 			                "Почта: somov.studio@gmail.com" + System.Environment.NewLine +
 			                "Сайт: http://somov.hol.es/", "О программе");
+			*/
+			FormAbout FAbout = new FormAbout();
+			FAbout.ShowDialog();
 		}
 		
 		/* Открыть окно констант */
@@ -534,7 +538,7 @@ namespace Aggregator.Client
 				CheckTrial checkTrial = new CheckTrial();
 				checkTrial.Check();
 			}else{
-				MessageBox.Show("Ваша копия программы уже активизированна!", "Сообщение");
+				MessageBox.Show("Ваша копия программы уже активизирована!", "Сообщение");
 			}
 		}
 		
