@@ -45,9 +45,15 @@ namespace Aggregator
 		{
 			timer1.Stop();
 			
-			initLocalPath();
-			initResource();
-			initLocalBase();
+			try {
+				initLocalPath();
+				initResource();
+				initLocalBase();
+			}catch(Exception ex){
+				MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + "Запустите программу от имени администратора.", "Сообщение");
+				DataConfig.programClose = true;
+				Application.Exit();
+			}
 		}
 		
 		void initLocalPath()
